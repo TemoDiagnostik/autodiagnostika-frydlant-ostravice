@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Nade Temo – Autodiagnostika</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Nade Temo</h1>
+        <p>Profesionální autodiagnostika – Frýdlant nad Ostravicí</p>
+        <a href="https://wa.me/420732133919" class="whatsapp">Kontaktujte přes WhatsApp</a>
+    </header>
+
+    <section class="bio">
+        <h2>O mně</h2>
+        <p>Jmenuji se Nade Temo. Jsem automechanik a mechatronik s více než 22 lety zkušeností v Německu. Specializuji se na pokročilou diagnostiku a elektroniku vozidel.</p>
+        <p>Mluvím dobře česky, ale ne perfektně. Mluvím výborně německy a anglicky. Nabízím kávu nebo čaj při návštěvě. Děkuji za pochopení.</p>
+    </section>
+
+    <section class="device-image">
+        <h2>Ukázka zařízení</h2>
+        <img src="device.jpg" alt="Diagnostické zařízení">
+    </section>
+
+    <!-- Accordion Block -->
+    
+<section id="device-capabilities" style="margin: 2em 0;">
+  <h2>Možnosti zařízení</h2>
+  <p>Zařízení podporuje více než 35 funkcí resetu a pokročilé diagnostiky.</p>
+  <button onclick="toggleAccordion()" style="padding:10px; background-color:#c29f36; color:white; border:none; border-radius:5px; cursor:pointer;">Zobrazit/Více</button>
+  <div id="accordion-content" style="display:none; margin-top:15px;">
+    <h3>Funkce Reset:</h3>
+    <ul>
+      <li>Oil Reset – Obnovení servisního intervalu výměny oleje</li>
+      <li>EPB Reset – Reset elektronické parkovací brzdy</li>
+      <li>SAS Reset – Kalibrace úhlu volantu</li>
+      <li>Battery Reset (BMS)</li>
+      <li>DPF Regenerace – Manuální i automatická</li>
+      <li>Throttle Matching</li>
+      <li>TPMS Reset</li>
+      <li>Gear Learning</li>
+      <li>IMMO Reset</li>
+      <li>Kódování vstřikovačů</li>
+      <li>AFS Reset, EGR Reset, AdBlue Reset, NOx Reset...</li>
+      <li>...a další (více než 35 celkem)</li>
+    </ul>
+    <h3>Služby pro zákazníky:</h3>
+    <ul>
+      <li>Kompletní diagnostika všech systémů vozidla</li>
+      <li>Čtení/mazání chybových kódů</li>
+      <li>Kontrola motoru, převodovky, ABS, airbagů, baterie atd.</li>
+      <li>Generování PDF zprávy po každé diagnostice</li>
+      <li>Regenerace DPF, kódování jednotek, test snímačů, a další</li>
+      <li>Káva nebo čaj během čekání zdarma</li>
+      <li>Rychlý kontakt přes WhatsApp</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+function toggleAccordion() {
+  const content = document.getElementById("accordion-content");
+  if (content.style.display === "none") {
+    content.style.display = "block";
+  } else {
+    content.style.display = "none";
+  }
+}
+</script>
+
+
+    <section class="booking">
+        <h2>Rezervace termínu</h2>
+        <form>
+            <label for="date">Datum:</label>
+            <select id="date" name="date">
+                <option>2025-05-10</option>
+                <option>2025-05-13</option>
+                <option>2025-05-15</option>
+            </select>
+
+            <label for="car">Značka vozidla:</label>
+            <input type="text" id="car" name="car" placeholder="Např. Škoda Octavia">
+
+            <label for="engine">Objem motoru:</label>
+            <select id="engine" name="engine">
+                <option>do 1300 cm³</option>
+                <option>do 1900 cm³</option>
+                <option>do 2500 cm³</option>
+                <option>do 5000 cm³</option>
+                <option>nad 5000 cm³</option>
+            </select>
+
+            <label for="reason">Důvod návštěvy:</label>
+            <textarea id="reason" name="reason" rows="4" placeholder="Popište problém nebo důvod návštěvy..."></textarea>
+
+            <button type="submit">Odeslat</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Nade Temo. Všechna práva vyhrazena.</p>
+    </footer>
+</body>
+</html>
