@@ -100,3 +100,6 @@ form button {
 .accordion.active::after {
     transform: rotate(180deg);
 }
+.flatpickr-calendar {
+  z-index: 9999 !important;
+}
