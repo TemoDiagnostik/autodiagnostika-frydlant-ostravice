@@ -126,11 +126,13 @@
 <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-flatpickr("#datepicker", {
+document.addEventListener("DOMContentLoaded", function() {
+  flatpickr("#datepicker", {
     dateFormat: "d.m.Y",
     locale: "cs"
+  });
 });
-</script> 
+</script>
 <script>
     const acc = document.getElementsByClassName("accordion");
     for (let i = 0; i < acc.length; i++) {
