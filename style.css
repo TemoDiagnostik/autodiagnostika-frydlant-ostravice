@@ -90,3 +90,13 @@ form button {
     border-radius: 50px;
     font-weight: bold;
 }
+.accordion::after {
+    content: "▼";
+    float: right;
+    margin-left: 10px;
+    transition: transform 0.3s;
+}
+
+.accordion.active::after {
+    transform: rotate(180deg);
+}
