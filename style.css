@@ -92,3 +92,12 @@ form button {
 .flatpickr-calendar {
   z-index: 9999 !important;
 }
+.date-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.flatpickr-calendar {
+  z-index: 99999 !important;
+  position: absolute !important;
+}
