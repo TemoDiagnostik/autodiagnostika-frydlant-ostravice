@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soukromá Auto Diagnostika v Přírodě</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+  <header class="overlay">
+    <div class="header-bar">
+      <a href="mailto:temo44t@yahoo.com" class="email-link">temo44t@yahoo.com</a>
+      <div class="language-switch">
+        <a href="index.html">CZ</a> | <a href="index.de.html">DE</a> | <a href="index.en.html">EN</a>
+      </div>
+    </div>
+    <h1>Private Car<br />Diagnostics in Nature</h1>
+    <p>No service stress – just you, your car, and peace</p>
+    <p>While your car is being diagnosed, you can enjoy tea or coffee by the forest.</p>
+    <p>Professional equipment – peaceful environment – fair prices</p>
+    <a href="#reservation" class="cta-button">OBJEDNAT TERMÍN</a>
+  </header>
+
+  <section id="reservation" class="reservation-form">
+    <h3>Book Appointment</h3>
+    <form>
+      <label for="datepicker">Datum:</label>
+      <div class="date-wrapper">
+        <input id="datepicker" type="text" placeholder="Select Date" required>
+        <span class="date-arrow">▼</span>
+      </div>
+      <select required>
+        <option value="">Select Car Brand</option>
+        <option>Audi</option><option>BMW</option><option>Škoda</option><option>Volkswagen</option><option>Mercedes-Benz</option>
+        <option>Ford</option><option>Toyota</option><option>Peugeot</option><option>Renault</option><option>Hyundai</option>
+        <option>Kia</option><option>Nissan</option><option>Opel</option><option>Mazda</option><option>Citroën</option>
+        <option>Honda</option><option>Suzuki</option><option>Fiat</option><option>Jeep</option><option>Volvo</option>
+        <option>Land Rover</option><option>Tesla</option><option>Alfa Romeo</option><option>Mitsubishi</option><option>SEAT</option>
+      </select>
+      <select required>
+        <option value="">Select Engine Size</option>
+        <option>do 1000 ccm</option><option>1001–1400 ccm</option><option>1401–1800 ccm</option>
+        <option>1801–2500 ccm</option><option>více než 2500 ccm</option><option>elektrický / hybrid</option>
+      </select>
+      <textarea placeholder="Reason for Visit" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="about">
+    <h3>About Me</h3>
+    <p>Over 22 years of experience in car diagnostics in Germany and the Czech Republic.</p>
+    <p>I speak Czech well, German fluently, and also English.</p>
+    <p>While we check your car, you can enjoy tea or coffee in the quiet of the forest.</p>
+  </section>
+
+  <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      flatpickr("#datepicker", {
+        dateFormat: "d.m.Y",
+        locale: "cs",
+        disableMobile: true
+      });
+    });
+  </script>
+</body>
+</html>
