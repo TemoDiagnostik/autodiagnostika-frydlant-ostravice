@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soukromá Auto Diagnostika v Přírodě</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -44,7 +45,7 @@
 <section id="reservation" class="reservation-form">
     <h3>Rezervace termínu</h3>
     <form>
-        <input type="date" required>
+       <input id="datepicker" type="text" placeholder="Vyberte datum" required>
         <select required>
             <option value="">Vyberte značku vozu</option>
 <option>Audi</option>
