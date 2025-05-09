@@ -92,4 +92,23 @@ form button {
 .flatpickr-calendar {
   z-index: 9999 !important;
 }
+.date-wrapper {
+  position: relative;
+}
 
+#datepicker {
+  padding-right: 40px;
+}
+
+.date-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
