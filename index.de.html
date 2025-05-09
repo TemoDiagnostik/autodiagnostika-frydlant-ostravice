@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagnostika</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>
+    <section id="reservation">
+      <h2>Rezervace termínu</h2>
+      <form>
+        <label for='datepicker'>Datum:</label>
+        <input id='datepicker' type='text' placeholder='Vyberte datum' required>
+        <br><br>
+        <label>Značka vozu:</label>
+        <select><option>Audi</option><option>BMW</option><option>Volkswagen</option></select>
+        <br><br>
+        <label>Objem motoru:</label>
+        <select><option>1.0</option><option>1.2</option><option>1.6</option><option>2.0</option><option>2.5</option><option>3.0</option><option>4.0+</option><option>Hybrid</option></select>
+        <br><br>
+        <label>Reset</label><select><option>Ölwechsel zurücksetzen</option><option>Elektrische Parkbremse (EPB) zurücksetzen</option><option>Lenkwinkel-Sensor (SAS) zurücksetzen</option><option>Batteriesystem zurücksetzen (BMS)</option><option>Reifendruckkontrolle (TPMS) zurücksetzen</option><option>Drosselklappe anlernen</option><option>Getriebe anlernen</option><option>Wegfahrsperre (IMMO) zurücksetzen</option><option>Injektoren codieren</option><option>DPF Regeneration</option><option>AGR-Ventil zurücksetzen</option><option>Adaptive Scheinwerfer (AFS) zurücksetzen</option><option>Klimaanlage initialisieren</option><option>AdBlue-System zurücksetzen</option><option>Fahrwerksystem zurücksetzen</option><option>Schiebedach zurücksetzen</option><option>Automatische Lichtsteuerung zurücksetzen</option><option>Getriebesteuergerät zurücksetzen</option><option>Kühlsystem entlüften</option><option>GPF zurücksetzen</option><option>HV-Batterie zurücksetzen</option><option>ENGPBM zurücksetzen</option><option>ABS entlüften</option><option>Lenkhilfe (EPS) zurücksetzen</option><option>Innenbeleuchtung zurücksetzen</option><option>Fensterheber zurücksetzen</option><option>Spiegelsteuerung zurücksetzen</option><option>Zentralverriegelung zurücksetzen</option><option>Alarmanlage zurücksetzen</option><option>Tempomat zurücksetzen</option><option>Traktionskontrolle zurücksetzen</option><option>ESP zurücksetzen</option><option>ASR zurücksetzen</option><option>Beschleunigungsregelung zurücksetzen</option><option>Emissionssystem zurücksetzen</option></select><br><br>
+        <label>Diagnostika</label><select><option>Diagnose aller Steuergeräte (ECU)</option><option>Motorsteuerung</option><option>Fehlercodes lesen/löschen (DTC)</option><option>Live-Daten anzeigen</option><option>Getriebesteuerung</option><option>Airbag-/SRS-System</option><option>ABS-System</option><option>Servolenkung (EPS)</option><option>Klimaanlage</option><option>Lichtsystem</option><option>Einspritzsystem</option><option>Abgassystem</option><option>DPF-Drucksensor</option><option>AGR-System</option><option>Batterie & Ladesystem</option><option>Kühlsystem</option><option>Reifendruckkontrollsystem (TPMS)</option><option>Kraftstoffstand & -system</option><option>Zentralverriegelung</option><option>Fenster/Spiegel</option><option>Komfortsteuergeräte</option><option>Smart Key / Zugangssystem</option><option>Kombiinstrument</option><option>ESP-System</option><option>Parkassistent & Kameras</option><option>Traktionskontrolle</option><option>CAN-Bus-Kommunikation</option><option>Emissionssystem</option><option>VIN-Identifikation</option><option>Alle Sensoren prüfen</option></select><br><br>
+        <label>Ceník</label><select><option>DPF regenerace: 1 000–2 000 Kč</option><option>EPB reset: 500–800 Kč</option><option>BMS reset: 400–700 Kč</option><option>Olejový servis: 300–600 Kč</option><option>Diagnostika všech modulů: 600–1 200 Kč</option></select><p>Die Preise variieren je nach Fahrzeugtyp und Leistungsumfang.</p><br><br>
+        <label>Důvod návštěvy:</label>
+        <textarea placeholder="Popište důvod" required></textarea>
+        <br><button type='submit'>Odeslat</button>
+      </form>
+    </section>
+    </h1>
+</body>
+</html>
