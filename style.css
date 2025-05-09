@@ -107,3 +107,8 @@ body {
   background-color: rgba(0,0,0,0.6); /* خلفية شفافة للنص */
   border-radius: 10px;
 }
+button {
+  padding: 12px;
+  font-size: 17px;
+  font-weight: bold;
+}
