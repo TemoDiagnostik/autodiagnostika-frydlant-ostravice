@@ -90,15 +90,7 @@ form button {
     gap: 5px;
   }
 }
-body {
-  background-image: url('background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
+
 
 .container {
   max-width: 700px;
@@ -112,3 +104,19 @@ button {
   font-size: 17px;
   font-weight: bold;
 }
+/* تحسين عرض القوائم على الموبايل */
+select, #datepicker {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+  white-space: normal;         /* يسمح بلفّ النص بدلاً من قطعه */
+  overflow: visible;
+}
+
+/* تحسين القوائم المنسدلة على الشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+  select, #datepicker {
+    min-width: 100%;
+    font-size: 16px;
+  }
