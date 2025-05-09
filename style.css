@@ -20,3 +20,22 @@ body, h1, h2, h3, h4, h5, h6, p, label, input, select, textarea, button, span, a
   background-size: contain;
   pointer-events: none;
 }
+@media screen and (max-width: 768px) {
+  .date-wrapper,
+  input,
+  select,
+  textarea,
+  button {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  body {
+    padding: 10px;
+  }
+
+  .date-arrow {
+    right: 12px;
+    font-size: 18px;
+  }
+}
