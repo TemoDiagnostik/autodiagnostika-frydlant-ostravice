@@ -1,0 +1,2 @@
+body { background: #111; color: #c9a86b; font-family: Arial; }
+select, input[type=text] { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath fill='%23c9a86b' d='M7 10L0 0h14z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; background-size: 14px 10px; padding-right: 30px; }
