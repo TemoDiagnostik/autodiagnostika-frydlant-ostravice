@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soukromá Auto Diagnostika</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+<body>
+  <header class="overlay">
+    <div class="top-bar">
+      <a href="mailto:temo44t@yahoo.com" class="email">temo44t@yahoo.com</a>
+      <div class="lang-switch">
+        <a href="index.html">CZ</a> | <a href="index.de.html">DE</a> | <a href="index.en.html">EN</a>
+      </div>
+    </div>
+    <h1>Private Auto<br />Diagnose im Grünen</h1>
+    <p>Ohne Werkstatt, ohne Stress – nur Sie, Ihr Auto und Ruhe</p>
+    <p>Während Ihr Auto diagnostiziert wird, genießen Sie Tee oder Kaffee am Waldrand.</p>
+    <p>Professionelle Ausrüstung – ruhige Umgebung – faire Preise</p>
+    <a href="#reservation" class="cta-button">OBJEDNAT TERMÍN</a>
+  </header>
+
+  <section id="reservation" class="reservation-form">
+    <h3>Termin buchen</h3>
+    <form>
+      <label for="datepicker">Datum:</label>
+      <div class="date-wrapper">
+        <input id="datepicker" type="text" placeholder="Datum auswählen" required />
+        <span class="date-arrow">▼</span>
+      </div>
+      <select required>
+        <option value="">Marke auswählen</option>
+        <option>Škoda</option><option>Volkswagen</option><option>BMW</option><option>Audi</option>
+        <option>Mercedes</option><option>Ford</option><option>Hyundai</option><option>Kia</option>
+      </select>
+      <select required>
+        <option value="">Motorgröße auswählen</option>
+        <option>do 1000 ccm</option><option>1001–1400 ccm</option><option>1401–1800 ccm</option>
+        <option>1801–2500 ccm</option><option>více než 2500 ccm</option>
+      </select>
+      <textarea placeholder="Grund des Besuchs" required></textarea>
+      <button type="submit">Senden</button>
+    </form>
+  </section>
+
+  <section class="about">
+    <h3>Über mich</h3>
+    <p>Über 22 Jahre Erfahrung in der Fahrzeugdiagnose in Deutschland und Tschechien.</p>
+    <p>Ich spreche gut Tschechisch, ausgezeichnet Deutsch und auch Englisch.</p>
+    <p>Während Ihr Auto diagnostiziert wird, genießen Sie Tee oder Kaffee am Waldrand.</p>
+  </section>
+
+  <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const selectedLang = document.documentElement.lang || "cs";
+      flatpickr("#datepicker", {
+        dateFormat: "d.m.Y",
+        locale: selectedLang,
+        disableMobile: true,
+        disable: [
+          "2025-05-15",
+          "2025-05-20",
+          {
+            from: "2025-05-25",
+            to: "2025-05-27"
+          }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>
