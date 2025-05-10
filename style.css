@@ -94,15 +94,15 @@ form button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
   margin: 20px auto;
   max-width: 1000px;
 }
 
 .accordion-button {
-  background-color: #c9a86b;
-  color: #000;
+  background-color: #25D366;
+  color: #fff;
   padding: 14px 20px;
   font-weight: bold;
   cursor: pointer;
@@ -111,10 +111,10 @@ form button {
   border: none;
   border-radius: 6px;
   font-size: 16px;
-  width: 30%;
-  min-width: 180px;
+  width: 200px;         /* حجم الزر موحد */
   text-align: left;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
 }
 
 .accordion-button .arrow {
