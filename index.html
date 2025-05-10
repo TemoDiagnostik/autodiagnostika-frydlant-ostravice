@@ -270,10 +270,11 @@
   }
 </script>
 <script>
-  document.querySelectorAll('.accordion-button').forEach(button => {
+  <script>
+  document.querySelectorAll('.accordion-button').forEach((button, index) => {
     button.addEventListener('click', () => {
       button.classList.toggle('active');
-      const panel = button.nextElementSibling;
+      const panel = document.querySelectorAll('.accordion-panel')[index];
       if (button.classList.contains('active')) {
         panel.style.maxHeight = panel.scrollHeight + 'px';
         button.querySelector('.arrow').innerHTML = '&#x25B2;';
