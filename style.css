@@ -1,0 +1,64 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0 16px;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.accordion-button {
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  padding: 16px;
+  margin-top: 8px;
+  border: none;
+  font-size: 18px;
+  text-align: left;
+  position: relative;
+  padding-right: 32px;
+  transition: background-color 0.3s;
+}
+
+.accordion-button .arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+  padding: 0 16px;
+}
+
+.accordion-panel ul {
+  padding-left: 20px;
+  margin: 12px 0;
+  color: #fff;
+}
+
+.accordion-button.active {
+  background-color: #555;
+}
+
+.bio {
+  margin-top: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+}

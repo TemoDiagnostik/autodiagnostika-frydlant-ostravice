@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profesionální Autodiagnostika – Frydlant nad Ostravicí</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>PROFESIONÁLNÍ AUTODIAGNOSTIKA – FRYDLANT NAD OSTRAVICÍ</h1>
+    <h2>Nader Temo</h2>
+  </header>
+
+  <div class="accordion-button">Reset <span class="arrow">&#x25BC;</span></div>
+  <div class="accordion-panel">
+    <ul>
+      <li>Oil Reset</li>
+      <li>EPB Reset</li>
+      <li>DPF Regeneration</li>
+      <li>BMS Reset</li>
+      <li>SAS Reset</li>
+    </ul>
+  </div>
+
+  <div class="accordion-button">Diagnostika <span class="arrow">&#x25BC;</span></div>
+  <div class="accordion-panel">
+    <ul>
+      <li>Motorová jednotka (ECU)</li>
+      <li>Airbagy (SRS)</li>
+      <li>ABS / ESP</li>
+      <li>Automatická převodovka</li>
+      <li>Klimatizace a senzory</li>
+    </ul>
+  </div>
+
+  <div class="accordion-button">Ceník <span class="arrow">&#x25BC;</span></div>
+  <div class="accordion-panel">
+    <ul>
+      <li>Kompletní diagnostika – 500 až 800 Kč</li>
+      <li>Regenerace DPF – od 1000 Kč</li>
+      <li>Reset oleje – 300 až 600 Kč</li>
+    </ul>
+    <p><em>Ceny se mohou lišit podle typu vozidla a rozsahu služby.</em></p>
+  </div>
+
+  <div class="bio">
+    <p><strong>O mně:</strong><br>
+    Více než 22 let zkušeností v oblasti autod diagnostiky v Německu a České republice.<br>
+    Česky mluvím dobře, ale ne perfektně. Německy mluvím výborně a anglicky také.<br>
+    Zatímco vaše auto prochází diagnostikou, vy si vychutnáte čaj nebo kávu u lesa.</p>
+  </div>
+
+  <script>
+    document.querySelectorAll('.accordion-button').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        const panel = button.nextElementSibling;
+        if (button.classList.contains('active')) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          button.querySelector('.arrow').innerHTML = '&#x25B2;';
+        } else {
+          panel.style.maxHeight = null;
+          button.querySelector('.arrow').innerHTML = '&#x25BC;';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
