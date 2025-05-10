@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soukromá Auto Diagnostika</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+<body>
+  <header class="overlay">
+    <div class="top-bar">
+      <a href="mailto:temo44t@yahoo.com" class="email">temo44t@yahoo.com</a>
+      <div class="lang-switch">
+        <a href="index.html">CZ</a> | <a href="index.de.html">DE</a> | <a href="index.en.html">EN</a>
+      </div>
+    </div>
+    <h1>Private Car<br />Diagnostics in Nature</h1>
+    <p>No service, no rush – just you, the car, and peace</p>
+    <p>While your car is being diagnosed, you can enjoy tea or coffee by the forest.</p>
+    <p>Professional tools – peaceful environment – fair pricing</p>
+    
+  </header>
+
+  <section id="reservation" class="reservation-form">
+    <h3>Book Appointment</h3>
+    <form>
+      <label for="datepicker">Datum:</label>
+      <div class="date-wrapper">
+        <input id="datepicker" type="text" placeholder="Select Date" required />
+        <span class="date-arrow">▼</span>
+      </div>
+      <select required>
+        <option value="">Select Car Brand</option>
+        <option>Škoda</option><option>Volkswagen</option><option>BMW</option><option>Audi</option>
+        <option>Mercedes</option><option>Ford</option><option>Hyundai</option><option>Kia</option>
+      </select>
+      <select required>
+        <option value="">Select Engine Size</option>
+        <option>do 1000 ccm</option><option>1001–1400 ccm</option><option>1401–1800 ccm</option>
+        <option>1801–2500 ccm</option><option>více než 2500 ccm</option>
+      </select>
+      <textarea placeholder="Reason for Visit" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="about">
+    <h3>About Me</h3>
+    <p>Over 22 years of experience in automotive diagnostics in Germany and the Czech Republic.</p>
+    <p>I speak Czech well, German fluently, and also English.</p>
+    <p>While your car is being diagnosed, you can enjoy tea or coffee by the forest.</p>
+  </section>
+
+  <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const selectedLang = document.documentElement.lang || "cs";
+      flatpickr("#datepicker", {
+        dateFormat: "d.m.Y",
+        locale: selectedLang,
+        disableMobile: true,
+        disable: [
+          "2025-05-15",
+          "2025-05-20",
+          {
+            from: "2025-05-25",
+            to: "2025-05-27"
+          }
+        ]
+      });
+    });
+  </script>
+
+<section class="accordion-section">
+  <button class="accordion">Reset</button>
+  <div class="panel"><ul><li>Oil Reset</li>
+<li>Electronic Parking Brake (EPB) Reset</li>
+<li>Steering Angle Sensor (SAS) Reset</li>
+<li>Battery Management System (BMS) Reset</li>
+<li>Tire Pressure Monitoring System (TPMS) Reset</li>
+<li>Throttle Relearn</li>
+<li>Transmission Relearn</li>
+<li>Immobilizer (IMMO) Reset</li>
+<li>Injector Coding</li>
+<li>DPF Regeneration</li>
+<li>EGR System Reset</li>
+<li>Adaptive Front Lighting (AFS) Reset</li>
+<li>AC Initialization</li>
+<li>AdBlue Reset</li>
+<li>Suspension System Reset</li>
+<li>Sunroof Reset</li>
+<li>Auto Light Reset</li>
+<li>Transmission Control Unit Reset</li>
+<li>Coolant Bleeding</li>
+<li>GPF Reset</li>
+<li>HV Battery Reset</li>
+<li>ENGPBM Reset</li>
+<li>ABS Bleeding</li>
+<li>EPS Reset</li>
+<li>Interior Light Reset</li>
+<li>Window Reset</li>
+<li>Mirror Reset</li>
+<li>Central Locking Reset</li>
+<li>Alarm System Reset</li>
+<li>Cruise Control Reset</li>
+<li>Traction Control Reset</li>
+<li>ESP Reset</li>
+<li>ASR Reset</li>
+<li>Acceleration Control Reset</li>
+<li>Emissions System Reset</li></ul></div>
+
+  <button class="accordion">Diagnostika</button>
+  <div class="panel"><ul><li>Full ECU Diagnostic</li>
+<li>Engine Control Unit</li>
+<li>Read/Clear Fault Codes (DTC)</li>
+<li>Live Sensor Data</li>
+<li>Transmission System</li>
+<li>Airbag/SRS System</li>
+<li>ABS System</li>
+<li>Power Steering (EPS)</li>
+<li>AC System</li>
+<li>Lighting System</li>
+<li>Fuel Injection</li>
+<li>Exhaust System</li>
+<li>DPF Pressure Sensor</li>
+<li>EGR System</li>
+<li>Battery & Charging</li>
+<li>Cooling System</li>
+<li>TPMS</li>
+<li>Fuel System</li>
+<li>Central Locking</li>
+<li>Windows/Mirrors</li>
+<li>Comfort Modules</li>
+<li>Smart Key / Entry System</li>
+<li>Instrument Cluster</li>
+<li>ESP System</li>
+<li>Parking Assist & Cameras</li>
+<li>Traction Control</li>
+<li>CAN Bus Communication</li>
+<li>Emissions System</li>
+<li>VIN Information</li>
+<li>Sensor & Actuator Tests</li></ul></div>
+
+  <button class="accordion">Ceník</button>
+  <div class="panel"><ul><li>DPF regenerace: 1 000–2 000 Kč</li>
+<li>EPB reset: 500–800 Kč</li>
+<li>BMS reset: 400–700 Kč</li>
+<li>Olejový servis: 300–600 Kč</li>
+<li>Diagnostika všech modulů: 600–1 200 Kč</li></ul><p class='note'>Prices may vary depending on vehicle type and service scope.</p></div>
+</section>
+
+<script>
+  const acc = document.getElementsByClassName("accordion");
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+</script>
+
+
+<script>
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      const panel = button.nextElementSibling;
+      if (button.classList.contains('active')) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        button.querySelector('.arrow').innerHTML = '&#x25B2;';
+      } else {
+        panel.style.maxHeight = null;
+        button.querySelector('.arrow').innerHTML = '&#x25BC;';
+      }
+    });
+  });
+</script>
+</body>
+
+</html>
