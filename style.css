@@ -93,9 +93,11 @@ form button {
 .accordion-row {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin: 20px auto;
+  max-width: 1000px;
 }
 
 .accordion-button {
@@ -109,8 +111,8 @@ form button {
   border: none;
   border-radius: 6px;
   font-size: 16px;
-  width: 48%;
-  max-width: 300px;
+  width: 30%;
+  min-width: 180px;
   text-align: left;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
