@@ -94,14 +94,16 @@ form button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin: 20px auto;
+  margin-top: 20px;
   max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .accordion-button {
-  background-color: #25D366;
+  background-color: #c9a86b;
   color: #fff;
   padding: 14px 20px;
   font-weight: bold;
