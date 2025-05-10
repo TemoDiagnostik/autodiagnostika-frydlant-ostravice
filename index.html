@@ -234,6 +234,20 @@
     });
   }
 </script>
-
+<script>
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      const panel = button.nextElementSibling;
+      if (button.classList.contains('active')) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        button.querySelector('.arrow').innerHTML = '&#x25B2;';
+      } else {
+        panel.style.maxHeight = null;
+        button.querySelector('.arrow').innerHTML = '&#x25BC;';
+      }
+    });
+  });
+</script>
 </body>
 </html>
