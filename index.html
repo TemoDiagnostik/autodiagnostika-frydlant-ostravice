@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Car Diagnostics in Nature</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Private Car Diagnostics in Nature</h1>
+    <p>No service, no rush – just you, the car, and peace</p>
+    <p>While your car is being diagnosed, you can enjoy tea or coffee by the forest.</p>
+    <p>Professional tools – peaceful environment – fair pricing</p>
+  </header>
+
+  <div class="accordion-button">Reset <span class="arrow">&#x25BC;</span></div>
+  <div class="accordion-panel">
+    <ul>
+      <li>Oil Reset</li>
+      <li>EPB Reset</li>
+      <li>DPF Regeneration</li>
+      <li>BMS Reset</li>
+      <li>SAS Reset</li>
+    </ul>
+  </div>
+
+  <div class="accordion-button">Diagnostics <span class="arrow">&#x25BC;</span></div>
+  <div class="accordion-panel">
+    <ul>
+      <li>Engine Control Unit</li>
+      <li>Airbag System</li>
+      <li>ABS / ESP</li>
+      <li>Transmission</li>
+      <li>Air Conditioning</li>
+    </ul>
+  </div>
+
+  <div class="accordion-button">Price List <span class="arrow">&#x25BC;</span></div>
+  <div class="accordion-panel">
+    <ul>
+      <li>Full diagnostics – from 500 to 800 Kč</li>
+      <li>DPF regeneration – from 1000 Kč</li>
+      <li>Oil reset – 300 to 600 Kč</li>
+    </ul>
+    <p><em>Prices may vary depending on the vehicle type and service required.</em></p>
+  </div>
+
+  <form class="booking-form">
+    <h2>Book Appointment</h2>
+    <label for="carBrand">Car Brand:</label>
+    <select id="carBrand" name="carBrand">
+      <option value="Alfa Romeo">Alfa Romeo</option>
+<option value="Audi">Audi</option>
+<option value="BMW">BMW</option>
+<option value="Chevrolet">Chevrolet</option>
+<option value="Chrysler">Chrysler</option>
+<option value="Citroën">Citroën</option>
+<option value="Dacia">Dacia</option>
+<option value="Daewoo">Daewoo</option>
+<option value="Daihatsu">Daihatsu</option>
+<option value="Dodge">Dodge</option>
+<option value="Fiat">Fiat</option>
+<option value="Ford">Ford</option>
+<option value="Honda">Honda</option>
+<option value="Hyundai">Hyundai</option>
+<option value="Infiniti">Infiniti</option>
+<option value="Isuzu">Isuzu</option>
+<option value="Jaguar">Jaguar</option>
+<option value="Jeep">Jeep</option>
+<option value="Kia">Kia</option>
+<option value="Lada">Lada</option>
+<option value="Lancia">Lancia</option>
+<option value="Land Rover">Land Rover</option>
+<option value="Lexus">Lexus</option>
+<option value="Mazda">Mazda</option>
+<option value="Mercedes-Benz">Mercedes-Benz</option>
+<option value="Mini">Mini</option>
+<option value="Mitsubishi">Mitsubishi</option>
+<option value="Nissan">Nissan</option>
+<option value="Opel">Opel</option>
+<option value="Peugeot">Peugeot</option>
+<option value="Porsche">Porsche</option>
+<option value="Renault">Renault</option>
+<option value="Saab">Saab</option>
+<option value="Seat">Seat</option>
+<option value="Škoda">Škoda</option>
+<option value="Smart">Smart</option>
+<option value="Subaru">Subaru</option>
+<option value="Suzuki">Suzuki</option>
+<option value="Tesla">Tesla</option>
+<option value="Toyota">Toyota</option>
+<option value="Volkswagen">Volkswagen</option>
+<option value="Volvo">Volvo</option>
+    </select>
+
+    <label for="engineSize">Engine Size:</label>
+    <select id="engineSize" name="engineSize">
+      <option value="0.8L">0.8L</option>
+<option value="1.0L">1.0L</option>
+<option value="1.1L">1.1L</option>
+<option value="1.2L">1.2L</option>
+<option value="1.3L">1.3L</option>
+<option value="1.4L">1.4L</option>
+<option value="1.5L">1.5L</option>
+<option value="1.6L">1.6L</option>
+<option value="1.8L">1.8L</option>
+<option value="2.0L">2.0L</option>
+<option value="2.2L">2.2L</option>
+<option value="2.4L">2.4L</option>
+<option value="2.5L">2.5L</option>
+<option value="2.7L">2.7L</option>
+<option value="3.0L">3.0L</option>
+<option value="3.2L">3.2L</option>
+<option value="3.5L">3.5L</option>
+<option value="4.0L">4.0L</option>
+<option value="4.2L">4.2L</option>
+<option value="4.4L">4.4L</option>
+<option value="4.6L">4.6L</option>
+<option value="5.0L">5.0L</option>
+<option value="5.5L">5.5L</option>
+<option value="6.0L">6.0L</option>
+    </select>
+
+    <label for="visitReason">Reason for Visit:</label>
+    <textarea id="visitReason" name="visitReason" rows="4"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <a href="https://wa.me/123456789" class="whatsapp-button">WhatsApp</a>
+
+  <script>
+    document.querySelectorAll('.accordion-button').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        const panel = button.nextElementSibling;
+        if (button.classList.contains('active')) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          button.querySelector('.arrow').innerHTML = '&#x25B2;';
+        } else {
+          panel.style.maxHeight = null;
+          button.querySelector('.arrow').innerHTML = '&#x25BC;';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
