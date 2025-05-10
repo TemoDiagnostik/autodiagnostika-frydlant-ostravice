@@ -114,34 +114,33 @@
     <p>Zatímco vaše auto prochází diagnostikou, vy si vychutnáte čaj nebo kávu u lesa.</p>
   </section>
 <section class="accordion-row">
-  <button class="accordion-button">Reset <span class="arrow">&#x25BC;</span></button>
-  <button class="accordion-button">Diagnostika <span class="arrow">&#x25BC;</span></button>
-  <button class="accordion-button">Ceník <span class="arrow">&#x25BC;</span></button>
+  <button class="accordion-button accordion">Reset <span class="arrow">&#x25BC;</span></button>
+  <div class="accordion-panel">
+    <ul>
+      <li>Reset výměny oleje</li>
+      <li>Reset elektronické parkovací brzdy (EPB)</li>
+      <li>Reset DPF</li>
+    </ul>
+  </div>
+
+  <button class="accordion-button accordion">Diagnostika <span class="arrow">&#x25BC;</span></button>
+  <div class="accordion-panel">
+    <ul>
+      <li>Diagnostika všech jednotek (ECU)</li>
+      <li>Čtení a mazání chybových kódů</li>
+      <li>Zobrazení živých dat</li>
+    </ul>
+  </div>
+
+  <button class="accordion-button accordion">Ceník <span class="arrow">&#x25BC;</span></button>
+  <div class="accordion-panel">
+    <ul>
+      <li>DPF regenerace: 1000–2000 Kč</li>
+      <li>Reset oleje: 300–600 Kč</li>
+      <li>Ceny se liší dle typu vozu</li>
+    </ul>
+  </div>
 </section>
-
-<div class="accordion-panel">
-  <ul>
-    <li>Reset výměny oleje</li>
-    <li>Reset elektronické parkovací brzdy (EPB)</li>
-    <li>Reset DPF</li>
-  </ul>
-</div>
-
-<div class="accordion-panel">
-  <ul>
-    <li>Diagnostika všech jednotek (ECU)</li>
-    <li>Čtení a mazání chybových kódů</li>
-    <li>Zobrazení živých dat</li>
-  </ul>
-</div>
-
-<div class="accordion-panel">
-  <ul>
-    <li>DPF regenerace: 1000–2000 Kč</li>
-    <li>Reset oleje: 300–600 Kč</li>
-    <li>Ceny se liší dle typu vozidla</li>
-  </ul>
-</div>
   <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -256,25 +255,10 @@
 </section>
 
 <script>
-  const acc = document.getElementsByClassName("accordion");
-  for (let i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      const panel = this.nextElementSibling;
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
-      } else {
-        panel.style.display = "block";
-      }
-    });
-  }
-</script>
-<script>
-  <script>
-  document.querySelectorAll('.accordion-button').forEach((button, index) => {
+  document.querySelectorAll('.accordion').forEach(button => {
     button.addEventListener('click', () => {
       button.classList.toggle('active');
-      const panel = document.querySelectorAll('.accordion-panel')[index];
+      const panel = button.nextElementSibling;
       if (button.classList.contains('active')) {
         panel.style.maxHeight = panel.scrollHeight + 'px';
         button.querySelector('.arrow').innerHTML = '&#x25B2;';
