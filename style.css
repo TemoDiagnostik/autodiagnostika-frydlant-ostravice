@@ -1,0 +1,25 @@
+
+.accordion-button {
+  cursor: pointer;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  font-weight: bold;
+  position: relative;
+  padding-right: 32px;
+}
+.accordion-button .arrow {
+  position: absolute;
+  right: 10px;
+}
+.accordion-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 0 12px;
+}
+.accordion-button.active {
+  background-color: #eee;
+}
