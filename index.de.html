@@ -220,18 +220,19 @@
 </section>
 
 <script>
-  const acc = document.getElementsByClassName("accordion");
-  for (let i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      const panel = this.nextElementSibling;
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      const panel = button.nextElementSibling;
+      if (button.classList.contains('active')) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        button.querySelector('.arrow').innerHTML = '&#x25B2;';
       } else {
-        panel.style.display = "block";
+        panel.style.maxHeight = null;
+        button.querySelector('.arrow').innerHTML = '&#x25BC;';
       }
     });
-  }
+  });
 </script>
 
 </body>
