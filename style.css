@@ -103,8 +103,8 @@ form button {
 }
 
 .accordion-button {
-  background-color: #c9a86b;
-  color: #fff;
+  background-color: #c9a86b; /* اللون البيج */
+  color: white;
   padding: 14px 20px;
   font-weight: bold;
   cursor: pointer;
@@ -113,27 +113,12 @@ form button {
   border: none;
   border-radius: 6px;
   font-size: 16px;
-  width: 200px;         /* حجم الزر موحد */
+  width: 200px;
   text-align: left;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-}
-
-.accordion-button .arrow {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
 }
 
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: rgba(255,255,255,0.05);
-  padding: 0 20px;
-  border-radius: 0 0 6px 6px;
-  margin-bottom: 15px;
-  width: 100%;
+.accordion-button:hover {
+  background-color: #b68d50;
 }
