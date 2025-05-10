@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soukromá Auto Diagnostika</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+<body>
+  <header class="overlay">
+    <div class="top-bar">
+      <a href="mailto:temo44t@yahoo.com" class="email">temo44t@yahoo.com</a>
+      <div class="lang-switch">
+        <a href="index.html">CZ</a> | <a href="index.de.html">DE</a> | <a href="index.en.html">EN</a>
+      </div>
+    </div>
+    <h1>Private Auto<br />Diagnose im Grünen</h1>
+    <p>Ohne Werkstatt, ohne Stress – nur Sie, Ihr Auto und Ruhe</p>
+    <p>Während Ihr Auto diagnostiziert wird, genießen Sie Tee oder Kaffee am Waldrand.</p>
+    <p>Professionelle Ausrüstung – ruhige Umgebung – faire Preise</p>
+    
+  </header>
+
+  <section id="reservation" class="reservation-form">
+    <h3>Termin buchen</h3>
+    <form>
+      <label for="datepicker">Datum:</label>
+      <div class="date-wrapper">
+        <input id="datepicker" type="text" placeholder="Datum auswählen" required />
+        <span class="date-arrow">▼</span>
+      </div>
+      <select required>
+        <option value="">Marke auswählen</option>
+        <option>Škoda</option><option>Volkswagen</option><option>BMW</option><option>Audi</option>
+        <option>Mercedes</option><option>Ford</option><option>Hyundai</option><option>Kia</option>
+      </select>
+      <select required>
+        <option value="">Motorgröße auswählen</option>
+        <option>do 1000 ccm</option><option>1001–1400 ccm</option><option>1401–1800 ccm</option>
+        <option>1801–2500 ccm</option><option>více než 2500 ccm</option>
+      </select>
+      <textarea placeholder="Grund des Besuchs" required></textarea>
+      <button type="submit">Senden</button>
+    </form>
+  </section>
+
+  <section class="about">
+    <h3>Über mich</h3>
+    <p>Über 22 Jahre Erfahrung in der Fahrzeugdiagnose in Deutschland und Tschechien.</p>
+    <p>Ich spreche gut Tschechisch, ausgezeichnet Deutsch und auch Englisch.</p>
+    <p>Während Ihr Auto diagnostiziert wird, genießen Sie Tee oder Kaffee am Waldrand.</p>
+  </section>
+
+  <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const selectedLang = document.documentElement.lang || "cs";
+      flatpickr("#datepicker", {
+        dateFormat: "d.m.Y",
+        locale: selectedLang,
+        disableMobile: true,
+        disable: [
+          "2025-05-15",
+          "2025-05-20",
+          {
+            from: "2025-05-25",
+            to: "2025-05-27"
+          }
+        ]
+      });
+    });
+  </script>
+
+<section class="accordion-section">
+  <div class="accordion-button">Reset <span class="arrow">&#x25BC;</span></div>
+  <div class="panel"><ul><li>Ölwechsel zurücksetzen</li>
+<li>Elektrische Parkbremse (EPB) zurücksetzen</li>
+<li>Lenkwinkel-Sensor (SAS) zurücksetzen</li>
+<li>Batteriesystem zurücksetzen (BMS)</li>
+<li>Reifendruckkontrolle (TPMS) zurücksetzen</li>
+<li>Drosselklappe anlernen</li>
+<li>Getriebe anlernen</li>
+<li>Wegfahrsperre (IMMO) zurücksetzen</li>
+<li>Injektoren codieren</li>
+<li>DPF Regeneration</li>
+<li>AGR-Ventil zurücksetzen</li>
+<li>Adaptive Scheinwerfer (AFS) zurücksetzen</li>
+<li>Klimaanlage initialisieren</li>
+<li>AdBlue-System zurücksetzen</li>
+<li>Fahrwerksystem zurücksetzen</li>
+<li>Schiebedach zurücksetzen</li>
+<li>Automatische Lichtsteuerung zurücksetzen</li>
+<li>Getriebesteuergerät zurücksetzen</li>
+<li>Kühlsystem entlüften</li>
+<li>GPF zurücksetzen</li>
+<li>HV-Batterie zurücksetzen</li>
+<li>ENGPBM zurücksetzen</li>
+<li>ABS entlüften</li>
+<li>Lenkhilfe (EPS) zurücksetzen</li>
+<li>Innenbeleuchtung zurücksetzen</li>
+<li>Fensterheber zurücksetzen</li>
+<li>Spiegelsteuerung zurücksetzen</li>
+<li>Zentralverriegelung zurücksetzen</li>
+<li>Alarmanlage zurücksetzen</li>
+<li>Tempomat zurücksetzen</li>
+<li>Traktionskontrolle zurücksetzen</li>
+<li>ESP zurücksetzen</li>
+<li>ASR zurücksetzen</li>
+<li>Beschleunigungsregelung zurücksetzen</li>
+<li>Emissionssystem zurücksetzen</li></ul></div>
+
+  <div class="accordion-button">Diagnostika <span class="arrow">&#x25BC;</span></div>
+  <div class="panel"><ul><li>Diagnose aller Steuergeräte (ECU)</li>
+<li>Motorsteuerung</li>
+<li>Fehlercodes lesen/löschen (DTC)</li>
+<li>Live-Daten anzeigen</li>
+<li>Getriebesteuerung</li>
+<li>Airbag-/SRS-System</li>
+<li>ABS-System</li>
+<li>Servolenkung (EPS)</li>
+<li>Klimaanlage</li>
+<li>Lichtsystem</li>
+<li>Einspritzsystem</li>
+<li>Abgassystem</li>
+<li>DPF-Drucksensor</li>
+<li>AGR-System</li>
+<li>Batterie & Ladesystem</li>
+<li>Kühlsystem</li>
+<li>Reifendruckkontrollsystem (TPMS)</li>
+<li>Kraftstoffstand & -system</li>
+<li>Zentralverriegelung</li>
+<li>Fenster/Spiegel</li>
+<li>Komfortsteuergeräte</li>
+<li>Smart Key / Zugangssystem</li>
+<li>Kombiinstrument</li>
+<li>ESP-System</li>
+<li>Parkassistent & Kameras</li>
+<li>Traktionskontrolle</li>
+<li>CAN-Bus-Kommunikation</li>
+<li>Emissionssystem</li>
+<li>VIN-Identifikation</li>
+<li>Alle Sensoren prüfen</li></ul></div>
+
+  <div class="accordion-button">Ceník <span class="arrow">&#x25BC;</span></div>
+  <div class="panel"><ul><li>DPF regenerace: 1 000–2 000 Kč</li>
+<li>EPB reset: 500–800 Kč</li>
+<li>BMS reset: 400–700 Kč</li>
+<li>Olejový servis: 300–600 Kč</li>
+<li>Diagnostika všech modulů: 600–1 200 Kč</li></ul><p class='note'>Die Preise variieren je nach Fahrzeugtyp und Leistungsumfang.</p></div>
+</section>
+
+
+<script>
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      const panel = button.nextElementSibling;
+      if (button.classList.contains('active')) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        button.querySelector('.arrow').innerHTML = '&#x25B2;';
+      } else {
+        panel.style.maxHeight = null;
+        button.querySelector('.arrow').innerHTML = '&#x25BC;';
+      }
+    });
+  });
+</script>
+        
+
+</body>
+</html>
