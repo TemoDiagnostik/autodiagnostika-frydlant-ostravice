@@ -164,3 +164,30 @@ form button {
     padding: 10px 15px;
   }
 }
+.about-toggle {
+  display: block;
+  margin: 40px auto 10px;
+  padding: 12px 24px;
+  background-color: #c9a86b;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: background-color 0.3s;
+}
+
+.about-toggle:hover {
+  background-color: #b68d50;
+}
+
+.about-content {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 10px;
+  display: none;
+  color: #fff;
+}
