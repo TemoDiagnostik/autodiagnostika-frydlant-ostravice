@@ -97,13 +97,10 @@ form button {
   gap: 20px;
   flex-wrap: wrap;
   margin-top: 20px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .accordion-button {
-  background-color: #c9a86b; /* اللون البيج */
+  background-color: #c9a86b;
   color: white;
   padding: 14px 20px;
   font-weight: bold;
@@ -116,9 +113,7 @@ form button {
   width: 200px;
   text-align: left;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
 }
-
 .accordion-button:hover {
   background-color: #b68d50;
 }
