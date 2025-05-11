@@ -261,7 +261,7 @@
   const aboutBox = document.querySelector('.about-content');
 
   aboutBtn.addEventListener('click', () => {
-    aboutBox.style.display = aboutBox.style.display === 'block' ? 'none' : 'block';
+    aboutBox.classList.toggle('show');
   });
 </script>
 </body>
