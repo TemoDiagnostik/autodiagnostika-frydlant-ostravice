@@ -132,3 +132,21 @@ form button {
   margin-bottom: 15px;
   width: 100%;
 }
+@media (max-width: 768px) {
+  .accordion-panel {
+    padding: 10px 15px;
+    font-size: 15px;
+  }
+
+  .accordion-panel li,
+  .accordion-panel p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .accordion-button {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+  }
+}
