@@ -122,3 +122,13 @@ form button {
 .accordion-button:hover {
   background-color: #b68d50;
 }
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0 20px;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: 15px;
+  width: 100%;
+}
