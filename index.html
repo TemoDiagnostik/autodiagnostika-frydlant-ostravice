@@ -107,14 +107,7 @@
     </form>
   </section>
 
- <section class="accordion-section">
-  <button class="accordion-button">O mně <span class="arrow">&#x25BC;</span></button>
-  <div class="accordion-panel">
-    <p>Více než 22 let zkušeností v oblasti autodiagnostiky v Německu a České republice.</p>
-    <p>Česky mluvím dobře, ale ne perfektně. Německy mluvím výborně a anglicky také.</p>
-    <p>Zatímco vaše auto prochází diagnostikou, vy si vychutnáte čaj nebo kávu u lesa.</p>
-  </div>
-</section>
+
 <div class="accordion-row">
   <button class="accordion-button">Reset <span class="arrow">&#x25BC;</span></button>
   <button class="accordion-button">Diagnostika <span class="arrow">&#x25BC;</span></button>
@@ -255,6 +248,20 @@
         }
       });
     });
+  });
+</script>
+<button class="about-toggle">O mně</button>
+<div class="about-content">
+  <p>Více než 22 let zkušeností v oblasti autodiagnostiky v Německu a České republice.</p>
+  <p>Česky mluvím dobře, ale ne perfektně. Německy mluvím výborně a anglicky také.</p>
+  <p>Zatímco vaše auto prochází diagnostikou, vy si vychutnáte čaj nebo kávu u lesa.</p>
+</div>
+<script>
+  const aboutBtn = document.querySelector('.about-toggle');
+  const aboutBox = document.querySelector('.about-content');
+
+  aboutBtn.addEventListener('click', () => {
+    aboutBox.style.display = aboutBox.style.display === 'block' ? 'none' : 'block';
   });
 </script>
 </body>
