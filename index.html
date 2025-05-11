@@ -232,17 +232,26 @@
 
 
 <script>
-  document.querySelectorAll('.accordion-button').forEach(button => {
+  document.querySelectorAll('.accordion-button').forEach((button, index) => {
     button.addEventListener('click', () => {
-      button.classList.toggle('active');
-      const panel = button.nextElementSibling;
-      if (button.classList.contains('active')) {
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        button.querySelector('.arrow').innerHTML = '&#x25B2;';
-      } else {
-        panel.style.maxHeight = null;
-        button.querySelector('.arrow').innerHTML = '&#x25BC;';
-      }
+      const allPanels = document.querySelectorAll('.accordion-panel');
+      const allButtons = document.querySelectorAll('.accordion-button');
+      
+      allPanels.forEach((panel, i) => {
+        if (i === index) {
+          const isOpen = panel.style.maxHeight;
+          if (isOpen) {
+            panel.style.maxHeight = null;
+            button.querySelector('.arrow').innerHTML = '&#x25BC;';
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            button.querySelector('.arrow').innerHTML = '&#x25B2;';
+          }
+        } else {
+          panel.style.maxHeight = null;
+          allButtons[i].querySelector('.arrow').innerHTML = '&#x25BC;';
+        }
+      });
     });
   });
 </script>
