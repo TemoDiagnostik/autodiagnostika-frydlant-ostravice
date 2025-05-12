@@ -80,16 +80,28 @@ form button {
   border-radius: 50px;
   font-weight: bold;
 }
+
 .flatpickr-calendar {
   z-index: 9999 !important;
 }
+
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
     align-items: center;
     gap: 5px;
   }
+
+  .accordion-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .accordion-panel {
+    padding: 10px 15px;
+  }
 }
+
 .accordion-row {
   display: flex;
   justify-content: center;
@@ -125,6 +137,10 @@ form button {
   font-size: 20px;
 }
 
+.accordion-button:hover {
+  background-color: #b68d50;
+}
+
 .accordion-panel {
   max-height: 0;
   overflow: hidden;
@@ -150,16 +166,7 @@ form button {
   color: #f5e8c8;
 }
 
-@media (max-width: 768px) {
-  .accordion-button {
-    width: 100%;
-    text-align: center;
-  }
-
- .accordion-panel {
-    padding: 10px 15px;
-  }
-
+/* قسم "من أنا" */
 .about-toggle-wrapper {
   text-align: center;
   margin-top: 30px;
