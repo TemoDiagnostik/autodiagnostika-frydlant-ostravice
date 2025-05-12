@@ -6,25 +6,30 @@ body {
   background-size: cover;
   color: #c9a86b;
 }
+
 .overlay {
   background: rgba(0, 0, 0, 0.6);
   text-align: center;
   padding: 60px 20px;
 }
+
 .top-bar {
   display: flex;
   justify-content: space-between;
   padding: 5px 10px;
   font-size: 14px;
 }
+
 .email, .lang-switch a {
   color: #c9a86b;
   text-decoration: none;
   font-weight: bold;
 }
+
 .lang-switch a {
   margin-left: 8px;
 }
+
 .cta-button {
   background: #c9a86b;
   color: black;
@@ -35,6 +40,7 @@ body {
   display: inline-block;
   margin-top: 20px;
 }
+
 .reservation-form {
   background: #b4965a;
   max-width: 700px;
@@ -45,41 +51,45 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.reservation-form h2,
-.reservation-form label,
+.reservation-form * {
+  color: black;
+}
+
 .reservation-form input,
 .reservation-form select,
 .reservation-form textarea,
 .reservation-form button {
-  color: black;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fffaf0;
 }
+
+.reservation-form button {
+  background: #a88444;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .date-wrapper {
   position: relative;
 }
+
 .date-wrapper input {
-  width: 100%;
-  padding: 10px;
   padding-right: 30px;
 }
+
 .date-arrow {
   position: absolute;
   right: 10px;
   top: 12px;
   pointer-events: none;
 }
-form select, form textarea, form button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-}
-form button {
-  background: #a88444;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-}
+
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -110,6 +120,10 @@ form button {
 
   .accordion-panel {
     padding: 10px 15px;
+  }
+
+  .reservation-form {
+    padding: 15px;
   }
 }
 
@@ -177,9 +191,7 @@ form button {
   color: #f5e8c8;
 }
 
-/* ---------------------- */
-/* START: ABOUT STYLES   */
-/* ---------------------- */
+/* ABOUT SECTION */
 
 .about-toggle-wrapper {
   text-align: center;
@@ -233,10 +245,4 @@ form button {
 .about-content.show {
   max-height: 500px;
   padding: 20px;
-}
-.reservation-form input,
-.reservation-form select,
-.reservation-form textarea {
-  width: 100%;
-  box-sizing: border-box;
 }
