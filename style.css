@@ -166,16 +166,7 @@ form button {
 }
 
 
-.about-toggle {
-  background-color: transparent;
-  color: #c9a86b;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  margin: 30px auto 10px;
-  display: block;
-  transition: transform 0.3s ease;
-}
+
 
 .about-toggle:hover {
   transform: scale(1.2);
@@ -196,4 +187,29 @@ form button {
 
 .about-content.show {
   max-height: 500px; /* أو أكثر حسب المحتوى */
+}
+.about-toggle-wrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.about-toggle {
+  background-color: transparent;
+  color: #c9a86b;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.about-toggle:hover {
+  transform: scale(1.3);
+  color: #e0b76e;
+}
+
+.about-label {
+  color: #c9a86b;
+  font-size: 14px;
+  margin-top: 4px;
+  font-weight: bold;
 }
