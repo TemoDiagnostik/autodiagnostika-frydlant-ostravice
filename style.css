@@ -233,3 +233,9 @@ form button {
   max-height: 500px;
   padding: 20px;
 }
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
