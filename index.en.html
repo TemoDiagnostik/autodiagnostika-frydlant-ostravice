@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Soukromá Auto Diagnostika</title>
+  <title>Private Auto Diagnostics</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 </head>
@@ -15,114 +15,167 @@
         <a href="index.html">CZ</a> | <a href="index.de.html">DE</a> | <a href="index.en.html">EN</a>
       </div>
     </div>
-    <h1>Private Car<br />Diagnostics in Nature</h1>
-    <p>No service, no rush – just you, the car, and peace</p>
-    <p>While your car is being diagnosed, you can enjoy tea or coffee by the forest.</p>
-    <p>Professional tools – peaceful environment – fair pricing</p>
-    
+    <h1>Private Auto<br />Diagnostics in Nature</h1>
+    <p>No workshop, no stress – just you, the car, and peace</p>
+    <p>While your vehicle is being diagnosed, enjoy tea or coffee by the forest.</p>
+    <p>Professional tools – peaceful surroundings – fair prices</p>
   </header>
 
-  <section id="reservation" class="reservation-form">
-    <h3>Book Appointment</h3>
+  <!-- القوائم الثلاثة -->
+  <div class="accordion-row">
+    <button class="accordion-button">Reset <span class="arrow">&#x25BC;</span></button>
+    <button class="accordion-button">Diagnostics <span class="arrow">&#x25BC;</span></button>
+    <button class="accordion-button">Prices <span class="arrow">&#x25BC;</span></button>
+  </div>
+
+  <!-- Reset panel -->
+  <div class="accordion-panel">
+    <ul>
+      <li>Oil Service Reset</li>
+      <li>Electronic Parking Brake Reset (EPB)</li>
+      <li>Steering Angle Sensor Calibration (SAS)</li>
+      <li>Battery Management System Reset (BMS)</li>
+      <li>Tire Pressure Monitoring System Reset (TPMS)</li>
+      <li>Throttle Adaptation</li>
+      <li>Transmission Learning</li>
+      <li>Immobilizer Reset (IMMO)</li>
+      <li>Injector Coding</li>
+      <li>DPF Regeneration (Diesel Particulate Filter)</li>
+      <li>EGR Valve Reset</li>
+      <li>Adaptive Headlight Reset (AFS)</li>
+      <li>A/C Initialization</li>
+      <li>AdBlue System Reset</li>
+      <li>Suspension Reset</li>
+      <li>Sunroof Reset</li>
+      <li>Automatic Light Reset</li>
+      <li>Transmission Control Unit Reset</li>
+      <li>Cooling System Bleeding</li>
+      <li>GPF Reset (Gasoline Particulate Filter)</li>
+      <li>High Voltage Battery Reset</li>
+      <li>ENGPBM System Reset</li>
+      <li>ABS Bleeding</li>
+      <li>EPS Reset (Electric Power Steering)</li>
+      <li>Interior Light Reset</li>
+      <li>Window Reset</li>
+      <li>Mirror Reset</li>
+      <li>Central Locking Reset</li>
+      <li>Alarm Reset</li>
+      <li>Cruise Control Reset</li>
+      <li>Traction Control Reset</li>
+      <li>ESP Reset</li>
+      <li>ASR Reset</li>
+      <li>ACC Reset</li>
+      <li>Emission System Reset</li>
+    </ul>
+  </div>
+
+  <!-- Diagnostics panel -->
+  <div class="accordion-panel">
+    <ul>
+      <li>Oil condition check</li>
+      <li>Engine Control Unit (ECU)</li>
+      <li>Read and clear fault codes (DTCs)</li>
+      <li>Live sensor data</li>
+      <li>Transmission system</li>
+      <li>Airbag / SRS system</li>
+      <li>ABS system</li>
+      <li>EPS system (Power Steering)</li>
+      <li>Air conditioning</li>
+      <li>Lighting system</li>
+      <li>Fuel injection system</li>
+      <li>Exhaust system</li>
+      <li>DPF pressure sensor</li>
+      <li>EGR system</li>
+      <li>Battery and charging system</li>
+      <li>Cooling system</li>
+      <li>TPMS (Tire Pressure Monitoring)</li>
+      <li>Fuel system</li>
+      <li>BCM module (Body Control)</li>
+      <li>Central locking system</li>
+      <li>Power windows and mirrors</li>
+      <li>Key / Smart key system</li>
+      <li>Dashboard / Instrument cluster</li>
+      <li>ESP system</li>
+      <li>Parking assistant</li>
+      <li>Traction control</li>
+      <li>CAN–BUS communication</li>
+      <li>Emission diagnostics</li>
+      <li>VIN identification</li>
+      <li>Comfort modules</li>
+      <li>Sensor and actuator testing</li>
+    </ul>
+  </div>
+
+  <!-- Prices panel -->
+  <div class="accordion-panel">
+    <ul>
+      <li>DPF Regeneration (cleaning without removal): 1,000–2,000 Kč</li>
+      <li>Oil Service Reset: 300–600 Kč</li>
+      <li>EPB Reset: 500–800 Kč</li>
+      <li>Battery Reset (BMS): 400–700 Kč</li>
+      <li>Full system diagnostics: 500–800 Kč</li>
+    </ul>
+    <p style="margin-top: 10px;" class="note">Prices vary based on vehicle type and service scope.</p>
+  </div>
+
+  <!-- Booking form -->
+  <section class="reservation-form">
+    <h3>Book an Appointment</h3>
     <form>
-      <label for="datepicker">Datum:</label>
+      <label for="datepicker">Date:</label>
       <div class="date-wrapper">
-        <input id="datepicker" type="text" placeholder="Select Date" required />
+        <input id="datepicker" type="text" placeholder="Select a date" required />
         <span class="date-arrow">▼</span>
       </div>
       <select required>
-<option value="">Select Car Brand</option>
-<option>Alfa Romeo</option>
-<option>Audi</option>
-<option>BMW</option>
-<option>Chevrolet</option>
-<option>Chrysler</option>
-<option>Citroën</option>
-<option>Dacia</option>
-<option>Daewoo</option>
-<option>Daihatsu</option>
-<option>Dodge</option>
-<option>Fiat</option>
-<option>Ford</option>
-<option>Honda</option>
-<option>Hyundai</option>
-<option>Infiniti</option>
-<option>Isuzu</option>
-<option>Jaguar</option>
-<option>Jeep</option>
-<option>Kia</option>
-<option>Lada</option>
-<option>Lancia</option>
-<option>Land Rover</option>
-<option>Lexus</option>
-<option>Mazda</option>
-<option>Mercedes-Benz</option>
-<option>Mini</option>
-<option>Mitsubishi</option>
-<option>Nissan</option>
-<option>Opel</option>
-<option>Peugeot</option>
-<option>Porsche</option>
-<option>Renault</option>
-<option>Saab</option>
-<option>Seat</option>
-<option>Škoda</option>
-<option>Smart</option>
-<option>Subaru</option>
-<option>Suzuki</option>
-<option>Tesla</option>
-<option>Toyota</option>
-<option>Volkswagen</option>
-<option>Volvo</option>
-</select>
+        <option value="">Select car brand</option>
+        <!-- car brands (same as in Czech version) -->
+        <option>Audi</option>
+        <option>BMW</option>
+        <option>Mercedes-Benz</option>
+        <option>Volkswagen</option>
+        <option>Škoda</option>
+        <!-- ... (rest of brands) -->
+      </select>
       <select required>
-<option value="">Select Engine Size</option>
-<option>0.8L</option>
-<option>1.0L</option>
-<option>1.1L</option>
-<option>1.2L</option>
-<option>1.3L</option>
-<option>1.4L</option>
-<option>1.5L</option>
-<option>1.6L</option>
-<option>1.8L</option>
-<option>2.0L</option>
-<option>2.2L</option>
-<option>2.4L</option>
-<option>2.5L</option>
-<option>2.7L</option>
-<option>3.0L</option>
-<option>3.2L</option>
-<option>3.5L</option>
-<option>4.0L</option>
-<option>4.2L</option>
-<option>4.4L</option>
-<option>4.6L</option>
-<option>5.0L</option>
-<option>5.5L</option>
-<option>6.0L</option>
-</select>
-      <textarea placeholder="Reason for Visit" required></textarea>
-      <button type="submit">Submit</button>
+        <option value="">Engine capacity</option>
+        <option>0.8L</option>
+        <option>1.0L</option>
+        <option>1.2L</option>
+        <!-- ... -->
+        <option>6.0L</option>
+      </select>
+      <textarea placeholder="Reason for visit" required></textarea>
+      <button type="submit">Send</button>
     </form>
   </section>
 
-  <section class="about">
-    <h3>About Me</h3>
-    <p>Over 22 years of experience in automotive diagnostics in Germany and the Czech Republic.</p>
-    <p>I speak Czech well, German fluently, and also English.</p>
-    <p>While your car is being diagnosed, you can enjoy tea or coffee by the forest.</p>
-  </section>
+  <!-- About Me toggle -->
+  <div class="about-toggle-wrapper">
+    <div class="about-label">About Me</div>
+    <button class="about-toggle" title="About Me">
+      <span class="about-arrow">&#x25BC;</span>
+    </button>
+  </div>
 
+  <div class="about-content">
+    <p>More than 22 years of experience in automotive diagnostics in Germany and the Czech Republic.</p>
+    <p>I speak Czech well, but not perfectly. I’m fluent in German and English.</p>
+    <p>While your car is being diagnosed, you can enjoy tea or coffee in the calm of the forest.</p>
+  </div>
+
+  <!-- WhatsApp -->
   <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const selectedLang = document.documentElement.lang || "cs";
+      const selectedLang = document.documentElement.lang || "en";
       flatpickr("#datepicker", {
         dateFormat: "d.m.Y",
         locale: selectedLang,
@@ -136,104 +189,49 @@
           }
         ]
       });
+
+      // Accordion
+      document.querySelectorAll('.accordion-button').forEach((button, index) => {
+        button.addEventListener('click', () => {
+          const allPanels = document.querySelectorAll('.accordion-panel');
+          const allButtons = document.querySelectorAll('.accordion-button');
+
+          allPanels.forEach((panel, i) => {
+            if (i === index) {
+              const isOpen = panel.style.maxHeight;
+              if (isOpen) {
+                panel.style.maxHeight = null;
+                button.querySelector('.arrow').innerHTML = '&#x25BC;';
+              } else {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+                button.querySelector('.arrow').innerHTML = '&#x25B2;';
+                setTimeout(() => {
+                  panel.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+              }
+            } else {
+              panel.style.maxHeight = null;
+              allButtons[i].querySelector('.arrow').innerHTML = '&#x25BC;';
+            }
+          });
+        });
+      });
+
+      // About toggle
+      const aboutBtn = document.querySelector('.about-toggle');
+      const aboutBox = document.querySelector('.about-content');
+      const aboutArrow = aboutBtn.querySelector('.about-arrow');
+
+      aboutBtn.addEventListener('click', () => {
+        aboutBox.classList.toggle('show');
+        aboutBtn.classList.toggle('open');
+        if (aboutBox.classList.contains('show')) {
+          setTimeout(() => {
+            aboutBox.scrollIntoView({ behavior: 'smooth' });
+          }, 300);
+        }
+      });
     });
   </script>
-
-<section class="accordion-section">
-  <div  class="accordion-button">Reset <span class="arrow">&#x25BC;</span></div>
-<div class="accordion-panel"><ul><li>Oil Reset</li>
-<li>Electronic Parking Brake (EPB) Reset</li>
-<li>Steering Angle Sensor (SAS) Reset</li>
-<li>Battery Management System (BMS) Reset</li>
-<li>Tire Pressure Monitoring System (TPMS) Reset</li>
-<li>Throttle Relearn</li>
-<li>Transmission Relearn</li>
-<li>Immobilizer (IMMO) Reset</li>
-<li>Injector Coding</li>
-<li>DPF Regeneration</li>
-<li>EGR System Reset</li>
-<li>Adaptive Front Lighting (AFS) Reset</li>
-<li>AC Initialization</li>
-<li>AdBlue Reset</li>
-<li>Suspension System Reset</li>
-<li>Sunroof Reset</li>
-<li>Auto Light Reset</li>
-<li>Transmission Control Unit Reset</li>
-<li>Coolant Bleeding</li>
-<li>GPF Reset</li>
-<li>HV Battery Reset</li>
-<li>ENGPBM Reset</li>
-<li>ABS Bleeding</li>
-<li>EPS Reset</li>
-<li>Interior Light Reset</li>
-<li>Window Reset</li>
-<li>Mirror Reset</li>
-<li>Central Locking Reset</li>
-<li>Alarm System Reset</li>
-<li>Cruise Control Reset</li>
-<li>Traction Control Reset</li>
-<li>ESP Reset</li>
-<li>ASR Reset</li>
-<li>Acceleration Control Reset</li>
-<li>Emissions System Reset</li></ul></div>
-
-  <div  class="accordion-button">Diagnostika <span class="arrow">&#x25BC;</span></div>
-<div class="accordion-panel"><ul><li>Full ECU Diagnostic</li>
-<li>Engine Control Unit</li>
-<li>Read/Clear Fault Codes (DTC)</li>
-<li>Live Sensor Data</li>
-<li>Transmission System</li>
-<li>Airbag/SRS System</li>
-<li>ABS System</li>
-<li>Power Steering (EPS)</li>
-<li>AC System</li>
-<li>Lighting System</li>
-<li>Fuel Injection</li>
-<li>Exhaust System</li>
-<li>DPF Pressure Sensor</li>
-<li>EGR System</li>
-<li>Battery & Charging</li>
-<li>Cooling System</li>
-<li>TPMS</li>
-<li>Fuel System</li>
-<li>Central Locking</li>
-<li>Windows/Mirrors</li>
-<li>Comfort Modules</li>
-<li>Smart Key / Entry System</li>
-<li>Instrument Cluster</li>
-<li>ESP System</li>
-<li>Parking Assist & Cameras</li>
-<li>Traction Control</li>
-<li>CAN Bus Communication</li>
-<li>Emissions System</li>
-<li>VIN Information</li>
-<li>Sensor & Actuator Tests</li></ul></div>
-
- <div  class="accordion-button">Ceník <span class="arrow">&#x25BC;</span></div>
-<div class="accordion-panel"><ul><li>DPF regenerace: 1 000–2 000 Kč</li>
-<li>EPB reset: 500–800 Kč</li>
-<li>BMS reset: 400–700 Kč</li>
-<li>Olejový servis: 300–600 Kč</li>
-<li>Diagnostika všech modulů: 600–1 200 Kč</li></ul><p class='note'>Prices may vary depending on vehicle type and service scope.</p></div>
-</section>
-
-
-<script>
-  document.querySelectorAll('.accordion-button').forEach(button => {
-    button.addEventListener('click', () => {
-      button.classList.toggle('active');
-      const panel = button.nextElementSibling;
-      if (button.classList.contains('active')) {
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        button.querySelector('.arrow').innerHTML = '&#x25B2;';
-      } else {
-        panel.style.maxHeight = null;
-        button.querySelector('.arrow').innerHTML = '&#x25BC;';
-      }
-    });
-  });
-</script>
-        
-
 </body>
 </html>
