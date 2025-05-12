@@ -116,9 +116,12 @@
 
   <section class="reservation-form">
     <h3>Rezervace termínu</h3>
-    <form action="https://formsubmit.co/temo44t@yahoo.com" method="POST">
+    <form action="https://formsubmit.co/temo44t@yahoo.com" method="POST">                                                    
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://autodiagnostika.cz/thankyou.html">
+      <div id="success-message" style="display:none; color:lightgreen; font-weight:bold; text-align:center; margin-top:10px;">
+  Děkujeme! Vaše rezervace byla úspěšně odeslána.
+</div>
       <label for="datepicker">Datum:</label>
       <div class="date-wrapper">
         <input id="datepicker" type="text" placeholder="Vyberte datum" required />
