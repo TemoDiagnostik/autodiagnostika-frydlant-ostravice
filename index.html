@@ -275,5 +275,20 @@
   }
 });
 </script>
+<script>
+  const aboutBtn = document.querySelector('.about-toggle');
+  const aboutBox = document.querySelector('.about-content');
+
+  aboutBtn.addEventListener('click', () => {
+    aboutBox.classList.toggle('show');
+    aboutBtn.classList.toggle('open');
+
+    if (aboutBox.classList.contains('show')) {
+      setTimeout(() => {
+        aboutBox.scrollIntoView({ behavior: 'smooth' });
+      }, 300); // تأخير بعد الفتح
+    }
+  });
+</script>
 </body>
 </html>
