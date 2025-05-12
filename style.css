@@ -160,15 +160,6 @@ form button {
     padding: 10px 15px;
   }
 
-.about-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-}
-
-.about-content.show {
-  max-height: 500px; /* أو أكثر حسب المحتوى */
-}
 .about-toggle-wrapper {
   text-align: center;
   margin-top: 30px;
