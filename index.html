@@ -116,44 +116,15 @@
 
   <section class="reservation-form">
     <h3>Rezervace termínu</h3>
-   <form action="https://formsubmit.co/temo44t@yahoo.com" method="POST">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://autodiagnostika.cz/thankyou.html">
-  
-  <label for="datepicker">Datum:</label>
-  <div class="date-wrapper">
-    <input id="datepicker" type="text" name="Datum" placeholder="Vyberte datum" required />
-    <span class="date-arrow">▼</span>
-  </div>
-
-  <select name="Značka vozu" required>
-    <option value="">Značka vozu</option>
-    <option>BMW</option>
-    <option>Škoda</option>
-    <option>Mercedes</option>
-    <!-- باقي الأنواع -->
-  </select>
-
-  <select name="Objem motoru" required>
-    <option value="">Vyberte objem</option>
-    <option>1.2L</option>
-    <option>1.6L</option>
-    <!-- باقي الأحجام -->
-  </select>
-
-  <textarea name="Důvod návštěvy" placeholder="Důvod návštěvy" required></textarea>
-
-  <button type="submit">Odeslat</button>
-</form>
-      <div id="success-message" style="display:none; color:lightgreen; font-weight:bold; text-align:center; margin-top:10px;">
-  Děkujeme! Vaše rezervace byla úspěšně odeslána.
-</div>
+    <form action="https://formsubmit.co/temo44t@yahoo.com" method="POST" id="booking-form">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://temodiagnostika.github.io/autodiagnostika-frydlant-ostravice/">
       <label for="datepicker">Datum:</label>
       <div class="date-wrapper">
-        <input id="datepicker" type="text" placeholder="Vyberte datum" required />
+        <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
         <span class="date-arrow">▼</span>
       </div>
-      <select required>
+      <select name="Značka" required>
         <option value="">Značka vozu</option>
         <option>Audi</option>
         <option>BMW</option>
@@ -161,16 +132,17 @@
         <option>Volkswagen</option>
         <option>Škoda</option>
       </select>
-      <select required>
+      <select name="Objem" required>
         <option value="">Objem motoru</option>
         <option>0.8L</option>
         <option>1.0L</option>
         <option>1.2L</option>
         <option>6.0L</option>
       </select>
-      <textarea placeholder="Důvod návštěvy" required></textarea>
+      <textarea name="Důvod" placeholder="Důvod návštěvy" required></textarea>
       <button type="submit">Odeslat</button>
     </form>
+    <p id="success-message" style="display:none; color: lightgreen; text-align: center; font-weight: bold; margin-top: 15px;">Děkujeme! Vaše rezervace byla úspěšně odeslána.</p>
   </section>
 
   <div class="about-toggle-wrapper">
@@ -203,11 +175,11 @@
         ]
       });
 
+      // Accordion
       document.querySelectorAll('.accordion-button').forEach((button, index) => {
         button.addEventListener('click', () => {
           const allPanels = document.querySelectorAll('.accordion-panel');
           const allButtons = document.querySelectorAll('.accordion-button');
-
           allPanels.forEach((panel, i) => {
             if (i === index) {
               const isOpen = panel.style.maxHeight;
@@ -229,6 +201,7 @@
         });
       });
 
+      // About toggle
       const aboutBtn = document.querySelector('.about-toggle');
       const aboutBox = document.querySelector('.about-content');
       const aboutArrow = aboutBtn.querySelector('.about-arrow');
@@ -242,28 +215,13 @@
           }, 300);
         }
       });
+
+      // Show success message after submit
+      const form = document.getElementById('booking-form');
+      form.addEventListener('submit', function () {
+        document.getElementById('success-message').style.display = 'block';
+      });
     });
   </script>
-<script>
-  const form = document.querySelector("form");
-  const successMessage = document.getElementById("success-message");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    fetch("https://formsubmit.co/ajax/temo44t@yahoo.com", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        successMessage.style.display = "block";
-        form.reset();
-      } else {
-        alert("Došlo k chybě při odesílání.");
-      }
-    })
-    .catch(error => {
 </body>
 </html>
