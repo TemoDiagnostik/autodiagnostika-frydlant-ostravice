@@ -167,21 +167,19 @@ form button {
 
 
 .about-toggle {
-  display: block;
-  margin: 40px auto 10px;
-  padding: 12px 24px;
-  background-color: #a29bfe;
-  color: black;
-  font-weight: bold;
+  background-color: transparent;
+  color: #c9a86b;
   border: none;
-  border-radius: 6px;
+  font-size: 22px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  transition: background-color 0.3s;
+  margin: 30px auto 10px;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 .about-toggle:hover {
-  background-color: #b68d50;
+  transform: scale(1.2);
+  color: #e0b76e;
 }
 
 .about-content {
