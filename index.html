@@ -268,10 +268,13 @@
   const aboutBox = document.querySelector('.about-content');
   const aboutArrow = aboutBtn.querySelector('.about-arrow');
 
-  aboutBtn.addEventListener('click', () => {
-    aboutBox.classList.toggle('show');
-    aboutArrow.classList.toggle('open');
-  });
+ aboutBtn.addEventListener('click', () => {
+  aboutBox.classList.toggle('show');
+  aboutBtn.classList.toggle('open');
+  if (aboutBox.classList.contains('show')) {
+    aboutBox.scrollIntoView({ behavior: 'smooth' });
+  }
+});
 </script>
 </body>
 </html>
