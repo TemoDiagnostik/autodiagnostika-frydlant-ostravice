@@ -254,20 +254,25 @@
   &#x25BC;
 </button>
 <div class="about-toggle-wrapper">
-  <button class="about-toggle" title="O mně">O mně <span class="about-arrow">&#9660;</span></button>
-  <div class="about-content">
-    <p>Více než 22 let zkušeností v oblasti autodiagnostiky v Německu a České republice.</p>
-    <p>Česky mluvím dobře, ale ne perfektně. Německy mluvím výborně a anglicky také.</p>
-    <p>Zatímco vaše auto prochází diagnostikou, vy si vychutnáte čaj nebo kávu u lesa.</p>
-  </div>
+  <div class="about-label">O mně</div>
+  <button class="about-toggle" title="O mně">
+    <span class="about-arrow">&#9660;</span>
+  </button>
+</div>
+
+<div class="about-content">
+  <p>Více než 22 let zkušeností v oblasti autodiagnostiky v Německu a České republice.</p>
+  <p>Česky mluvím dobře, ale ne perfektně. Německy mluvím výborně a anglicky také.</p>
+  <p>Zatímco vaše auto prochází diagnostikou, vy si vychutnáte čaj nebo kávu u lesa.</p>
 </div>
 <script>
   const aboutBtn = document.querySelector('.about-toggle');
   const aboutBox = document.querySelector('.about-content');
+  const aboutArrow = aboutBtn.querySelector('.about-arrow');
 
   aboutBtn.addEventListener('click', () => {
     aboutBox.classList.toggle('show');
-    aboutBtn.classList.toggle('open');
+    aboutArrow.classList.toggle('open');
   });
 </script>
 </body>
