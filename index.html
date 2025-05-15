@@ -125,35 +125,29 @@
  <section class="reservation-form">
   <h3>Rezervace termínu</h3>
   <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
+    
+    <!-- إعدادات الإرسال -->
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-
-    <!-- رسالة التأكيد الاحترافية للعميل -->
-    <input type="hidden" name="_autoresponse" value='
-    <html>
-      <body style="font-family: Arial, sans-serif; color: #333;">
-        <h2>Dobrý den!</h2>
-        <p>Děkujeme za Vaši rezervaci na diagnostiku Vašeho vozu.</p>
-        <p><strong>Adresa provozovny:</strong></p>
-        <ul>
-          <li>Malenovice č.ev. 48</li>
-          <li>Frydlant nad Ostravicí, 739 11</li>
-          <li>Česká republika</li>
-          <li>Telefon: +420 732 133 919</li>
-        </ul>
-        <p>Těšíme se na Vaši návštěvu!</p>
-        <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/logo-temo.jpeg" alt="Logo" style="width: 160px; margin-top: 10px;">
-      </body>
-    </html>'>
-
     <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
+    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení. 
+Adresa provozovny:
+Malenovice č.ev. 48
+739 11 Frydlant nad Ostravicí
+Česká republika
 
+Telefon: +420 732 133 919
+
+Těšíme se na Vaši návštěvu!">
+
+    <!-- تاريخ الحجز -->
     <label for="datepicker">Datum:</label>
     <div class="date-wrapper">
       <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
       <span class="date-arrow">▼</span>
     </div>
 
+    <!-- نوع السيارة -->
     <select name="Značka" required>
       <option value="">Značka vozu</option>
       <option>Alfa Romeo</option>
@@ -200,6 +194,7 @@
       <option>Volvo</option>
     </select>
 
+    <!-- سعة المحرك -->
     <select name="Objem" required>
       <option value="">Objem motoru</option>
       <option>0.8L</option>
@@ -227,8 +222,13 @@
       <option>5.5L</option>
       <option>6.0L</option>
     </select>
-<input type="email" name="email" placeholder="Zadejte svůj e-mail" required>
+
+    <!-- البريد الإلكتروني -->
+    <input type="email" name="email" placeholder="Zadejte svůj e-mail" required>
+
+    <!-- سبب الزيارة -->
     <textarea name="Důvod" placeholder="Důvod návštěvy" required></textarea>
+
    <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
