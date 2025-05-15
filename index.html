@@ -125,12 +125,13 @@
  <section class="reservation-form">
   <h3>Rezervace termínu</h3>
   <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
-    
+
     <!-- إعدادات الإرسال -->
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
     <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
-    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení. 
+    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.
+
 Adresa provozovny:
 Malenovice č.ev. 48
 739 11 Frydlant nad Ostravicí
@@ -140,7 +141,7 @@ Telefon: +420 732 133 919
 
 Těšíme se na Vaši návštěvu!">
 
-    <!-- تاريخ الحجز -->
+    <!-- التاريخ -->
     <label for="datepicker">Datum:</label>
     <div class="date-wrapper">
       <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
@@ -223,17 +224,16 @@ Těšíme se na Vaši návštěvu!">
       <option>6.0L</option>
     </select>
 
-    <!-- البريد الإلكتروني -->
+    <!-- البريد -->
     <input type="email" name="email" placeholder="Zadejte svůj e-mail" required>
 
     <!-- سبب الزيارة -->
     <textarea name="Důvod" placeholder="Důvod návštěvy" required></textarea>
 
-   <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
-  <button type="submit">Odeslat</button>
-</form>
+    <!-- الإرسال -->
+    <button type="submit">Odeslat</button>
+  </form>
+
     <p id="success-message" style="display:none; color: lightgreen; text-align: center; font-weight: bold; margin-top: 15px;">Děkujeme! Vaše rezervace byla úspěšně odeslána.</p>
   </section>
 
