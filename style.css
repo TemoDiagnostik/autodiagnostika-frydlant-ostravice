@@ -69,14 +69,12 @@ body {
 }
 
 .reservation-form button {
-  background-color: #000000; /* أسود */
-  color: #f7f0c4; /* بيج ناعم */
+  background: #000000;
+  color: #f5e8c8;
   font-weight: bold;
-  border: 2px solid #333;
-  border-radius: 5px;
-  padding: 10px;
   cursor: pointer;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid #333;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
 }
 
