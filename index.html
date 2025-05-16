@@ -123,43 +123,20 @@
   </div>
 
  <section class="reservation-form">
- <h3>Rezervace termínu</h3>
-
+  <h3>Rezervace termínu</h3>
   <form action="https://formspree.io/f/xnndwdnq" method="POST">
 
-    <!-- عنوان البريد الإلكتروني -->
-    <label for="email">Zadejte svůj e-mail:</label>
-    <input type="email" name="email" id="email" placeholder="např. jan@email.cz" required>
-
-      <span class="date-arrow">▼</span>
-    </div>
-
-    <select name="Značka" required>
-      <option value="">Značka vozu</option>
-      <option>Alfa Romeo</option>
-      <option>Audi</option>
-      <option>BMW</option>
-      <option>Chevrolet</option>
-      <option>Chrysler</option>
-      <option>Citroën</option>
-      <option>Dacia</option>
-      <option>Daewoo</op…
-[13:52, 16.5.2025] Temo: <section class="reservation-form">
-  <form action="https://formspree.io/f/xnndwdnq" method="POST">
-
-    <!-- عنوان البريد الإلكتروني (تم التعديل إلى _replyto) -->
     <label for="email">Zadejte svůj e-mail:</label>
     <input type="email" name="_replyto" id="email" placeholder="např. jan@email.cz" required>
 
-    <!-- التاريخ -->
     <label for="datum">Datum návštěvy:</label>
     <div class="date-wrapper">
       <input type="text" name="Datum" id="datum" placeholder="Vyberte datum" required>
       <span class="date-arrow">▼</span>
     </div>
 
-    <!-- نوع السيارة -->
-    <select name="Značka" required>
+    <label for="znacka">Značka vozu:</label>
+    <select name="Značka" id="znacka" required>
       <option value="">Značka vozu</option>
       <option>Alfa Romeo</option>
       <option>Audi</option>
@@ -205,8 +182,8 @@
       <option>Volvo</option>
     </select>
 
-    <!-- سعة المحرك -->
-    <select name="Objem" required>
+    <label for="objem">Objem motoru:</label>
+    <select name="Objem" id="objem" required>
       <option value="">Objem motoru</option>
       <option>0.8L</option>
       <option>1.0L</option>
@@ -234,11 +211,9 @@
       <option>6.0L</option>
     </select>
 
-    <!-- سبب الزيارة -->
     <label for="duvod">Důvod návštěvy:</label>
     <textarea name="Důvod" id="duvod" placeholder="Popište problém nebo důvod návštěvy..." required></textarea>
 
-    <!-- رسالة تأكيد تلقائي للعميل -->
     <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.
 
 Adresa provozovny:
@@ -250,13 +225,10 @@ Telefon: +420 732 133 919
 
 Těšíme se na Vaši návštěvu!">
 
-    <!-- عنوان الرسالة في الإيميل -->
     <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
 
-    <!-- إعادة التوجيه لصفحة الشكر -->
     <input type="hidden" name="_redirect" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
 
-    <!-- زر الإرسال -->
     <button type="submit">Odeslat</button>
   </form>
 </section>
