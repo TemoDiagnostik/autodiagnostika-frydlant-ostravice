@@ -122,21 +122,33 @@
     <p class="note">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
   </div>
 
- <section class="reservation-form">
+<section class="reservation-form">
   <h3>Rezervace termínu</h3>
-  <form action="https://formspree.io/f/xnndwdnq" method="POST">
+  <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
+    
+    <!-- إعدادات الإرسال -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+    <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
+    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení. 
+Adresa provozovny:
+Malenovice č.ev. 48
+739 11 Frydlant nad Ostravicí
+Česká republika
 
-    <label for="email">Zadejte svůj e-mail:</label>
-    <input type="email" name="_replyto" id="email" placeholder="např. jan@email.cz" required>
+Telefon: +420 732 133 919
 
-    <label for="datum">Datum návštěvy:</label>
+Těšíme se na Vaši návštěvu!">
+
+    <!-- تاريخ الحجز -->
+    <label for="datepicker">Datum:</label>
     <div class="date-wrapper">
-      <input type="text" name="Datum" id="datum" placeholder="Vyberte datum" required>
+      <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
       <span class="date-arrow">▼</span>
     </div>
 
-    <label for="znacka">Značka vozu:</label>
-    <select name="Značka" id="znacka" required>
+    <!-- نوع السيارة -->
+    <select name="Značka" required>
       <option value="">Značka vozu</option>
       <option>Alfa Romeo</option>
       <option>Audi</option>
@@ -182,8 +194,8 @@
       <option>Volvo</option>
     </select>
 
-    <label for="objem">Objem motoru:</label>
-    <select name="Objem" id="objem" required>
+    <!-- سعة المحرك -->
+    <select name="Objem" required>
       <option value="">Objem motoru</option>
       <option>0.8L</option>
       <option>1.0L</option>
@@ -211,26 +223,17 @@
       <option>6.0L</option>
     </select>
 
-    <label for="duvod">Důvod návštěvy:</label>
-    <textarea name="Důvod" id="duvod" placeholder="Popište problém nebo důvod návštěvy..." required></textarea>
+    <!-- البريد الإلكتروني -->
+    <input type="email" name="email" placeholder="Zadejte svůj e-mail" required>
 
-    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.
+    <!-- سبب الزيارة -->
+    <textarea name="Důvod" placeholder="Důvod návštěvy" required></textarea>
 
-Adresa provozovny:
-Malenovice č.ev. 48
-739 11 Frýdlant nad Ostravicí
-Česká republika
-
-Telefon: +420 732 133 919
-
-Těšíme se na Vaši návštěvu!">
-
-    <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
-
-    <input type="hidden" name="_redirect" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-
-    <button type="submit">Odeslat</button>
-  </form>
+   <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
+  <button type="submit">Odeslat</button>
+</form>
 </section>
   <div class="about-toggle-wrapper">
     <div class="about-label">O mně</div>
