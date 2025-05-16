@@ -125,7 +125,7 @@
  <section class="reservation-form">
  <h3>Rezervace termínu</h3>
 
-  <form action="https://formspree.io/f/xnndwdnq" method="POST">
+  [13:50, 16.5.2025] Temo: <form action="https://formspree.io/f/xnndwdnq" method="POST">
 
     <!-- عنوان البريد الإلكتروني -->
     <label for="email">Zadejte svůj e-mail:</label>
@@ -138,6 +138,31 @@
       <span class="date-arrow">▼</span>
     </div>
 
+    <select name="Značka" required>
+      <option value="">Značka vozu</option>
+      <option>Alfa Romeo</option>
+      <option>Audi</option>
+      <option>BMW</option>
+      <option>Chevrolet</option>
+      <option>Chrysler</option>
+      <option>Citroën</option>
+      <option>Dacia</option>
+      <option>Daewoo</op…
+[13:52, 16.5.2025] Temo: <section class="reservation-form">
+  <form action="https://formspree.io/f/xnndwdnq" method="POST">
+
+    <!-- عنوان البريد الإلكتروني (تم التعديل إلى _replyto) -->
+    <label for="email">Zadejte svůj e-mail:</label>
+    <input type="email" name="_replyto" id="email" placeholder="např. jan@email.cz" required>
+
+    <!-- التاريخ -->
+    <label for="datum">Datum návštěvy:</label>
+    <div class="date-wrapper">
+      <input type="text" name="Datum" id="datum" placeholder="Vyberte datum" required>
+      <span class="date-arrow">▼</span>
+    </div>
+
+    <!-- نوع السيارة -->
     <select name="Značka" required>
       <option value="">Značka vozu</option>
       <option>Alfa Romeo</option>
@@ -213,7 +238,8 @@
       <option>6.0L</option>
     </select>
 
-     <label for="duvod">Důvod návštěvy:</label>
+    <!-- سبب الزيارة -->
+    <label for="duvod">Důvod návštěvy:</label>
     <textarea name="Důvod" id="duvod" placeholder="Popište problém nebo důvod návštěvy..." required></textarea>
 
     <!-- رسالة تأكيد تلقائي للعميل -->
