@@ -73,6 +73,9 @@ body {
   color: black;
   font-weight: bold;
   cursor: pointer;
+  border: 2px solid #333; /* برواز غامق */
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* ظل خفيف */
+  transition: all 0.3s ease;
 }
 
 .date-wrapper {
