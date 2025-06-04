@@ -854,7 +854,7 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
   const modelSelect = document.getElementById("modelSelect");
   const engineSelect = document.getElementById("engineSelect");
 
-  // تعبئة ماركات السيارات
+  // تعبئة قائمة الماركات
   Object.keys(carData).forEach(function (brand) {
     const option = document.createElement("option");
     option.value = brand;
@@ -862,41 +862,39 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
     brandSelect.appendChild(option);
   });
 
-  // عند تغيير الماركة: تعبئة الموديلات
+  // عند اختيار ماركة
   brandSelect.addEventListener("change", function () {
+    const selectedBrand = this.value;
+
     modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
     engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    modelSelect.disabled = false;
+    engineSelect.disabled = true;
 
-    const selectedBrand = this.value;
     const models = Object.keys(carData[selectedBrand] || {});
-
     models.forEach(function (model) {
       const option = document.createElement("option");
       option.value = model;
       option.text = model;
       modelSelect.appendChild(option);
     });
-
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
   });
 
-  // عند تغيير الموديل: تعبئة السعة
+  // عند اختيار موديل
   modelSelect.addEventListener("change", function () {
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-
     const selectedBrand = brandSelect.value;
     const selectedModel = this.value;
-    const engines = carData[selectedBrand]?.[selectedModel] || [];
 
+    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    engineSelect.disabled = false;
+
+    const engines = carData[selectedBrand]?.[selectedModel] || [];
     engines.forEach(function (engine) {
       const option = document.createElement("option");
       option.value = engine;
       option.text = engine;
       engineSelect.appendChild(option);
     });
-
-    engineSelect.disabled = false;
   });
 </script>
 </body>
