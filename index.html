@@ -126,13 +126,19 @@
 <section class="reservation-form">
   <h3>Rezervace termínu</h3>
  <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
- <label for="brandSelect">Značka vozu</label>
+<label for="brandSelect">Značka vozu</label>
 <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
-  <option value="" disabled selected>Vyberte značku</option>
+  <option disabled selected>Vyberte značku</option>
 </select>
+
 <label for="modelSelect">Model vozu</label>
 <select id="modelSelect" name="Model vozu" required>
-  <option value="" disabled selected>Vyberte model</option>
+  <option disabled selected>Vyberte model</option>
+</select>
+
+<label for="engineSelect">Objem motoru</label>
+<select id="engineSelect" name="Objem motoru" required>
+  <option disabled selected>Vyberte objem</option>
 </select>
   <label for="vin">VIN kód vozidla</label>
   <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
@@ -238,28 +244,22 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
     });
   </script>
 <script>
-  const modelsByBrand = {
-    "Toyota": ["Corolla", "Camry", "RAV4", "Land Cruiser", "Yaris", "Hilux", "Avensis", "Auris"],
-    "BMW": ["1 Series", "2 Series", "3 Series", "4 Series", "5 Series", "7 Series", "8 Series", "X1", "X3", "X5", "i3", "i4", "iX"],
-    "Mercedes-Benz": ["A-Class", "B-Class", "C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "GLS", "EQB", "EQE", "EQS", "AMG GT"],
-    "Ford": ["Fiesta", "Focus", "Fusion", "Mustang", "Explorer", "Escape", "Edge", "Kuga", "F-150", "Ranger", "Transit", "Custom"],
-    "Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q2", "Q3", "Q4", "Q5", "Q7", "Q8", "e-tron", "RS3", "RS6"],
-    "Škoda": ["Fabia", "Scala", "Octavia", "Superb", "Kamiq", "Karoq", "Kodiaq", "Enyaq"],
-    "Volkswagen": ["Up!", "Polo", "Golf", "Passat", "Arteon", "T-Roc", "Tiguan", "Touareg", "ID.3", "ID.4", "ID.5"],
-    "Hyundai": ["i10", "i20", "i30", "Tucson", "Santa Fe", "Kona", "Bayon", "Ioniq", "Elantra"],
-    "Kia": ["Picanto", "Rio", "Ceed", "Sportage", "Sorento", "Stonic", "EV6"],
-    "Nissan": ["Micra", "Juke", "Qashqai", "X-Trail", "Navara", "Leaf", "Note", "Pathfinder"],
-    "Peugeot": ["208", "2008", "308", "3008", "508", "5008", "Rifter", "Traveller"],
-    "Renault": ["Clio", "Captur", "Megane", "Kadjar", "Koleos", "Talisman", "Arkana"],
-    "Fiat": ["Panda", "500", "500X", "Tipo", "Doblo", "Ducato"],
-    "Alfa Romeo": ["Giulietta", "Giulia", "Stelvio", "Tonale"],
-    "Volvo": ["XC40", "XC60", "XC90", "S60", "S90", "V60", "V90"],
-    "Mazda": ["Mazda2", "Mazda3", "Mazda6", "CX-3", "CX-30", "CX-5", "MX-5"],
-    "Honda": ["Jazz", "Civic", "Accord", "HR-V", "CR-V", "e"],
-    "Infiniti": ["Q30", "Q50", "Q60", "Q70", "QX30", "QX50", "QX60", "QX80"]
+  const engineSizesByModel = {
+    "Corolla": ["1.3", "1.6", "1.8", "2.0"],
+    "Camry": ["2.0", "2.5", "3.5"],
+    "RAV4": ["2.0", "2.5", "2.5 Hybrid"],
+    "Land Cruiser": ["2.8", "4.0", "4.5 Diesel"],
+    "Yaris": ["1.0", "1.3", "1.5"],
+    "Fiesta": ["1.1", "1.25", "1.4", "1.6"],
+    "Qashqai": ["1.3", "1.5", "1.6", "2.0"],
+    "X5": ["3.0", "4.4", "M50d"],
+    // أضف باقي الموديلات بنفس الشكل...
   };
 
   const brandSelect = document.getElementById("brandSelect");
+  const modelSelect = document.getElementById("modelSelect");
+  const engineSelect = document.getElementById("engineSelect");
+
   Object.keys(modelsByBrand).forEach(function(brand) {
     const option = document.createElement("option");
     option.value = brand;
@@ -269,9 +269,9 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
 
   function updateModelOptions() {
     const selectedBrand = brandSelect.value;
-    const modelSelect = document.getElementById("modelSelect");
     modelSelect.innerHTML = "";
-
+    engineSelect.innerHTML = "";
+    
     if (modelsByBrand[selectedBrand]) {
       modelsByBrand[selectedBrand].forEach(function(model) {
         const option = document.createElement("option");
@@ -279,13 +279,27 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
         option.text = model;
         modelSelect.appendChild(option);
       });
+    }
+  }
+
+  modelSelect.addEventListener("change", function () {
+    const selectedModel = modelSelect.value;
+    engineSelect.innerHTML = "";
+    
+    if (engineSizesByModel[selectedModel]) {
+      engineSizesByModel[selectedModel].forEach(function(size) {
+        const option = document.createElement("option");
+        option.value = size;
+        option.text = size;
+        engineSelect.appendChild(option);
+      });
     } else {
       const option = document.createElement("option");
       option.value = "";
-      option.text = "Vyberte značku nejprve";
-      modelSelect.appendChild(option);
+      option.text = "No data";
+      engineSelect.appendChild(option);
     }
-  }
+  });
 </script>
 </body>
 </html>
