@@ -121,6 +121,15 @@ body {
 
   .accordion-button {
     width: 100%;
+    text-align: center;
+  }
+
+  .accordion-panel {
+    padding: 10px 15px;
+  }
+
+  .reservation-form {
+    padding: 15px;
   }
 
   .overlay {
