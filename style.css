@@ -177,9 +177,6 @@ body {
 .accordion-button.active + .accordion-panel {
   display: block;
 }
-.accordion-button.active + .accordion-panel {
-  display: block;           /* تُعرض عند الضغط */
-}
 .accordion-button:hover {
   background-color: #b68d50;
 }
