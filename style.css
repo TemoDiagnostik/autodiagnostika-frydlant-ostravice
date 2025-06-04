@@ -121,6 +121,15 @@ body {
 
   .accordion-button {
     width: 100%;
+  }
+
+  .overlay {
+    background-position: 80% center;
+  }
+}
+
+  .accordion-button {
+    width: 100%;
     text-align: center;
   }
 
