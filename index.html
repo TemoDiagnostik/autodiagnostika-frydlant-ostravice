@@ -244,14 +244,14 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
     });
   </script>
 <script>
-  const modelsByBrand = {
-  "Acura": {
-    "Integra": ["1.5L", "2.0L"],
-    "TLX": ["2.0L", "3.0L"],
-    "RDX": ["2.0L"],
-    "MDX": ["3.5L", "3.0L"],
-    "ZDX": ["Electric"]
-  },
+ const modelsByBrand = {
+    "Acura": {
+      "Integra": ["1.5L", "2.0L"],
+      "TLX": ["2.0L", "3.0L"],
+      "RDX": ["2.0L"],
+      "MDX": ["3.5L", "3.0L"],
+      "ZDX": ["Electric"]
+    },
   "Alfa Romeo": {
     "Giulia": ["2.0L", "2.9L"],
     "Stelvio": ["2.0L", "2.9L"],
@@ -851,32 +851,43 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
   };
 
   const brandSelect = document.getElementById("brandSelect");
-  Object.keys(modelsByBrand).forEach(function(brand) {
+  const modelSelect = document.getElementById("modelSelect");
+  const engineSelect = document.getElementById("engineSelect");
+
+  // تعبئة قائمة الأنواع (Značka vozu)
+  Object.keys(modelsByBrand).forEach(function (brand) {
     const option = document.createElement("option");
     option.value = brand;
     option.text = brand;
     brandSelect.appendChild(option);
   });
 
-  function updateModelOptions() {
-    const selectedBrand = brandSelect.value;
-    const modelSelect = document.getElementById("modelSelect");
-    modelSelect.innerHTML = "";
-
-    if (modelsByBrand[selectedBrand]) {
-      modelsByBrand[selectedBrand].forEach(function(model) {
-        const option = document.createElement("option");
-        option.value = model;
-        option.text = model;
-        modelSelect.appendChild(option);
-      });
-    } else {
+  // عند اختيار نوع السيارة → عرض الموديلات (Model vozu)
+  brandSelect.addEventListener("change", function () {
+    modelSelect.innerHTML = "<option disabled selected>Vyberte model</option>";
+    engineSelect.innerHTML = "<option disabled selected>Vyberte objem motoru</option>";
+    const models = Object.keys(modelsByBrand[this.value] || {});
+    models.forEach(function (model) {
       const option = document.createElement("option");
-      option.value = "";
-      option.text = "Select brand first";
+      option.value = model;
+      option.text = model;
       modelSelect.appendChild(option);
-    }
-  }
+    });
+  });
+
+  // عند اختيار الموديل → عرض سعة المحرك (Objem motoru)
+  modelSelect.addEventListener("change", function () {
+    engineSelect.innerHTML = "<option disabled selected>Vyberte objem motoru</option>";
+    const selectedBrand = brandSelect.value;
+    const selectedModel = this.value;
+    const engines = modelsByBrand[selectedBrand]?.[selectedModel] || [];
+    engines.forEach(function (engine) {
+      const option = document.createElement("option");
+      option.value = engine;
+      option.text = engine;
+      engineSelect.appendChild(option);
+    });
+  });
 </script>
 </body>
 </html>
