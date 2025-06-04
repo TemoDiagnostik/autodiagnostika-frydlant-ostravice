@@ -153,22 +153,26 @@ body {
 }
 
 .accordion-button {
-  background-color: #c9a86b;
-  color: white;
-  padding: 14px 20px;
-  font-weight: bold;
-  cursor: pointer;
-  position: relative;
-  padding-right: 40px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  width: 200px;
-  text-align: left;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
+  background-color: #c9a86b; /* لون خلفية الزر */
+  color: #fff;              /* لون النص */
+  border: none;             /* بدون إطار */
+  padding: 10px;            /* مسافة داخل الزر */
+  text-align: left;         /* محاذاة النص لليسار */
+  width: 100%;              /* عرض كامل */
+  font-size: 16px;          /* حجم الخط */
+  cursor: pointer;          /* شكل المؤشر */
+  margin-bottom: 5px;       /* مسافة بسيطة بين الأزرار */
 }
 
+.accordion-panel {
+  display: none;            /* مخفية بشكل افتراضي */
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+.accordion-button.active + .accordion-panel {
+  display: block;           /* تُعرض عند الضغط */
+}
 .accordion-button:hover {
   background-color: #b68d50;
 }
