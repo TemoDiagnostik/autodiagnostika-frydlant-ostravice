@@ -245,16 +245,43 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
   </script>
 <script>
   const modelsByBrand = {
-    "Toyota": ["Corolla", "Camry", "RAV4", "Land Cruiser", "Yaris", "Hilux", "Avensis", "Auris"],
-    "BMW": ["1 Series", "2 Series", "3 Series", "4 Series", "5 Series", "7 Series", "8 Series", "X1", "X3", "X5", "i3", "i4", "iX"],
-    "Mercedes-Benz": ["A-Class", "B-Class", "C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "GLS", "EQB", "EQE", "EQS", "AMG GT"],
-    "Ford": ["Fiesta", "Focus", "Fusion", "Mustang", "Explorer", "Escape", "Edge", "Kuga", "F-150", "Ranger", "Transit", "Custom"],
-    "Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q2", "Q3", "Q4", "Q5", "Q7", "Q8", "e-tron", "RS3", "RS6"],
-    "Škoda": ["Fabia", "Scala", "Octavia", "Superb", "Kamiq", "Karoq", "Kodiaq", "Enyaq"],
-    "Volkswagen": ["Up!", "Polo", "Golf", "Passat", "Arteon", "T-Roc", "Tiguan", "Touareg", "ID.3", "ID.4", "ID.5"],
-    "Hyundai": ["i10", "i20", "i30", "Tucson", "Santa Fe", "Kona", "Bayon", "Ioniq", "Elantra"],
-    "Kia": ["Picanto", "Rio", "Ceed", "Sportage", "Sorento", "Stonic", "EV6"],
-    "Nissan": ["Micra", "Juke", "Qashqai", "X-Trail", "Navara", "Leaf", "Note", "Pathfinder"],
+    "Toyota":  "Corolla": ["1.6L", "1.8L", "2.0L"],
+    "Camry": ["2.0L", "2.5L", "3.5L"],
+    "RAV4": ["2.0L", "2.5L Hybrid"],
+    "Land Cruiser": ["4.0L", "4.6L", "5.7L"],
+    "BMW": ["3 Series": ["1.5L", "2.0L", "3.0L"],
+    "5 Series": ["2.0L", "3.0L", "4.4L"],
+    "X3": ["2.0L", "3.0L"],
+    "i3": ["Electric"]
+    "Mercedes-Benz": [ "C-Class": ["1.6L", "2.0L", "3.0L"],
+    "E-Class": ["2.0L", "3.0L"],
+    "GLC": ["2.0L", "3.0L"],
+    "S-Class": ["3.0L", "4.0L", "6.0L"]],
+    "Ford": ["Focus": ["1.0L", "1.5L", "2.0L"],
+    "Mustang": ["2.3L", "5.0L"],
+    "Ranger": ["2.2L", "3.2L"],
+    "Transit": ["2.0L", "2.2L"]
+    "Audi": [ "A3": ["1.4L", "1.6L", "2.0L"],
+    "A4": ["1.8L", "2.0L", "3.0L"],
+    "Q5": ["2.0L", "3.0L"],
+    "Q7": ["3.0L", "4.0L"]
+    "Škoda": [ "Octavia": ["1.0L", "1.4L", "2.0L"],
+    "Superb": ["1.5L", "2.0L"],
+    "Kodiaq": ["1.5L", "2.0L"],
+    "Fabia": ["1.0L", "1.2L"]
+    "Volkswagen": ["Golf": ["1.0L", "1.4L", "2.0L"],
+    "Passat": ["1.5L", "2.0L"],
+    "Tiguan": ["1.4L", "2.0L"],
+    "Touareg": ["3.0L", "4.0L"]
+    "Hyundai": [  "i30": ["1.0L", "1.4L", "1.6L"],
+    "Tucson": ["1.6L", "2.0L"],
+    "Santa Fe": ["2.2L", "2.5L"],
+    "Kona": ["1.0L", "1.6L"]
+    "Kia": ["Ceed": ["1.0L", "1.4L"],
+    "Sportage": ["1.6L", "2.0L"],
+    "Sorento": ["2.2L", "2.5L"],
+    "Nissan": ["Micra", "Juke", "Qashqai", "X-Trail", "Navara", "Leaf", "No
+    "Stonic": ["1.0L", "1.2L"]te", "Pathfinder"],
     "Peugeot": ["208", "2008", "308", "3008", "508", "5008", "Rifter", "Traveller"],
     "Renault": ["Clio", "Captur", "Megane", "Kadjar", "Koleos", "Talisman", "Arkana"],
     "Fiat": ["Panda", "500", "500X", "Tipo", "Doblo", "Ducato"],
@@ -263,6 +290,69 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
     "Mazda": ["Mazda2", "Mazda3", "Mazda6", "CX-3", "CX-30", "CX-5", "MX-5"],
     "Honda": ["Jazz", "Civic", "Accord", "HR-V", "CR-V", "e"],
     "Infiniti": ["Q30", "Q50", "Q60", "Q70", "QX30", "QX50", "QX60", "QX80"]
+  "Chevrolet": {
+    "Aveo": ["1.2", "1.4", "1.6"],
+    "Cruze": ["1.6", "1.8", "2.0 Diesel"],
+    "Captiva": ["2.0", "2.4"],
+    "Spark": ["1.0", "1.2"],
+    "Malibu": ["2.0", "2.4", "3.0"]
+  },
+  "Chrysler": {
+    "300C": ["3.0 Diesel", "3.6", "5.7 HEMI"],
+    "Voyager": ["2.5", "2.8"],
+    "PT Cruiser": ["1.6", "2.0"],
+    "Pacifica": ["3.6"],
+    "Neon": ["1.6", "2.0"]
+  },
+  "Citroën": {
+    "C1": ["1.0", "1.2"],
+    "C3": ["1.1", "1.4", "1.6"],
+    "C4": ["1.4", "1.6", "2.0"],
+    "C5": ["1.6", "2.0", "2.2"],
+    "Berlingo": ["1.6", "2.0"]
+  },
+ "Geely": {
+    "Coolray": ["1.5 Turbo"],
+    "Emgrand": ["1.5", "1.8"],
+    "Tugella": ["2.0 Turbo"],
+    "Atlas": ["2.4"],
+    "Binrui": ["1.0", "1.4 Turbo"]
+  }	
+  "Dacia": {
+    "Duster": ["1.0", "1.3", "1.5 Diesel"],
+    "Logan": ["1.0", "1.2", "1.5 Diesel"],
+    "Sandero": ["1.0", "1.2", "1.5 Diesel"],
+    "Dokker": ["1.2", "1.5 Diesel"],
+    "Lodgy": ["1.2", "1.5 Diesel"]
+  },
+  "Daihatsu": {
+    "Sirion": ["1.0", "1.3"],
+    "Terios": ["1.3", "1.5"],
+    "Copen": ["0.7 Turbo"],
+    "Charade": ["1.0", "1.3"],
+    "Cuore": ["0.8", "1.0"]
+  }
+ "Dodge": {
+    "Charger": ["3.6", "5.7 HEMI", "6.4 SRT"],
+    "Challenger": ["3.6", "5.7", "6.2 Hellcat"],
+    "Durango": ["3.6", "5.7"],
+    "RAM": ["5.7", "6.7 Diesel"],
+    "Journey": ["2.4", "3.6"]
+  },  
+"Ferrari": {
+    "458 Italia": ["4.5 V8"],
+    "488 GTB": ["3.9 V8 Turbo"],
+    "California": ["4.3 V8"],
+    "F8 Tributo": ["3.9 V8"],
+    "Roma": ["3.9 V8"]
+  },
+  "Fiat": {
+    "Panda": ["1.0", "1.2"],
+    "500": ["1.0", "1.2", "1.4"],
+    "Tipo": ["1.4", "1.6", "1.3 Diesel"],
+    "Doblo": ["1.3", "1.6 Diesel"],
+    "Ducato": ["2.0", "2.3", "3.0 Diesel"]
+  },	
   };
 
   const brandSelect = document.getElementById("brandSelect");
