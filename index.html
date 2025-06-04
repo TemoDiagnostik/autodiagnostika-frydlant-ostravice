@@ -126,37 +126,14 @@
 <section class="reservation-form">
   <h3>Rezervace termínu</h3>
  <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
-  <label for="brand">Značka vozu</label>
-  <select name="značka vozu" id="brandSelect" required onchange="updateModelOptions()">
-  
-  <option value="">اختر نوع السيارة</option>
+ <label for="brandSelect">Značka vozu</label>
+<select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
+  <option value="" disabled selected>Vyberte značku</option>
 </select>
-
-<!-- اختيار الموديل بناءً على النوع -->
-<label for="modelSelect">موديل السيارة:</label>
-<select name="car-model" id="modelSelect" required>
-  <option value="">Vyberte značku nejprve</option>
+<label for="modelSelect">Model vozu</label>
+<select id="modelSelect" name="Model vozu" required>
+  <option value="" disabled selected>Vyberte model</option>
 </select>
-  <option value="">اختر النوع أولاً</option>
-</select>
-
-  <label for="engine">Objem motoru</label>
-  <select name="Objem motoru" required>
-    <option value="" disabled selected>Vyberte objem</option>
-    <option>1.0</option>
-    <option>1.2</option>
-    <option>1.4</option>
-    <option>1.5</option>
-    <option>1.6</option>
-    <option>1.8</option>
-    <option>2.0</option>
-    <option>2.2</option>
-    <option>2.5</option>
-    <option>3.0</option>
-    <option>3.5</option>
-    <option>4.0+</option>
-  </select>
-
   <label for="vin">VIN kód vozidla</label>
   <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
 
@@ -309,6 +286,6 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
       modelSelect.appendChild(option);
     }
   }
-</script>	
+</script>
 </body>
 </html>
