@@ -8,7 +8,10 @@ body {
 }
 
 .overlay {
-  background: none;
+  background-image: url('background.jpg'); /* أو غيّر الاسم حسب صورتك */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   text-align: center;
   padding: 10px 20px;
 }
