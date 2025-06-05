@@ -250,5 +250,6 @@ body {
 
   .overlay {
     background-position: 80% center;
+    text-align: center;
   }
 }
