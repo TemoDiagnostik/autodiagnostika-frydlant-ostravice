@@ -1,3 +1,4 @@
+/* ==== إعدادات عامة ==== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -35,12 +36,12 @@ body {
 .cta-button {
   background: #c9a86b;
   color: black;
-  padding: 10px 20px;
+  padding: 8px 14px;
   text-decoration: none;
   border-radius: 6px;
   font-weight: bold;
   display: inline-block;
-  margin-top: 20px;
+  font-size: 14px;
 }
 
 .whatsapp {
@@ -62,12 +63,13 @@ body {
 /* ==== نموذج الحجز ==== */
 .reservation-form {
   background: #b4965a;
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 20px;
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 15px;
   border-radius: 10px;
   color: black;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
 }
 
 .reservation-form * {
@@ -80,11 +82,12 @@ body {
 .reservation-form button {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 8px;
+  margin-top: 8px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: #fffaf0;
+  font-size: 14px;
 }
 
 .reservation-form button {
@@ -118,16 +121,14 @@ body {
   color: #fff;
   border: none;
   padding: 8px 14px;
-  text-align: center;
-  width: fit-content;
-  min-width: 200px;
+  text-align: left;
+  width: 100%;
   font-size: 14px;
   cursor: pointer;
   border-radius: 4px;
-  margin: 5px auto;
+  margin-bottom: 6px;
   transition: background-color 0.3s ease;
   position: relative;
-  display: block;
 }
 
 .accordion-button:hover {
@@ -135,56 +136,54 @@ body {
 }
 
 .accordion-button .arrow {
-  display: inline-block;
-  margin-left: 8px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 16px;
-  vertical-align: middle;
-  transform: rotate(0deg);
   transition: transform 0.3s ease;
 }
 
-.accordion-button.active + .accordion-panel {
-  display: block;
-  max-height: 1000px;
-}
 .accordion-button.active .arrow {
   transform: rotate(180deg);
 }
+
 .accordion-panel {
   display: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 20px;
+  padding: 0 15px;
   border-radius: 0 0 6px 6px;
-  margin: 10px auto 20px auto;
+  margin: 10px auto 16px auto;
   width: 90%;
-  max-width: 900px;
+  max-width: 800px;
+  font-size: 14px;
 }
 
 .accordion-panel ul {
-  padding: 10px 20px;
+  padding: 10px 18px;
   list-style: disc;
   color: #f5e8c8;
 }
 
 .accordion-panel li,
 .accordion-panel p {
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
   color: #f5e8c8;
 }
 
 /* ==== قسم من أنا ==== */
 .about-toggle-wrapper {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .about-label {
   color: #c9a86b;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   margin-bottom: 4px;
 }
@@ -205,7 +204,7 @@ body {
 
 .about-arrow {
   font-size: 14px;
-  margin-left: 6px;
+  margin-left: 4px;
   vertical-align: middle;
   transition: transform 0.3s ease;
 }
@@ -220,15 +219,16 @@ body {
   transition: max-height 0.5s ease;
   background: rgba(0, 0, 0, 0.7);
   color: #f5e8c8;
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 0 20px;
+  max-width: 650px;
+  margin: 15px auto;
+  padding: 0 15px;
   border-radius: 10px;
+  font-size: 14px;
 }
 
 .about-content.show {
   max-height: 500px;
-  padding: 20px;
+  padding: 15px;
 }
 
 /* ==== استجابة الهاتف ==== */
@@ -240,18 +240,17 @@ body {
   }
 
   .accordion-button {
-    width: 100%;
-    text-align: center;
     font-size: 14px;
-    padding: 8px 10px;
+    padding: 8px 14px;
   }
 
   .accordion-panel {
-    padding: 10px 15px;
+    padding: 10px 12px;
   }
 
   .reservation-form {
-    padding: 15px;
+    padding: 12px;
+    font-size: 14px;
   }
 
   .overlay {
