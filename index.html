@@ -1,4 +1,4 @@
-صح<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
@@ -190,7 +190,6 @@
   <label for="date">Datum</label>
   <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
 
-  <!-- hidden values for formsubmit -->
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
@@ -262,7 +261,6 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
         });
       });
 
-      // About toggle
       const aboutBtn = document.querySelector('.about-toggle');
       const aboutBox = document.querySelector('.about-content');
       const aboutArrow = aboutBtn.querySelector('.about-arrow');
@@ -277,7 +275,6 @@ Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klie
         }
       });
 
-      // Show success message after submit
       const form = document.getElementById('booking-form');
       form.addEventListener('submit', function () {
         document.getElementById('success-message').style.display = 'block';
