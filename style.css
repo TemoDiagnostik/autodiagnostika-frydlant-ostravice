@@ -6,15 +6,6 @@ body {
   color: #c9a86b;
 }
 
-.overlay {
-  background-image: url('background.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  text-align: center;
-  padding: 10px 20px;
-}
-
 .top-bar {
   display: flex;
   justify-content: space-between;
