@@ -937,28 +937,29 @@
 </script>
 
 <script>
-  const buttons = document.querySelectorAll(".accordion-button");
-
-  buttons.forEach(button => {
+  document.querySelectorAll(".accordion-button").forEach(button => {
     button.addEventListener("click", () => {
-      button.classList.toggle("active");
-
       const panel = button.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
 
-      const arrow = button.querySelector(".arrow");
-      if (arrow) {
-        arrow.textContent = button.classList.contains("active") ? "▲" : "▼";
+      // غلق باقي القوائم إن حبيت
+      document.querySelectorAll(".accordion-panel").forEach(p => {
+        if (p !== panel) p.style.display = "none";
+      });
+
+      // فتح/غلق العنصر الحالي
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
       }
     });
+
+    // إغلاق كل القوائم عند التحميل
+    const panel = button.nextElementSibling;
+    if (panel) {
+      panel.style.display = "none";
+    }
   });
 </script>
-
-</body>
-</html>	
 </body>
 </html>
