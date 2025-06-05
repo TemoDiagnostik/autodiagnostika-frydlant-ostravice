@@ -252,3 +252,20 @@ body {
     background-position: 80% center;
   }
 }
+.accordion-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 30px auto 10px auto;
+  max-width: 700px;
+}
+
+.accordion-button {
+  flex: 1 1 200px;
+  max-width: 220px;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+}
