@@ -120,11 +120,11 @@ body {
   padding: 8px 12px;
   text-align: center;
   width: fit-content;
-  min-width: 200px;
   font-size: 14px;
+  max-width: 300px;
   cursor: pointer;
   border-radius: 4px;
-  margin: 5px auto;
+  margin: 10px auto;
   transition: background-color 0.3s ease;
   position: relative;
   display: block;
