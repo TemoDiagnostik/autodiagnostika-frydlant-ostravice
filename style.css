@@ -129,13 +129,7 @@ body {
   transition: background-color 0.3s ease;
   position: relative;
 }
-.accordion-button {
-  font-size: 14px;
-  padding: 8px 16px;
-  width: fit-content;
-  min-width: 180px;
-  margin: 5px auto;
-}
+
 .accordion-button:hover {
   background-color: #b79058;
 }
