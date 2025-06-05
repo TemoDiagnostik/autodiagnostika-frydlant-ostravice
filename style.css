@@ -117,13 +117,13 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 20px auto 10px auto;
+  margin: 30px auto 10px auto;
   max-width: 700px;
 }
 
 .accordion-button {
   flex: 1 1 200px;
-  max-width: 200px;
+  max-width: 220px;
   font-size: 14px;
   padding: 10px 16px;
   border-radius: 8px;
@@ -131,9 +131,9 @@ body {
   background-color: #c9a86b;
   color: white;
   border: none;
-  position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  position: relative;
 }
 
 .accordion-button:hover {
@@ -142,12 +142,11 @@ body {
 
 .accordion-button .arrow {
   position: absolute;
-  right: 12px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 16px;
-}
-
+  font-size: 20px;
+  
 .accordion-button.active + .accordion-panel {
   display: block;
   max-height: 1000px; /* تعويض الأنيميشن */
