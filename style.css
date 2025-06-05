@@ -147,7 +147,9 @@ body {
   display: block;
   max-height: 1000px;
 }
-
+.accordion-button.active .arrow {
+  transform: rotate(180deg);
+}
 .accordion-panel {
   display: none;
   max-height: 0;
