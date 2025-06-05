@@ -113,22 +113,21 @@ body {
   pointer-events: none;
 }
 
-/* ==== Accordion ==== */
 .accordion-button {
   background-color: #c9a86b;
   color: #fff;
   border: none;
-  padding: 8px 12px;
+  padding: 6px 16px;       /* ← أصغر من الحالي */
+  font-size: 14px;         /* ← تصغير الخط */
   text-align: center;
-  width: fit-content;
-  font-size: 14px;
-  max-width: 300px;
+  width: fit-content;      /* ← الزر يأخذ حجم النص */
+  min-width: 160px;        /* ← اختياري لتوحيد العرض */
   cursor: pointer;
-  border-radius: 4px;
-  margin: 10px auto;
+  border-radius: 6px;
+  margin: 5px auto;
+  display: block;
   transition: background-color 0.3s ease;
   position: relative;
-  display: block;
 }
 
 .accordion-button:hover {
