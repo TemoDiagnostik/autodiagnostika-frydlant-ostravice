@@ -142,7 +142,7 @@ body {
 
 .accordion-button.active + .accordion-panel {
   display: block;
-  max-height: 1000px; /* تعويض الأنيميشن */
+  max-height: 1000px;
 }
 
 .accordion-panel {
