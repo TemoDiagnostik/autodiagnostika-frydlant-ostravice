@@ -118,14 +118,16 @@ body {
   color: #fff;
   border: none;
   padding: 8px 14px;
-  text-align: left;
-  width: 100%;
+  text-align: center;
+  width: fit-content;
+  min-width: 200px;
   font-size: 14px;
   cursor: pointer;
   border-radius: 4px;
-  margin-bottom: 6px;
+  margin: 5px auto;
   transition: background-color 0.3s ease;
   position: relative;
+  display: block;
 }
 
 .accordion-button:hover {
