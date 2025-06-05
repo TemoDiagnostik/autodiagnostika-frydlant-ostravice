@@ -108,11 +108,12 @@ body {
   background-color: #c9a86b;
   color: #fff;
   border: none;
-  padding: 6px 16px;       /* ← أصغر من الحالي */
-  font-size: 14px;         /* ← تصغير الخط */
+  padding: 6px 14px;             /* ← حجم زر أنيق */
+  font-size: 14px;               /* ← حجم خط موحد */
   text-align: center;
-  width: fit-content;      /* ← الزر يأخذ حجم النص */
-  min-width: 160px;        /* ← اختياري لتوحيد العرض */
+  width: fit-content;            /* ← عرض حسب المحتوى */
+  min-width: 160px;              /* ← توحيد الحجم */
+  max-width: 200px;
   cursor: pointer;
   border-radius: 6px;
   margin: 5px auto;
@@ -134,20 +135,15 @@ body {
   transition: transform 0.3s ease;
 }
 
+.accordion-button.active .arrow {
+  transform: rotate(180deg);
+}
+
 .accordion-button.active + .accordion-panel {
   display: block;
   max-height: 1000px;
 }
-.accordion-button.active .arrow {
-  transform: rotate(180deg);
-}
-button.accordion-button:first-of-type {
-  font-size: 14px !important;
-  padding: 8px 16px !important;
-  width: fit-content !important;
-  min-width: 180px !important;
-  margin: 5px auto !important;
-}
+
 .accordion-panel {
   display: none;
   max-height: 0;
