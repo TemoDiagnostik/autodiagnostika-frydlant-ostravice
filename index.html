@@ -937,28 +937,37 @@
 </script>
 
 <script>
-  document.querySelectorAll(".accordion-button").forEach(button => {
-    button.addEventListener("click", () => {
-      const panel = button.nextElementSibling;
+  const buttons = document.querySelectorAll(".accordion-button");
 
-      // غلق باقي القوائم إن حبيت
-      document.querySelectorAll(".accordion-panel").forEach(p => {
-        if (p !== panel) p.style.display = "none";
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // غلق جميع البانلات أولًا
+      buttons.forEach(btn => {
+        if (btn !== button) {
+          btn.classList.remove("active");
+          const otherPanel = btn.nextElementSibling;
+          if (otherPanel) otherPanel.style.maxHeight = null;
+          const otherArrow = btn.querySelector(".arrow");
+          if (otherArrow) otherArrow.textContent = "▼";
+        }
       });
 
-      // فتح/غلق العنصر الحالي
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
+      // فتح أو إغلاق العنصر الحالي
+      button.classList.toggle("active");
+      const panel = button.nextElementSibling;
+
+      if (panel.style.maxHeight && panel.classList.contains("accordion-panel")) {
+        panel.style.maxHeight = null;
       } else {
-        panel.style.display = "block";
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+
+      // تبديل السهم
+      const arrow = button.querySelector(".arrow");
+      if (arrow) {
+        arrow.textContent = button.classList.contains("active") ? "▲" : "▼";
       }
     });
-
-    // إغلاق كل القوائم عند التحميل
-    const panel = button.nextElementSibling;
-    if (panel) {
-      panel.style.display = "none";
-    }
   });
 </script>
 </body>
