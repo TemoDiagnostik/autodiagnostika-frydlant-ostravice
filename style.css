@@ -248,7 +248,7 @@ body {
     padding: 15px;
   }
 
-  .overlay {
+.overlay {
   background-image: url('background.jpg');
   background-size: cover;
   background-position: center center;
@@ -258,7 +258,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* ← يخلي العنوان فوق */
+  justify-content: flex-start; /* ← عشان العنوان يطلع فوق */
   min-height: 80vh;
 }
 
