@@ -251,5 +251,19 @@ body {
   .overlay {
     background-position: 80% center;
     text-align: center;
+    .overlay {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* ← هذا يخلي الكلام في الأعلى */
+  min-height: 80vh;
+  padding-top: 60px; /* ← رفع النص لأعلى */
+}
   }
 }
