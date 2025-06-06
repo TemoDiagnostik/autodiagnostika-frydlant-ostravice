@@ -254,17 +254,20 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   text-align: center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;   /* ← هنا */
-  padding-top: 20px;         /* ← وهنا */
+
+  justify-content: flex-start; /* ← بدّل center بـ flex-start */
+  padding-top: 30px;
+  padding-bottom: 20px;
   min-height: 80vh;
 }
 
 .headline-wrapper {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 30px;
   padding: 0 20px;
   width: 100%;
