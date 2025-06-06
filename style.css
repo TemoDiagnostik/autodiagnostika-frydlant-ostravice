@@ -254,18 +254,20 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   text-align: center;
-  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* ← عشان العنوان يطلع فوق */
+  justify-content: center;   /* ← هنا */
+  padding-top: 20px;         /* ← وهنا */
   min-height: 80vh;
 }
 
 .headline-wrapper {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 30px;
+  padding: 0 20px;
+  width: 100%;
 }
 
 .headline-wrapper h1 {
