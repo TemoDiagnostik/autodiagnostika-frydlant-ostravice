@@ -242,22 +242,6 @@
       });
 
       // Accordion
-<style>
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-.accordion-panel.open {
-  max-height: 500px;
-}
-</style>
-
-<button class="accordion-button">افتح القائمة</button>
-<div class="accordion-panel">
-  <p>المحتوى هنا</p>
-</div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll(".accordion-button");
@@ -266,15 +250,14 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       const panel = button.nextElementSibling;
 
-      if (panel.classList.contains("open")) {
-        panel.style.maxHeight = null;
-        panel.classList.remove("open");
-      } else {
-        document.querySelectorAll(".accordion-panel").forEach((p) => {
-          p.style.maxHeight = null;
-          p.classList.remove("open");
-        });
+      const isOpen = panel.classList.contains("open");
 
+      document.querySelectorAll(".accordion-panel").forEach((p) => {
+        p.style.maxHeight = null;
+        p.classList.remove("open");
+      });
+
+      if (!isOpen) {
         panel.style.maxHeight = panel.scrollHeight + "px";
         panel.classList.add("open");
       }
