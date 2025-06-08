@@ -308,6 +308,5 @@ body {
 }
 
 .service-icon {
-  filter: none; /* نشيل أي فلتر قديم */
-  color: #c9a86b;
+  filter: brightness(0) saturate(100%) invert(92%) sepia(15%) saturate(265%) hue-rotate(6deg) brightness(95%) contrast(92%);
 }
