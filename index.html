@@ -237,7 +237,7 @@
       });
 
       // Accordion
-   <script>
+  <script>
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".accordion-button");
   const panels = document.querySelectorAll(".accordion-panel");
@@ -246,15 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const panel = panels[index];
 
     button.addEventListener("click", () => {
-      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+      const isOpen = panel.classList.contains("open");
 
-      // أغلق كل اللوحات الأخرى
+      // أغلق كل البانلز أولاً
       panels.forEach(p => {
         p.style.maxHeight = null;
         p.classList.remove("open");
       });
 
-      // إذا لم تكن مفتوحة، افتحها
+      // إذا لم يكن مفتوحًا، افتحه
       if (!isOpen) {
         panel.style.maxHeight = panel.scrollHeight + "px";
         panel.classList.add("open");
@@ -262,7 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-</script>
 </script>
       const form = document.getElementById('booking-form');
       form.addEventListener('submit', function () {
