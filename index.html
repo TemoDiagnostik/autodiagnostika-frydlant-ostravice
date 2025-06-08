@@ -941,32 +941,32 @@
 </script>
 
 <script>
-  const accordionButtons = document.querySelectorAll('.accordion-button');
+const accordionButtons = document.querySelectorAll('.accordion-button');
 
-  accordionButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const panel = button.nextElementSibling;
+accordionButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const panel = button.nextElementSibling;
 
-      // إغلاق جميع القوائم المفتوحة أولاً
-      document.querySelectorAll('.accordion-panel').forEach(p => {
-        if (p !== panel) {
-          p.style.display = 'none';
-        }
-      });
-
-      // فتح أو إغلاق العنصر الحالي
-      if (panel.style.display === 'block') {
-        panel.style.display = 'none';
-      } else {
-        panel.style.display = 'block';
+    // اغلق جميع الألواح الأخرى
+    document.querySelectorAll('.accordion-panel').forEach(p => {
+      if (p !== panel) {
+        p.style.display = 'none';
       }
     });
-  });
 
-  // إغلاق الكل عند التحميل
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.accordion-panel').forEach(p => p.style.display = 'none');
+    // افتح أو اقفل هذا اللوح
+    if (panel.style.display === 'block') {
+      panel.style.display = 'none';
+    } else {
+      panel.style.display = 'block';
+    }
   });
+});
+
+// عند تحميل الصفحة اجعل الكل مغلق
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.accordion-panel').forEach(p => p.style.display = 'none');
+});
 </script>
 </body>
 </html>
