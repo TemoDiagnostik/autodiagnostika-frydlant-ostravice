@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soukromá Auto Diagnostika</title>
   <link rel="stylesheet" href="style.css" />
- <link rel="stylesheet" href="main/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
@@ -33,7 +33,7 @@
     <p>Profesionální zařízení – klidné prostředí – férové ceny</p>
   </div>
 </header>
-<button class="accordion-button">Specializace podle značky vozu<span class="arrow">▼</span></button>
+<button class="accordion-button">Specializace podle značky vozu <span class="arrow">&#x25BC;</span></button>
 <div class="accordion-panel">
   <ul>
     <li><strong>Ford / Mazda:</strong>
@@ -63,37 +63,7 @@
     </li>
   </ul>
 </div>
-<section id="sluzby" class="advanced-services">
-  <h2>POKROČILÉ SLUŽBY</h2>
-  <div class="service-buttons">
-    <button class="accordion" data-target="reset">
-      <img src="icons/reset.svg" alt="Reset Icon"> Reset funkcí
-    </button>
-    <button class="accordion" data-target="diagnostika">
-      <img src="icons/diagnostics.svg" alt="Diagnostika Icon"> Diagnostika
-    </button>
-    <button class="accordion" data-target="programovani">
-      <img src="icons/programming.svg" alt="Programming Icon"> Programování a úpravy
-    </button>
-    <button class="accordion" data-target="cenik">
-      <img src="icons/prices.svg" alt="Prices Icon"> Ceník služeb
-    </button>
-  </div>
-
-  <!-- المحتوى اللي بيظهر عند الضغط -->
-  <div class="panel-content" id="reset">
-    <!-- Obsah Reset -->
-  </div>
-  <div class="panel-content" id="diagnostika">
-    <!-- Obsah Diagnostika -->
-  </div>
-  <div class="panel-content" id="programovani">
-    <!-- Obsah Programování -->
-  </div>
-  <div class="panel-content" id="cenik">
-    <!-- Obsah Ceník -->
-  </div>
-</section>
+<div class="accordion-row">
 
 <a id="reset"></a>
 <button class="accordion">Reset</button>
@@ -983,6 +953,21 @@
 </script>
 </script>
 
+<script>
+const acc = document.getElementsByClassName("accordion");
+for (let i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    let panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      this.scrollIntoView({ behavior: "smooth", block: "start" });
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
   <!-- WhatsApp Button -->
 <a href="https://wa.me/420732133919" class="whatsapp-float" target="_blank" title="WhatsApp">WhatsApp</a>
 
