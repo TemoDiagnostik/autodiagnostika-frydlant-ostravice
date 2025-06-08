@@ -239,45 +239,30 @@
       });
 
       // Accordion
-      document.querySelectorAll('.accordion-button').forEach((button, index) => {
-        button.addEventListener('click', () => {
-          const allPanels = document.querySelectorAll('.accordion-panel');
-          const allButtons = document.querySelectorAll('.accordion-button');
-          allPanels.forEach((panel, i) => {
-            if (i === index) {
-              const isOpen = panel.style.maxHeight;
-              if (isOpen) {
-                panel.style.maxHeight = null;
-                button.querySelector('.arrow').innerHTML = '&#x25BC;';
-              } else {
-                panel.style.maxHeight = panel.scrollHeight + 'px';
-                button.querySelector('.arrow').innerHTML = '&#x25B2;';
-                setTimeout(() => {
-                  panel.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-              }
-            } else {
-              panel.style.maxHeight = null;
-              allButtons[i].querySelector('.arrow').innerHTML = '&#x25BC;';
-            }
-          });
-        });
-      });
+      <script>
+document.querySelectorAll('.accordion-button').forEach((button, index) => {
+  const panel = document.querySelectorAll('.accordion-panel')[index];
+  const arrow = button.querySelector('.arrow');
 
-      const aboutBtn = document.querySelector('.about-toggle');
-      const aboutBox = document.querySelector('.about-content');
-      const aboutArrow = aboutBtn.querySelector('.about-arrow');
+  button.addEventListener('click', () => {
+    const isOpen = panel.style.maxHeight;
 
-      aboutBtn.addEventListener('click', () => {
-        aboutBox.classList.toggle('show');
-        aboutBtn.classList.toggle('open');
-        if (aboutBox.classList.contains('show')) {
-          setTimeout(() => {
-            aboutBox.scrollIntoView({ behavior: 'smooth' });
-          }, 300);
-        }
-      });
+    // إغلاق جميع القوائم
+    document.querySelectorAll('.accordion-panel').forEach(p => {
+      p.style.maxHeight = null;
+    });
+    document.querySelectorAll('.arrow').forEach(a => {
+      a.innerHTML = '&#x25BC;';
+    });
 
+    // فتح الحالي إذا لم يكن مفتوح
+    if (!isOpen) {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      arrow.innerHTML = '&#x25B2;';
+    }
+  });
+});
+</script>
       const form = document.getElementById('booking-form');
       form.addEventListener('submit', function () {
         document.getElementById('success-message').style.display = 'block';
@@ -940,33 +925,6 @@
 </script>
 </script>
 
-<script>
-const accordionButtons = document.querySelectorAll('.accordion-button');
 
-accordionButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const panel = button.nextElementSibling;
-
-    // اغلق جميع الألواح الأخرى
-    document.querySelectorAll('.accordion-panel').forEach(p => {
-      if (p !== panel) {
-        p.style.display = 'none';
-      }
-    });
-
-    // افتح أو اقفل هذا اللوح
-    if (panel.style.display === 'block') {
-      panel.style.display = 'none';
-    } else {
-      panel.style.display = 'block';
-    }
-  });
-});
-
-// عند تحميل الصفحة اجعل الكل مغلق
-window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.accordion-panel').forEach(p => p.style.display = 'none');
-});
-</script>
 </body>
 </html>
