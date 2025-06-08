@@ -994,29 +994,28 @@
 
 <!-- سكربت فتح وإغلاق الـ Accordion -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll(".accordion-button");
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".accordion-button");
+    const panels = document.querySelectorAll(".accordion-panel");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const panel = button.nextElementSibling;
-      const isOpen = panel.classList.contains("open");
+    buttons.forEach((button, index) => {
+      const panel = panels[index];
 
-      document.querySelectorAll(".accordion-panel").forEach((p) => {
-        p.style.maxHeight = null;
-        p.classList.remove("open");
+      button.addEventListener("click", () => {
+        const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+
+        panels.forEach(p => {
+          p.style.maxHeight = null;
+          p.classList.remove("open");
+        });
+
+        if (!isOpen) {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.classList.add("open");
+        }
       });
-
-      if (!isOpen) {
-  panel.style.maxHeight = panel.scrollHeight + "px";
-  panel.classList.add("open");
-
-  // Scroll تلقائي لمكان الزر
-  button.scrollIntoView({ behavior: "smooth", block: "start" });
-}
     });
   });
-});
 </script>
 </body>
 </html>
