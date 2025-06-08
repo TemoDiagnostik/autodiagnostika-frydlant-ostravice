@@ -105,11 +105,9 @@
     </ul>
   </div>
 
-<div class="accordion-button">
-  <img src="icons/diagnostika.png" alt="Diagnostika" class="service-icon" />
-  <div class="service-text">
-    <h3>Diagnostika</h3>
-    <p>Kompletní diagnostika systémů automobilu</p>
+<button class="accordion-button">Diagnostika</button>
+<div class="accordion-panel">
+    <ul>
       <li>Kontrola stavu oleje</li>
       <li>Řídicí jednotka motoru (ECU)</li>
       <li>Čtení a mazání chybových kódů (DTC)</li>
@@ -245,20 +243,20 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       const panel = button.nextElementSibling;
 
-      // لو مفتوح، نقفله
+      // لو مفتوح، اقفله
       if (panel.classList.contains("open")) {
         panel.style.maxHeight = null;
         panel.classList.remove("open");
       } else {
-        // نقفل الباقي
+        // اقفل أي مفتوح
         document.querySelectorAll(".accordion-panel").forEach((p) => {
           p.style.maxHeight = null;
           p.classList.remove("open");
         });
 
-        // نفتح ده فقط
-        panel.style.maxHeight = panel.scrollHeight + "px";
+        // افتح الحالي
         panel.classList.add("open");
+        panel.style.maxHeight = panel.scrollHeight + "px";
       }
     });
   });
