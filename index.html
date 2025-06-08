@@ -239,29 +239,6 @@
           { from: "2025-05-25", to: "2025-05-27" }
         ]
       });
-
-      // Accordion
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll(".accordion-button");
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const panel = button.nextElementSibling;
-
-      const isOpen = panel.classList.contains("open");
-
-      document.querySelectorAll(".accordion-panel").forEach((p) => {
-        p.style.maxHeight = null;
-        p.classList.remove("open");
-      });
-
-      if (!isOpen) {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        panel.classList.add("open");
-      }
-    });
-  });
 });
 </script>
  <script> 
@@ -927,6 +904,28 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </script>
 
+<!-- سكربت فتح وإغلاق الـ Accordion -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".accordion-button");
 
+  buttons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const panel = button.nextElementSibling;
+      const isOpen = panel.classList.contains("open");
+
+      document.querySelectorAll(".accordion-panel").forEach((p) => {
+        p.style.maxHeight = null;
+        p.classList.remove("open");
+      });
+
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add("open");
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
