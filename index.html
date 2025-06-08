@@ -237,39 +237,32 @@
       });
 
       // Accordion
-     <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const accordionButtons = document.querySelectorAll('.accordion-button');
-    const accordionPanels = document.querySelectorAll('.accordion-panel');
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".accordion-button");
+  const panels = document.querySelectorAll(".accordion-panel");
 
-    // إغلاق كل القوائم عند التحميل
-    accordionPanels.forEach(panel => panel.style.maxHeight = null);
+  buttons.forEach((button, index) => {
+    const panel = panels[index];
 
-    accordionButtons.forEach((button, index) => {
-      const panel = accordionPanels[index];
-      const arrow = button.querySelector('.arrow');
+    button.addEventListener("click", () => {
+      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
 
-      button.addEventListener('click', () => {
-        const isOpen = panel.style.maxHeight;
-
-        // إغلاق كل القوائم أولًا
-        accordionPanels.forEach(p => p.style.maxHeight = null);
-        document.querySelectorAll('.arrow').forEach(a => a.innerHTML = '&#x25BC;');
-
-        // فتح إذا كانت مغلقة
-        if (!isOpen) {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-          arrow.innerHTML = '&#x25B2;';
-        }
+      // أغلق كل اللوحات الأخرى
+      panels.forEach(p => {
+        p.style.maxHeight = null;
+        p.classList.remove("open");
       });
-    });
 
-    // تأكيد الحجز
-    const form = document.getElementById('booking-form');
-    form.addEventListener('submit', function () {
-      document.getElementById('success-message').style.display = 'block';
+      // إذا لم تكن مفتوحة، افتحها
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add("open");
+      }
     });
   });
+});
+</script>
 </script>
       const form = document.getElementById('booking-form');
       form.addEventListener('submit', function () {
