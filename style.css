@@ -240,18 +240,6 @@ body {
     padding: 8px 10px;
   }
 
-.accordion-panel {
-  display: none;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 15px 20px;
-  border-radius: 6px;
-  margin: 10px auto 20px auto;
-  width: 90%;
-  max-width: 900px;
-}
 
   .reservation-form {
     padding: 15px;
