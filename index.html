@@ -920,9 +920,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (!isOpen) {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        panel.classList.add("open");
-      }
+  panel.style.maxHeight = panel.scrollHeight + "px";
+  panel.classList.add("open");
+
+  // Scroll تلقائي لمكان الزر
+  button.scrollIntoView({ behavior: "smooth", block: "start" });
+}
     });
   });
 });
