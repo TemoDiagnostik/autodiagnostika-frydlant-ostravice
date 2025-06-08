@@ -313,4 +313,5 @@ body {
   margin-right: 20px;
   object-fit: contain;
   max-width: 100%;
+  display: inline-block;
 }
