@@ -145,18 +145,19 @@ body {
 }
 
 .accordion-panel {
-  display: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 20px;
-  border-radius: 0 0 6px 6px;
+  border-radius: 6px;
   margin: 10px auto 20px auto;
   width: 90%;
   max-width: 900px;
 }
-
+.accordion-panel.open {
+  padding: 20px;
+}
 .accordion-panel ul {
   padding: 10px 20px;
   list-style: disc;
