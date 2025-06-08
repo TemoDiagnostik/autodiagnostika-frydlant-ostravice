@@ -295,3 +295,27 @@ body {
   max-width: 800px;
   margin-top: 20px;
 }
+.service-box {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.service-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  filter: brightness(0) saturate(100%) invert(83%) sepia(23%) saturate(400%) hue-rotate(2deg) brightness(93%) contrast(85%);
+}
+
+.service-text h3 {
+  margin: 0;
+  color: #E8D8B1;
+  font-size: 20px;
+}
+
+.service-text p {
+  margin: 5px 0 0;
+  color: #E8D8B1;
+  font-size: 16px;
+}
