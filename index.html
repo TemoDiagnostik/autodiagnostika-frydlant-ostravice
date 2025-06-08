@@ -239,29 +239,39 @@
       });
 
       // Accordion
-      <script>
-document.querySelectorAll('.accordion-button').forEach((button, index) => {
-  const panel = document.querySelectorAll('.accordion-panel')[index];
-  const arrow = button.querySelector('.arrow');
+     <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    const accordionPanels = document.querySelectorAll('.accordion-panel');
 
-  button.addEventListener('click', () => {
-    const isOpen = panel.style.maxHeight;
+    // إغلاق كل القوائم عند التحميل
+    accordionPanels.forEach(panel => panel.style.maxHeight = null);
 
-    // إغلاق جميع القوائم
-    document.querySelectorAll('.accordion-panel').forEach(p => {
-      p.style.maxHeight = null;
+    accordionButtons.forEach((button, index) => {
+      const panel = accordionPanels[index];
+      const arrow = button.querySelector('.arrow');
+
+      button.addEventListener('click', () => {
+        const isOpen = panel.style.maxHeight;
+
+        // إغلاق كل القوائم أولًا
+        accordionPanels.forEach(p => p.style.maxHeight = null);
+        document.querySelectorAll('.arrow').forEach(a => a.innerHTML = '&#x25BC;');
+
+        // فتح إذا كانت مغلقة
+        if (!isOpen) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          arrow.innerHTML = '&#x25B2;';
+        }
+      });
     });
-    document.querySelectorAll('.arrow').forEach(a => {
-      a.innerHTML = '&#x25BC;';
-    });
 
-    // فتح الحالي إذا لم يكن مفتوح
-    if (!isOpen) {
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-      arrow.innerHTML = '&#x25B2;';
-    }
+    // تأكيد الحجز
+    const form = document.getElementById('booking-form');
+    form.addEventListener('submit', function () {
+      document.getElementById('success-message').style.display = 'block';
+    });
   });
-});
 </script>
       const form = document.getElementById('booking-form');
       form.addEventListener('submit', function () {
