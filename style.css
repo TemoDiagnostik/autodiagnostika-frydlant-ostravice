@@ -149,12 +149,13 @@ body {
   overflow: hidden;
   transition: max-height 0.3s ease;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 20px;
+  padding: 0;
   border-radius: 6px;
   margin: 10px auto 20px auto;
   width: 90%;
   max-width: 900px;
 }
+
 .accordion-panel.open {
   padding: 20px;
 }
