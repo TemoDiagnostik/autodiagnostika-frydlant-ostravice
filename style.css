@@ -147,17 +147,11 @@ body {
 .accordion-panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0;
-  border-radius: 6px;
-  margin: 10px auto 20px auto;
-  width: 90%;
-  max-width: 900px;
+  transition: max-height 0.4s ease;
 }
 
 .accordion-panel.open {
-  padding: 20px;
+  max-height: 800px; /* غيّر الرقم حسب طول المحتوى */
 }
 .accordion-panel ul {
   padding: 10px 20px;
