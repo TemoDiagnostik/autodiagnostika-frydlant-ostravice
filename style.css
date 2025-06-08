@@ -314,8 +314,10 @@ body {
   font-size: 20px;
 }
 
-.service-text p {
-  margin: 5px 0 0;
-  color: #E8D8B1;
-  font-size: 16px;
+.service-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  object-fit: contain;
+  max-width: 100%;
 }
