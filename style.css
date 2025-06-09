@@ -304,5 +304,8 @@ body {
 }
 
 .service-icon {
-  filter: brightness(0) saturate(100%) invert(92%) sepia(15%) saturate(265%) hue-rotate(6deg) brightness(95%) contrast(92%);
+  width: 28px;
+  height: 28px;
+  margin-bottom: 6px;
+  filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
 }
