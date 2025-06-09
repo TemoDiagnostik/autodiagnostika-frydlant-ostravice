@@ -215,26 +215,40 @@
 </div>
   
 <!-- Kontrola Ujetých Kilometrů -->
-<div style="background-color: #1F2B1D; padding: 10px 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 15px auto;">
-  <button type="button" class="accordion-button" style="background-color: transparent; border: none; color: #E8D8B1; font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 10px; cursor: pointer;">
-    <img src="icons/mileage.png" alt="Kontrola kilometrů" style="width: 26px; height: 26px;" />
-    Kontrola Ujetých Kilometrů
+<div style="background-color: #1F2B1D; padding: 12px 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 15px auto;">
+  <button type="button" class="accordion-button" style="background-color: transparent; border: none; color: #EBDBB1; font-size: 18px; font-weight: bold; width: 100%; text-align: left;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <img src="icons/mileage.png" alt="Kontrola kilometrů" style="width: 28px; height: 28px; margin-bottom: 6px;" />
+      <span style="font-weight: bold; color: #EBDBB1;">Kontrola Ujetých Kilometrů</span>
+      <span style="font-size: 14px; color: #EBDBB1;">Kontrola správnosti najetých kilometrů vozu</span>
+    </div>
   </button>
-
-  <div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding-left: 36px; margin-top: 10px;">
-    <ul style="padding-left: 15px; color: #E8D8B1; font-size: 15px; line-height: 1.7;">
-      <li>Kontrola najetých kilometrů ve všech řídicích jednotkách</li>
-      <li>Porovnání hodnot mezi ECU, ABS, palubním panelem a dalšími moduly</li>
-      <li>Zjištění případných nesrovnalostí nebo manipulací</li>
-      <li>Možnost výpisu historie podle diagnostických záznamů</li>
-      <li>Vhodné při nákupu ojetého vozu nebo při ověřování stavu vozu</li>
-    </ul>
-
-    <p style="color: #E8D8B1; font-size: 14px; margin-top: 15px;">
-      ⚠️ Upozornění: Neposkytujeme žádné služby úpravy nebo změny stavu kilometrů. Kontrola slouží pouze k informačním a legálním účelům.
-    </p>
-  </div>
 </div>
+
+<!-- Panel obsahující detaily -->
+<div class="accordion-panel" style="
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: #2C3A28;
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 15px auto;
+">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBD8B1; font-size: 15px; line-height: 1.7;">
+    <li>Kontrola najetých kilometrů ve všech řídicích jednotkách</li>
+    <li>Porovnání hodnot mezi ECU, ABS, palubním panelem a dalšími moduly</li>
+    <li>Zjištění případných nesrovnalostí nebo manipulací</li>
+    <li>Možnost výpisu historie podle diagnostických záznamů</li>
+    <li>Vhodné při nákupu ojetého vozu nebo při ověřování stavu vozu</li>
+  </ul>
+
+  <p style="color: #EBD8B1; font-size: 14px; margin-top: 15px;">
+    ⚠️ Upozornění: Neposkytujeme žádné služby úpravy nebo změny stavu kilometrů. Kontrola slouží pouze k informačním a legálním účelům.
+  </p>
+</div>
+
    
  <!-- Accordion Button: VIN -->
 <button type="button" class="accordion-button" style="background-color: #1F2B1D; padding: 10px 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 15px auto;">
