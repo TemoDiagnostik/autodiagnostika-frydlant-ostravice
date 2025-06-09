@@ -244,27 +244,45 @@
     <li>Vhodné při nákupu ojetého vozu nebo při ověřování stavu vozu</li>
   </ul>
 
-  <p style="color: #EBD8B1; font-size: 14px; margin-top: 15px;">
+  <p style="color: #FFCC00;  font-size: 14px; margin-top: 15px;">
     ⚠️ Upozornění: Neposkytujeme žádné služby úpravy nebo změny stavu kilometrů. Kontrola slouží pouze k informačním a legálním účelům.
   </p>
 </div>
 
    
- <!-- Accordion Button: VIN -->
-<button type="button" class="accordion-button" style="background-color: #1F2B1D; padding: 10px 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 15px auto;">
-  <img src="icons/vin.png" alt="VIN" style="width: 26px; height: 26px;" />
-  <span style="margin-left: 10px; color: #EBD8B1; font-size: 18px; font-weight: bold; display: inline-block;">Kontrola VIN Kódu</span>
-</button>
+ <!-- Kontrola VIN Kódu -->
+<div style="background-color: #1F2B1D; padding: 12px 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 15px auto;">
+  <button type="button" class="accordion-button" style="background-color: transparent; border: none; color: #EBDBB1; font-size: 18px; font-weight: bold; width: 100%; text-align: left;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <img src="icons/vin.png" alt="VIN Icon" style="width: 28px; height: 28px; margin-bottom: 6px;" />
+      <span style="font-weight: bold; color: #EBDBB1;">Kontrola VIN Kódu</span>
+      <span style="font-size: 14px; color: #EBDBB1;">Ověření platnosti čísla VIN</span>
+    </div>
+  </button>
+</div>
 
-<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease;">
-  <ul style="padding-left: 15px; color: #EBD8B1; font-size: 15px; line-height: 1.7; margin-top: 10px;">
+<!-- Panel obsahující detaily -->
+<div class="accordion-panel" style="
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: #2C3A28;
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 15px auto;
+">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBD8B1; font-size: 15px; line-height: 1.7;">
     <li>Ověření platnosti čísla VIN</li>
     <li>Zobrazení známých údajů dle VIN</li>
     <li>Užitečné při nákupu ojetého vozidla</li>
-    <li style="color: #FFCC00; font-weight: bold;">⚠️ Neposkytujeme službu změny VIN kódu – pouze ověření a informativní účely.</li>
   </ul>
+
+  <p style="color: #FFCC00; font-size: 14px; font-weight: bold; margin-top: 15px;">
+    ⚠️ Neposkytujeme službu změny VIN kódu – pouze ověření a informativní účely.
+  </p>
 </div>
-  
+
 <section class="reservation-form">
   <h3>Rezervace termínu</h3>
  <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">Add commentMore actions
