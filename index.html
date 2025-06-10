@@ -293,18 +293,18 @@
 
 <section class="reservation-form">
   <h3>Rezervace termínu</h3>
- <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">Add commentMore actions
+ <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
 <label for="brandSelect">Značka vozu</label>
 <select id="brandSelect" name="Značka vozu" required>
   <option disabled selected>Vyberte značku</option>
 </select>
 <label for="modelSelect">Model vozu</label>
-<select id="modelSelect" name="Model vozu" required>
+<select id="modelSelect" name="Model vozu" required disabled>
   <option disabled selected>Vyberte model</option>
 </select>
 
 <label for="engineSelect">Objem motoru</label>
-<select id="engineSelect" name="Objem motoru" required>
+<select id="engineSelect" name="Objem motoru" required disabled>
   <option disabled selected>Vyberte objem</option>
 </select>
 <label for="clientName">Jméno a příjmení</label>
@@ -1000,63 +1000,87 @@
   const modelSelect = document.getElementById("modelSelect");
   const engineSelect = document.getElementById("engineSelect");
 
-     Object.keys(carData).forEach(function (brand) {
-    const option = document.createElement("option");
-    option.value = brand;
-    option.text = brand;
-    brandSelect.appendChild(option);
+  const brandChoices = new Choices("#brandSelect", {
+    searchEnabled: true,
+    itemSelectText: "",
   });
+  const modelChoices = new Choices("#modelSelect", {
+    searchEnabled: true,
+    itemSelectText: "",
+  });
+  const engineChoices = new Choices("#engineSelect", {
+    searchEnabled: true,
+    itemSelectText: "",
+  });
+
+  brandChoices.setChoices(
+    Object.keys(carData).map((brand) => ({ value: brand, label: brand })),
+    "value",
+    "label",
+    true
+  );
 
 
   brandSelect.addEventListener("change", function () {
     const selectedBrand = this.value;
 
-
-    modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
-     
     const models = Object.keys(carData[selectedBrand] || {});
-    models.forEach(function (model) {
-      const option = document.createElement("option");
-      option.value = model;
-      option.text = model;
-      modelSelect.appendChild(option);
-    });
+    modelChoices.clearChoices();
+    modelChoices.setChoices(
+      [
+        {
+          value: "",
+          label: "Vyberte model vozu",
+          selected: true,
+          disabled: true,
+        },
+        ...models.map((m) => ({ value: m, label: m })),
+      ],
+      "value",
+      "label",
+      true
+    );
+    modelSelect.disabled = false;
+
+    engineChoices.clearChoices();
+    engineChoices.setChoices(
+      [
+        {
+          value: "",
+          label: "Vyberte objem motoru",
+          selected: true,
+          disabled: true,
+        },
+      ],
+      "value",
+      "label",
+      true
+    );
+    engineSelect.disabled = true;
   });
 
   modelSelect.addEventListener("change", function () {
     const selectedBrand = brandSelect.value;
     const selectedModel = this.value;
 
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    engineSelect.disabled = false;
-
     const engines = carData[selectedBrand]?.[selectedModel] || [];
-    engines.forEach(function (engine) {
-      const option = document.createElement("option");
-      option.value = engine;
-      option.text = engine;
-      engineSelect.appendChild(option);
-    });
+    engineChoices.clearChoices();
+    engineChoices.setChoices(
+      [
+        {
+          value: "",
+          label: "Vyberte objem motoru",
+          selected: true,
+          disabled: true,
+        },
+        ...engines.map((e) => ({ value: e, label: e })),
+      ],
+      "value",
+      "label",
+      true
+    );
+    engineSelect.disabled = false;
   });
-
-    // تفعيل مكتبة Choices.js بعد تعبئة القوائم
-    new Choices('#brandSelect', {
-      searchEnabled: true,
-      itemSelectText: '',
-    });
-
-    new Choices('#modelSelect', {
-      searchEnabled: true,
-      itemSelectText: '',
-    });
-
-    new Choices('#engineSelect', {
-      searchEnabled: true,
-      itemSelectText: '',
-    });
   });
 </script>
 </body>
