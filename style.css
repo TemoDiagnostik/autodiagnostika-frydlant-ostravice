@@ -324,3 +324,9 @@ select {
 select {
   color: black !important;
 }
+option:checked,
+option:hover,
+option:focus {
+  background-color: #2C3E2B !important;
+  color: #EBDBB1 !important;
+}
