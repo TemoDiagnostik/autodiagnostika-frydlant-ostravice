@@ -71,14 +71,14 @@ body {
 .reservation-form button {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 12px 20px;
   margin-top: 10px;
   border: none;
-  border-radius: 5px;
-  background-color: #fffaf0;
-
-  font-size: 13px; /* ← أضف هذا السطر هنا */
+  border-radius: 8px; /* حواف منحنية */
+  background-color: #fffaf0; /* نفس لون الخلفية للأزرار */
+  font-size: 16px; /* حجم الخط الموحد */
 }
+
 .reservation-form button {
   background: #000000;
   color: #f5e8c8;
@@ -87,6 +87,10 @@ body {
   border: 2px solid #333;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
+}
+
+.reservation-form button:hover {
+  background-color: #b79058; /* تغيير اللون عند التمرير */
 }
 
 .date-wrapper {
@@ -104,15 +108,16 @@ body {
   pointer-events: none;
 }
 
+/* ==== أزرار القائمة (Accordion) ==== */
 .accordion-button {
   background-color: #c9a86b;
   color: #fff;
   border: none;
-  padding: 6px 14px;             /* ← حجم زر أنيق */
-  font-size: 14px;               /* ← حجم خط موحد */
+  padding: 6px 14px;
+  font-size: 16px;
   text-align: center;
-  width: fit-content;            /* ← عرض حسب المحتوى */
-  min-width: 160px;              /* ← توحيد الحجم */
+  width: fit-content;
+  min-width: 160px;
   max-width: 200px;
   cursor: pointer;
   border-radius: 6px;
@@ -123,20 +128,7 @@ body {
 }
 
 .accordion-button:hover {
-  background-color: #b79058;
-}
-
-.accordion-button .arrow {
-  display: inline-block;
-  margin-left: 8px;
-  font-size: 16px;
-  vertical-align: middle;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
-}
-
-.accordion-button.active .arrow {
-  transform: rotate(180deg);
+  background-color: #b79058; /* تغيير اللون عند التمرير */
 }
 
 .accordion-button.active + .accordion-panel {
@@ -151,21 +143,8 @@ body {
 }
 
 .accordion-panel.open {
-  max-height: 800px; /* غيّر الرقم حسب طول المحتوى */
+  max-height: 800px;
 }
-.accordion-panel ul {
-  padding: 10px 20px;
-  list-style: disc;
-  color: #f5e8c8;
-}
-
-.accordion-panel li,
-.accordion-panel p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #f5e8c8;
-}
-
 /* ==== قسم من أنا ==== */
 .about-toggle-wrapper {
   text-align: center;
