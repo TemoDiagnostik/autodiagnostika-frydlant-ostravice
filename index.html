@@ -382,13 +382,14 @@
       });
 });
 </script>
- <script> 
-      const form = document.getElementById('booking-form');
-      form.addEventListener('submit', function () {
-        document.getElementById('success-message').style.display = 'block';
-      });
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('booking-form');
+    form.addEventListener('submit', function () {
+      document.getElementById('success-message').style.display = 'block';
     });
-  </script>
+  });
+</script>
 <script>
   const carData = {
     "Acura": {
@@ -996,95 +997,95 @@
 
   };
 
-  const brandSelect = document.getElementById("brandSelect");
-  const modelSelect = document.getElementById("modelSelect");
-  const engineSelect = document.getElementById("engineSelect");
+ <!-- سكربت تعبئة القوائم ديناميكيًا -->
+<script>
+  const brandEl = document.getElementById("brandSelect");
+  const modelEl = document.getElementById("modelSelect");
+  const engineEl = document.getElementById("engineSelect");
 
-  // تعبئة قائمة الماركات
   Object.keys(carData).forEach(function (brand) {
     const option = document.createElement("option");
     option.value = brand;
     option.text = brand;
-    brandSelect.appendChild(option);
+    brandEl.appendChild(option);
   });
 
-  // عند اختيار ماركة
-  brandSelect.addEventListener("change", function () {
+  brandEl.addEventListener("change", function () {
     const selectedBrand = this.value;
 
-    modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
+    modelEl.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
+    engineEl.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    modelEl.disabled = false;
+    engineEl.disabled = true;
 
     const models = Object.keys(carData[selectedBrand] || {});
     models.forEach(function (model) {
       const option = document.createElement("option");
       option.value = model;
       option.text = model;
-      modelSelect.appendChild(option);
+      modelEl.appendChild(option);
     });
   });
 
-  // عند اختيار موديل
-  modelSelect.addEventListener("change", function () {
-    const selectedBrand = brandSelect.value;
+  modelEl.addEventListener("change", function () {
+    const selectedBrand = brandEl.value;
     const selectedModel = this.value;
 
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    engineSelect.disabled = false;
+    engineEl.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    engineEl.disabled = false;
 
     const engines = carData[selectedBrand]?.[selectedModel] || [];
     engines.forEach(function (engine) {
       const option = document.createElement("option");
       option.value = engine;
       option.text = engine;
-      engineSelect.appendChild(option);
+      engineEl.appendChild(option);
     });
   });
-</script>
 </script>
 
 <!-- سكربت فتح وإغلاق الـ Accordion -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".accordion-button");
-  const panels = document.querySelectorAll(".accordion-panel");
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".accordion-button");
+    const panels = document.querySelectorAll(".accordion-panel");
 
-  buttons.forEach((button, index) => {
-    const panel = panels[index];
+    buttons.forEach((button, index) => {
+      const panel = panels[index];
 
-    button.addEventListener("click", () => {
-      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+      button.addEventListener("click", () => {
+        const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
 
-      panels.forEach(p => {
-        p.style.maxHeight = null;
-        p.classList.remove("open");
+        panels.forEach(p => {
+          p.style.maxHeight = null;
+          p.classList.remove("open");
+        });
+
+        if (!isOpen) {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.classList.add("open");
+        }
       });
-
-      if (!isOpen) {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        panel.classList.add("open");
-      }
     });
   });
-});
 </script>
- <script>
-  const brandSelect = new Choices('#brandSelect', {
+
+<!-- سكربت تفعيل مكتبة Choices.js -->
+<script>
+  const brandChoices = new Choices('#brandSelect', {
     searchEnabled: true,
     itemSelectText: '',
   });
 
-  const modelSelect = new Choices('#modelSelect', {
+  const modelChoices = new Choices('#modelSelect', {
     searchEnabled: true,
     itemSelectText: '',
   });
 
-  const engineSelect = new Choices('#engineSelect', {
+  const engineChoices = new Choices('#engineSelect', {
     searchEnabled: true,
     itemSelectText: '',
   });
-</script> 
+</script>
 </body>
 </html>
