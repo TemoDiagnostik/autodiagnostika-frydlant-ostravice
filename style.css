@@ -50,43 +50,48 @@ body {
   z-index: 9999 !important;
 }
 
-/* ==== نموذج الحجز ==== */
-.reservation-form {
-  background: #E8D8B1;
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 15px;
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.reservation-form * {
-  color: black;
-}
-
-.reservation-form input,
-.reservation-form select,
-.reservation-form textarea,
+/* تنسيق الأزرار بشكل عمودي */
 .reservation-form button {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #fffaf0;
-
-  font-size: 13px; /* ← أضف هذا السطر هنا */
-}
-.reservation-form button {
-  background: #000000;
-  color: #f5e8c8;
+  background-color: #1d5f36; /* اللون الأخضر الداكن */
+  color: #f5e8c8; /* النص باللون الذهبي */
   font-weight: bold;
   cursor: pointer;
   border: 2px solid #333;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 8px 16px; /* تصغير padding ليصبح الزر أصغر */
+  font-size: 14px; /* تصغير حجم الخط */
+  border-radius: 6px; /* تقليل الحواف لتناسب الحجم الأصغر */
+  width: 100%; /* جعل الأزرار تأخذ العرض الكامل */
+  margin-top: 10px; /* إضافة مسافة بين الأزرار */
+  display: block; /* لضمان الأزرار تكون عمودية */
+}
+
+/* تأثير التمرير */
+.reservation-form button:hover {
+  background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
+  transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
+}
+
+/* تصغير الحقول بما يتناسب مع حجم الأزرار */
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+  background-color: #fffaf0; /* اللون الذهبي الفاتح */
+  padding: 10px 15px; /* تصغير padding هنا أيضًا */
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  font-size: 14px; /* تصغير حجم الخط */
+}
+
+/* ترتيب الأزرار عموديًا داخل الـ form */
+.reservation-form {
+  display: flex;
+  flex-direction: column; /* ترتيب الأزرار عموديًا */
+  align-items: center;
+  width: 100%; /* تأكيد أن العناصر في النموذج تأخذ العرض الكامل */
+  gap: 10px; /* إضافة مساحة بين الأزرار بشكل مرن */
 }
 
 /* ==== قسم من أنا ==== */
@@ -151,8 +156,6 @@ body {
     align-items: center;
     gap: 5px;
   }
-
-  
 
 
 .overlay {
