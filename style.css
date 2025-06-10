@@ -311,11 +311,22 @@ body {
   
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
 }
-/* تأكيد أن الخط داخل القوائم المنسدلة لونه أسود */
+/* ==== استجابة الهاتف ==== */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  /* ... إلخ */
+}
+
+/* === إجبار لون القوائم الداخلية === */
 select option {
   color: black !important;
-  background-color: white !important;
+  background-color: #fff !important;
 }
-.reservation-form select {
+
+select {
   color: black !important;
 }
