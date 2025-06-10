@@ -88,7 +88,11 @@ body {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
 }
-
+‎/* العناصر داخل القائمة (option) — تجعل النص أسود */
+.reservation-form select option {
+  color: black;
+  background-color: white; /* أو #fff */
+}
 .date-wrapper {
   position: relative;
 }
