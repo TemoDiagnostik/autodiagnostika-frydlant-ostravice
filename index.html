@@ -1020,10 +1020,10 @@
   brandSelect.addEventListener("change", function () {
     const selectedBrand = this.value;
 
-    modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
+    modelEl.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
+    engineEl.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    modeEl.disabled = false;
+    engineEl.disabled = true;
 
     const models = Object.keys(carData[selectedBrand] || {});
     models.forEach(function (model) {
