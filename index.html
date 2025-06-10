@@ -996,9 +996,17 @@
 
   };
 
-  const brandSelect = document.getElementById("brandSelect");
-  const modelSelect = document.getElementById("modelSelect");
-  const engineSelect = document.getElementById("engineSelect");
+  const brandEl = document.getElementById("brandSelect");
+    const modelEl = document.getElementById("modelSelect");
+    const engineEl = document.getElementById("engineSelect");
+
+     Object.keys(carData).forEach(function (brand) {
+    const option = document.createElement("option");
+    option.value = brand;
+    option.text = brand;
+    brandSelect.appendChild(option);
+  });
+
 
   // تعبئة قائمة الماركات
   Object.keys(carData).forEach(function (brand) {
