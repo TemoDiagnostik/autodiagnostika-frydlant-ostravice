@@ -996,50 +996,52 @@
 
   };
 
-  const brandEl = document.getElementById("brandSelect");
-    const modelEl = document.getElementById("modelSelect");
-    const engineEl = document.getElementById("engineSelect");
+ const brandEl = document.getElementById("brandSelect");
+const modelEl = document.getElementById("modelSelect");
+const engineEl = document.getElementById("engineSelect");
 
-     Object.keys(carData).forEach(function (brand) {
-    const option = document.createElement("option");
-    option.value = brand;
-    option.text = brand;
-    brandSelect.appendChild(option);
-  });
+// تفعيل مكتبة Choices.js أول مرة
+const brandChoices = new Choices(brandEl, {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const modelChoices = new Choices(modelEl, {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const engineChoices = new Choices(engineEl, {
+  searchEnabled: true,
+  itemSelectText: '',
+});
 
+// تعبئة قائمة الماركات
+brandChoices.setChoices(Object.keys(carData).map(brand => ({ value: brand, label: brand })), 'value', 'label', true);
 
-   brandSelect.addEventListener("change", function () {
-    const selectedBrand = this.value;
+// عند اختيار ماركة
+brandEl.addEventListener("change", function () {
+  const selectedBrand = this.value;
 
+  // تحديث موديلات Choices
+  const models = Object.keys(carData[selectedBrand] || {}).map(model => ({ value: model, label: model }));
 
-      modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
-     
-      const models = Object.keys(carData[selectedBrand] || {});
-      models.forEach(function (model) {
-        const option = document.createElement("option");
-        option.value = model;
-        option.text = model;
-       modelSelect.appendChild(option);
-      });
-    });
+  modelChoices.clearStore();
+  modelChoices.setChoices([{ value: '', label: 'Vyberte model vozu', disabled: true, selected: true }].concat(models));
 
-    modelEl.addEventListener("change", function () {
-      const selectedBrand = brandEl.value;
-      const selectedModel = this.value;
+  engineChoices.clearStore();
+  engineChoices.setChoices([{ value: '', label: 'Vyberte objem motoru', disabled: true, selected: true }]);
+});
 
-      engineEl.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-      engineEl.disabled = false;
+// عند اختيار موديل
+modelEl.addEventListener("change", function () {
+  const selectedBrand = brandEl.value;
+  const selectedModel = this.value;
 
-      const engines = carData[selectedBrand]?.[selectedModel] || [];
-      engines.forEach(function (engine) {
-        const option = document.createElement("option");
-        option.value = engine;
-        option.text = engine;
-        engineEl.appendChild(option);
-      });
+  // تحديث محركات Choices
+  const engines = (carData[selectedBrand]?.[selectedModel] || []).map(engine => ({ value: engine, label: engine }));
+
+  engineChoices.clearStore();
+  engineChoices.setChoices([{ value: '', label: 'Vyberte objem motoru', disabled: true, selected: true }].concat(engines));
+});
     });
 
     // تفعيل مكتبة Choices.js بعد تعبئة القوائم
