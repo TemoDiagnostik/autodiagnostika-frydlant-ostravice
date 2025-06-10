@@ -50,7 +50,7 @@ body {
   z-index: 9999 !important;
 }
 
-/* تعديل أزرار نموذج الحجز */
+/* تعديل أزرار نموذج الحجز لتكون أصغر */
 .reservation-form button {
   background-color: #1d5f36; /* اللون الأخضر الداكن */
   color: #f5e8c8; /* النص باللون الذهبي */
@@ -59,6 +59,10 @@ body {
   border: 2px solid #333;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 8px 16px; /* تصغير padding ليصبح الزر أصغر */
+  font-size: 14px; /* تصغير حجم الخط */
+  border-radius: 6px; /* تقليل الحواف لتناسب الحجم الأصغر */
+  width: fit-content;
 }
 
 .reservation-form button:hover {
@@ -66,48 +70,36 @@ body {
   transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
 }
 
-/* تنسيق الحقول بشكل موحد */
+/* تصغير الحقول بما يتناسب مع حجم الأزرار */
 .reservation-form input,
 .reservation-form select,
 .reservation-form textarea {
   background-color: #fffaf0; /* اللون الذهبي الفاتح */
-  padding: 12px 20px;
-  margin-top: 10px;
-  border-radius: 8px;
+  padding: 10px 15px; /* تصغير padding هنا أيضًا */
+  margin-top: 8px;
+  border-radius: 6px;
   border: 2px solid #ccc;
-  font-size: 16px;
+  font-size: 14px; /* تصغير حجم الخط */
 }
 
-/* تنسيق أزرار الأكورديون */
+/* تعديل أزرار الأكورديون لتكون أصغر أيضًا */
 .accordion-button {
   background-color: #1d5f36; /* اللون الأخضر الداكن */
   color: #f5e8c8; /* النص باللون الذهبي */
   border: none;
-  padding: 12px;
-  font-size: 16px;
+  padding: 8px 16px; /* تصغير padding للأكورديون */
+  font-size: 14px; /* تصغير حجم الخط */
   text-align: center;
   width: fit-content;
   min-width: 160px;
   max-width: 200px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
 .accordion-button:hover {
   background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
-}
-
-.accordion-panel {
-  display: none;
-  transition: max-height 0.4s ease;
-}
-
-.accordion-button.active + .accordion-panel {
-  display: block;
-}
-.accordion-button.active + .accordion-panel {
-  display: block;
 }
 .date-wrapper {
   position: relative;
