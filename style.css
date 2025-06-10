@@ -50,60 +50,43 @@ body {
   z-index: 9999 !important;
 }
 
-.reservation-form button {
-  background-color: #1d5f36 !important; /* اللون الأخضر الداكن */
-  color: #f5e8c8 !important; /* النص باللون الذهبي */
-  font-weight: bold !important;
-  cursor: pointer !important;
-  border: 2px solid #333 !important;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) !important;
-  transition: background-color 0.3s ease, transform 0.3s ease !important;
-  padding: 8px 16px !important; /* تصغير padding ليصبح الزر أصغر */
-  font-size: 14px !important; /* تصغير حجم الخط */
-  border-radius: 6px !important; /* تقليل الحواف لتناسب الحجم الأصغر */
-  width: 100% !important; /* جعل الأزرار تأخذ العرض الكامل */
-  margin-top: 10px !important; /* إضافة مسافة بين الأزرار */
-  display: block !important; /* لضمان الأزرار تكون عمودية */
-}
-/* تأثير التمرير */
-.reservation-form button:hover {
-  background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
-  transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
+/* ==== نموذج الحجز ==== */
+.reservation-form {
+  background: #b4965a;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 15px;
+  border-radius: 10px;
+  color: black;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* تصغير الحقول بما يتناسب مع حجم الأزرار */
+.reservation-form * {
+  color: black;
+}
+
 .reservation-form input,
 .reservation-form select,
-.reservation-form textarea {
-  background-color: #fffaf0; /* اللون الذهبي الفاتح */
-  padding: 10px 15px; /* تصغير padding هنا أيضًا */
-  margin-top: 8px;
-  border-radius: 6px;
-  border: 2px solid #ccc;
-  font-size: 14px; /* تصغير حجم الخط */
-}
+.reservation-form textarea,
+.reservation-form button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fffaf0;
 
-/* ترتيب الأزرار عموديًا داخل الـ form */
-.reservation-form {
-  display: flex;
-  flex-direction: column; /* ترتيب الأزرار عموديًا */
-  align-items: center;
-  width: 100%; /* تأكيد أن العناصر في النموذج تأخذ العرض الكامل */
-  gap: 10px; /* إضافة مساحة بين الأزرار بشكل مرن */
+  font-size: 13px; /* ← أضف هذا السطر هنا */
 }
-.date-wrapper {
-  position: relative;
-}
-
-.date-wrapper input {
-  padding-right: 30px;
-}
-
-.date-arrow {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-  pointer-events: none;
+.reservation-form button {
+  background: #000000;
+  color: #f5e8c8;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #333;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
 }
 
 /* ==== قسم من أنا ==== */
