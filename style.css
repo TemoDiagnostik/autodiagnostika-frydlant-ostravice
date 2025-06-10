@@ -61,17 +61,6 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* ==== نموذج الحجز ==== */
-.reservation-form {
-  background: #b4965a;
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 15px;
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
 .reservation-form * {
   color: black;
 }
@@ -90,9 +79,10 @@ body {
   font-size: 16px; /* حجم الخط الموحد */
 }
 
+/* التعديل على الأزرار مع استخدام !important لتأكيد التعديلات */
 .reservation-form button {
-  background: #000000;
-  color: #f5e8c8;
+  background: #000000 !important; /* تغيير الخلفية مع التأكيد */
+  color: #f5e8c8 !important; /* تغيير اللون النص مع التأكيد */
   font-weight: bold;
   cursor: pointer;
   border: 2px solid #333;
@@ -101,25 +91,8 @@ body {
 }
 
 .reservation-form button:hover {
-  background-color: #b79058; /* تغيير اللون عند التمرير */
+  background-color: #b79058 !important; /* تغيير اللون عند التمرير مع التأكيد */
 }
-}
-
-.date-wrapper {
-  position: relative;
-}
-
-.date-wrapper input {
-  padding-right: 30px;
-}
-
-.date-arrow {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-  pointer-events: none;
-}
-
 
 /* ==== أزرار القائمة (Accordion) ==== */
 .accordion-button {
@@ -158,6 +131,22 @@ body {
 .accordion-panel.open {
   max-height: 800px;
 }
+
+.date-wrapper {
+  position: relative;
+}
+
+.date-wrapper input {
+  padding-right: 30px;
+}
+
+.date-arrow {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  pointer-events: none;
+}
+
 /* ==== قسم من أنا ==== */
 .about-toggle-wrapper {
   text-align: center;
