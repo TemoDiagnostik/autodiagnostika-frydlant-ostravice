@@ -70,7 +70,7 @@ body {
 .reservation-form input,
 .reservation-form select,
 .reservation-form textarea {
-  background-color: #fffaf0;
+  background-color: #fffaf0; /* اللون الذهبي الفاتح */
   padding: 12px 20px;
   margin-top: 10px;
   border-radius: 8px;
@@ -103,6 +103,9 @@ body {
   transition: max-height 0.4s ease;
 }
 
+.accordion-button.active + .accordion-panel {
+  display: block;
+}
 .accordion-button.active + .accordion-panel {
   display: block;
 }
