@@ -50,88 +50,62 @@ body {
   z-index: 9999 !important;
 }
 
-/* ==== نموذج الحجز ==== */
-.reservation-form {
-  background: #b4965a;
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 15px;
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.reservation-form * {
-  color: black;
-}
-
-.reservation-form input,
-.reservation-form select,
-.reservation-form textarea,
+/* تعديل أزرار نموذج الحجز */
 .reservation-form button {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px; /* حواف منحنية */
-  background-color: #fffaf0; /* نفس لون الخلفية للأزرار */
-  font-size: 16px; /* حجم الخط الموحد */
-}
-
-/* التعديل على الأزرار مع استخدام !important لتأكيد التعديلات */
-.reservation-form button {
-  background: #000000 !important; /* تغيير الخلفية مع التأكيد */
-  color: #f5e8c8 !important; /* تغيير اللون النص مع التأكيد */
+  background-color: #1d5f36; /* اللون الأخضر الداكن */
+  color: #f5e8c8; /* النص باللون الذهبي */
   font-weight: bold;
   cursor: pointer;
   border: 2px solid #333;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .reservation-form button:hover {
-  background-color: #b79058 !important; /* تغيير اللون عند التمرير مع التأكيد */
+  background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
+  transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
 }
 
-/* ==== أزرار القائمة (Accordion) ==== */
+/* تنسيق الحقول بشكل موحد */
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+  background-color: #fffaf0;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+}
+
+/* تنسيق أزرار الأكورديون */
 .accordion-button {
-  background-color: #c9a86b;
-  color: #fff;
+  background-color: #1d5f36; /* اللون الأخضر الداكن */
+  color: #f5e8c8; /* النص باللون الذهبي */
   border: none;
-  padding: 6px 14px;
+  padding: 12px;
   font-size: 16px;
   text-align: center;
   width: fit-content;
   min-width: 160px;
   max-width: 200px;
   cursor: pointer;
-  border-radius: 6px;
-  margin: 5px auto;
-  display: block;
+  border-radius: 8px;
   transition: background-color 0.3s ease;
-  position: relative;
 }
 
 .accordion-button:hover {
-  background-color: #b79058; /* تغيير اللون عند التمرير */
+  background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
+}
+
+.accordion-panel {
+  display: none;
+  transition: max-height 0.4s ease;
 }
 
 .accordion-button.active + .accordion-panel {
   display: block;
-  max-height: 1000px;
 }
-
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-
-.accordion-panel.open {
-  max-height: 800px;
-}
-
 .date-wrapper {
   position: relative;
 }
