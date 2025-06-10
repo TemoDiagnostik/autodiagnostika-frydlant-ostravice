@@ -9,12 +9,16 @@ body {
 .top-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
   padding: 5px 10px;
   font-size: 14px;
 }
 
 .email, .lang-switch a {
-  color: #c9a86b;
+  color: #d8c38e;
   text-decoration: none;
   font-weight: bold;
 }
@@ -57,7 +61,6 @@ body {
   margin: 30px auto;
   padding: 15px;
   border-radius: 10px;
-  color: black;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -87,11 +90,6 @@ body {
   border: 2px solid #333;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
-}
-‎/* العناصر داخل القائمة (option) — تجعل النص أسود */
-.reservation-form select option {
-  color: black;
-  background-color: white; /* أو #fff */
 }
 .date-wrapper {
   position: relative;
@@ -247,6 +245,7 @@ body {
   .reservation-form {
     padding: 15px;
   }
+}
 
 .overlay {
   background: rgba(0, 0, 0, 0.6);
@@ -258,14 +257,6 @@ body {
   text-align: center;
 }
 
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: 30px;
-}
 
 .logo {
   width: 50px;
@@ -281,15 +272,6 @@ body {
   align-items: center;
 }
 
-.email, .lang-switch a {
-  color: #d8c38e;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.lang-switch a {
-  margin-left: 8px;
-}
 
 .headline-wrapper {
   max-width: 800px;
@@ -321,6 +303,3 @@ select {
   background-color: #1F2B1D !important; /* نفس خلفية النموذج */
 }
 
-select {
-  color: black !important;
-}
