@@ -316,3 +316,6 @@ select option {
   color: black !important;
   background-color: white !important;
 }
+.reservation-form select {
+  color: black !important;
+}
