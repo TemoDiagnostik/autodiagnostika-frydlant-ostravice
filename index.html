@@ -996,50 +996,96 @@
 
   };
 
-  const brandEl = document.getElementById("brandSelect");
-    const modelEl = document.getElementById("modelSelect");
-    const engineEl = document.getElementById("engineSelect");
+  const brandSelect = document.getElementById("brandSelect");
+  const modelSelect = document.getElementById("modelSelect");
+  const engineSelect = document.getElementById("engineSelect");
 
-    Object.keys(carData).forEach(function (brand) {
+  // تعبئة قائمة الماركات
+  Object.keys(carData).forEach(function (brand) {
+    const option = document.createElement("option");
+    option.value = brand;
+    option.text = brand;
+    brandSelect.appendChild(option);
+  });
+
+  // عند اختيار ماركة
+  brandSelect.addEventListener("change", function () {
+    const selectedBrand = this.value;
+
+    modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
+    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    modelSelect.disabled = false;
+    engineSelect.disabled = true;
+
+    const models = Object.keys(carData[selectedBrand] || {});
+    models.forEach(function (model) {
       const option = document.createElement("option");
-      option.value = brand;
-      option.text = brand;
-      brandEl.appendChild(option);
+      option.value = model;
+      option.text = model;
+      modelSelect.appendChild(option);
     });
+  });
 
-    brandEl.addEventListener("change", function () {
-      const selectedBrand = this.value;
+  // عند اختيار موديل
+  modelSelect.addEventListener("change", function () {
+    const selectedBrand = brandSelect.value;
+    const selectedModel = this.value;
 
-      modelEl.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-      engineEl.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-      modelEl.disabled = false;
-      engineEl.disabled = true;
+    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
+    engineSelect.disabled = false;
 
-      const models = Object.keys(carData[selectedBrand] || {});
-      models.forEach(function (model) {
-        const option = document.createElement("option");
-        option.value = model;
-        option.text = model;
-        modelEl.appendChild(option);
+    const engines = carData[selectedBrand]?.[selectedModel] || [];
+    engines.forEach(function (engine) {
+      const option = document.createElement("option");
+      option.value = engine;
+      option.text = engine;
+      engineSelect.appendChild(option);
+    });
+  });
+</script>
+</script>
+
+<!-- سكربت فتح وإغلاق الـ Accordion -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".accordion-button");
+  const panels = document.querySelectorAll(".accordion-panel");
+
+  buttons.forEach((button, index) => {
+    const panel = panels[index];
+
+    button.addEventListener("click", () => {
+      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+
+      panels.forEach(p => {
+        p.style.maxHeight = null;
+        p.classList.remove("open");
       });
+
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add("open");
+      }
     });
+  });
+});
+</script>
+ <script>
+  const brandSelect = new Choices('#brandSelect', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
 
-    modelEl.addEventListener("change", function () {
-      const selectedBrand = brandEl.value;
-      const selectedModel = this.value;
+  const modelSelect = new Choices('#modelSelect', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
 
-      engineEl.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-      engineEl.disabled = false;
-
-      const engines = carData[selectedBrand]?.[selectedModel] || [];
-      engines.forEach(function (engine) {
-        const option = document.createElement("option");
-        option.value = engine;
-        option.text = engine;
-        engineEl.appendChild(option);
-      });
-    });
-
+  const engineSelect = new Choices('#engineSelect', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
+</script> 
     // تفعيل مكتبة Choices.js بعد تعبئة القوائم
     new Choices('#brandSelect', {
       searchEnabled: true,
