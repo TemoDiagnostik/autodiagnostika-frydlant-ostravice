@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soukromá Auto Diagnostika</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- مكتبة Choices.js لتنسيق القوائم الاحترافية -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
@@ -1067,5 +1070,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+ <script>
+  const brandSelect = new Choices('#brandSelect', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
+
+  const modelSelect = new Choices('#modelSelect', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
+
+  const engineSelect = new Choices('#engineSelect', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
+</script> 
 </body>
 </html>
