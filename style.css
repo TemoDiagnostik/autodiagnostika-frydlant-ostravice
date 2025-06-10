@@ -50,23 +50,21 @@ body {
   z-index: 9999 !important;
 }
 
-/* تنسيق الأزرار بشكل عمودي */
 .reservation-form button {
-  background-color: #1d5f36; /* اللون الأخضر الداكن */
-  color: #f5e8c8; /* النص باللون الذهبي */
-  font-weight: bold;
-  cursor: pointer;
-  border: 2px solid #333;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  padding: 8px 16px; /* تصغير padding ليصبح الزر أصغر */
-  font-size: 14px; /* تصغير حجم الخط */
-  border-radius: 6px; /* تقليل الحواف لتناسب الحجم الأصغر */
-  width: 100%; /* جعل الأزرار تأخذ العرض الكامل */
-  margin-top: 10px; /* إضافة مسافة بين الأزرار */
-  display: block; /* لضمان الأزرار تكون عمودية */
+  background-color: #1d5f36 !important; /* اللون الأخضر الداكن */
+  color: #f5e8c8 !important; /* النص باللون الذهبي */
+  font-weight: bold !important;
+  cursor: pointer !important;
+  border: 2px solid #333 !important;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  transition: background-color 0.3s ease, transform 0.3s ease !important;
+  padding: 8px 16px !important; /* تصغير padding ليصبح الزر أصغر */
+  font-size: 14px !important; /* تصغير حجم الخط */
+  border-radius: 6px !important; /* تقليل الحواف لتناسب الحجم الأصغر */
+  width: 100% !important; /* جعل الأزرار تأخذ العرض الكامل */
+  margin-top: 10px !important; /* إضافة مسافة بين الأزرار */
+  display: block !important; /* لضمان الأزرار تكون عمودية */
 }
-
 /* تأثير التمرير */
 .reservation-form button:hover {
   background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
