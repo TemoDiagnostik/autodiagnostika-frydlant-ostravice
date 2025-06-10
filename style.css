@@ -61,7 +61,6 @@ body {
   margin: 30px auto;
   padding: 15px;
   border-radius: 10px;
-  color: black;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -91,11 +90,6 @@ body {
   border: 2px solid #333;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
-}
-/* العناصر داخل القائمة (option) — تجعل النص أسود */
-.reservation-form select option {
-  color: black;
-  background-color: white; /* أو #fff */
 }
 .date-wrapper {
   position: relative;
