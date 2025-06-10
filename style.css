@@ -311,22 +311,27 @@ body {
   
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
 }
-select option {
-  color: #1F2B1D !important; /* أخضر غامق واضح */
-  background-color: #EBDBB1 !important; /* خلفية ذهبية فاتحة */
-}
-
-select {
-  color: #EBDBB1 !important; /* لون النص بعد الاختيار */
-  background-color: #1F2B1D !important; /* نفس خلفية النموذج */
-}
-
-select {
-  color: black !important;
-}
-option:checked,
-option:hover,
-option:focus {
-  background-color: #2C3E2B !important;
+/* تنسيق قوائم Choices.js */
+.choices__inner {
+  background-color: #1F2B1D !important;
   color: #EBDBB1 !important;
+  border: 1px solid #EBDBB1 !important;
+  border-radius: 6px;
+  min-height: 44px;
+}
+
+.choices__list--dropdown, 
+.choices__list[aria-expanded] {
+  background-color: #1F2B1D !important;
+  color: #EBDBB1 !important;
+}
+
+.choices__item--selectable {
+  background-color: #1F2B1D !important;
+  color: #EBDBB1 !important;
+  padding: 10px;
+}
+
+.choices__placeholder {
+  color: #999 !important;
 }
