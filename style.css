@@ -311,3 +311,8 @@ body {
   
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
 }
+/* تأكيد أن الخط داخل القوائم المنسدلة لونه أسود */
+select option {
+  color: black !important;
+  background-color: white !important;
+}
