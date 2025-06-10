@@ -1046,28 +1046,30 @@
 
 <!-- سكربت فتح وإغلاق الـ Accordion -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".accordion-button");
-    const panels = document.querySelectorAll(".accordion-panel");
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".accordion-button");
+  const panels = document.querySelectorAll(".accordion-panel");
 
-    buttons.forEach((button, index) => {
-      const panel = panels[index];
+  buttons.forEach((button, index) => {
+    const panel = panels[index];
 
-      button.addEventListener("click", () => {
-        const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+    button.addEventListener("click", () => {
+      const isOpen = panel.classList.contains("open");
 
-        panels.forEach(p => {
-          p.style.maxHeight = null;
-          p.classList.remove("open");
-        });
-
-        if (!isOpen) {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-          panel.classList.add("open");
-        }
+      panels.forEach(p => {
+        p.style.maxHeight = null;
+        p.classList.remove("open");
       });
+      buttons.forEach(b => b.classList.remove("active"));
+
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add("open");
+        button.classList.add("active");
+      }
     });
   });
+});
 </script>
 
 <!-- سكربت تفعيل مكتبة Choices.js -->
