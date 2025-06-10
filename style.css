@@ -153,67 +153,6 @@ body {
   }
 
   
-.accordion-button {
-  background-color: #c9a86b;
-  color: #fff;
-  border: none;
-  padding: 6px 14px;             /* ← حجم زر أنيق */
-  font-size: 14px;               /* ← حجم خط موحد */
-  text-align: center;
-  width: fit-content;            /* ← عرض حسب المحتوى */
-  min-width: 160px;              /* ← توحيد الحجم */
-  max-width: 200px;
-  cursor: pointer;
-  border-radius: 6px;
-  margin: 5px auto;
-  display: block;
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.accordion-button:hover {
-  background-color: #b79058;
-}
-
-.accordion-button .arrow {
-  display: inline-block;
-  margin-left: 8px;
-  font-size: 16px;
-  vertical-align: middle;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
-}
-
-.accordion-button.active .arrow {
-  transform: rotate(180deg);
-}
-
-.accordion-button.active + .accordion-panel {
-  display: block;
-  max-height: 1000px;
-}
-
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-
-.accordion-panel.open {
-  max-height: 800px; /* غيّر الرقم حسب طول المحتوى */
-}
-.accordion-panel ul {
-  padding: 10px 20px;
-  list-style: disc;
-  color: #f5e8c8;
-}
-
-.accordion-panel li,
-.accordion-panel p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #f5e8c8;
-}
 
 
 .overlay {
