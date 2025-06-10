@@ -92,6 +92,7 @@ body {
   align-items: center;
   width: 100%; /* تأكيد أن العناصر في النموذج تأخذ العرض الكامل */
 }
+
 .date-wrapper {
   position: relative;
 }
