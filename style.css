@@ -64,8 +64,10 @@ body {
   border-radius: 6px; /* تقليل الحواف لتناسب الحجم الأصغر */
   width: 100%; /* جعل الأزرار تأخذ العرض الكامل */
   margin-bottom: 10px; /* إضافة مسافة بين الأزرار */
+  display: block; /* لجعل الأزرار تظهر بشكل عمودي */
 }
 
+/* تأثير التمرير */
 .reservation-form button:hover {
   background-color: #4e9c6d; /* اللون الأخضر الفاتح عند التمرير */
   transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
@@ -88,6 +90,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%; /* تأكيد أن العناصر في النموذج تأخذ العرض الكامل */
 }
 .date-wrapper {
   position: relative;
