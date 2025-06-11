@@ -1047,9 +1047,54 @@
 
   };
 
-  const brandSelect = document.getElementById("brandSelect");
-  const modelSelect = document.getElementById("modelSelect");
-  const engineSelect = document.getElementById("engineSelect");
+ // تعبئة ماركات السيارات
+brandSelect.setChoices(
+  Object.keys(carData).map(brand => ({
+    value: brand,
+    label: brand
+  })),
+  'value',
+  'label',
+  true
+);
+
+// عند تغيير نوع السيارة
+brandSelect.passedElement.element.addEventListener("change", function () {
+  const selectedBrand = this.value;
+
+  const models = Object.keys(carData[selectedBrand] || {});
+  modelSelect.clearChoices();
+  modelSelect.setChoices(
+    models.map(model => ({
+      value: model,
+      label: model
+    })),
+    'value',
+    'label',
+    true
+  );
+
+  // Clear engine choices لما تتغير الماركة
+  engineSelect.clearChoices();
+});
+
+// عند اختيار الموديل
+modelSelect.passedElement.element.addEventListener("change", function () {
+  const selectedBrand = brandSelect.getValue(true);
+  const selectedModel = this.value;
+
+  const engines = carData[selectedBrand][selectedModel] || [];
+  engineSelect.clearChoices();
+  engineSelect.setChoices(
+    engines.map(engine => ({
+      value: engine,
+      label: engine
+    })),
+    'value',
+    'label',
+    true
+  );
+}); 
 
   // تعبئة قائمة الماركات
   Object.keys(carData).forEach(function (brand) {
