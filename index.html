@@ -1096,31 +1096,7 @@ modelSelect.passedElement.element.addEventListener("change", function () {
   );
 }); 
 
-  // تعبئة قائمة الماركات
-  Object.keys(carData).forEach(function (brand) {
-    const option = document.createElement("option");
-    option.value = brand;
-    option.text = brand;
-    brandSelect.appendChild(option);
-  });
 
-  // عند اختيار ماركة
-  brandSelect.addEventListener("change", function () {
-    const selectedBrand = this.value;
-
-    modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
-
-    const models = Object.keys(carData[selectedBrand] || {});
-    models.forEach(function (model) {
-      const option = document.createElement("option");
-      option.value = model;
-      option.text = model;
-      modelSelect.appendChild(option);
-    });
-  });
 
 </script>
 </script>
