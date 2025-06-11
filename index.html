@@ -389,16 +389,30 @@
 </div>
 
 <!-- زر Ceník -->
-<button class="accordion-button">Ceník <span class="arrow">&#x25BC;</span></button>
-<div class="accordion-panel">
-  <ul>
+<div style="background-color: #1F2B1D; padding: 10px 14px; border-radius: 8px; max-width: 380px; margin: 10px auto;">
+  <button type="button" class="accordion-button" style="background-color: transparent; border: none; width: 100%; text-align: left;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/Ceník.png" alt="Ceník" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">Ceník <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Přehled orientačních cen</span>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
+
+<!-- البانل الذي يفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 380px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 14px; border-radius: 8px;">
+  <ul style="padding: 14px 0; list-style: disc; margin-left: 20px;">
     <li>Regenerace DPF: 1 000–2 000 Kč</li>
     <li>Reset výměny oleje: 300–600 Kč</li>
     <li>Reset EPB: 500–800 Kč</li>
     <li>Reset BMS: 400–700 Kč</li>
     <li>Kompletní diagnostika: 500–800 Kč</li>
   </ul>
-  <p class="note">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
+  <p class="note" style="font-size: 13px; padding-bottom: 12px;">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
 </div>
 <a href="https://wa.me/420732133919" target="_blank" style="
   position: fixed;
