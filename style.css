@@ -250,10 +250,21 @@ body {
 
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
-  .top-bar {
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+  h1 {
+    font-size: 20px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  .accordion-button img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  form input, form select, form textarea {
+    font-size: 15px;
   }
 }
   .accordion-button {
