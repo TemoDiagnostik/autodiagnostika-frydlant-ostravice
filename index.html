@@ -1122,22 +1122,6 @@ modelSelect.passedElement.element.addEventListener("change", function () {
     });
   });
 
-  // عند اختيار موديل
-  modelSelect.addEventListener("change", function () {
-    const selectedBrand = brandSelect.value;
-    const selectedModel = this.value;
-
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    engineSelect.disabled = false;
-
-    const engines = carData[selectedBrand]?.[selectedModel] || [];
-    engines.forEach(function (engine) {
-      const option = document.createElement("option");
-      option.value = engine;
-      option.text = engine;
-      engineSelect.appendChild(option);
-    });
-  });
 </script>
 </script>
 
