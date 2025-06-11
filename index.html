@@ -1047,7 +1047,24 @@
 
   };
 
- // تعبئة ماركات السيارات
+<script>
+// تفعيل مكتبة Choices.js
+const brandSelect = new Choices('#brandSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const modelSelect = new Choices('#modelSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const engineSelect = new Choices('#engineSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+</script>
+
+<script>
+// تعبئة ماركات السيارات
 brandSelect.setChoices(
   Object.keys(carData).map(brand => ({
     value: brand,
@@ -1094,7 +1111,7 @@ modelSelect.passedElement.element.addEventListener("change", function () {
     'label',
     true
   );
-}); 
+});
 </script>
 
 <!-- سكربت فتح وإغلاق الـ Accordion -->
@@ -1122,21 +1139,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
- <script>
-  const brandSelect = new Choices('#brandSelect', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
 
-  const modelSelect = new Choices('#modelSelect', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
-
-  const engineSelect = new Choices('#engineSelect', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
-</script> 
 </body>
 </html>
