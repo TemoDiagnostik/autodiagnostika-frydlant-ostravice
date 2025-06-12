@@ -253,7 +253,7 @@ body {
 body {
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-color: black;
+  background-color: #1F2B1D;
   color: #d8c38e;
   font-family: Arial, sans-serif;
   margin: 0;
@@ -268,8 +268,9 @@ body {
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
-    background-color: black !important;
+    background-color: #1F2B1D !important; /* بديل للأسود */
   }
+}
 
   html,
   section,
