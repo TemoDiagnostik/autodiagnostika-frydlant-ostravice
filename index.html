@@ -14,7 +14,23 @@
 </head>
 <body>
 <header class="overlay" style="padding: 20px 10px 0 10px; text-align: center; background-color: transparent;">
+<style>
+  body {
+    background-image: url('JPEG.jpeg'); /* أو مسار الصورة الصحيح */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
 
+  @media (max-width: 768px) {
+    body {
+      background-size: contain; /* كده الصورة هتبان كاملة */
+      background-position: top center; /* تبدأ من فوق */
+      background-attachment: scroll; /* تلغي الثبات */
+    }
+  }
+</style>
   <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
     <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
          alt="Temo Logo"
