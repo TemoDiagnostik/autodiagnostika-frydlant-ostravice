@@ -250,7 +250,15 @@ body {
 
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
-  body,
+  body {
+    background-image: url('background.jpg') !important;
+    background-size: contain !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    background-color: transparent !important;
+  }
+
   html,
   main,
   section,
@@ -260,9 +268,10 @@ body {
   .reservation-form,
   .reservation-form input,
   .reservation-form select,
-  .reservation-form textarea {
+  .reservation-form textarea,
+  h1,
+  h2 {
     background-color: transparent !important;
-    background-size: contain !important;
   }
 
   h1 {
@@ -389,14 +398,3 @@ body {
   color: #b00;
 }
 
-body,
-html,
-main,
-section,
-.wrapper,
-.content,
-.overlay,
-h1,
-h2 {
-  background-color: transparent !important;
-}
