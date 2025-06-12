@@ -318,7 +318,7 @@ body {
     background-position: center top !important;
     background-color: #1F2B1D !important;
   }
-}
+
   html,
   section,
   .overlay,
@@ -361,4 +361,4 @@ body {
   .reservation-form {
     padding: 15px;
   }
-} /* ← نهاية الميديا كويري، مرة واحدة فقط! ✅ */
+} /* ← تأكد إن القوس ده موجود في الآخر */
