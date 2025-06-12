@@ -250,6 +250,12 @@ body {
 
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
+ body {
+  background-size: contain !important;
+  background-position: top center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+} 
   h1 {
     font-size: 20px !important;
   }
