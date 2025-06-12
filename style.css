@@ -311,8 +311,8 @@ body {
 
 @media only screen and (max-width: 768px) {
   body {
-  background-image: url('background-mobile.jpg') !important;
-    background-size: 100% 100% !important;
+    background-image: url('background-mobile.jpg') !important;
+    background-size: contain !important;
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
