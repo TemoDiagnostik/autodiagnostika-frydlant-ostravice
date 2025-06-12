@@ -312,8 +312,7 @@ body {
 @media only screen and (max-width: 1024px) {
   body {
     background-image: url('background-mobile.jpg') !important;
-    background-attachment: scroll !important; 
-    background-size: 110% auto !important;
+    background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
     background-color: #1F2B1D !important;
@@ -348,9 +347,7 @@ body {
   .accordion-button {
     font-size: 14px;
     padding: 8px 10px;
-    margin-bottom: 15px !important; /* فصل الأزرار */
-    border-radius: 10px !important;
-    background-color: #1F2B1D !important;
+    margin-bottom: 10px;
   }
 
   .accordion-button img {
@@ -364,13 +361,5 @@ body {
 
   .reservation-form {
     padding: 15px;
-  }
-
-  .service-box {
-    margin-bottom: 20px !important;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #1F2B1D !important;
-    padding: 10px 15px;
   }
 }
