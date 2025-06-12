@@ -249,6 +249,7 @@ body {
 }
 
 /* ==== استجابة الهاتف ==== */
+@media (max-width: 768px) {
 body {
   background-image: url('background.jpg');
   background-size: contain !important;
