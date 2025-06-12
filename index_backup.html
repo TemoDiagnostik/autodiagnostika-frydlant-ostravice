@@ -13,13 +13,17 @@
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
-<header class="overlay" style="padding-top: 10px;">
-  <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 4px 20px;">
+<header class="overlay" style="padding: 20px 10px 0 10px; text-align: center; background-color: transparent;">
+  <!-- الشريط العلوي -->
+  <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
     <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
          alt="Temo Logo"
-         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; padding: 0px 10px;" />
+         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" />
+    
     <div style="display: flex; gap: 20px; align-items: center;">
-      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">diagnostika@temosliving.de</a>
+      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">
+        diagnostika@temosliving.de
+      </a>
       <div class="lang-switch">
         <a href="index.html" style="color: #d8c38e; text-decoration: none;">CZ</a> |
         <a href="index.de.html" style="color: #d8c38e; text-decoration: none;">DE</a> |
@@ -28,13 +32,18 @@
     </div>
   </div>
 
-<h1 style="font-size: 22px; text-align: center; color: #F2E8C9; margin-top: 20px;">
-  Auto diagnostika jinak – bez stresu, v klidu přírody.
-</h1>
+  <!-- العنوان الرئيسي -->
+  <h1 style="font-size: 24px; text-align: center; color: #E8D8B1; margin-top: 10px; margin-bottom: 5px;">
+    Auto diagnostika v klidu přírody – bez stresu.
+  </h1>
 
- <p style="color: #E8D8B1; font-size: 17px; text-align: center; margin-top: 10px;">
-  Zatímco vaše auto prochází diagnostikou, můžete využít i pomoc s navigací, řídicími funkcemi nebo systémovým nastavením – a vychutnat si kávu nebo klid v lese. <strong>Férové ceny.</strong>
-</p>
+  <!-- وصف مختصر -->
+  <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+    <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
+      Zatímco vaše auto prochází diagnostikou, můžete si odpočinout u kávy v zahradě, nebo se projít po okolním lese.<br>
+      Férové ceny, profesionální přístup.
+    </p>
+  </div>
 </header>
 
 
@@ -324,7 +333,7 @@
 
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
   <h3>Rezervace termínu</h3>
- <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">Add commentMore actions
+<form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
 <label for="brandSelect">Značka vozu</label>
 <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
   <option disabled selected>Vyberte značku</option>
@@ -362,38 +371,57 @@
   <button type="submit">Odeslat</button>
 </form>
 </section>
- <!-- قسم "عنّي" -->
-<div class="about-toggle-wrapper">
-  <div class="about-label">O mně</div>
-  <button class="about-toggle" title="O mně">
-    <span class="about-arrow">&#x25BC;</span>
+
+<!-- زر O mně -->
+<div style="background-color: #1F2B1D; padding: 10px 14px; border-radius: 8px; max-width: 380px; margin: 10px auto;">
+  <button type="button" class="accordion-button" style="background-color: transparent; border: none; width: 100%; text-align: left;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/O%20mně.png" alt="O mně" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">O mně <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Informace o mně</span>
+        </div>
+      </div>
+    </div>
   </button>
 </div>
 
-<div class="about-content">
-  <p>Mám více než 30 let zkušeností s opravami aut, z toho 22 let jsem pracoval jako mechatronik v Německu, kde jsem se specializoval na diagnostiku složitých závad a kombinaci mechaniky s moderní elektronikou.</p>
-  <p>💡 Zároveň mám bohaté zkušenosti se softwarem a hardwarem, včetně:<br>
-    • Programování a diagnostiky řídicích jednotek (ECU)<br>
-    • Práce s profesionálními nástroji jako Launch X431, FORScan, OBDeleven<br>
-    • Aktualizace GPS navigací a map<br>
-    • Opravy elektroniky jako iPhone, iPad a počítačů
-  </p>
-  <p>Nabízím své služby v klidné lokalitě Frýdlant nad Ostravicí, kde si klient může vychutnat čaj nebo kávu v lese, zatímco jeho vůz prochází diagnostikou.</p>
-  <p>Česky mluvím dobře, ale ne perfektně. Německy mluvím výborně a anglicky také.</p>
-  <p>Zatímco vaše auto prochází diagnostikou, můžete si v klidu lesa vychutnat čaj nebo kávu.</p>
+<!-- البانل القابل للفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 700px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 20px; border-radius: 8px;">
+  <div style="padding: 14px 0; font-size: 15px; line-height: 1.6;">
+    <p>Jsem profesionální automechanik s více než 30 lety zkušeností v oblasti oprav a diagnostiky vozidel, z toho 22 let praxe v Německu. Během své kariéry jsem se specializoval na propojení klasických mechanických znalostí s moderními elektronickými systémy, což mi umožňuje přesně identifikovat závady a navrhnout účinná řešení.</p>
+    <p>Mám rozsáhlé zkušenosti s prací na inteligentních systémech ve vozidlech, včetně úprav softwarových nastavení a obnovení elektronických funkcí podle technických požadavků vozidla.</p>
+    <p>Dnes působím v klidném prostředí přírody v oblasti Frýdlant nad Ostravicí – Malenovice, kde může zákazník využít profesionálních služeb v oblasti diagnostiky vozidel a zároveň si vychutnat šálek kávy nebo čaje na zahradě, nebo se projít po okolním lese během kontroly vozu.</p>
+    <p>Česky mluvím dobře, ale ne perfektně. Německy a anglicky mluvím také.</p>
+  </div>
 </div>
 
 <!-- زر Ceník -->
-<button class="accordion-button">Ceník <span class="arrow">&#x25BC;</span></button>
-<div class="accordion-panel">
-  <ul>
+<div style="background-color: #1F2B1D; padding: 10px 14px; border-radius: 8px; max-width: 380px; margin: 10px auto;">
+  <button type="button" class="accordion-button" style="background-color: transparent; border: none; width: 100%; text-align: left;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/Ceník.png" alt="Ceník" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">Ceník <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Přehled orientačních cen</span>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
+
+<!-- البانل الذي يفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 380px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 14px; border-radius: 8px;">
+  <ul style="padding: 14px 0; list-style: disc; margin-left: 20px;">
     <li>Regenerace DPF: 1 000–2 000 Kč</li>
     <li>Reset výměny oleje: 300–600 Kč</li>
     <li>Reset EPB: 500–800 Kč</li>
     <li>Reset BMS: 400–700 Kč</li>
     <li>Kompletní diagnostika: 500–800 Kč</li>
   </ul>
-  <p class="note">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
+  <p class="note" style="font-size: 13px; padding-bottom: 12px;">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
 </div>
 <a href="https://wa.me/420732133919" target="_blank" style="
   position: fixed;
@@ -440,6 +468,8 @@
       });
     });
   </script>
+  
+<!-- 1. carData: قائمة السيارات -->
 <script>
   const carData = {
     "Acura": {
@@ -1046,54 +1076,72 @@
   }
 
   };
-
-  const brandSelect = document.getElementById("brandSelect");
-  const modelSelect = document.getElementById("modelSelect");
-  const engineSelect = document.getElementById("engineSelect");
-
-  // تعبئة قائمة الماركات
-  Object.keys(carData).forEach(function (brand) {
-    const option = document.createElement("option");
-    option.value = brand;
-    option.text = brand;
-    brandSelect.appendChild(option);
-  });
-
-  // عند اختيار ماركة
-  brandSelect.addEventListener("change", function () {
-    const selectedBrand = this.value;
-
-    modelSelect.innerHTML = '<option disabled selected>Vyberte model vozu</option>';
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    modelSelect.disabled = false;
-    engineSelect.disabled = true;
-
-    const models = Object.keys(carData[selectedBrand] || {});
-    models.forEach(function (model) {
-      const option = document.createElement("option");
-      option.value = model;
-      option.text = model;
-      modelSelect.appendChild(option);
-    });
-  });
-
-  // عند اختيار موديل
-  modelSelect.addEventListener("change", function () {
-    const selectedBrand = brandSelect.value;
-    const selectedModel = this.value;
-
-    engineSelect.innerHTML = '<option disabled selected>Vyberte objem motoru</option>';
-    engineSelect.disabled = false;
-
-    const engines = carData[selectedBrand]?.[selectedModel] || [];
-    engines.forEach(function (engine) {
-      const option = document.createElement("option");
-      option.value = engine;
-      option.text = engine;
-      engineSelect.appendChild(option);
-    });
-  });
 </script>
+<script>
+// تفعيل مكتبة Choices.js
+const brandSelect = new Choices('#brandSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const modelSelect = new Choices('#modelSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const engineSelect = new Choices('#engineSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+</script>
+
+<script>
+// تعبئة ماركات السيارات
+brandSelect.setChoices(
+  Object.keys(carData).map(brand => ({
+    value: brand,
+    label: brand
+  })),
+  'value',
+  'label',
+  true
+);
+
+// عند تغيير نوع السيارة
+brandSelect.passedElement.element.addEventListener("change", function () {
+  const selectedBrand = this.value;
+
+  const models = Object.keys(carData[selectedBrand] || {});
+  modelSelect.clearChoices();
+  modelSelect.setChoices(
+    models.map(model => ({
+      value: model,
+      label: model
+    })),
+    'value',
+    'label',
+    true
+  );
+
+  // Clear engine choices لما تتغير الماركة
+  engineSelect.clearChoices();
+});
+
+// عند اختيار الموديل
+modelSelect.passedElement.element.addEventListener("change", function () {
+  const selectedBrand = brandSelect.getValue(true);
+  const selectedModel = this.value;
+
+  const engines = carData[selectedBrand][selectedModel] || [];
+  engineSelect.clearChoices();
+  engineSelect.setChoices(
+    engines.map(engine => ({
+      value: engine,
+      label: engine
+    })),
+    'value',
+    'label',
+    true
+  );
+});
 </script>
 
 <!-- سكربت فتح وإغلاق الـ Accordion -->
@@ -1121,21 +1169,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
- <script>
-  const brandSelect = new Choices('#brandSelect', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
 
-  const modelSelect = new Choices('#modelSelect', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
-
-  const engineSelect = new Choices('#engineSelect', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
-</script> 
 </body>
 </html>
