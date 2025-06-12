@@ -258,6 +258,9 @@ body {
   background-attachment: scroll !important;
   background-color: transparent !important; /* ← غيّره هنا */
 }
+  .overlay {
+  background: transparent !important;
+}
   main, section, .content, .wrapper, .overlay {
     background-color: transparent !important;
   }
