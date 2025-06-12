@@ -309,10 +309,10 @@ body {
   color: #b00;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg') !important;
-    background-size:  110% auto  !important;
+     background-size: 120% auto !important;
     background-attachment: scroll !important; /* أو احذفها لو بتحب الخلفية تكون ثابتة */
     background-repeat: no-repeat !important;
     background-position: center top !important;
