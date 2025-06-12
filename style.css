@@ -344,13 +344,11 @@ body {
     font-size: 15px;
   }
 
-  .accordion-button {
-    font-size: 14px;
-    padding: 8px 10px;
-    margin-bottom: 15px !important; /* فصل الأزرار */
-    border-radius: 10px !important;
-    background-color: #1F2B1D !important;
-  }
+ .accordion-button {
+  font-size: 14px;
+  padding: 8px 10px;
+  margin-bottom: 12px; /* ← يديك فراغ ثابت وواضح بين كل زر والتاني */
+}
 
   .accordion-button img {
     width: 48px !important;
@@ -365,11 +363,7 @@ body {
     padding: 15px;
   }
 
-  .service-box {
-    margin-bottom: 20px !important;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #1F2B1D !important;
-    padding: 10px 15px;
+.service-box {
+  margin-bottom: 15px;
   }
 }
