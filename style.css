@@ -249,21 +249,12 @@ body {
 }
 
 /* ==== استجابة الهاتف ==== */
-@media (max-width: 768px) {
-  html,
-  body,
-  main,
-  section,
-  .content,
-  .wrapper,
-  .overlay,
-  .reservation-form,
-  .reservation-form input,
-  .reservation-form select,
-  .reservation-form textarea,
-  h1,
-  h2 {
-    background-color: transparent !important;
+/* للشاشات الصغيرة (مثل iPhone) */
+@media only screen and (max-width: 768px) {
+  body {
+    background-attachment: scroll !important;
+    background-size: contain !important;
+    background-position: center top !important;
   }
 
   h1 {
@@ -281,8 +272,6 @@ body {
   }
 
   .accordion-button {
-    width: 100%;
-    text-align: center;
     font-size: 14px;
     padding: 8px 10px;
   }
@@ -301,45 +290,13 @@ body {
   }
 }
 
-/* خارج media query - للعرض العام */
-.overlay {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 40px 20px;
-  color: #d8c38e;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* تنسيق عام */
+body {
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #000;
 }
 
-  form input,
-  form select,
-  form textarea {
-    font-size: 15px;
-  }
-
-  .accordion-button {
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    padding: 8px 10px;
-  }
-
-  .accordion-button img {
-    width: 48px !important;
-    height: 48px !important;
-  }
-
-  .accordion-panel {
-    padding: 10px 15px;
-  }
-
-  .reservation-form {
-    padding: 15px;
-  }
-}
-
-/* خارج media query - للعرض العام */
 .overlay {
   background: rgba(0, 0, 0, 0.2);
   padding: 40px 20px;
@@ -387,6 +344,7 @@ body {
   max-width: 800px;
   margin-top: 20px;
 }
+
 .service-box {
   display: flex;
   align-items: center;
@@ -400,33 +358,55 @@ body {
 }
 
 .service-icon {
-  
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
 }
-/* تنسيق القائمة المخصصة من Choices.js */
+
+form input,
+form select,
+form textarea {
+  font-size: 15px;
+}
+
+.accordion-button {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 10px;
+}
+
+.accordion-button img {
+  width: 48px;
+  height: 48px;
+}
+
+.accordion-panel {
+  padding: 10px 15px;
+}
+
+.reservation-form {
+  padding: 15px;
+}
+
+/* خيارات Choices.js */
 .choices__inner {
-  background-color: #fffaf0; /* نفس خلفية النموذج */
-  color: #000;               /* لون الخط */
+  background-color: #fffaf0;
+  color: #000;
   border-radius: 5px;
   font-size: 13px;
   border: none;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* لون العناصر داخل القائمة */
 .choices__list--dropdown .choices__item {
   background-color: white;
   color: black;
 }
 
-/* عند تحديد العنصر */
 .choices__item--selectable.is-highlighted {
   background-color: #eee;
   color: #000;
 }
 
-/* زر حذف العنصر (إذا كان multi-select) */
 .choices__button {
   color: #b00;
 }
-
