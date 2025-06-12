@@ -1169,6 +1169,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<script>
+  const accordionButtons = document.querySelectorAll('.accordion-button');
 
+  accordionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const panel = button.parentElement.nextElementSibling;
+      const isActive = button.classList.contains('active');
+
+      // إغلاق جميع البانلز
+      document.querySelectorAll('.accordion-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.accordion-panel').forEach(p => p.style.maxHeight = null);
+
+      if (!isActive) {
+        button.classList.add('active');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+
+        // ✅ تحريك الصفحة تلقائيًا للقسم المفتوح
+        setTimeout(() => {
+          button.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 100); // ← تأخير بسيط عشان يتفتح الأول
+      }
+    });
+  });
+</script>
 </body>
 </html>
