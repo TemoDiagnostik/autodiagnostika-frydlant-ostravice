@@ -250,24 +250,17 @@ body {
 
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
-  html, body {
-    background-color: transparent !important;
-  }
-
-  body {
-    background-image: url('background.jpg');
-    background-size: contain !important;
-    background-position: top center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: scroll !important;
-  }
-
-  .overlay,
+  body,
+  html,
   main,
   section,
   .content,
   .wrapper,
-  .headline-wrapper {
+  .overlay,
+  .reservation-form,
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form textarea {
     background-color: transparent !important;
   }
 
