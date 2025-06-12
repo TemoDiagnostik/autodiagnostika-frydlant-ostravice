@@ -248,7 +248,6 @@ body {
   padding: 20px;
 }
 
-/* ==== استجابة الهاتف ==== */
 /* الخلفية العامة لأجهزة الكمبيوتر */
 body {
   background: url('background.jpg') no-repeat center center fixed;
@@ -260,7 +259,7 @@ body {
   padding: 0;
 }
 
-/* إصلاح الخلفية الكبيرة على أجهزة iPhone */
+/* إصلاح مشكلة الخلفية الكبيرة على iPhone */
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background.jpg') !important;
@@ -268,9 +267,8 @@ body {
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
-    background-color: #1F2B1D !important; /* بديل للأسود */
+    background-color: #1F2B1D !important;
   }
-}
 
   html,
   section,
@@ -315,7 +313,6 @@ body {
     padding: 15px;
   }
 }
-
 /* باقي التنسيقات العامة */
 
 .overlay {
