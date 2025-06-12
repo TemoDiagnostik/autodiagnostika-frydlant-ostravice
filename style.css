@@ -313,7 +313,7 @@ body {
   body {
     background-image: url('background-mobile.jpg') !important;
     background-size: cover !important;
-    background-attachment: scroll !important;
+    background-attachment: fixed !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
     background-color: #1F2B1D !important;
