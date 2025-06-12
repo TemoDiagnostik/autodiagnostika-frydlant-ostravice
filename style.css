@@ -250,11 +250,17 @@ body {
 
 /* ==== استجابة الهاتف ==== */
 /* للشاشات الصغيرة (مثل iPhone) */
-@media only screen and (max-width: 768px) {
-  body {
-    background-attachment: scroll !important;
-    background-size: contain !important;
-    background-position: center top !important;
+@media only screen and (max-width: 1024px) {
+  body,
+  html,
+  section,
+  .overlay,
+  .reservation-form,
+  .accordion-panel,
+  .service-box,
+  .content,
+  main {
+    background-color: transparent !important;
   }
 
   h1 {
@@ -289,7 +295,6 @@ body {
     padding: 15px;
   }
 }
-
 /* تنسيق عام */
 body {
   background: url('background.jpg') no-repeat center center fixed;
