@@ -251,20 +251,22 @@ body {
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
   body {
+    background-image: url('background.jpg');
     background-size: cover !important;
     background-position: center top !important;
     background-repeat: no-repeat !important;
     background-attachment: scroll !important;
-    background-color: black !important; /* أو أي لون غامق مناسب لو حصل تأخير في تحميل الصورة */
+    background-color: transparent !important;
   }
-}
-  .overlay {
-  background: transparent !important;
-}
+
   main, section, .content, .wrapper, .overlay {
     background-color: transparent !important;
   }
-}
+
+  .overlay {
+    background: transparent !important;
+  }
+
   h1 {
     font-size: 20px !important;
   }
@@ -272,7 +274,7 @@ body {
   p {
     font-size: 14px !important;
   }
-
+}
   .accordion-button img {
     width: 48px !important;
     height: 48px !important;
