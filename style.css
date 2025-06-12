@@ -251,12 +251,65 @@ body {
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
   body {
+    @media (max-width: 768px) {
+  body {
     background-image: url('background.jpg') !important;
     background-size: contain !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
     background-attachment: scroll !important;
     background-color: transparent !important;
+  }
+
+  html,
+  main,
+  section,
+  .content,
+  .wrapper,
+  .overlay,
+  .reservation-form,
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form textarea,
+  h1,
+  h2 {
+    background-color: transparent !important;
+  }
+
+  h1 {
+    font-size: 20px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  .accordion-button img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 15px;
+  }
+
+  .accordion-button {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .accordion-panel {
+    padding: 10px 15px;
+  }
+
+  .reservation-form {
+    padding: 15px;
+  }
+}
   }
 
   html,
