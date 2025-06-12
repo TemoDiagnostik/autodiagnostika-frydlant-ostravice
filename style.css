@@ -252,19 +252,19 @@ body {
 @media (max-width: 768px) {
   body {
     background-image: url('background.jpg');
-    background-size: cover !important;
-    background-position: center top !important;
+    background-size: contain !important;
+    background-position: top center !important;
     background-repeat: no-repeat !important;
     background-attachment: scroll !important;
     background-color: transparent !important;
   }
 
-  main, section, .content, .wrapper, .overlay {
+  .overlay,
+  main,
+  section,
+  .content,
+  .wrapper {
     background-color: transparent !important;
-  }
-
-  .overlay {
-    background: transparent !important;
   }
 
   h1 {
@@ -274,16 +274,18 @@ body {
   p {
     font-size: 14px !important;
   }
-}
+
   .accordion-button img {
     width: 48px !important;
     height: 48px !important;
   }
 
-  form input, form select, form textarea {
+  form input,
+  form select,
+  form textarea {
     font-size: 15px;
   }
-}
+
   .accordion-button {
     width: 100%;
     text-align: center;
@@ -298,7 +300,7 @@ body {
   .reservation-form {
     padding: 15px;
   }
-
+}
 .overlay {
   background: rgba(0, 0, 0, 0.2);
   padding: 40px 20px;
