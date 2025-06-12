@@ -251,14 +251,7 @@ body {
 /* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
 body {
-  background-image: url('background.jpg');
-  background-size: contain !important;
-  background-position: top center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important;
-  background-color: transparent !important; /* ← غيّره هنا */
-}
-
+ 
   main, section, .content, .wrapper, .overlay {
     background-color: transparent !important;
   }
