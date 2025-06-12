@@ -309,7 +309,6 @@ body {
   color: #b00;
 }
 
-/* ==== تحسينات للموبايل (آيفون) ==== */
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg') !important;
@@ -320,7 +319,6 @@ body {
     background-color: #1F2B1D !important;
   }
 }
-
   html,
   section,
   .overlay,
@@ -363,15 +361,4 @@ body {
   .reservation-form {
     padding: 15px;
   }
-} /* ← نهاية media query */
-
-/* ==== فواصل بين كل قسم خدمة ==== */
-.service-block {
-  padding-bottom: 20px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #c9a86b;
-}
-
-.service-block:last-of-type {
-  border-bottom: none;
-}
+} /* ← نهاية الميديا كويري، مرة واحدة فقط! ✅ */
