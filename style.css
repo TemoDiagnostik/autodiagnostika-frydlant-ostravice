@@ -394,3 +394,15 @@ body {
 .choices__button {
   color: #b00;
 }
+
+body,
+html,
+main,
+section,
+.wrapper,
+.content,
+.overlay,
+h1,
+h2 {
+  background-color: transparent !important;
+}
