@@ -256,7 +256,7 @@ body {
     background-position: top center !important;
     background-repeat: no-repeat !important;
     background-attachment: scroll !important;
-    background-color: black !important; /* لو فيه فراغ أسفل */
+    background-color: transparent !important; /* لو فيه فراغ أسفل */
   }
 
   main, section, .content, .wrapper, .overlay {
