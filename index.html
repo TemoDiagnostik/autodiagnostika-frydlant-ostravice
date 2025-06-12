@@ -14,7 +14,24 @@
 </head>
 <body>
 <header class="overlay" style="padding: 20px 10px 0 10px; text-align: center; background-color: transparent;">
-  <!-- الشريط العلوي -->
+<style>
+  body {
+    background-image: url('images/background.jpg'); /* عدّل المسار حسب اسم الصورة */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      background-position: top center;
+      background-size: contain;
+      background-attachment: scroll;
+    }
+  }
+</style> 
+  
   <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
     <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
          alt="Temo Logo"
@@ -44,6 +61,7 @@
       Férové ceny, profesionální přístup.
     </p>
   </div>
+  
 </header>
 
 
