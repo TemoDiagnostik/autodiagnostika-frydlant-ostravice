@@ -262,6 +262,7 @@ body {
   .reservation-form select,
   .reservation-form textarea {
     background-color: transparent !important;
+    background-size: contain !important;
   }
 
   h1 {
