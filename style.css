@@ -310,6 +310,8 @@ body {
 }
 
 @media only screen and (max-width: 1024px) {
+   background-image: url('background-mobile.jpg') !important;
+    background-size: 160% !important;
   .accordion-button {
     margin-bottom: 16px !important;
   }
