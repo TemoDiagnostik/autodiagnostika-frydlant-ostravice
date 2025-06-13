@@ -344,23 +344,28 @@ body {
     font-size: 15px;
   }
 
- .accordion-button {
-  margin: 20px auto !important;
-  padding: 8px 16px !important;
-}
+  .accordion-button {
+    margin: 20px auto !important;
+    padding: 8px 16px !important;
+  }
 
-.service-button {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
+  .accordion-button + .accordion-button {
+    margin-top: 12px !important;
+  }
+
+  .service-button {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
 
   .service-button span {
     font-size: 14px;
   }
 
- .service-button img {
-  width: 66px;
-  height: 66px;
+  .service-button img {
+    width: 66px;
+    height: 66px;
+  }
 }
