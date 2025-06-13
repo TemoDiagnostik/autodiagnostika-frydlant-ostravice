@@ -310,12 +310,14 @@ body {
 
 @media only screen and (max-width: 1024px) {
   body {
-    background-image: url('background-mobile-new.jpg') !important;
-    background-size: contain !important;
+    background-image: 
+      linear-gradient(rgba(31, 43, 29, 0.85), rgba(31, 43, 29, 0.85)),
+      url('background-mobile-new.jpg');
+    background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
     background-attachment: scroll !important;
-    background-color: #1F2B1D !important;
+    background-color: #1F2B1D !important; /* لون fallback لو الصورة مش لود */
   }
 
   .accordion-button {
