@@ -313,11 +313,11 @@ body {
     background-image: 
       linear-gradient(rgba(31, 43, 29, 0.85), rgba(31, 43, 29, 0.85)),
       url('background-mobile-new.jpg');
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    background-position: center top !important;
-    background-attachment: scroll !important;
-    background-color: #1F2B1D !important; /* لون fallback لو الصورة مش لود */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: scroll;
+    background-color: transparent; /* ← مش محتاج لون */
   }
 
   .accordion-button {
