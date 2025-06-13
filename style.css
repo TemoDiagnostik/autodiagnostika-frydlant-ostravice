@@ -310,61 +310,7 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-  body {
-    background-image: url('background-mobile.jpg') !important;
-    background-size: 160% !important;
-    background-attachment: scroll !important;
-    background-repeat: no-repeat !important;
-    background-position: center top !important;
-    background-color: #1F2B1D !important;
-  }
-
-  html,
-  section,
-  .overlay,
-  .reservation-form,
-  .accordion-panel,
-  .service-box,
-  .content,
-  main {
-    background-color: transparent !important;
-  }
-
-  h1 {
-    font-size: 20px !important;
-  }
-
-  p {
-    font-size: 14px !important;
-  }
-
-  form input,
-  form select,
-  form textarea {
-    font-size: 15px;
-  }
-
   .accordion-button {
-    padding: 8px 16px !important;
-    margin-bottom: 16px !important;  /* ← يضمن وجود مسافة أسفل كل زر */
-    width: 100% !important;
-    text-align: left !important;
-    background-color: transparent !important;
-    border: none !important;
-    color: #EBDBB1 !important;
+    margin-bottom: 16px !important;
   }
-
-  .service-box {
-    display: flex;
-    flex-direction: column;
-    gap: 0 !important; /* ← لو في gap إضافي */
-  }
-
-  .accordion-button img {
-    width: 60px !important;
-    height: 48px !important;
-  }
-
-  .accordion-panel {
-    padding: 10px 15px;
-  }
+}
