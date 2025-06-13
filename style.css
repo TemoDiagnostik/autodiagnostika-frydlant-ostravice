@@ -360,8 +360,7 @@ body {
     font-size: 14px;
   }
 
-  .service-button img {
-    width: 48px !important;
-    height: 48px !important;
-  }
-} 
+ .service-button img {
+  width: 66px;
+  height: 66px;
+}
