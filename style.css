@@ -349,12 +349,12 @@ body {
     padding: 0 !important;
   }
 
-  .service-button {
-    flex-direction: row !important;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-  }
+ .service-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
 
   .service-button span {
     font-size: 14px;
@@ -364,4 +364,4 @@ body {
     width: 48px !important;
     height: 48px !important;
   }
-}
+} 
