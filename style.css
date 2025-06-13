@@ -308,10 +308,10 @@ body {
   color: #b00;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg') !important;
-    background-size: 160% auto !important;
+    background-size: cover !important;
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
@@ -319,20 +319,20 @@ body {
   }
 
   .accordion-button {
-    padding: 8px 16px !important;
-    margin-bottom: 16px !important;
     width: 100% !important;
     text-align: left !important;
+    margin-bottom: 16px !important;
     background-color: transparent !important;
     border: none !important;
     color: #EBDBB1 !important;
   }
 
   .service-box {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    margin-bottom: 30px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     border: none !important;
   }
 
@@ -342,10 +342,10 @@ body {
   }
 
   .accordion-panel {
-    padding: 10px 15px;
+    padding: 10px 15px !important;
   }
 
   .reservation-form {
-    padding: 15px;
+    padding: 15px !important;
   }
 }
