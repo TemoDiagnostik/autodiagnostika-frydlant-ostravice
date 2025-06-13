@@ -1,3 +1,254 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #c9a86b;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.email, .lang-switch a {
+  color: #c9a86b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.lang-switch a {
+  margin-left: 8px;
+}
+
+.cta-button {
+  background: #c9a86b;
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.flatpickr-calendar {
+  z-index: 9999 !important;
+}
+
+/* ==== نموذج الحجز ==== */
+.reservation-form {
+  background: #1F2B1D;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 15px;
+  border-radius: 10px;
+  color: #EBDBB1; /* ← بدل black */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.reservation-form select option {
+  color: black;
+  background-color: white;
+}
+
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea,
+.reservation-form button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fffaf0;
+
+  font-size: 13px; /* ← أضف هذا السطر هنا */
+}
+.reservation-form button {
+  background: #000000;
+  color: #f5e8c8;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #333;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.reservation-form button:hover {
+  background-color: #333;
+  color: #fff8dc;
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+}
+‎/* العناصر داخل القائمة (option) — تجعل النص أسود */
+.reservation-form select option {
+  color: black;
+  background-color: white; /* أو #fff */
+}
+.date-wrapper {
+  position: relative;
+}
+
+.date-wrapper input {
+  padding-right: 30px;
+}
+
+.date-arrow {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  pointer-events: none;
+}
+
+
+.accordion-button {
+  background-color: #c9a86b;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  width: fit-content;
+  min-width: 180px;
+  max-width: 260px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 8px auto;
+  display: flex;                 /* ← لعرض الأيقونة بجانب النص */
+  align-items: center;          /* ← محاذاة عمودية */
+  gap: 10px;                    /* ← مسافة بين الأيقونة والنص */
+  transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+  background-color: #b79058;
+}
+
+.accordion-button img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
+.accordion-button .arrow {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
+  vertical-align: middle;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.accordion-button.active .arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-button.active + .accordion-panel {
+  display: block;
+  max-height: 1000px;
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.accordion-panel {
+  transition: all 0.4s ease;
+}
+.accordion-panel ul {
+  padding: 10px 20px;
+  list-style: disc;
+  color: #f5e8c8;
+}
+
+.accordion-panel li,
+.accordion-panel p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #f5e8c8;
+}
+
+/* ==== قسم من أنا ==== */
+.about-toggle-wrapper {
+  text-align: center;Add commentMore actions
+  margin-top: 30px;
+}
+.about-toggle.open::after {
+  transform: rotate(180deg);
+}
+
+.about-label {
+  color: #c9a86b;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.about-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #c9a86b;
+  transition: transform 0.3s ease;
+}
+
+.about-toggle:hover {
+  transform: scale(1.2);
+  color: #e0b76e;
+}
+
+.about-arrow {
+  font-size: 14px;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+.about-toggle.open .about-arrow {
+  transform: rotate(180deg);
+}
+
+.about-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  background: rgba(0, 0, 0, 0.7);
+  color: #f5e8c8;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 20px;
+  border-radius: 10px;
+}
+
+.about-content.show {
+  max-height: 500px;
+  padding: 20px;
+}
+
+/* ==== استجابة الهاتف ==== */
 @media (max-width: 768px) {
   html,
   body,
