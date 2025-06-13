@@ -312,7 +312,7 @@ body {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg') !important;
-    background-size: 120% auto !important;
+    background-size: 160% !important;
     background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
@@ -345,26 +345,26 @@ body {
   }
 
   .accordion-button {
-    margin: 20px auto !important;
     padding: 8px 16px !important;
+    margin-bottom: 16px !important;  /* ← يضمن وجود مسافة أسفل كل زر */
+    width: 100% !important;
+    text-align: left !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #EBDBB1 !important;
   }
 
-  .accordion-button + .accordion-button {
-    margin-top: 16px !important;
+  .service-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important; /* ← لو في gap إضافي */
   }
 
- .service-box {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-  .service-button span {
-    font-size: 14px;
+  .accordion-button img {
+    width: 60px !important;
+    height: 48px !important;
   }
 
-  .service-button img {
-    width: 66px;
-    height: 66px;
+  .accordion-panel {
+    padding: 10px 15px;
   }
-}
