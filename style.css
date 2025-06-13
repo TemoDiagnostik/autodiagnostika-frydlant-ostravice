@@ -312,13 +312,13 @@ body {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg') !important;
-     background-size: 120% auto !important;
-    background-attachment: scroll !important; /* أو احذفها لو بتحب الخلفية تكون ثابتة */
+    background-size: 120% auto !important;
+    background-attachment: scroll !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
     background-color: #1F2B1D !important;
   }
-  
+
   html,
   section,
   .overlay,
@@ -345,12 +345,12 @@ body {
   }
 
   .accordion-button {
-    margin-bottom: 20px !important; /* مسافة واضحة بين الأزرار */
+    margin-bottom: 20px !important;
     padding: 0 !important;
   }
 
   .service-button {
-    flex-direction: row !important; /* بدلاً من عمودي */
+    flex-direction: row !important;
     align-items: center;
     justify-content: flex-start;
     gap: 12px;
