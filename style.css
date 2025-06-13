@@ -311,7 +311,7 @@ body {
 @media only screen and (max-width: 1024px) {
   body {
     background-image: url('background-mobile-new.jpg') !important;
-    background-size: cover !important;
+    background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
     background-attachment: scroll !important;
@@ -332,7 +332,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0 !important;
-    border-bottom: none !important;  /* ← إزالة الخط */
+    border-bottom: none !important;
     margin-bottom: 16px !important;
   }
 
