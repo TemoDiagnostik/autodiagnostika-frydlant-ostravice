@@ -344,10 +344,10 @@ body {
     font-size: 15px;
   }
 
-  .accordion-button {
-    margin-bottom: 20px !important;
-    padding: 0 !important;
-  }
+ .accordion-button {
+  margin: 20px auto !important;
+  padding: 8px 16px !important;
+}
 
 .service-button {
   display: flex !important;
