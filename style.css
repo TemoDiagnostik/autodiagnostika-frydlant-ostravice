@@ -308,18 +308,39 @@ body {
   color: #b00;
 }
 
+/* إزالة أي لون خلفي افتراضي */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* تنسيق الخلفية على الموبايل فقط */
 @media only screen and (max-width: 1024px) {
   body {
-    background-image: 
-      linear-gradient(rgba(31, 43, 29, 0.85), rgba(31, 43, 29, 0.85)),
-      url('background-mobile-new.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: scroll;
-    background-color: transparent; /* ← مش محتاج لون */
+    background-image: url('background-mobile-new.jpg') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center top !important;
+    background-attachment: scroll !important;
+    background-color: transparent !important;
   }
 
+  /* إزالة أي خلفيات من عناصر تغطي الخلفية */
+  html,
+  section,
+  main,
+  .overlay,
+  .reservation-form,
+  .accordion-panel,
+  .service-box,
+  .content {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  /* تحسين تنسيق الأزرار للموبايل */
   .accordion-button {
     margin-bottom: 16px !important;
     padding: 8px 16px !important;
