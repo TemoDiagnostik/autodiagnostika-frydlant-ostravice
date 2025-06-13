@@ -344,26 +344,24 @@ body {
     font-size: 15px;
   }
 
- .accordion-button {
-  font-size: 14px;
-  padding: 8px 10px;
-  margin-bottom: 12px; /* ← يديك فراغ ثابت وواضح بين كل زر والتاني */
-}
+  .accordion-button {
+    margin-bottom: 20px !important; /* مسافة واضحة بين الأزرار */
+    padding: 0 !important;
+  }
 
-  .accordion-button img {
+  .service-button {
+    flex-direction: row !important; /* بدلاً من عمودي */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .service-button span {
+    font-size: 14px;
+  }
+
+  .service-button img {
     width: 48px !important;
     height: 48px !important;
-  }
-
-  .accordion-panel {
-    padding: 10px 15px;
-  }
-
-  .reservation-form {
-    padding: 15px;
-  }
-
-.service-box {
-  margin-bottom: 15px;
   }
 }
