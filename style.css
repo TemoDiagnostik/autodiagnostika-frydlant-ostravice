@@ -311,16 +311,16 @@ body {
 @media only screen and (max-width: 1024px) {
   body {
     background-image: url('background-mobile.jpg') !important;
-    background-size: cover !important; /* أهم تعديل */
-    background-repeat: no-repeat !important;
+    background-size: 160% auto !important;
     background-attachment: scroll !important;
+    background-repeat: no-repeat !important;
     background-position: center top !important;
     background-color: #1F2B1D !important;
   }
 
   .accordion-button {
-    margin-bottom: 16px !important;
     padding: 8px 16px !important;
+    margin-bottom: 16px !important;
     width: 100% !important;
     text-align: left !important;
     background-color: transparent !important;
@@ -331,7 +331,21 @@ body {
   .service-box {
     display: flex !important;
     flex-direction: column !important;
-    gap: 0 !important;
-    margin-bottom: 10px !important;
+    gap: 16px !important;
+    margin-bottom: 30px !important;
+    border: none !important;
+  }
+
+  .accordion-button img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .accordion-panel {
+    padding: 10px 15px;
+  }
+
+  .reservation-form {
+    padding: 15px;
   }
 }
