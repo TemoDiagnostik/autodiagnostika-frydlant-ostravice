@@ -311,7 +311,7 @@ body {
 @media only screen and (max-width: 1024px) { 
 }
     background-image: url('background-mobile.jpg') !important;
-    background-size: cover !important;
+    background-size: 160% !important;
     background-repeat: no-repeat !important;
     background-position: center top !important;
     background-color: #1F2B1D !important;
