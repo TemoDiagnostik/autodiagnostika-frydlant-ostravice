@@ -132,7 +132,6 @@ body {
   max-width: 260px;
   cursor: pointer;
   border-radius: 6px;
-  margin: 8px auto;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -310,12 +309,13 @@ body {
 }
 
 @media only screen and (max-width: 1024px) {
-  body {
-    background-image: url('background-mobile.jpg') !important;
-    background-size: 160% !important;
-  }
-
   .accordion-button {
     margin-bottom: 16px !important;
+    width: 100% !important;
+    text-align: left !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #EBDBB1 !important;
+    padding: 8px 16px !important;
   }
 }
