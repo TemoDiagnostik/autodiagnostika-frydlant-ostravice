@@ -384,3 +384,12 @@ body {
     padding: 15px;
   }
 }
+/* إجبار ظهور خلفية الصورة في جميع الأقسام فوق */
+html, body, main, section, .overlay {
+  background-color: transparent !important;
+  background-image: url('background.jpg') !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+}
