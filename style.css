@@ -316,10 +316,16 @@ body {
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
   body {
-    background-size: 120% auto !important;
+    background-image: url('background-mobile.jpg');
+    background-size: contain; /* أو استخدم cover حسب تجربة الصورة */
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: scroll;
+    background-color: rgba(31, 43, 29, 0.85); /* fallback لو الصورة تأخرت */
   }
+}
 
-  html,
+    html,
   section,
   .overlay,
   .reservation-form,
