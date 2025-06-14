@@ -52,7 +52,8 @@ body {
 
 /* ==== نموذج الحجز ==== */
 .reservation-form {
-  background: #1F2B1D;
+  background: rgba(31, 43, 29, 0.85); /* شفافية خفيفة مع نفس اللون */
+  backdrop-filter: blur(3px);         /* ضبابية خفيفة فوق الصورة */
   max-width: 500px;
   margin: 30px auto;
   padding: 15px;
@@ -96,7 +97,6 @@ body {
   color: black;
   background-color: white;
 }
-
 .date-wrapper {
   position: relative;
 }
