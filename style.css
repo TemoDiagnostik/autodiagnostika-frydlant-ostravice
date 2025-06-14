@@ -315,12 +315,7 @@ body {
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
   body {
-    background-image: url('background-mobile.jpg') !important;
-    background-size: 120% auto !important;
-    background-attachment: scroll !important;
-    background-repeat: no-repeat !important;
-    background-position: center top !important;
-    background-color: #1F2B1D !important;
+   
   }
 
   html,
