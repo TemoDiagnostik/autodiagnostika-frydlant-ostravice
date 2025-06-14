@@ -164,10 +164,13 @@ body {
 
 /* ==== محتوى Accordion ==== */
 .accordion-panel {
+  background: rgba(31, 43, 29, 0.85); /* نفس لون الصفحة مع شفافية */
+  backdrop-filter: blur(3px);         /* إضافة ضبابية خلفية */
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
   padding: 10px 15px;
+  border-radius: 0 0 8px 8px;
 }
 
 .accordion-panel ul {
