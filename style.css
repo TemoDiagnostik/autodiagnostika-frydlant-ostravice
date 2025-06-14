@@ -315,10 +315,8 @@ body {
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
   body {
-background-image: url('background-mobile.jpg') !important;
     background-size: 120% auto !important;
   }
- }
 
   html,
   section,
