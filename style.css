@@ -1,11 +1,14 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: url('background.jpg') no-repeat center center fixed;
+  background-color: rgba(31, 43, 29, 0.85); /* fallback شفاف */
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
   color: #c9a86b;
 }
-
 .top-bar {
   display: flex;
   justify-content: space-between;
