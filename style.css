@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: rgba(31, 43, 29, 0.85); /* fallback شفاف */
+  background-color: rgba(31, 43, 29, 0.85);
   background-image: url('background.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -9,6 +9,7 @@ body {
   background-attachment: fixed;
   color: #c9a86b;
 }
+
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -55,8 +56,8 @@ body {
 
 /* ==== نموذج الحجز ==== */
 .reservation-form {
-  background: rgba(31, 43, 29, 0.85); /* شفافية خفيفة مع نفس اللون */
-  backdrop-filter: blur(3px);         /* ضبابية خفيفة فوق الصورة */
+  background: rgba(31, 43, 29, 0.85);
+  backdrop-filter: blur(3px);
   max-width: 500px;
   margin: 30px auto;
   padding: 15px;
@@ -100,6 +101,7 @@ body {
   color: black;
   background-color: white;
 }
+
 .date-wrapper {
   position: relative;
 }
@@ -115,7 +117,7 @@ body {
   pointer-events: none;
 }
 
-/* ==== أزرار Accordion ==== */
+/* ==== Accordion ==== */
 .accordion-button {
   background-color: #c9a86b;
   color: #fff;
@@ -165,10 +167,9 @@ body {
   max-height: 1000px;
 }
 
-/* ==== محتوى Accordion ==== */
 .accordion-panel {
-  background: rgba(31, 43, 29, 0.85); /* نفس لون الصفحة مع شفافية */
-  backdrop-filter: blur(3px);         /* إضافة ضبابية خلفية */
+  background: rgba(31, 43, 29, 0.85);
+  backdrop-filter: blur(3px);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
@@ -271,7 +272,7 @@ body {
   align-items: center;
 }
 
-/* ==== خدمات ==== */
+/* ==== الخدمات ==== */
 .service-box {
   display: flex;
   align-items: center;
