@@ -344,3 +344,9 @@ body {
     margin-bottom: 18px !important;
   }
 }
+div[style*="background-color: #1F2B1D"] {
+  margin-bottom: 18px !important;
+}
+.accordion-panel {
+  margin-bottom: 18px !important;
+}
