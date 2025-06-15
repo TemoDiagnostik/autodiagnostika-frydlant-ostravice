@@ -323,12 +323,13 @@ body {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg');
+    background-size: auto 100vh; /* هكذا سيحكم ارتفاع الخلفية وتبقى نسبة العرض تلقائية */
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;  
+    background-position: center top;
     background-attachment: scroll;
-    background-color: #1f2b1d; /* لون احتياطي */
+    background-color: #1f2b1d;
   }
+
 
   h1 {
     font-size: 20px !important;
