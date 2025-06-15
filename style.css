@@ -1,12 +1,8 @@
-body {
+bodybody {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: transparent !important;
-  background-image: url('background.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
+  background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-attachment: fixed;
   color: #c9a86b;
 }
 
@@ -317,23 +313,10 @@ body {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg');
-    background-size: 120%; /* بدل contain */
-    background-repeat: no-repeat;
-    background-position: center top; /* أو center center حسب شكل الصورة */
+    background-size: 120%; 
+    background-position: center top; 
     background-attachment: scroll;
-    background-color: #1f2b1d; /* لون fallback غامق متناسق مع الصورة */
-  }
-}
-
-    html,
-  section,
-  .overlay,
-  .reservation-form,
-  .accordion-panel,
-  .service-box,
-  .content,
-  main {
-    background-color: transparent !important;
+    background-color: #1f2b1d; 
   }
 
   h1 {
@@ -389,42 +372,4 @@ body {
   .reservation-form {
     padding: 15px;
   }
-}
-section,
-main,
-.reservation-form,
-.accordion-panel,
-.service-box,
-.overlay {
-  background-color: transparent !important;
-  backdrop-filter: none !important;
-}
-/* إصلاح مشكلة تغطية الخلفية في الموبايل */
-html, body {
-  background-image: url('background.jpg') !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important;
-  background-color: transparent !important;
-}
-
-/* إزالة التعتيم الكامل في جميع الأقسام */
-main,
-section,
-.overlay,
-.reservation-form,
-.accordion-panel,
-.service-box,
-.content {
-  background-color: transparent !important;
-  backdrop-filter: blur(3px) !important; /* اختيارية: تعطي نعومة بدون حجب الخلفية */
-}
-
-/* العناصر اللي بتظهر بيضاء */
-input,
-textarea,
-select {
-  background-color: #fffaf0 !important;
-  color: black !important;
 }
