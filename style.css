@@ -391,11 +391,12 @@ body {
   }
 }
 /* إجبار ظهور خلفية الصورة في جميع الأقسام فوق */
-html, body, main, section, .overlay {
+section,
+main,
+.reservation-form,
+.accordion-panel,
+.service-box,
+.overlay {
   background-color: transparent !important;
-  background-image: url('background.jpg') !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-attachment: fixed !important;
+  backdrop-filter: none !important;
 }
