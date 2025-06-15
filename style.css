@@ -1,4 +1,4 @@
-bodybody {
+body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: url('background.jpg') no-repeat center center fixed;
@@ -60,6 +60,7 @@ bodybody {
   border-radius: 10px;
   color: #EBDBB1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .reservation-form input,
@@ -124,7 +125,7 @@ bodybody {
   text-align: left;
   width: fit-content;
   min-width: 180px;
-  max-width: 260px;
+  max-width: 350px; /* زيادة عرض الزر لتناسب المحتوى والهاتف */
   cursor: pointer;
   border-radius: 6px;
   margin: 8px auto;
@@ -132,6 +133,8 @@ bodybody {
   align-items: center;
   gap: 10px;
   transition: background-color 0.3s ease;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .accordion-button:hover {
@@ -166,11 +169,14 @@ bodybody {
 .accordion-panel {
   background: rgba(31, 43, 29, 0.85);
   backdrop-filter: blur(3px);
+  max-width: 500px;
+  margin: 0 auto 15px auto;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
   padding: 10px 15px;
   border-radius: 0 0 8px 8px;
+  box-sizing: border-box;
 }
 
 .accordion-panel ul {
@@ -273,6 +279,10 @@ bodybody {
   display: flex;
   align-items: center;
   margin: 25px 0;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 .service-text h3 {
@@ -313,10 +323,11 @@ bodybody {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg');
-    background-size: 120%; 
-    background-position: center top; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;  
     background-attachment: scroll;
-    background-color: #1f2b1d; 
+    background-color: #1f2b1d; /* لون احتياطي */
   }
 
   h1 {
@@ -336,40 +347,21 @@ bodybody {
   .accordion-button {
     margin: 20px auto !important;
     padding: 8px 16px !important;
+    max-width: 340px !important;
     width: 100%;
     text-align: center;
   }
 
-  .accordion-button + .accordion-button {
-    margin-top: 12px !important;
-  }
-
-  .accordion-button img {
-    width: 48px !important;
-    height: 48px !important;
-  }
-
-  .service-button {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 12px !important;
-  }
-
-  .service-button span {
-    font-size: 14px;
-  }
-
-  .service-button img {
-    width: 66px;
-    height: 66px;
-  }
-
   .accordion-panel {
-    padding: 10px 15px;
+    padding: 10px 8px;
+    max-width: 98vw;
   }
 
   .reservation-form {
-    padding: 15px;
+    padding: 10px;
+    max-width: 98vw;
+  }
+  .service-box {
+    max-width: 98vw;
   }
 }
