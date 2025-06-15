@@ -399,3 +399,32 @@ main,
   background-color: transparent !important;
   backdrop-filter: none !important;
 }
+/* إصلاح مشكلة تغطية الخلفية في الموبايل */
+html, body {
+  background-image: url('background.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  background-color: transparent !important;
+}
+
+/* إزالة التعتيم الكامل في جميع الأقسام */
+main,
+section,
+.overlay,
+.reservation-form,
+.accordion-panel,
+.service-box,
+.content {
+  background-color: transparent !important;
+  backdrop-filter: blur(3px) !important; /* اختيارية: تعطي نعومة بدون حجب الخلفية */
+}
+
+/* العناصر اللي بتظهر بيضاء */
+input,
+textarea,
+select {
+  background-color: #fffaf0 !important;
+  color: black !important;
+}
