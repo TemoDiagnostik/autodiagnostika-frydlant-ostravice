@@ -317,11 +317,11 @@ body {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg');
-    background-size: contain; /* أو استخدم cover حسب تجربة الصورة */
+    background-size: cover; /* بدل contain */
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: center top; /* أو center center حسب شكل الصورة */
     background-attachment: scroll;
-    background-color: transparent !important; /* fallback لو الصورة تأخرت */
+    background-color: #1f2b1d; /* لون fallback غامق متناسق مع الصورة */
   }
 }
 
