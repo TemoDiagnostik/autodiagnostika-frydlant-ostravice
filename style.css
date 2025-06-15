@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: rgba(31, 43, 29, 0.85);
+  background-color: transparent !important;
   background-image: url('background.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -321,7 +321,7 @@ body {
     background-repeat: no-repeat;
     background-position: top center;
     background-attachment: scroll;
-    background-color: rgba(31, 43, 29, 0.85); /* fallback لو الصورة تأخرت */
+    background-color: transparent !important; /* fallback لو الصورة تأخرت */
   }
 }
 
