@@ -116,30 +116,26 @@ body {
 
 /* ==== Accordion ==== */
 .accordion-button {
-  background-color: #c9a86b;
-  color: #fff;
+  /* زر بدون خلفية صلبة مع ظل غامق لجعله واضحًا فوق أي صورة */
+  background: rgba(30, 30, 30, 0.55); /* ظل شفاف غامق */
+  color: #EBDBB1;
   border: none;
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 18px 24px;
+  font-size: 17px;
   font-weight: bold;
-  text-align: left;
-  width: fit-content;
-  min-width: 180px;
-  max-width: 350px; /* زيادة عرض الزر لتناسب المحتوى والهاتف */
-  cursor: pointer;
-  border-radius: 6px;
-  margin: 8px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35), 0 1.5px 3px rgba(0,0,0,0.21);
   display: flex;
   align-items: center;
-  gap: 10px;
-  transition: background-color 0.3s ease;
-  overflow: hidden;
-  box-sizing: border-box;
+  gap: 12px;
+  width: 100%;
+  transition: background 0.3s, box-shadow 0.3s;
+  text-align: left;
+  cursor: pointer;
 }
 
-.accordion-button:hover {
-  background-color: #b79058;
-}
+.accordion-button:hover, .accordion-button:focus {
+  background: rgba(30, 30, 30, 0.78); 
 
 .accordion-button img {
   width: 24px;
@@ -178,11 +174,20 @@ body {
   border-radius: 0 0 8px 8px;
   box-sizing: border-box;
 }
-
+box-shadow: 0 6px 32px rgba(0,0,0,0.45);{
+}
 .accordion-panel ul {
   padding: 10px 20px;
   list-style: disc;
   color: #f5e8c8;
+}
+.service-container {
+  max-width: 380px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 10px auto 18px auto;
+  background-color: transparent;
+  box-sizing: border-box;
 }
 
 .accordion-panel li,
@@ -320,15 +325,20 @@ body {
 }
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
+  body {
+    background-image: url('background-mobile.jpg');
+    background-size: cover; /* الصورة تملأ الشاشة دون تمدد غير طبيعي */
+    background-position: center center; /* الصورة في وسط الشاشة */
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-color: #1f2b1d;
+  }
+  /* يظل الكود الخاص بإزالة الخلفية من الديفات كما هو */
   div[style*="background-color: #1F2B1D"] {
     background-color: transparent !important;
     margin-bottom: 18px !important;
   }
-
-  /* تباعد بين جميع صناديق الخدمات */
-  div[style*="background-color: #1F2B1D"] {
-    margin-bottom: 18px !important;
-  }
+}
 
   /* تباعد إضافي بين البنلز (القابل للفتح) */
   .accordion-panel {
