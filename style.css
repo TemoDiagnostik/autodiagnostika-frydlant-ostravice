@@ -322,22 +322,20 @@ body {
     background-color: #1f2b1d;
   }
 
-  /* تباعد بين جميع صناديق الخدمات */
-  div[style*="background-color: #1F2B1D"] {
-    margin-bottom: 18px !important;
+  main, section, .service-container {
+    background-color: transparent !important;
   }
-
-  /* تباعد إضافي بين البنلز (القابل للفتح) */
-  .accordion-panel {
-    margin-bottom: 18px !important;
-  }
-
-  /* إزالة أي margin غير مرغوب فيه من العناصر الداخلية للأزرار */
-.accordion-button {
-  margin-bottom: 0 !important;
 }
-  .service-box {
-    max-width: 98vw;
-    margin-bottom: 18px !important;
+
+/* هذا الكود الخاص بأجهزة iPhone و iPad */
+@supports (-webkit-touch-callout: none) {
+  @media only screen and (max-width: 768px) {
+    html, body {
+      background-size: contain !important;
+      background-position: top center !important;
+      background-repeat: no-repeat !important;
+      background-attachment: scroll !important;
+      background-color: black !important;
+    }
   }
 }
