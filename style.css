@@ -320,7 +320,7 @@ body {
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-color: #0b0b0b; /* لتعبئة الفراغ إن وُجد */
+    background-color: #000; /* لتعبئة الفراغ إن وُجد */
   }
 
   /* إزالة أي خلفية داكنة من الديفات القديمة */
