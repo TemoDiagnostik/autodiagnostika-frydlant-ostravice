@@ -320,7 +320,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
     background-image: url('background-mobile.webp');
     background-size: 100vw 100vh;
     background-position: top center;
