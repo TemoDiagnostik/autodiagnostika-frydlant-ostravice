@@ -127,25 +127,19 @@ body {
   border: 1px solid #c9a86b;            /* إطار ذهبي موحّد */
   box-sizing: border-box;
 }
-.accordion-button {
-  background: rgba(30, 30, 30, 0.55);
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: rgba(0, 0, 0, 0.55); /* ← موحّد مع الزرار */
+  border: 1px solid #c9a86b;
+  padding: 14px 20px;
+  border-radius: 10px;
+  margin-top: 0px;          /* ← مسافة خفيفة بعد الزر */
+  margin-bottom: 16px;
   color: #EBDBB1;
-  border: none;
-  padding: 18px 24px;
-  font-size: 17px;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: none; /* ← حذف الإطار الزائد */
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  margin-bottom: 0; /* ← الأهم */
-  outline: none;
+  backdrop-filter: blur(2px); /* ← اختياري لو عايز فخامة */
 }
-
  .accordion-button:focus {
   outline: none;
   border: none;
