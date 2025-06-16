@@ -313,16 +313,15 @@ body {
 }
 
 /* ==== استجابة الهاتف المحمول ==== */
-@media only screen and (max-width: 768px) {
+media only screen and (max-width: 768px) {
   body {
-    background-image: url('background-mobile.png');
-    background-size: contain; /* الأفضل للموبايل */
-    background-position: top center;
+    background-image: url('background-mobile.jpg');
+    background-size: ontain;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-color: #000; /* لتعبئة الفراغ إن وُجد */
+  
   }
-
   /* إزالة أي خلفية داكنة من الديفات القديمة */
   div[style*="background-color: #1F2B1D"] {
     background-color: transparent !important;
