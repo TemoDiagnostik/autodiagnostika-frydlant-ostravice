@@ -146,8 +146,9 @@ body {
   outline: none;
 }
 
-  .accordion-button:focus {
+ .accordion-button:focus {
   outline: none;
+  border: none;
 }
 
 .accordion-button:hover, 
