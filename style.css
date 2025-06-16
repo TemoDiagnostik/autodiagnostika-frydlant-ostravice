@@ -314,12 +314,18 @@ body {
 
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
-  body {
+  html, body {
+    min-height: 100vh;
     background-image: url('background-mobile.webp');
-    background-size: contain;
+    background-size: cover; /* أو contain حسب تفضيلك */
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
+    background-color: black; /* أو transparent حسب المطلوب */
+  }
+
+  main, section, .service-container {
+    background-color: transparent !important;
   
   }
   /* إزالة أي خلفية داكنة من الديفات القديمة */
