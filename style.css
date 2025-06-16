@@ -128,7 +128,7 @@ body {
   box-sizing: border-box;
 }
 
-accordion-button {
+.accordion-button {
   background: transparent;
   color: #EBDBB1;
   border: none; /* ← إزالة أي حدود داخلية */
