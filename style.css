@@ -128,7 +128,7 @@ body {
   box-sizing: border-box;
 }
 .accordion-button {
-  background: rgba(30, 30, 30, 0.55); /* ظل غامق شفاف */
+  background: rgba(30, 30, 30, 0.55);
   color: #EBDBB1;
   border: none;
   padding: 18px 24px;
@@ -140,14 +140,12 @@ body {
   align-items: center;
   gap: 12px;
   width: 100%;
-  transition: background 0.3s, box-shadow 0.3s;
   text-align: left;
   cursor: pointer;
-  margin-bottom: 12;
-
-  min-height: 120px; /* ✅ الإضافة دي تضمن توحيد حجم الأزرار */
+  margin-bottom: 10px; /* ← مضبوط هنا */
+  outline: none;        /* ← تأكد منه */
+  border-bottom: none;  /* ← مهم جدًا */
 }
-
 .accordion-button:hover, 
 .accordion-button:focus {
   background: rgba(30, 30, 30, 0.78); 
