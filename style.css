@@ -127,6 +127,25 @@ body {
   border: 1px solid #c9a86b;            /* إطار ذهبي موحّد */
   box-sizing: border-box;
 }
+
+accordion-button {
+  background: transparent;
+  color: #EBDBB1;
+  border: none; /* ← إزالة أي حدود داخلية */
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: none;  /* ← لو فيه ظل إضافي باين */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
 .accordion-panel {
   max-height: 0;
   overflow: hidden;
