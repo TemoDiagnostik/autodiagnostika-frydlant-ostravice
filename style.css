@@ -313,29 +313,23 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-  body {
+  html, body {
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     background-image: url('background-mobile.webp');
-    background-size: auto 100vh; /* هكذا سيحكم ارتفاع الخلفية وتبقى نسبة العرض تلقائية */
+    background-size: 100vw 100vh;
+    background-position: top center;
     background-repeat: no-repeat;
-    background-position: center top;
     background-attachment: scroll;
-    background-color: #1f2b1d;
+    background-color: black;
   }
 
   main, section, .service-container {
     background-color: transparent !important;
-  }
-}
-
-/* هذا الكود الخاص بأجهزة iPhone و iPad */
-@supports (-webkit-touch-callout: none) {
-  @media only screen and (max-width: 768px) {
-    html, body {
-      background-size: contain !important;
-      background-position: top center !important;
-      background-repeat: no-repeat !important;
-      background-attachment: scroll !important;
-      background-color: black !important;
-    }
   }
 }
