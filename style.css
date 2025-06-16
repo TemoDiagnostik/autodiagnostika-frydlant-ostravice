@@ -135,16 +135,15 @@ body {
   font-size: 17px;
   font-weight: bold;
   border-radius: 8px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.35), 0 1.5px 3px rgba(0,0,0,0.21);
+  box-shadow: none; /* ← حذف الإطار الزائد */
   display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
   text-align: left;
   cursor: pointer;
-  margin-bottom: 10px; /* ← مضبوط هنا */
-  outline: none;        /* ← تأكد منه */
-  border-bottom: none;  /* ← مهم جدًا */
+  margin-bottom: 0; /* ← الأهم */
+  outline: none;
 }
 
   .accordion-button:focus {
