@@ -146,6 +146,11 @@ body {
   outline: none;        /* ← تأكد منه */
   border-bottom: none;  /* ← مهم جدًا */
 }
+
+  .accordion-button:focus {
+  outline: none;
+}
+
 .accordion-button:hover, 
 .accordion-button:focus {
   background: rgba(30, 30, 30, 0.78); 
