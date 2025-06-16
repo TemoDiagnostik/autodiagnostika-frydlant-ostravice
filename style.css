@@ -315,12 +315,11 @@ body {
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
   body {
-    background-image: url('background.jpg');
+    background-image: url('background-mobile.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-color: #1f2b1d;
   }
 
   /* إزالة أي خلفية داكنة من الديفات القديمة */
