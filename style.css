@@ -317,7 +317,7 @@ body {
   body {
     background-image: url('background-mobile.jpg');
     background-size: ontain;
-    background-position: Top center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
   
