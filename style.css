@@ -172,10 +172,10 @@ body {
   transition: max-height 0.4s ease;
   background-color: rgba(0, 0, 0, 0.55);
   border: 1px solid #c9a86b;
-  border-top: none; /* ← هذا السطر يحذف الخط اللي ظاهر */
+  border-top: none !important;   /* ← أوقف الخط العلوي */
   padding: 14px 20px;
   border-radius: 0 0 10px 10px;
-  margin-top: 0;
+  margin-top: 0 !important;
   margin-bottom: 16px;
   color: #EBDBB1;
   backdrop-filter: blur(2px);
