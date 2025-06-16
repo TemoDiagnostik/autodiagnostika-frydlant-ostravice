@@ -80,20 +80,23 @@ body {
 }
 
 .reservation-form button {
-  background: #000000;
-  color: #f5e8c8;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid #c9a86b;
+  color: #EBDBB1;
   font-weight: bold;
   cursor: pointer;
-  border: 2px solid #333;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  padding: 14px 20px;
+  font-size: 17px;
+  border-radius: 10px;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .reservation-form button:hover {
-  background-color: #333;
-  color: #fff8dc;
-  transform: translateY(-2px);
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  transform: scale(1.03);
 }
 
 .reservation-form select option {
