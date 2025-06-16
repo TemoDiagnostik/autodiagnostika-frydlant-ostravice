@@ -320,13 +320,9 @@ body {
 }
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
-  body {
-    background-image: url('background-mobile.jpg');
-    background-size: auto 100vh; /* هكذا سيحكم ارتفاع الخلفية وتبقى نسبة العرض تلقائية */
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: scroll;
-    background-color: #1f2b1d;
+  div[style*="background-color: #1F2B1D"] {
+    background-color: transparent !important;
+    margin-bottom: 18px !important;
   }
 
   /* تباعد بين جميع صناديق الخدمات */
