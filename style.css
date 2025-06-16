@@ -338,15 +338,15 @@ body {
   .accordion-panel {
     margin-bottom: 18px !important;
   }
+
+  /* إزالة أي margin غير مرغوب فيه من العناصر الداخلية للأزرار */
+.accordion-button {
+  margin-bottom: 0 !important;
 }
   .service-box {
     max-width: 98vw;
     margin-bottom: 18px !important;
   }
 }
-div[style*="background-color: #1F2B1D"] {
-  margin-bottom: 18px !important;
-}
-.accordion-panel {
-  margin-bottom: 18px !important;
-}
+
+
