@@ -315,7 +315,7 @@ body {
 /* ==== استجابة الهاتف المحمول ==== */
 @media only screen and (max-width: 768px) {
   body {
-    background-image: url('background-mobile.jpg');
+    background-image: url('background-mobile.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
