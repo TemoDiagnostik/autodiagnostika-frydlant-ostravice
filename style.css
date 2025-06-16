@@ -172,8 +172,9 @@ body {
   transition: max-height 0.4s ease;
   background-color: rgba(0, 0, 0, 0.55);
   border: 1px solid #c9a86b;
+  border-top: none; /* ← هذا السطر يحذف الخط اللي ظاهر */
   padding: 14px 20px;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   margin-top: 0;
   margin-bottom: 16px;
   color: #EBDBB1;
