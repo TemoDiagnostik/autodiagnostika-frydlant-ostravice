@@ -119,14 +119,14 @@ body {
 
 /* ==== Accordion زر الخدمة ==== */
 .service-container {
-  max-width: 380px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin: 10px auto 18px auto;
-  background-color: transparent;
+  max-width: 500px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin: 20px auto;
+  background-color: rgba(0, 0, 0, 0.55); /* شفافية غامقة أنيقة */
+  border: 1px solid #c9a86b;            /* إطار ذهبي موحّد */
   box-sizing: border-box;
 }
-
 .accordion-button {
   background: rgba(30, 30, 30, 0.55); /* ظل غامق شفاف */
   color: #EBDBB1;
