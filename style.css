@@ -312,7 +312,7 @@ body {
   color: #b00;
 }
 
-[14:44, 16.6.2025] Temo: @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg');
     background-size: auto 100vh; /* هكذا سيحكم ارتفاع الخلفية وتبقى نسبة العرض تلقائية */
@@ -341,4 +341,3 @@ body {
     margin-bottom: 18px !important;
   }
 }
-[14:44, 16.6.2025] Temo: @media only screen and (ma
