@@ -316,10 +316,11 @@ body {
 @media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.png');
-    background-size: cover;
-    background-position: center center;
+    background-size: contain; /* الأفضل للموبايل */
+    background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
+    background-color: #0b0b0b; /* لتعبئة الفراغ إن وُجد */
   }
 
   /* إزالة أي خلفية داكنة من الديفات القديمة */
