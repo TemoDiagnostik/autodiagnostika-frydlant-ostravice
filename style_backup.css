@@ -6,6 +6,7 @@ body {
   color: #c9a86b;
 }
 
+/* ==== الشريط العلوي ==== */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -102,11 +103,9 @@ body {
 .date-wrapper {
   position: relative;
 }
-
 .date-wrapper input {
   padding-right: 30px;
 }
-
 .date-arrow {
   position: absolute;
   right: 10px;
@@ -114,31 +113,39 @@ body {
   pointer-events: none;
 }
 
-/* ==== Accordion ==== */
-.accordion-button {
-  background-color: #c9a86b;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: left;
-  width: fit-content;
-  min-width: 180px;
-  max-width: 350px; /* زيادة عرض الزر لتناسب المحتوى والهاتف */
-  cursor: pointer;
-  border-radius: 6px;
-  margin: 8px auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background-color 0.3s ease;
-  overflow: hidden;
+/* ==== Accordion زر الخدمة ==== */
+.service-container {
+  max-width: 380px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 10px auto 18px auto;
+  background-color: transparent;
   box-sizing: border-box;
 }
 
-.accordion-button:hover {
-  background-color: #b79058;
+.accordion-button {
+  background: rgba(30, 30, 30, 0.55); /* ظل غامق شفاف */
+  color: #EBDBB1;
+  border: none;
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35), 0 1.5px 3px rgba(0,0,0,0.21);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  transition: background 0.3s, box-shadow 0.3s;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.accordion-button:hover, 
+.accordion-button:focus {
+  background: rgba(30, 30, 30, 0.78); 
+  box-shadow: 0 6px 32px rgba(0,0,0,0.45);
 }
 
 .accordion-button img {
@@ -184,7 +191,6 @@ body {
   list-style: disc;
   color: #f5e8c8;
 }
-
 .accordion-panel li,
 .accordion-panel p {
   font-size: 15px;
@@ -198,14 +204,12 @@ body {
   text-align: center;
   margin-top: 30px;
 }
-
 .about-label {
   color: #c9a86b;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 4px;
 }
-
 .about-toggle {
   background-color: transparent;
   border: none;
@@ -214,23 +218,19 @@ body {
   color: #c9a86b;
   transition: transform 0.3s ease;
 }
-
 .about-toggle:hover {
   transform: scale(1.2);
   color: #e0b76e;
 }
-
 .about-arrow {
   font-size: 14px;
   margin-left: 6px;
   vertical-align: middle;
   transition: transform 0.3s ease;
 }
-
 .about-toggle.open .about-arrow {
   transform: rotate(180deg);
 }
-
 .about-content {
   max-height: 0;
   overflow: hidden;
@@ -242,7 +242,6 @@ body {
   padding: 0 20px;
   border-radius: 10px;
 }
-
 .about-content.show {
   max-height: 500px;
   padding: 20px;
@@ -267,7 +266,6 @@ body {
   object-fit: cover;
   padding: 10px 20px;
 }
-
 .top-right {
   display: flex;
   gap: 20px;
@@ -284,13 +282,11 @@ body {
   margin-right: auto;
   box-sizing: border-box;
 }
-
 .service-text h3 {
   margin: 0;
   color: #E8D8B1;
   font-size: 20px;
 }
-
 .service-icon {
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
 }
@@ -304,47 +300,36 @@ body {
   border: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 .choices__list--dropdown .choices__item {
   background-color: white;
   color: black;
 }
-
 .choices__item--selectable.is-highlighted {
   background-color: #eee;
   color: #000;
 }
-
 .choices__button {
   color: #b00;
 }
-/* ==== استجابة الهاتف المحمول ==== */
+
 @media only screen and (max-width: 768px) {
-  body {
+  html, body {
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
     background-image: url('background-mobile.webp');
-    background-size: auto 100vh; /* هكذا سيحكم ارتفاع الخلفية وتبقى نسبة العرض تلقائية */
+    background-size: 100vw 100vh;
+    background-position: top center;
     background-repeat: no-repeat;
-    background-position: center top;
     background-attachment: scroll;
-    background-color: #1f2b1d;
+    background-color: black;
   }
 
-  /* تباعد بين جميع صناديق الخدمات */
-  div[style*="background-color: #1F2B1D"] {
-    margin-bottom: 18px !important;
-  }
-
-  /* تباعد إضافي بين البنلز (القابل للفتح) */
-  .accordion-panel {
-    margin-bottom: 18px !important;
-  }
-
-  /* إزالة أي margin غير مرغوب فيه من العناصر الداخلية للأزرار */
-.accordion-button {
-  margin-bottom: 0 !important;
-}
-  .service-box {
-    max-width: 98vw;
-    margin-bottom: 18px !important;
+  main, section, .service-container {
+    background-color: transparent !important;
   }
 }
