@@ -175,40 +175,6 @@ body {
   display: block;
   max-height: 1000px;
 }
-/* ==== Accordion زر الخدمة ==== */
-.service-container {
-  max-width: 500px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  margin: 20px auto;
-  background-color: rgba(0, 0, 0, 0.55); /* شفافية غامقة أنيقة */
-  border: 1px solid #c9a86b;            /* إطار ذهبي موحّد */
-  box-sizing: border-box;
-}
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  background-color: rgba(0, 0, 0, 0.55); /* ← موحّد مع الزرار */
-  border: 1px solid #c9a86b;
-  padding: 14px 20px;
-  border-radius: 10px;
-  margin-top: 0px;          /* ← مسافة خفيفة بعد الزر */
-  margin-bottom: 16px;
-  color: #EBDBB1;
-  backdrop-filter: blur(2px); /* ← اختياري لو عايز فخامة */
-}
- .accordion-button:focus {
-  outline: none;
-  border: none;
-}
-
-.accordion-button:hover, 
-.accordion-button:focus {
-  background: rgba(30, 30, 30, 0.78); 
-  box-shadow: 0 6px 32px rgba(0,0,0,0.45);
-}
-
 
 .accordion-panel ul {
   padding: 10px 20px;
