@@ -53,14 +53,15 @@ body {
 
 /* ==== نموذج الحجز ==== */
 .reservation-form {
-  background: rgba(31, 43, 29, 0.85);
+  background: rgba(0, 0, 0, 0.55); /* موحّد مع الأزرار */
   backdrop-filter: blur(3px);
   max-width: 500px;
   margin: 30px auto;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 25px; /* زوّد padding شوية */
+  border-radius: 12px;
+  border: 1px solid #c9a86b; /* نفس الإطار الذهبي */
   color: #EBDBB1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 
