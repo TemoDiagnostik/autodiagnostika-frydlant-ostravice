@@ -312,32 +312,19 @@ body {
   color: #b00;
 }
 
-/* ==== استجابة الهاتف المحمول ==== */
-@media only screen and (max-width: 768px) {
-  html, body {
-    min-height: 100vh;
-    background-image: url('background-mobile.webp');
-    background-size: cover; /* أو contain حسب تفضيلك */
-    background-position: top center;
+[14:44, 16.6.2025] Temo: @media only screen and (max-width: 768px) {
+  body {
+    background-image: url('background-mobile.jpg');
+    background-size: auto 100vh; /* هكذا سيحكم ارتفاع الخلفية وتبقى نسبة العرض تلقائية */
     background-repeat: no-repeat;
+    background-position: center top;
     background-attachment: scroll;
-    background-color: black; /* أو transparent حسب المطلوب */
+    background-color: #1f2b1d;
   }
 
-  main, section, .service-container {
-    background-color: transparent !important;
-  
-  }
-  /* إزالة أي خلفية داكنة من الديفات القديمة */
+  /* تباعد بين جميع صناديق الخدمات */
   div[style*="background-color: #1F2B1D"] {
-    background-color: transparent !important;
     margin-bottom: 18px !important;
-  }
-
-  /* زيادة تباعد الخدمة في الهواتف */
-  .service-container {
-    margin-bottom: 18px !important;
-    max-width: 98vw;
   }
 
   /* تباعد إضافي بين البنلز (القابل للفتح) */
@@ -346,9 +333,12 @@ body {
   }
 
   /* إزالة أي margin غير مرغوب فيه من العناصر الداخلية للأزرار */
-  .accordion-button {
-    margin-bottom: 0 !important;
-    font-size: 16px;
-    padding: 16px 14px;
+.accordion-button {
+  margin-bottom: 0 !important;
+}
+  .service-box {
+    max-width: 98vw;
+    margin-bottom: 18px !important;
   }
 }
+[14:44, 16.6.2025] Temo: @media only screen and (ma
