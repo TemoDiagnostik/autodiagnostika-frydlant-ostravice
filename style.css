@@ -180,16 +180,16 @@ body {
 }
 
 .accordion-panel {
-  background: rgba(31, 43, 29, 0.85);
-  backdrop-filter: blur(3px);
-  max-width: 500px;
-  margin: 0 auto 15px auto;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
-  padding: 10px 15px;
-  border-radius: 0 0 8px 8px;
-  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4);   /* موحّد مع الزرار */
+  border: 1px solid #c9a86b;
+  padding: 0 20px;
+  border-radius: 10px;
+  margin: 0 auto 20px auto;
+  color: #EBDBB1;
+  backdrop-filter: blur(2px); /* اختياري لإضافة فخامة خفيفة */
 }
 
 .accordion-panel ul {
