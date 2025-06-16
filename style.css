@@ -317,7 +317,7 @@ media only screen and (max-width: 768px) {
   body {
     background-image: url('background-mobile.jpg');
     background-size: ontain;
-    background-position: center center;
+    background-position: Top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
   
