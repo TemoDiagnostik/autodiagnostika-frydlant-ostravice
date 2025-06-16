@@ -140,6 +140,8 @@ body {
   text-align: left;
   cursor: pointer;
   margin-bottom: 0;
+
+  min-height: 120px; /* ✅ الإضافة دي تضمن توحيد حجم الأزرار */
 }
 
 .accordion-button:hover, 
