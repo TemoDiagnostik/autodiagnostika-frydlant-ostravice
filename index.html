@@ -279,48 +279,47 @@
 <div class="accordion-item">
   <button class="accordion-button">Rezervace termínu ▼</button>
   <div class="accordion-content">
-    <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
-      <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
-        <label for="brandSelect">Značka vozu</label>
-        <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
-          <option disabled selected>Vyberte značku</option>
-        </select>
+    <form class="reservation-form" style="max-width: 380px; margin: 0 auto;" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+    
+      <label for="brandSelect">Značka vozu</label>
+      <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
+        <option disabled selected>Vyberte značku</option>
+      </select>
 
-        <label for="modelSelect">Model vozu</label>
-        <select id="modelSelect" name="Model vozu" required>
-          <option disabled selected>Vyberte model</option>
-        </select>
+      <label for="modelSelect">Model vozu</label>
+      <select id="modelSelect" name="Model vozu" required>
+        <option disabled selected>Vyberte model</option>
+      </select>
 
-        <label for="engineSelect">Objem motoru</label>
-        <select id="engineSelect" name="Objem motoru" required>
-          <option disabled selected>Vyberte objem</option>
-        </select>
+      <label for="engineSelect">Objem motoru</label>
+      <select id="engineSelect" name="Objem motoru" required>
+        <option disabled selected>Vyberte objem</option>
+      </select>
 
-        <label for="clientName">Jméno a příjmení</label>
-        <input type="text" name="clientName" id="clientName" required placeholder="Zadejte své jméno">
+      <label for="clientName">Jméno a příjmení</label>
+      <input type="text" name="clientName" id="clientName" required placeholder="Zadejte své jméno">
 
-        <label for="clientEmail">E-mail</label>
-        <input type="email" name="clientEmail" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+      <label for="clientEmail">E-mail</label>
+      <input type="email" name="clientEmail" id="clientEmail" required placeholder="Zadejte svůj e-mail">
 
-        <label for="clientPhone">Telefon</label>
-        <input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+      <label for="clientPhone">Telefon</label>
+      <input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
-        <label for="vin">VIN kód vozidla</label>
-        <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
+      <label for="vin">VIN kód vozidla</label>
+      <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
 
-        <label for="note">Důvod návštěvy</label>
-        <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
+      <label for="note">Důvod návštěvy</label>
+      <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
 
-        <label for="date">Datum</label>
-        <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
+      <label for="date">Datum</label>
+      <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
 
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-        <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+      <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
 
-        <button type="submit">Odeslat</button>
-      </form>
-    </section>
+      <button type="submit">Odeslat</button>
+    </form>
   </div>
 </div>
 <!-- زر O mně -->
