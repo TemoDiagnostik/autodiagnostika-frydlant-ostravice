@@ -331,6 +331,7 @@ body {
 
 
 /* ==== موبايل ==== */
+/* ==== موبايل ==== */
 @media only screen and (max-width: 768px) {
   html, body {
     min-height: 100vh;
@@ -347,13 +348,16 @@ body {
     background-attachment: scroll;
     background-color: black;
   }
- .service-text h3 {
+
+  .service-text h3 {
     font-size: 28px;
-   } 
+  }
+
   main, section, .service-container {
     background-color: transparent !important;
   }
- /* تصغير حجم الزر */
+
+  /* تصغير حجم الزر وتظليله */
   .accordion-button {
     box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.25);  /* تظليل الزر */
     padding: 8px 10px;
@@ -363,21 +367,17 @@ body {
     gap: 6px;
   }
 
- 
   /* تكبير عنوان الزر */
   .service-button span:first-of-type {
-    font-size: 17px; /* تكبير عنوان الزر */
+    font-size: 17px;
     font-weight: bold;
   }
 
-
- 
   /* الجملة التوضيحية تبقى صغيرة */
   .service-button span:nth-of-type(2) {
     font-size: 13px;
     font-weight: normal;
   }
-
 
   .accordion-panel {
     font-size: 14px;
@@ -401,6 +401,7 @@ body {
   }
 }
 
+/* ==== ديسكتوب ==== */
 @media only screen and (min-width: 769px) {
   .service-text h3 {
     font-size: 30px;
