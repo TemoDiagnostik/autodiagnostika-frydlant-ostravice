@@ -349,9 +349,7 @@ body {
   main, section, .service-container {
     background-color: transparent !important;
   }
-}
 
-@media only screen and (max-width: 768px) {
   .accordion-button .service-button {
     padding: 10px 12px;
     gap: 6px;
