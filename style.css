@@ -353,7 +353,7 @@ body {
 
   .accordion-button {
     padding: 8px 10px;
-    box-shadow: 0 0 14px 3px rgba(235, 219, 177, 0.55); /* ظل الزر */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);/* ظل الزر */
     border-radius: 12px;
   }
 
