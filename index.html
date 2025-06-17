@@ -279,8 +279,7 @@
 <div class="accordion-item">
   <button class="accordion-button">Rezervace termínu ▼</button>
   <div class="accordion-content">
-    <form class="reservation-form" style="max-width: 380px; margin: 0 auto;" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
-    
+    <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" style="max-width: 380px; margin: 0 auto;">
       <label for="brandSelect">Značka vozu</label>
       <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
         <option disabled selected>Vyberte značku</option>
@@ -303,7 +302,7 @@
       <input type="email" name="clientEmail" id="clientEmail" required placeholder="Zadejte svůj e-mail">
 
       <label for="clientPhone">Telefon</label>
-      <input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+      <input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">
 
       <label for="vin">VIN kód vozidla</label>
       <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
@@ -318,7 +317,7 @@
       <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
       <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
 
-      <button type="submit">Odeslat</button>
+      <button type="submit" style="margin-top: 10px;">Odeslat</button>
     </form>
   </div>
 </div>
