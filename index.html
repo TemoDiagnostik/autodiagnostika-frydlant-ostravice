@@ -419,608 +419,714 @@
 <!-- 1. carData: قائمة السيارات -->
 <script>
   const carData = {
-    "Acura": {
-      "Integra": ["1.5L", "2.0L"],
-      "TLX": ["2.0L", "3.0L"],
-      "RDX": ["2.0L"],
-      "MDX": ["3.5L", "3.0L"],
-      "ZDX": ["Electric"]
-    },
-  "Alfa Romeo": {
-    "Giulia": ["2.0L", "2.9L"],
-    "Stelvio": ["2.0L", "2.9L"],
-    "Tonale": ["1.3L", "1.5L", "2.0L"]
-  },
-  "Aston Martin": {
-    "Vantage": ["4.0L"],
-    "DB12": ["4.0L"],
-    "DBX": ["4.0L"]
-  },
-  "Audi": {
-    "A3": ["1.0L", "1.5L", "2.0L", "2.5L"],
-    "A4": ["2.0L", "2.9L", "3.0L"],
-    "A5": ["2.0L", "2.9L", "3.0L"],
-    "A6": ["2.0L", "2.9L", "4.0L"],
-    "A7": ["3.0L", "4.0L"],
-    "A8": ["3.0L", "4.0L"],
-    "Q2": ["1.0L", "1.5L", "2.0L"],
-    "Q3": ["1.5L", "2.0L", "2.5L"],
-    "Q4 e-tron": ["Electric"],
-    "Q5": ["2.0L", "3.0L"],
-    "Q7": ["3.0L", "4.0L"],
-    "Q8": ["3.0L", "4.0L"],
-    "e-tron GT": ["Electric"],
-    "R8": ["5.2L"]
-  },
-  "Bentley": {
-    "Continental GT": ["4.0L", "6.0L"],
-    "Flying Spur": ["4.0L", "6.0L"],
-    "Bentayga": ["3.0L", "4.0L", "6.0L"]
-  },
-  "BMW": {
-    "1 Series": ["1.5L", "2.0L"],
-    "2 Series": ["1.5L", "2.0L", "3.0L"],
-    "3 Series": ["1.5L", "2.0L", "3.0L"],
-    "4 Series": ["2.0L", "3.0L"],
-    "5 Series": ["2.0L", "3.0L", "4.4L"],
-    "7 Series": ["3.0L", "4.4L", "Electric"],
-    "8 Series": ["3.0L", "4.4L"],
-    "X1": ["1.5L", "2.0L", "Electric"],
-    "X2": ["1.5L", "2.0L"],
-    "X3": ["2.0L", "3.0L", "Electric"],
-    "X4": ["2.0L", "3.0L"],
-    "X5": ["3.0L", "4.4L"],
-    "X6": ["3.0L", "4.4L"],
-    "X7": ["3.0L", "4.4L"],
-    "i4": ["Electric"],
-    "iX": ["Electric"]
-  },
-  "Bugatti": {
-    "Chiron": ["8.0L"]
-  },
-  "Buick": {
-    "Encore GX": ["1.2L", "1.3L"],
-    "Envista": ["1.2L"],
-    "Envision": ["2.0L"],
-    "Enclave": ["3.6L"],
-    "LaCrosse": ["2.0L"],
-    "Regal": ["2.0L"],
-    "GL8": ["2.0L"],
-    "Verano": ["1.5L"]
-  },
-  "BYD": {
-    "Dolphin": ["Electric"],
-    "Seal": ["Electric"],
-    "Atto 3": ["Electric"],
-    "Han": ["Electric"],
-    "Tang": ["Electric"]
-  },
-  "Cadillac": {
-    "CT4": ["2.0L", "2.7L", "3.6L"],
-    "CT5": ["2.0L", "3.0L", "6.2L"],
-    "CT6": ["2.0L"],
-    "XT4": ["2.0L"],
-    "XT5": ["2.0L", "3.6L"],
-    "XT6": ["2.0L", "3.6L"],
-    "Escalade": ["3.0L", "6.2L"],
-    "Lyriq": ["Electric"],
-    "Celestiq": ["Electric"]
-  },
-  "Chevrolet": {
-    "Malibu": ["1.5L", "2.0L"],
-    "Camaro": ["2.0L", "3.6L", "6.2L"],
-    "Corvette": ["5.5L", "6.2L"],
-    "Bolt EV": ["Electric"],
-    "Bolt EUV": ["Electric"],
-    "Trailblazer": ["1.2L", "1.3L"],
-    "Trax": ["1.2L"],
-    "Equinox": ["1.5L", "2.0L"],
-    "Blazer": ["2.0L", "3.6L"],
-    "Blazer EV": ["Electric"],
-    "Traverse": ["3.6L"],
-    "Tahoe": ["3.0L", "5.3L", "6.2L"],
-    "Suburban": ["3.0L", "5.3L", "6.2L"],
-    "Colorado": ["2.7L"],
-    "Silverado 1500": ["2.7L", "3.0L", "5.3L", "6.2L"],
-    "Silverado HD": ["6.6L"],
-    "Silverado EV": ["Electric"],
-    "Equinox EV": ["Electric"]
-  },
-  "Chrysler": {
-    "300": ["3.6L", "5.7L"],
-    "Pacifica": ["3.6L"]
-  },
-  "Citroën": {
-    "C3": ["1.2L"],
-    "C3 Aircross": ["1.2L"],
-    "C4": ["1.2L", "Electric"],
-    "C5 X": ["1.6L"],
-    "C5 Aircross": ["1.6L"]
-  },
-  "Cupra": {
-    "Formentor": ["1.5L", "2.0L", "2.5L"],
-    "Leon": ["1.4L", "2.0L"],
-    "Born": ["Electric"],
-    "Ateca": ["2.0L"],
-    "Tavascan": ["Electric"]
-  },
-  "Dacia": {
-    "Spring": ["Electric"],
-    "Sandero": ["1.0L"],
-    "Logan": ["1.0L"],
-    "Duster": ["1.0L", "1.3L"],
-    "Jogger": ["1.0L"]
-  },
-  "Daihatsu": {
-    "Mira": ["0.66L"],
-    "Tanto": ["0.66L"],
-    "Move": ["0.66L"],
-    "Taft": ["0.66L"],
-    "Rocky": ["1.0L"],
-    "Boon": ["1.0L"],
-    "Thor": ["1.0L"],
-    "Terios": ["1.5L"],
-    "Sigra": ["1.0L", "1.2L"],
-    "Xenia": ["1.3L", "1.5L"]
-  },
-  "Dodge": {
-    "Challenger": ["3.6L", "5.7L", "6.2L", "6.4L"],
-    "Charger": ["3.6L", "5.7L", "6.2L", "6.4L"],
-    "Durango": ["3.6L", "5.7L", "6.4L"],
-    "Hornet": ["1.3L", "2.0L"]
-  },
-  "Ferrari": {
-    "SF90 Stradale": ["4.0L"],
-    "296 GTB": ["3.0L"],
-    "Roma": ["3.9L"],
-    "Portofino": ["3.9L"],
-    "Purosangue": ["6.5L"]
-  },
-  "Fiat": {
-    "500": ["0.9L", "1.0L", "Electric"],
-    "Panda": ["0.9L", "1.0L"],
-    "Tipo": ["1.0L", "1.4L"],
-    "500X": ["1.3L", "1.6L"],
-    "500L": ["1.4L"]
-  },
-  "Ford": {
-    "Fiesta": ["1.0L", "1.5L"],
-    "Focus": ["1.0L", "1.5L", "2.3L"],
-    "Mondeo": ["1.5L", "2.0L"],
-    "Mustang": ["2.3L", "5.0L"],
-    "Mustang Mach-E": ["Electric"],
-    "Puma": ["1.0L"],
-    "Escape": ["1.5L", "2.0L", "2.5L"],
-    "Bronco Sport": ["1.5L", "2.0L"],
-    "Bronco": ["2.3L", "2.7L"],
-    "Edge": ["2.0L", "2.7L"],
-    "Explorer": ["2.3L", "3.0L", "3.3L"],
-    "Expedition": ["3.5L"],
-    "Maverick": ["2.0L", "2.5L"],
-    "Ranger": ["2.3L", "3.0L"],
-    "F-150": ["2.7L", "3.3L", "3.5L", "5.0L", "Electric"],
-    "F-Series Super Duty": ["6.7L", "6.8L", "7.3L"]
-  },
-  "Genesis": {
-    "G70": ["2.0L", "3.3L"],
-    "G80": ["2.5L", "3.5L", "Electric"],
-    "G90": ["3.5L"],
-    "GV60": ["Electric"],
-    "GV70": ["2.5L", "3.5L", "Electric"],
-    "GV80": ["2.5L", "3.5L"]
-  },
-  "GMC": {
-    "Terrain": ["1.5L"],
-    "Acadia": ["2.0L", "3.6L"],
-    "Yukon": ["3.0L", "5.3L", "6.2L"],
-    "Yukon XL": ["3.0L", "5.3L", "6.2L"],
-    "Canyon": ["2.7L"],
-    "Sierra 1500": ["2.7L", "3.0L", "5.3L", "6.2L"],
-    "Sierra HD": ["6.6L"],
-    "Hummer EV": ["Electric"],
-    "Sierra EV": ["Electric"]
-  },
-  "Great Wall": {
-    "Haval H6": ["1.5L", "2.0L"],
-    "Haval Jolion": ["1.5L"],
-    "Haval Big Dog": ["1.5L", "2.0L"],
-    "Wingle": ["2.0L"],
-    "Tank 300": ["2.0L"],
-    "Tank 500": ["3.0L"],
-    "ORA Good Cat": ["Electric"]
-  },
-  "Honda": {
-    "Civic": ["1.5L", "2.0L"],
-    "Accord": ["1.5L", "2.0L"],
-    "City": ["1.5L"],
-    "Amaze": ["1.2L", "1.5L"],
-    "Fit": ["1.3L", "1.5L"],
-    "HR-V": ["1.5L"],
-    "ZR-V": ["1.5L", "2.0L"],
-    "CR-V": ["1.5L", "2.0L"],
-    "Pilot": ["3.5L"],
-    "Odyssey": ["2.4L", "3.5L"],
-    "Freed": ["1.5L"],
-    "BR-V": ["1.5L"],
-    "N-Box": ["0.66L"],
-    "Ridgeline": ["3.5L"]
-  },
-  "Hyundai": {
-    "Accent": ["1.5L"],
-    "Elantra": ["1.6L", "2.0L"],
-    "i30": ["1.0L", "1.5L", "2.0L"],
-    "Sonata": ["1.6L", "2.5L"],
-    "Grandeur": ["2.5L", "3.5L"],
-    "Venue": ["1.6L"],
-    "Kona": ["1.6L", "Electric"],
-    "Creta": ["1.5L"],
-    "Tucson": ["1.6L", "2.5L"],
-    "Santa Fe": ["1.6L", "2.5L"],
-    "Palisade": ["3.8L"],
-    "Ioniq 5": ["Electric"],
-    "Ioniq 6": ["Electric"]
-  },
-  "Infiniti": {
-    "Q50": ["3.0L"],
-    "Q60": ["3.0L"],
-    "QX50": ["2.0L"],
-    "QX55": ["2.0L"],
-    "QX60": ["3.5L"],
-    "QX80": ["5.6L"]
-  },
-  "Isuzu": {
-    "D-Max": ["1.9L", "3.0L"],
-    "MU-X": ["1.9L", "3.0L"]
-  },
-  "Jaguar": {
-    "XE": ["2.0L"],
-    "XF": ["2.0L"],
-    "F-Type": ["5.0L"],
-    "E-Pace": ["2.0L"],
-    "F-Pace": ["2.0L", "3.0L", "5.0L"],
-    "I-Pace": ["Electric"]
-  },
-  "Jeep": {
-    "Renegade": ["1.3L", "2.4L"],
-    "Compass": ["1.3L", "2.0L", "2.4L"],
-    "Cherokee": ["2.4L", "3.2L"],
-    "Grand Cherokee": ["3.6L", "5.7L", "6.4L"],
-    "Wagoneer": ["3.0L", "5.7L", "6.4L"],
-    "Wrangler": ["2.0L", "3.6L", "6.4L"],
-    "Gladiator": ["3.6L"]
-  },
-  "Kia": {
-    "Rio": ["1.6L"],
-    "Picanto": ["1.0L", "1.2L"],
-    "Ceed": ["1.0L", "1.5L", "1.6L"],
-    "Forte": ["2.0L"],
-    "Stinger": ["2.0L", "3.3L"],
-    "K5": ["1.6L", "2.5L"],
-    "Sportage": ["1.6L", "2.5L"],
-    "Sorento": ["2.5L"],
-    "Seltos": ["1.6L", "2.0L"],
-    "Telluride": ["3.8L"],
-    "Carnival": ["3.5L"],
-    "Niro": ["1.6L", "Electric"],
-    "EV6": ["Electric"],
-    "EV9": ["Electric"]
-  },
-  "Koenigsegg": {
-    "Jesko": ["5.0L"],
-    "Gemera": ["2.0L"]
-  },
-  "Lamborghini": {
-    "Revuelto": ["6.5L"],
-    "Huracán": ["5.2L"],
-    "Urus": ["4.0L"]
-  },
-  "Land Rover": {
-    "Range Rover": ["3.0L", "4.4L"],
-    "Range Rover Sport": ["3.0L", "4.4L"],
-    "Range Rover Velar": ["2.0L", "3.0L"],
-    "Range Rover Evoque": ["2.0L"],
-    "Discovery": ["3.0L"],
-    "Discovery Sport": ["2.0L"],
-    "Defender": ["2.0L", "3.0L", "5.0L"]
-  },
-  "Lexus": {
-    "IS": ["2.0L", "3.5L"],
-    "ES": ["2.5L", "3.5L"],
-    "LS": ["3.4L", "3.5L"],
-    "UX": ["2.0L", "Electric"],
-    "NX": ["2.4L", "2.5L"],
-    "RX": ["2.4L", "2.5L", "3.5L"],
-    "GX": ["4.6L"],
-    "LX": ["3.5L"],
-    "RC": ["2.0L", "3.5L", "5.0L"],
-    "LC": ["3.5L", "5.0L"]
-  },
-  "Lincoln": {
-    "Corsair": ["2.0L", "2.3L", "2.5L"],
-    "Nautilus": ["2.0L", "2.7L"],
-    "Aviator": ["3.0L"],
-    "Navigator": ["3.5L"]
-  },
-  "Lucid": {
-    "Air": ["Electric"]
-  },
-  "Mahindra": {
-    "XUV300": ["1.2L"],
-    "XUV400": ["Electric"],
-    "XUV700": ["2.0L"],
-    "Scorpio-N": ["2.0L"],
-    "Thar": ["2.0L"]
-  },
-  "Maserati": {
-    "Ghibli": ["3.0L", "3.8L"],
-    "Quattroporte": ["3.0L", "3.8L"],
-    "Levante": ["3.0L", "3.8L"],
-    "MC20": ["3.0L"],
-    "Grecale": ["2.0L", "3.0L"],
-    "GranTurismo": ["3.0L", "Electric"]
-  },
-  "Mazda": {
-    "Mazda2": ["1.5L"],
-    "Mazda3": ["2.0L", "2.5L"],
-    "Mazda6": ["2.5L"],
-    "MX-5": ["1.5L", "2.0L"],
-    "MX-30": ["Electric"],
-    "CX-30": ["2.5L"],
-    "CX-5": ["2.5L"],
-    "CX-50": ["2.5L"],
-    "CX-60": ["2.5L", "3.3L"],
-    "CX-90": ["3.3L"],
-    "CX-9": ["2.5L"]
-  },
-  "McLaren": {
-    "Artura": ["3.0L"],
-    "750S": ["4.0L"],
-    "GT": ["4.0L"]
-  },
-  "Mercedes-Benz": {
-    "A-Class": ["1.3L", "2.0L"],
-    "B-Class": ["1.3L", "2.0L"],
-    "C-Class": ["2.0L", "4.0L"],
-    "E-Class": ["2.0L", "3.0L", "4.0L"],
-    "S-Class": ["3.0L", "4.0L", "6.0L"],
-    "CLA": ["1.3L", "2.0L"],
-    "CLS": ["3.0L"],
-    "SL": ["4.0L"],
-    "AMG GT 4-Door": ["3.0L", "4.0L"],
-    "AMG GT": ["4.0L"],
-    "GLA": ["1.3L", "2.0L"],
-    "GLB": ["1.3L", "2.0L"],
-    "GLC": ["2.0L", "4.0L"],
-    "GLE": ["3.0L", "4.0L"],
-    "GLS": ["3.0L", "4.0L"],
-    "G-Class": ["4.0L"],
-    "EQA": ["Electric"],
-    "EQB": ["Electric"],
-    "EQC": ["Electric"],
-    "EQE": ["Electric"],
-    "EQS": ["Electric"]
-  },
-  "MG": {
-    "MG3": ["1.5L"],
-    "MG5": ["Electric"],
-    "MG4": ["Electric"],
-    "MG ZS": ["1.5L", "Electric"],
-    "MG HS": ["1.5L"],
-    "MG7": ["2.0L"],
-    "Hector": ["1.5L"]
-  },
-  "Mini": {
-    "Cooper": ["1.5L", "2.0L", "Electric"],
-    "Clubman": ["1.5L", "2.0L"],
-    "Countryman": ["1.5L", "2.0L", "Electric"]
-  },
-  "Mitsubishi": {
-    "Mirage": ["1.2L"],
-    "Attrage": ["1.2L"],
-    "ASX": ["2.0L", "2.4L"],
-    "Outlander": ["2.4L", "2.5L"],
-    "Eclipse Cross": ["1.5L"],
-    "Xpander": ["1.5L"]
-  },
-  "NIO": {
-    "ET5": ["Electric"],
-    "ET7": ["Electric"],
-    "ES6": ["Electric"],
-    "ES7": ["Electric"],
-    "ES8": ["Electric"]
-  },
-  "Nissan": {
-    "Versa": ["1.6L"],
-    "Note": ["1.2L"],
-    "Sentra": ["1.6L", "2.0L"],
-    "Altima": ["2.0L", "2.5L"],
-    "Maxima": ["3.5L"],
-    "GT-R": ["3.8L"],
-    "Z": ["3.0L"],
-    "Leaf": ["Electric"],
-    "Ariya": ["Electric"],
-    "Kicks": ["1.6L"],
-    "Juke": ["1.0L"],
-    "Qashqai": ["1.3L", "1.5L"],
-    "Rogue": ["1.5L", "2.5L"],
-    "Murano": ["3.5L"],
-    "Pathfinder": ["3.5L"],
-    "Patrol": ["5.6L"],
-    "Frontier": ["3.8L"],
-    "Titan": ["5.6L"]
-  },
-  "Opel": {
-    "Corsa": ["1.2L", "Electric"],
-    "Astra": ["1.2L", "1.6L"],
-    "Insignia": ["2.0L"],
-    "Crossland": ["1.2L"],
-    "Mokka": ["1.2L", "Electric"],
-    "Grandland": ["1.2L", "1.6L"]
-  },
-  "Pagani": {
-    "Huayra": ["6.0L"],
-    "Utopia": ["6.0L"]
-  },
-  "Peugeot": {
-    "208": ["1.2L", "Electric"],
-    "308": ["1.2L", "1.6L"],
-    "508": ["1.6L"],
-    "2008": ["1.2L", "Electric"],
-    "3008": ["1.2L", "1.6L"],
-    "5008": ["1.2L", "1.6L"],
-    "408": ["1.2L", "1.6L"]
-  },
-  "Polestar": {
-    "Polestar 2": ["Electric"],
-    "Polestar 3": ["Electric"],
-    "Polestar 4": ["Electric"]
-  },
-  "Porsche": {
-    "718": ["2.0L", "2.5L", "4.0L"],
-    "911": ["3.0L", "4.0L"],
-    "Taycan": ["Electric"],
-    "Panamera": ["2.9L", "4.0L"],
-    "Macan": ["2.0L", "2.9L"],
-    "Cayenne": ["3.0L", "4.0L"]
-  },
-  "Ram": {
-    "1500": ["3.6L", "5.7L", "6.2L"],
-    "Heavy Duty": ["6.4L", "6.7L"]
-  },
-  "Renault": {
-    "Clio": ["1.0L", "1.6L"],
-    "Zoe": ["Electric"],
-    "Megane": ["1.3L", "Electric"],
-    "Arkana": ["1.3L"],
-    "Captur": ["1.0L", "1.3L"],
-    "Austral": ["1.2L", "1.3L"],
-    "Koleos": ["2.5L"],
-    "Kwid": ["1.0L"]
-  },
-  "Rivian": {
-    "R1T": ["Electric"],
-    "R1S": ["Electric"]
-  },
-  "Rolls-Royce": {
-    "Phantom": ["6.75L"],
-    "Ghost": ["6.75L"],
-    "Spectre": ["Electric"],
-    "Cullinan": ["6.75L"]
-  },
-  "Seat": {
-    "Ibiza": ["1.0L", "1.5L"],
-    "Leon": ["1.0L", "1.5L", "2.0L"],
-    "Arona": ["1.0L"],
-    "Ateca": ["1.5L", "2.0L"],
-    "Tarraco": ["1.5L", "2.0L"]
-  },
-  "Skoda": {
-    "Fabia": ["1.0L", "1.5L"],
-    "Octavia": ["1.0L", "1.5L", "2.0L"],
-    "Superb": ["1.5L", "2.0L"],
-    "Scala": ["1.0L", "1.5L"],
-    "Kamiq": ["1.0L", "1.5L"],
-    "Karoq": ["1.5L", "2.0L"],
-    "Kodiaq": ["1.5L", "2.0L"],
-    "Enyaq": ["Electric"]
-  },
-  "Smart": {
-    "Fortwo": ["Electric"],
-    "#1": ["Electric"]
-  },
-  "Subaru": {
-    "Impreza": ["2.0L"],
-    "WRX": ["2.4L"],
-    "Legacy": ["2.4L", "2.5L"],
-    "Outback": ["2.4L", "2.5L"],
-    "Forester": ["2.5L"],
-    "Crosstrek": ["2.0L", "2.5L"],
-    "Ascent": ["2.4L"],
-    "BRZ": ["2.4L"]
-  },
-  "Suzuki": {
-    "Alto": ["0.66L"],
-    "Swift": ["1.2L", "1.4L"],
-    "Ignis": ["1.2L"],
-    "Ciaz": ["1.5L"],
-    "Vitara": ["1.4L"],
-    "S-Cross": ["1.4L"],
-    "Jimny": ["1.5L"],
-    "Ertiga": ["1.5L"],
-    "XL7": ["1.5L"],
-    "Grand Vitara": ["1.5L"]
-  },
-  "Tata": {
-    "Tiago": ["1.2L"],
-    "Tigor": ["1.2L"],
-    "Altroz": ["1.2L"],
-    "Punch": ["1.2L"],
-    "Nexon": ["1.2L", "Electric"]
-  },
-  "Tesla": {
-    "Model S": ["Electric"],
-    "Model 3": ["Electric"],
-    "Model X": ["Electric"],
-    "Model Y": ["Electric"]
-  },
-  "Toyota": {
-    "Corolla": ["1.6L", "1.8L", "2.0L"],
-    "Camry": ["2.0L", "2.5L", "3.5L"],
-    "Yaris": ["1.0L", "1.5L", "1.6L"],
-    "Avalon": ["2.5L", "3.5L"],
-    "Crown": ["2.4L", "2.5L"],
-    "Prius": ["1.8L", "2.0L"],
-    "Mirai": ["Electric"],
-    "Supra": ["2.0L", "3.0L"],
-    "GR86": ["2.4L"],
-    "C-HR": ["1.8L", "2.0L"],
-    "Corolla Cross": ["1.8L", "2.0L"],
-    "RAV4": ["2.0L", "2.5L"],
-    "Highlander": ["2.4L", "2.5L", "3.5L"],
-    "Grand Highlander": ["2.4L", "2.5L"],
-    "4Runner": ["4.0L"],
-    "Sequoia": ["3.5L"],
-    "Fortuner": ["2.4L", "2.7L", "2.8L", "4.0L"],
-    "Land Cruiser": ["3.3L", "3.5L", "4.0L"],
-    "Land Cruiser Prado": ["2.7L", "2.8L", "4.0L"],
-    "Hilux": ["2.4L", "2.7L", "4.0L"],
-    "Tacoma": ["2.4L", "3.5L"],
-    "Tundra": ["3.4L"],
-    "Sienna": ["2.5L"],
-    "Alphard": ["2.4L", "2.5L"],
-    "Innova": ["2.0L"],
-    "Avanza": ["1.3L", "1.5L"],
-    "bZ3": ["Electric"],
-    "bZ4X": ["Electric"]
-  },
-  "Volkswagen": {
-    "Up": ["1.0L"],
-    "Polo": ["1.0L", "2.0L"],
-    "Golf": ["1.0L", "1.5L", "2.0L"],
-    "Jetta": ["1.4L", "2.0L"],
-    "Passat": ["1.5L", "2.0L"],
-    "Arteon": ["2.0L"],
-    "T-Cross": ["1.0L", "1.5L"],
-    "T-Roc": ["1.0L", "1.5L", "2.0L"],
-    "Tiguan": ["1.5L", "2.0L"],
-    "Touareg": ["3.0L"],
-    "Atlas": ["2.0L", "3.6L"],
-    "ID.3": ["Electric"],
-    "ID.4": ["Electric"],
-    "ID.5": ["Electric"],
-    "ID. Buzz": ["Electric"]
-  },
-  "Volvo": {
-    "XC40": ["2.0L", "Electric"],
-    "C40": ["Electric"],
-    "XC60": ["2.0L"],
-    "XC90": ["2.0L"],
-    "S60": ["2.0L"],
-    "V60": ["2.0L"],
-    "S90": ["2.0L"],
-    "V90": ["2.0L"],
-    "EX90": ["Electric"]
-  }
+
+"Acura": {
+  "Integra": ["1.5L", "2.0L"],
+  "TLX": ["2.0L", "3.0L"],
+  "RDX": ["2.0L"],
+  "MDX": ["3.5L", "3.0L"],
+  "ZDX": ["Electric"],
+  "ILX": ["2.4L"],
+  "NSX": ["3.5L"]
+},
+"Alfa Romeo": {
+  "Giulia": ["2.0L", "2.9L"],
+  "Stelvio": ["2.0L", "2.9L"],
+  "Tonale": ["1.3L", "1.5L", "2.0L"],
+  "MiTo": ["0.9L", "1.4L"],
+  "Giulietta": ["1.4L", "1.6L", "2.0L"]
+},
+"Aston Martin": {
+  "Vantage": ["4.0L"],
+  "DB12": ["4.0L"],
+  "DBX": ["4.0L"],
+  "DB11": ["4.0L", "5.2L"]
+},
+"Audi": {
+  "A3": ["1.0L", "1.5L", "2.0L", "2.5L"],
+  "A4": ["2.0L", "2.9L", "3.0L"],
+  "A5": ["2.0L", "2.9L", "3.0L"],
+  "A6": ["2.0L", "2.9L", "4.0L"],
+  "A7": ["3.0L", "4.0L"],
+  "A8": ["3.0L", "4.0L"],
+  "Q2": ["1.0L", "1.5L", "2.0L"],
+  "Q3": ["1.5L", "2.0L", "2.5L"],
+  "Q4 e-tron": ["Electric"],
+  "Q5": ["2.0L", "3.0L"],
+  "Q7": ["3.0L", "4.0L"],
+  "Q8": ["3.0L", "4.0L"],
+  "e-tron GT": ["Electric"],
+  "R8": ["5.2L"],
+  "TT": ["2.0L", "2.5L"]
+},
+"Bentley": {
+  "Continental GT": ["4.0L", "6.0L"],
+  "Flying Spur": ["4.0L", "6.0L"],
+  "Bentayga": ["3.0L", "4.0L", "6.0L"],
+  "Mulsanne": ["6.75L"]
+},
+"BMW": {
+  "1 Series": ["1.5L", "2.0L"],
+  "2 Series": ["1.5L", "2.0L", "3.0L"],
+  "3 Series": ["1.5L", "2.0L", "3.0L"],
+  "4 Series": ["2.0L", "3.0L"],
+  "5 Series": ["2.0L", "3.0L", "4.4L"],
+  "7 Series": ["3.0L", "4.4L", "Electric"],
+  "8 Series": ["3.0L", "4.4L"],
+  "X1": ["1.5L", "2.0L", "Electric"],
+  "X2": ["1.5L", "2.0L"],
+  "X3": ["2.0L", "3.0L", "Electric"],
+  "X4": ["2.0L", "3.0L"],
+  "X5": ["3.0L", "4.4L"],
+  "X6": ["3.0L", "4.4L"],
+  "X7": ["3.0L", "4.4L"],
+  "i4": ["Electric"],
+  "iX": ["Electric"],
+  "Z4": ["2.0L", "3.0L"],
+  "M3": ["3.0L"],
+  "M4": ["3.0L"]
+},
+"Bugatti": {
+  "Chiron": ["8.0L"],
+  "Divo": ["8.0L"],
+  "Centodieci": ["8.0L"]
+},
+"Buick": {
+  "Encore GX": ["1.2L", "1.3L"],
+  "Envista": ["1.2L"],
+  "Envision": ["2.0L"],
+  "Enclave": ["3.6L"],
+  "LaCrosse": ["2.0L"],
+  "Regal": ["2.0L"],
+  "GL8": ["2.0L"],
+  "Verano": ["1.5L"],
+  "Encore": ["1.4L"]
+},
+"BYD": {
+  "Dolphin": ["Electric"],
+  "Seal": ["Electric"],
+  "Atto 3": ["Electric"],
+  "Han": ["Electric"],
+  "Tang": ["Electric"],
+  "Yuan Plus": ["Electric"],
+  "Song Plus": ["Electric"]
+},
+"Cadillac": {
+  "CT4": ["2.0L", "2.7L", "3.6L"],
+  "CT5": ["2.0L", "3.0L", "6.2L"],
+  "CT6": ["2.0L"],
+  "XT4": ["2.0L"],
+  "XT5": ["2.0L", "3.6L"],
+  "XT6": ["2.0L", "3.6L"],
+  "Escalade": ["3.0L", "6.2L"],
+  "Lyriq": ["Electric"],
+  "Celestiq": ["Electric"],
+  "ATS": ["2.0L", "3.6L"],
+  "XTS": ["3.6L"]
+},
+"Chevrolet": {
+  "Malibu": ["1.5L", "2.0L"],
+  "Camaro": ["2.0L", "3.6L", "6.2L"],
+  "Corvette": ["5.5L", "6.2L"],
+  "Bolt EV": ["Electric"],
+  "Bolt EUV": ["Electric"],
+  "Trailblazer": ["1.2L", "1.3L"],
+  "Trax": ["1.2L"],
+  "Equinox": ["1.5L", "2.0L"],
+  "Blazer": ["2.0L", "3.6L"],
+  "Blazer EV": ["Electric"],
+  "Traverse": ["3.6L"],
+  "Tahoe": ["3.0L", "5.3L", "6.2L"],
+  "Suburban": ["3.0L", "5.3L", "6.2L"],
+  "Colorado": ["2.7L"],
+  "Silverado 1500": ["2.7L", "3.0L", "5.3L", "6.2L"],
+  "Silverado HD": ["6.6L"],
+  "Silverado EV": ["Electric"],
+  "Equinox EV": ["Electric"],
+  "Spark": ["1.4L"],
+  "Aveo": ["1.5L"]
+},
+"Chrysler": {
+  "300": ["3.6L", "5.7L"],
+  "Pacifica": ["3.6L"],
+  "Voyager": ["3.6L"]
+},
+"Citroën": {
+  "C3": ["1.2L"],
+  "C3 Aircross": ["1.2L"],
+  "C4": ["1.2L", "Electric"],
+  "C5 X": ["1.6L"],
+  "C5 Aircross": ["1.6L"],
+  "C1": ["1.0L"],
+  "C-Elysée": ["1.6L"]
+},
+"Cupra": {
+  "Formentor": ["1.5L", "2.0L", "2.5L"],
+  "Leon": ["1.4L", "2.0L"],
+  "Born": ["Electric"],
+  "Ateca": ["2.0L"],
+  "Tavascan": ["Electric"]
+},
+"Dacia": {
+  "Spring": ["Electric"],
+  "Sandero": ["1.0L"],
+  "Logan": ["1.0L"],
+  "Duster": ["1.0L", "1.3L"],
+  "Jogger": ["1.0L"]
+},
+"Daihatsu": {
+  "Mira": ["0.66L"],
+  "Tanto": ["0.66L"],
+  "Move": ["0.66L"],
+  "Taft": ["0.66L"],
+  "Rocky": ["1.0L"],
+  "Boon": ["1.0L"],
+  "Thor": ["1.0L"],
+  "Terios": ["1.5L"],
+  "Sigra": ["1.0L", "1.2L"],
+  "Xenia": ["1.3L", "1.5L"],
+  "Ayla": ["1.0L"]
+},
+"Dodge": {
+  "Challenger": ["3.6L", "5.7L", "6.2L", "6.4L"],
+  "Charger": ["3.6L", "5.7L", "6.2L", "6.4L"],
+  "Durango": ["3.6L", "5.7L", "6.4L"],
+  "Hornet": ["1.3L", "2.0L"],
+  "Journey": ["2.4L"]
+},
+"Ferrari": {
+  "SF90 Stradale": ["4.0L"],
+  "296 GTB": ["3.0L"],
+  "Roma": ["3.9L"],
+  "Portofino": ["3.9L"],
+  "Purosangue": ["6.5L"],
+  "F8 Tributo": ["3.9L"]
+},
+"Fiat": {
+  "500": ["0.9L", "1.0L", "Electric"],
+  "Panda": ["0.9L", "1.0L"],
+  "Tipo": ["1.0L", "1.4L"],
+  "500X": ["1.3L", "1.6L"],
+  "500L": ["1.4L"],
+  "Punto": ["1.2L", "1.4L"]
+},
+"Ford": {
+  "Fiesta": ["1.0L", "1.5L"],
+  "Focus": ["1.0L", "1.5L", "2.3L"],
+  "Mondeo": ["1.5L", "2.0L"],
+  "Mustang": ["2.3L", "5.0L"],
+  "Mustang Mach-E": ["Electric"],
+  "Puma": ["1.0L"],
+  "Escape": ["1.5L", "2.0L", "2.5L"],
+  "Bronco Sport": ["1.5L", "2.0L"],
+  "Bronco": ["2.3L", "2.7L"],
+  "Edge": ["2.0L", "2.7L"],
+  "Explorer": ["2.3L", "3.0L", "3.3L"],
+  "Expedition": ["3.5L"],
+  "Maverick": ["2.0L", "2.5L"],
+  "Ranger": ["2.3L", "3.0L"],
+  "F-150": ["2.7L", "3.3L", "3.5L", "5.0L", "Electric"],
+  "F-Series Super Duty": ["6.7L", "6.8L", "7.3L"],
+  "Everest": ["2.0L", "2.3L"],
+  "Transit": ["2.0L", "2.2L", "3.5L"],
+  "Transit Custom": ["2.0L", "2.2L"],
+  "Transit Connect": ["1.0L", "1.5L", "2.0L"],
+  "Tourneo Custom": ["2.0L"],
+  "Tourneo Connect": ["1.5L", "2.0L"],
+  "EcoSport": ["1.0L", "1.5L"],
+  "Ka+": ["1.2L"],
+  "Galaxy": ["2.0L"],
+  "S-Max": ["2.0L"]
+}
+"Genesis": {
+  "G70": ["2.0L", "3.3L"],
+  "G80": ["2.5L", "3.5L", "Electric"],
+  "G90": ["3.5L"],
+  "GV60": ["Electric"],
+  "GV70": ["2.5L", "3.5L", "Electric"],
+  "GV80": ["2.5L", "3.5L"]
+},
+"GMC": {
+  "Terrain": ["1.5L"],
+  "Acadia": ["2.0L", "3.6L"],
+  "Yukon": ["3.0L", "5.3L", "6.2L"],
+  "Yukon XL": ["3.0L", "5.3L", "6.2L"],
+  "Canyon": ["2.7L"],
+  "Sierra 1500": ["2.7L", "3.0L", "5.3L", "6.2L"],
+  "Sierra HD": ["6.6L"],
+  "Hummer EV": ["Electric"],
+  "Sierra EV": ["Electric"],
+  "Savana": ["4.3L", "6.6L"]
+},
+"Great Wall": {
+  "Haval H6": ["1.5L", "2.0L"],
+  "Haval Jolion": ["1.5L"],
+  "Haval Big Dog": ["1.5L", "2.0L"],
+  "Wingle": ["2.0L"],
+  "Tank 300": ["2.0L"],
+  "Tank 500": ["3.0L"],
+  "ORA Good Cat": ["Electric"],
+  "Poer": ["2.0L"]
+},
+"Honda": {
+  "Civic": ["1.5L", "2.0L"],
+  "Accord": ["1.5L", "2.0L"],
+  "City": ["1.5L"],
+  "Amaze": ["1.2L", "1.5L"],
+  "Fit": ["1.3L", "1.5L"],
+  "HR-V": ["1.5L"],
+  "ZR-V": ["1.5L", "2.0L"],
+  "CR-V": ["1.5L", "2.0L"],
+  "Pilot": ["3.5L"],
+  "Odyssey": ["2.4L", "3.5L"],
+  "Freed": ["1.5L"],
+  "BR-V": ["1.5L"],
+  "N-Box": ["0.66L"],
+  "Ridgeline": ["3.5L"],
+  "Jazz": ["1.3L", "1.5L"],
+  "E": ["Electric"]
+},
+"Hyundai": {
+  "Accent": ["1.5L"],
+  "Elantra": ["1.6L", "2.0L"],
+  "i30": ["1.0L", "1.5L", "2.0L"],
+  "Sonata": ["1.6L", "2.5L"],
+  "Grandeur": ["2.5L", "3.5L"],
+  "Venue": ["1.6L"],
+  "Kona": ["1.6L", "Electric"],
+  "Creta": ["1.5L"],
+  "Tucson": ["1.6L", "2.5L"],
+  "Santa Fe": ["1.6L", "2.5L"],
+  "Palisade": ["3.8L"],
+  "Ioniq 5": ["Electric"],
+  "Ioniq 6": ["Electric"],
+  "Azera": ["3.5L"]
+},
+"Infiniti": {
+  "Q30": ["1.6L", "2.0L"],
+  "Q50": ["3.0L"],
+  "Q60": ["3.0L"],
+  "Q70": ["3.7L", "5.6L"],
+  "QX30": ["2.0L"],
+  "QX50": ["2.0L"],
+  "QX55": ["2.0L"],
+  "QX60": ["3.5L"],
+  "QX70": ["3.7L"],
+  "QX80": ["5.6L"]
+}
+"Isuzu": {
+  "D-Max": ["1.9L", "3.0L"],
+  "MU-X": ["1.9L", "3.0L"]
+},
+"Jaguar": {
+  "XE": ["2.0L"],
+  "XF": ["2.0L"],
+  "F-Type": ["5.0L"],
+  "E-Pace": ["2.0L"],
+  "F-Pace": ["2.0L", "3.0L", "5.0L"],
+  "I-Pace": ["Electric"],
+  "XJ": ["3.0L", "5.0L"]
+},
+"Jeep": {
+  "Renegade": ["1.3L", "2.4L"],
+  "Compass": ["1.3L", "2.0L", "2.4L"],
+  "Cherokee": ["2.4L", "3.2L"],
+  "Grand Cherokee": ["3.6L", "5.7L", "6.4L"],
+  "Wagoneer": ["3.0L", "5.7L", "6.4L"],
+  "Wrangler": ["2.0L", "3.6L", "6.4L"],
+  "Gladiator": ["3.6L"],
+  "Commander": ["2.0L"]
+},
+"Kia": {
+  "Rio": ["1.6L"],
+  "Picanto": ["1.0L", "1.2L"],
+  "Ceed": ["1.0L", "1.5L", "1.6L"],
+  "Forte": ["2.0L"],
+  "Stinger": ["2.0L", "3.3L"],
+  "K5": ["1.6L", "2.5L"],
+  "Sportage": ["1.6L", "2.5L"],
+  "Sorento": ["2.5L"],
+  "Seltos": ["1.6L", "2.0L"],
+  "Telluride": ["3.8L"],
+  "Carnival": ["3.5L"],
+  "Niro": ["1.6L", "Electric"],
+  "EV6": ["Electric"],
+  "EV9": ["Electric"],
+  "Soul": ["1.6L", "Electric"]
+},
+"Koenigsegg": {
+  "Jesko": ["5.0L"],
+  "Gemera": ["2.0L"],
+  "Regera": ["5.0L"]
+},
+"Lamborghini": {
+  "Revuelto": ["6.5L"],
+  "Huracán": ["5.2L"],
+  "Urus": ["4.0L"],
+  "Aventador": ["6.5L"]
+},
+"Land Rover": {
+  "Range Rover": ["3.0L", "4.4L"],
+  "Range Rover Sport": ["3.0L", "4.4L"],
+  "Range Rover Velar": ["2.0L", "3.0L"],
+  "Range Rover Evoque": ["2.0L"],
+  "Discovery": ["3.0L"],
+  "Discovery Sport": ["2.0L"],
+  "Defender": ["2.0L", "3.0L", "5.0L"],
+  "Freelander": ["2.0L"]
+},
+"Lexus": {
+  "IS": ["2.0L", "3.5L"],
+  "ES": ["2.5L", "3.5L"],
+  "LS": ["3.4L", "3.5L"],
+  "UX": ["2.0L", "Electric"],
+  "NX": ["2.4L", "2.5L"],
+  "RX": ["2.4L", "2.5L", "3.5L"],
+  "GX": ["4.6L"],
+  "LX": ["3.5L"],
+  "RC": ["2.0L", "3.5L", "5.0L"],
+  "LC": ["3.5L", "5.0L"],
+  "CT": ["1.8L"]
+},
+"Lincoln": {
+  "Corsair": ["2.0L", "2.3L", "2.5L"],
+  "Nautilus": ["2.0L", "2.7L"],
+  "Aviator": ["3.0L"],
+  "Navigator": ["3.5L"],
+  "MKZ": ["2.0L", "3.0L"]
+},
+"Lucid": {
+  "Air": ["Electric"]
+},
+"Mahindra": {
+  "XUV300": ["1.2L"],
+  "XUV400": ["Electric"],
+  "XUV700": ["2.0L"],
+  "Scorpio-N": ["2.0L"],
+  "Thar": ["2.0L"],
+  "Bolero": ["1.5L"]
+},
+"Maserati": {
+  "Ghibli": ["3.0L", "3.8L"],
+  "Quattroporte": ["3.0L", "3.8L"],
+  "Levante": ["3.0L", "3.8L"],
+  "MC20": ["3.0L"],
+  "Grecale": ["2.0L", "3.0L"],
+  "GranTurismo": ["3.0L", "Electric"]
+},
+"Mazda": {
+  "Mazda2": ["1.5L"],
+  "Mazda3": ["2.0L", "2.5L"],
+  "Mazda6": ["2.5L"],
+  "MX-5": ["1.5L", "2.0L"],
+  "MX-30": ["Electric"],
+  "CX-30": ["2.5L"],
+  "CX-5": ["2.5L"],
+  "CX-50": ["2.5L"],
+  "CX-60": ["2.5L", "3.3L"],
+  "CX-90": ["3.3L"],
+  "CX-9": ["2.5L"],
+  "BT-50": ["3.0L"]
+},
+"McLaren": {
+  "Artura": ["3.0L"],
+  "750S": ["4.0L"],
+  "GT": ["4.0L"],
+  "720S": ["4.0L"]
+},
+"Mercedes-Benz": {
+  "A-Class": ["1.3L", "2.0L"],
+  "B-Class": ["1.3L", "2.0L"],
+  "C-Class": ["2.0L", "4.0L"],
+  "E-Class": ["2.0L", "3.0L", "4.0L"],
+  "S-Class": ["3.0L", "4.0L", "6.0L"],
+  "CLA": ["1.3L", "2.0L"],
+  "CLS": ["3.0L"],
+  "SL": ["4.0L"],
+  "AMG GT 4-Door": ["3.0L", "4.0L"],
+  "AMG GT": ["4.0L"],
+  "GLA": ["1.3L", "2.0L"],
+  "GLB": ["1.3L", "2.0L"],
+  "GLC": ["2.0L", "4.0L"],
+  "GLE": ["3.0L", "4.0L"],
+  "GLS": ["3.0L", "4.0L"],
+  "G-Class": ["4.0L"],
+  "EQA": ["Electric"],
+  "EQB": ["Electric"],
+  "EQC": ["Electric"],
+  "EQE": ["Electric"],
+  "EQS": ["Electric"],
+  "V-Class": ["2.0L"]
+},
+"MG": {
+  "MG3": ["1.5L"],
+  "MG5": ["Electric"],
+  "MG4": ["Electric"],
+  "MG ZS": ["1.5L", "Electric"],
+  "MG HS": ["1.5L"],
+  "MG7": ["2.0L"],
+  "Hector": ["1.5L"],
+  "RX5": ["1.5L"]
+},
+"Mini": {
+  "Cooper": ["1.5L", "2.0L", "Electric"],
+  "Clubman": ["1.5L", "2.0L"],
+  "Countryman": ["1.5L", "2.0L", "Electric"],
+  "Convertible": ["1.5L", "2.0L"]
+},
+"Mitsubishi": {
+  "Mirage": ["1.2L"],
+  "Attrage": ["1.2L"],
+  "ASX": ["2.0L", "2.4L"],
+  "Outlander": ["2.4L", "2.5L"],
+  "Eclipse Cross": ["1.5L"],
+  "Xpander": ["1.5L"],
+  "Pajero Sport": ["2.4L"],
+  "L200": ["2.4L"]
+},
+"NIO": {
+  "ET5": ["Electric"],
+  "ET7": ["Electric"],
+  "ES6": ["Electric"],
+  "ES7": ["Electric"],
+  "ES8": ["Electric"],
+  "EC6": ["Electric"]
+},
+"Nissan": {
+  "Versa": ["1.6L"],
+  "Note": ["1.2L"],
+  "Micra": ["1.0L", "1.2L"],
+  "Sentra": ["1.6L", "2.0L"],
+  "Sunny": ["1.5L"],
+  "Almera": ["1.0L", "1.5L"],
+  "Tiida": ["1.6L"],
+  "Altima": ["2.0L", "2.5L"],
+  "Maxima": ["3.5L"],
+  "Sylphy": ["1.6L", "1.8L"],
+  "Bluebird": ["2.0L"],
+  "Teana": ["2.0L", "2.5L"],
+  "Leaf": ["Electric"],
+  "Ariya": ["Electric"],
+  "Juke": ["1.0L", "1.6L"],
+  "Kicks": ["1.6L"],
+  "Qashqai": ["1.2L", "1.3L", "1.5L"],
+  "Rogue": ["1.5L", "2.5L"],
+  "Rogue Sport": ["2.0L"],
+  "X-Trail": ["1.5L", "2.0L", "2.5L"],
+  "Murano": ["3.5L"],
+  "Pathfinder": ["3.5L"],
+  "Armada": ["5.6L"],
+  "Terra": ["2.5L"],
+  "Patrol": ["4.0L", "5.6L"],
+  "Xterra": ["4.0L"],
+  "Frontier": ["2.5L", "3.8L"],
+  "Navara": ["2.3L", "2.5L"],
+  "Titan": ["5.6L"],
+  "Pickup": ["2.4L"],
+  "Hardbody": ["2.4L"],
+  "GT-R": ["3.8L"],
+  "370Z": ["3.7L"],
+  "Z": ["3.0L"],
+  "NV200": ["1.5L", "2.0L"],
+  "NV350": ["2.5L", "2.7L"],
+  "Urvan": ["2.5L", "2.7L"],
+  "Evalia": ["1.5L"],
+  "Serena": ["2.0L"],
+  "Elgrand": ["2.5L", "3.5L"],
+  "Quest": ["3.5L"],
+  "Livina": ["1.5L"],
+  "Lafesta": ["2.0L"]
+}
+"Opel": {
+  "Corsa": ["1.2L", "Electric"],
+  "Astra": ["1.2L", "1.6L"],
+  "Insignia": ["2.0L"],
+  "Crossland": ["1.2L"],
+  "Mokka": ["1.2L", "Electric"],
+  "Grandland": ["1.2L", "1.6L"],
+  "Zafira": ["1.6L", "2.0L"]
+},
+"Pagani": {
+  "Huayra": ["6.0L"],
+  "Utopia": ["6.0L"],
+  "Zonda": ["7.3L"]
+},
+"Peugeot": {
+  "208": ["1.2L", "Electric"],
+  "308": ["1.2L", "1.6L"],
+  "508": ["1.6L"],
+  "2008": ["1.2L", "Electric"],
+  "3008": ["1.2L", "1.6L"],
+  "5008": ["1.2L", "1.6L"],
+  "408": ["1.2L", "1.6L"],
+  "4008": ["1.6L"]
+},
+"Polestar": {
+  "Polestar 2": ["Electric"],
+  "Polestar 3": ["Electric"],
+  "Polestar 4": ["Electric"],
+  "Polestar 1": ["2.0L"]
+},
+"Porsche": {
+  "718": ["2.0L", "2.5L", "4.0L"],
+  "911": ["3.0L", "4.0L"],
+  "Taycan": ["Electric"],
+  "Panamera": ["2.9L", "4.0L"],
+  "Macan": ["2.0L", "2.9L"],
+  "Cayenne": ["3.0L", "4.0L"]
+},
+"Ram": {
+  "1500": ["3.6L", "5.7L", "6.2L"],
+  "Heavy Duty": ["6.4L", "6.7L"],
+  "700": ["1.4L"]
+},
+"Renault": {
+  "Clio": ["1.0L", "1.6L"],
+  "Zoe": ["Electric"],
+  "Megane": ["1.3L", "Electric"],
+  "Arkana": ["1.3L"],
+  "Captur": ["1.0L", "1.3L"],
+  "Austral": ["1.2L", "1.3L"],
+  "Koleos": ["2.5L"],
+  "Kwid": ["1.0L"],
+  "Talisman": ["1.6L", "2.0L"]
+},
+"Rivian": {
+  "R1T": ["Electric"],
+  "R1S": ["Electric"]
+},
+"Rolls-Royce": {
+  "Phantom": ["6.75L"],
+  "Ghost": ["6.75L"],
+  "Spectre": ["Electric"],
+  "Cullinan": ["6.75L"],
+  "Wraith": ["6.6L"],
+  "Dawn": ["6.6L"]
+},
+"Seat": {
+  "Ibiza": ["1.0L", "1.5L"],
+  "Leon": ["1.0L", "1.5L", "2.0L"],
+  "Arona": ["1.0L"],
+  "Ateca": ["1.5L", "2.0L"],
+  "Tarraco": ["1.5L", "2.0L"],
+  "Toledo": ["1.0L", "1.6L"]
+},
+"Skoda": {
+  "Fabia": ["1.0L", "1.5L"],
+  "Octavia": ["1.0L", "1.5L", "2.0L"],
+  "Superb": ["1.5L", "2.0L"],
+  "Scala": ["1.0L", "1.5L"],
+  "Kamiq": ["1.0L", "1.5L"],
+  "Karoq": ["1.5L", "2.0L"],
+  "Kodiaq": ["1.5L", "2.0L"],
+  "Enyaq": ["Electric"],
+  "Rapid": ["1.0L", "1.6L"]
+},
+"Smart": {
+  "Fortwo": ["Electric"],
+  "#1": ["Electric"],
+  "Forfour": ["Electric"]
+},
+"Subaru": {
+  "Impreza": ["2.0L"],
+  "WRX": ["2.4L"],
+  "Legacy": ["2.4L", "2.5L"],
+  "Outback": ["2.4L", "2.5L"],
+  "Forester": ["2.5L"],
+  "Crosstrek": ["2.0L", "2.5L"],
+  "Ascent": ["2.4L"],
+  "BRZ": ["2.4L"],
+  "Solterra": ["Electric"]
+},
+"Suzuki": {
+  "Alto": ["0.66L"],
+  "Swift": ["1.2L", "1.4L"],
+  "Ignis": ["1.2L"],
+  "Ciaz": ["1.5L"],
+  "Vitara": ["1.4L"],
+  "S-Cross": ["1.4L"],
+  "Jimny": ["1.5L"],
+  "Ertiga": ["1.5L"],
+  "XL7": ["1.5L"],
+  "Grand Vitara": ["1.5L"],
+  "Baleno": ["1.2L"]
+},
+"Tata": {
+  "Tiago": ["1.2L"],
+  "Tigor": ["1.2L"],
+  "Altroz": ["1.2L"],
+  "Punch": ["1.2L"],
+  "Nexon": ["1.2L", "Electric"],
+  "Harrier": ["2.0L"]
+},
+"Tesla": {
+  "Model S": ["Electric"],
+  "Model 3": ["Electric"],
+  "Model X": ["Electric"],
+  "Model Y": ["Electric"],
+  "Cybertruck": ["Electric"]
+},
+"Toyota": {
+  "Corolla": ["1.6L", "1.8L", "2.0L"],
+  "Camry": ["2.0L", "2.5L", "3.5L"],
+  "Yaris": ["1.0L", "1.5L", "1.6L"],
+  "Avalon": ["2.5L", "3.5L"],
+  "Crown": ["2.4L", "2.5L"],
+  "Prius": ["1.8L", "2.0L"],
+  "Mirai": ["Electric"],
+  "Supra": ["2.0L", "3.0L"],
+  "GR86": ["2.4L"],
+  "C-HR": ["1.8L", "2.0L"],
+  "Corolla Cross": ["1.8L", "2.0L"],
+  "RAV4": ["2.0L", "2.5L"],
+  "Highlander": ["2.4L", "2.5L", "3.5L"],
+  "Grand Highlander": ["2.4L", "2.5L"],
+  "4Runner": ["4.0L"],
+  "Sequoia": ["3.5L"],
+  "Fortuner": ["2.4L", "2.7L", "2.8L", "4.0L"],
+  "Land Cruiser": ["3.3L", "3.5L", "4.0L"],
+  "Land Cruiser Prado": ["2.7L", "2.8L", "4.0L"],
+  "Hilux": ["2.4L", "2.7L", "4.0L"],
+  "Tacoma": ["2.4L", "3.5L"],
+  "Tundra": ["3.4L"],
+  "Sienna": ["2.5L"],
+  "Alphard": ["2.4L", "2.5L"],
+  "Innova": ["2.0L"],
+  "Avanza": ["1.3L", "1.5L"],
+  "bZ3": ["Electric"],
+  "bZ4X": ["Electric"],
+  "Vios": ["1.3L", "1.5L"]
+},
+"Volkswagen": {
+  "Up": ["1.0L"],
+  "Polo": ["1.0L", "2.0L"],
+  "Golf": ["1.0L", "1.5L", "2.0L"],
+  "Jetta": ["1.4L", "2.0L"],
+  "Passat": ["1.5L", "2.0L"],
+  "Arteon": ["2.0L"],
+  "T-Cross": ["1.0L", "1.5L"],
+  "T-Roc": ["1.0L", "1.5L", "2.0L"],
+  "Tiguan": ["1.5L", "2.0L"],
+  "Touareg": ["3.0L"],
+  "Atlas": ["2.0L", "3.6L"],
+  "ID.3": ["Electric"],
+  "ID.4": ["Electric"],
+  "ID.5": ["Electric"],
+  "ID. Buzz": ["Electric"],
+  "Sharan": ["2.0L"]
+},
+"Volvo": {
+  "XC40": ["2.0L", "Electric"],
+  "C40": ["Electric"],
+  "XC60": ["2.0L"],
+  "XC90": ["2.0L"],
+  "S60": ["2.0L"],
+  "V60": ["2.0L"],
+  "S90": ["2.0L"],
+  "V90": ["2.0L"],
+  "EX90": ["Electric"],
+  "S40": ["2.0L"]
+}
 
   };
 </script>
