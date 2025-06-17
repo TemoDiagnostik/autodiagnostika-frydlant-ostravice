@@ -331,7 +331,6 @@ body {
 /* ==== موبايل ==== */
 @media only screen and (max-width: 768px) {
   html, body {
-    background-color: red !important;
     min-height: 100vh;
     min-width: 100vw;
     width: 100vw;
@@ -340,11 +339,11 @@ body {
     padding: 0;
     overflow: auto;
     background-image: url('background-mobile.webp');
-    background-size: 100vw 100vh;
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-color: black;
+    background-color: black !important;
   }
 
   main, section, .service-container {
