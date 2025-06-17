@@ -1,308 +1,1243 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Private Auto Diagnose</title>
+  <title>Private Auto-Diagnose</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- مكتبة Choices.js لتنسيق القوائم الاحترافية -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-  <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
+<link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
-  <header class="overlay">
-    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
-<img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
-     alt="Temo Logo"
-     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; padding: 10px 20px;" />  <div style="display: flex; gap: 20px; align-items: center;">
-    <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">diagnostika@temosliving.de</a>
-    <div class="lang-switch">
-      <a href="index.html" style="color: #d8c38e; text-decoration: none;">CZ</a> |
-      <a href="index.de.html" style="color: #d8c38e; text-decoration: none;">DE</a> |
-      <a href="index.en.html" style="color: #d8c38e; text-decoration: none;">EN</a>
+<header class="overlay" style="padding: 20px 10px 0 10px; text-align: center; background-color: transparent;">
+  <!-- الشريط العلوي -->
+  <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+    <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
+         alt="Temo Logo"
+         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" />
+    
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">
+        diagnostika@temosliving.de
+      </a>
+      <div class="lang-switch">
+        <a href="index.html" style="color: #d8c38e; text-decoration: none;">CZ</a> |
+        <a href="index.de.html" style="color: #d8c38e; text-decoration: none;">DE</a> |
+        <a href="index.en.html" style="color: #d8c38e; text-decoration: none;">EN</a>
+      </div>
     </div>
   </div>
-</div>
-    <h1>Private Auto<br />Diagnose im Grünen</h1>
-    <p>Ohne Werkstatt, ohne Stress – nur Sie, das Auto und die Ruhe</p>
-    <p>Während Ihr Fahrzeug geprüft wird, genießen Sie Kaffee oder Tee am Waldrand.</p>
-    <p>Professionelle Technik – ruhige Umgebung – faire Preise</p>
-  </header>
 
- 
-  <div class="accordion-row">
-    <button class="accordion-button">Reset <span class="arrow">&#x25BC;</span></button>
-    <button class="accordion-button">Diagnose <span class="arrow">&#x25BC;</span></button>
-    <button class="accordion-button">Preisliste <span class="arrow">&#x25BC;</span></button>
+  <!-- العنوان الرئيسي -->
+  <h1 style="font-size: 24px; text-align: center; color: #E8D8B1; margin-top: 10px; margin-bottom: 5px;">
+    Autodiagnose in der Ruhe der Natur – ganz ohne Stress.
+  </h1>
+
+  <!-- وصف مختصر -->
+  <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+    <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
+      Während Ihr Auto diagnostiziert wird, können Sie sich bei einer Tasse Kaffee im Garten entspannen oder einen Spaziergang im umliegenden Wald machen.
+.<br>
+Faire Preise, professionelle Betreuung.
+    </p>
   </div>
+</header>
 
- <div class="accordion-panel">
-  <ul>
-    <li>Ölservice-Reset</li>
-    <li>EPB-Rückstellung (Elektronische Parkbremse)</li>
-    <li>Lenkwinkelsensor-Kalibrierung (SAS)</li>
-    <li>Batterie-Reset (BMS)</li>
-    <li>Reifendrucksystem-Reset (TPMS)</li>
-    <li>Drosselklappen-Anpassung</li>
-    <li>Getriebe-Anlernung</li>
-    <li>Wegfahrsperre zurücksetzen (IMMO)</li>
-    <li>Injektor-Codierung</li>
-    <li>DPF-Regeneration (Partikelfilter)</li>
-    <li>EGR-Ventil-Reset</li>
-    <li>AFS-Reset (Adaptive Scheinwerfer)</li>
-    <li>Klimaanlage initialisieren</li>
-    <li>AdBlue-System-Reset</li>
-    <li>Fahrwerk-Reset</li>
-    <li>Schiebedach-Reset</li>
-    <li>Beleuchtungs-Reset</li>
-    <li>Getriebesteuergerät-Reset</li>
-    <li>Kühlsystem entlüften</li>
-    <li>GPF-Reset (Otto-Partikelfilter)</li>
-    <li>Hochvolt-Batterie-Reset</li>
-    <li>ENGPBM-System-Reset</li>
-    <li>ABS-Entlüftung</li>
-    <li>EPS-Reset (Lenkunterstützung)</li>
-    <li>Innenlicht-Reset</li>
-    <li>Fensterheber-Reset</li>
-    <li>Spiegel-Reset</li>
-    <li>Zentralverriegelung zurücksetzen</li>
-    <li>Alarmanlage zurücksetzen</li>
-    <li>Tempomat-Reset</li>
-    <li>Traktionskontrolle-Reset</li>
-    <li>ESP-Reset</li>
-    <li>ASR-Reset</li>
-    <li>ACC-Reset</li>
-    <li>Abgasrückführungssystem-Reset</li>
+
+  <h2 style="text-align: center; color: #E8D8B1; font-size: 28px; margin: 50px 0 30px;">Profesionální služby diagnostiky</h2>
+
+
+<!-- Reset Funkce -->
+<div class="service-container">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/reset.png" alt="Reset Icon" style="width: 66px; height: 66px;" />
+        <span style="font-weight: bold; color: #EBDBB1;">
+          Resetování systémových funkcí <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+     Obnova výchozích hodnot a vymazání uložených nastavení řídicí jednotky
+      </span>
+    </div>
+  </button>
+</div>
+<div class="accordion-panel" style="
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+<ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+    
+    <li>Reset výměny oleje</li>
+  <li>Reset elektronické parkovací brzdy (EPB)</li>
+  <li>Kalibrace úhlu natočení volantu (SAS)</li>
+  <li>Reset systému správy baterie (BMS)</li>
+  <li>Reset systému kontroly tlaku v pneumatikách (TPMS)</li>
+  <li>Adaptace škrticí klapky</li>
+  <li>Naučení převodovky</li>
+  <li>Reset imobilizéru (IMMO)</li>
+  <li>Kódování vstřikovačů</li>
+  <li>Regenerace filtru pevných částic (DPF)</li>
+  <li>Reset ventilu EGR</li>
+  <li>Reset adaptivních světlometů (AFS)</li>
+  <li>Inicializace klimatizace</li>
+  <li>Reset systému AdBlue</li>
+  <li>Reset podvozku</li>
+  <li>Reset střešního okna</li>
+  <li>Reset automatických světel</li>
+  <li>Reset řídicí jednotky převodovky</li>
+  <li>Odvzdušnění chladicího systému</li>
+  <li>Reset filtru GPF</li>
+  <li>Reset vysokonapěťové baterie (HV)</li>
+  <li>Reset systému ENGPBM</li>
+  <li>Odvzdušnění systému ABS</li>
+  <li>Reset posilovače řízení (EPS)</li>
+  <li>Reset interiérového osvětlení</li>
+  <li>Reset oken</li>
+  <li>Reset zrcátek</li>
+  <li>Reset centrálního zamykání</li>
+  <li>Reset alarmu</li>
+  <li>Reset tempomatu</li>
+  <li>Reset kontroly trakce</li>
+  <li>Reset systému ESP</li>
+  <li>Reset systému ASR</li>
+  <li>Reset systému ACC</li>
+  <li>Reset emisního systému</li>
   </ul>
 </div>
-  <div class="accordion-panel">
-  <ul>
-    <li>Ölzustand prüfen</li>
-    <li>Motorsteuergerät (ECU)</li>
-    <li>Fehlercodes auslesen und löschen</li>
-    <li>Live-Daten der Sensoren anzeigen</li>
-    <li>Getriebesteuerung</li>
-    <li>Airbag-/SRS-System</li>
-    <li>ABS-System</li>
-    <li>EPS-System (Lenkunterstützung)</li>
-    <li>Klimaanlage</li>
-    <li>Beleuchtungssystem</li>
-    <li>Kraftstoffeinspritzung</li>
-    <li>Abgasanlage</li>
-    <li>DPF-Drucksensor</li>
-    <li>EGR-System</li>
-    <li>Batterie- und Ladesystem</li>
-    <li>Kühlsystem</li>
-    <li>TPMS (Reifendruckkontrolle)</li>
-    <li>Kraftstoffsystem</li>
-    <li>BCM-Modul (Karosseriesteuerung)</li>
-    <li>Zentralverriegelung</li>
-    <li>Elektrische Fenster und Spiegel</li>
-    <li>Schlüsselsystem / Smart Key</li>
-    <li>Kombiinstrument / Tacho</li>
-    <li>ESP-System</li>
-    <li>Parkassistent</li>
-    <li>Traktionskontrolle</li>
-    <li>CAN–BUS-Kommunikation</li>
-    <li>Abgasdiagnose</li>
-    <li>Fahrzeugidentifikation (VIN)</li>
-    <li>Komfortsteuergeräte</li>
-    <li>Sensoren- und Aktuatortests</li>
-  </ul>
+
+ <!-- Diagnostika -->
+<div class="service-container">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/diagnostika.png" alt="Diagnostika Icon" style="width: 66px; height: 66px;" />
+        <span style="font-weight: bold; color: #EBDBB1;">
+          Diagnostika <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+      Kompletní diagnostika systémů automobilu
+      </span>
+    </div>
+  </button>
 </div>
-  <div class="accordion-panel">
-    <ul>
-      <li>DPF Regeneration: 1.000–2.000 Kč</li>
-      <li>Ölservice-Reset: 300–600 Kč</li>
-      <li>EPB Reset: 500–800 Kč</li>
-      <li>Batterie-Reset (BMS): 400–700 Kč</li>
-      <li>Komplettdiagnose: 500–800 Kč</li>
-    </ul>
-    <p style="margin-top: 10px;" class="note">Die Preise variieren je nach Fahrzeugtyp und Leistungsumfang.</p>
+<div class="accordion-panel" style="
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+  <li>Kontrola stavu oleje</li>
+  <li>Řídicí jednotka motoru (ECU)</li>
+  <li>Čtení a mazání chybových kódů (DTC)</li>
+  <li>Živá data senzorů</li>
+  <li>Převodovka</li>
+  <li>Systém airbagů / SRS</li>
+  <li>Systém ABS</li>
+  <li>Elektrický posilovač řízení (EPS)</li>
+  <li>Klimatizace</li>
+  <li>Osvětlení</li>
+  <li>Systém vstřikování paliva</li>
+  <li>Výfukový systém</li>
+  <li>Senzor tlaku DPF</li>
+  <li>Systém EGR</li>
+  <li>Nabíjení a baterie</li>
+  <li>Chladicí systém</li>
+  <li>TPMS – systém kontroly tlaku v pneumatikách</li>
+  <li>Palivový systém</li>
+  <li>BCM modul</li>
+  <li>Centrální zamykání</li>
+  <li>Ovládání oken a zrcátek</li>
+  <li>Systém klíčů / Smart Key</li>
+  <li>Přístrojový panel</li>
+  <li>Systém ESP</li>
+  <li>Asistent parkování</li>
+  <li>Kontrola trakce</li>
+  <li>Komunikace CAN-BUS</li>
+  <li>Diagnostika emisí</li>
+  <li>Identifikace VIN</li>
+  <li>Komfortní jednotky</li>
+  <li>Senzory a akční členy</li>
+</ul>
   </div>
 
-  <section class="reservation-form">
-    <h3>Terminreservierung</h3>
-   <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST" id="booking-form">
+<!-- 3) Programování Řídicí Jednotky -->
+<div class="service-container">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/programovani.png" alt="Programování Icon" style="width: 66px; height: 66px;" />
+        <span style="font-weight: bold; color: #EBDBB1;">
+          Programování Řídicí Jednotky <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Úprava softwaru a kódování řídicí jednotky
+      </span>
+    </div>
+  </button>
+</div>
+<div class="accordion-panel" style="
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+   <li>Kontrola najetých kilometrů ve všech řídicích jednotkách</li>
+  <li>Porovnání hodnot z ECU, ABS, přístrojového panelu a dalších modulů</li>
+  <li>Odhalení možných nesrovnalostí nebo manipulací</li>
+  <li>Možnost zobrazení historie na základě diagnostických záznamů</li>
+  <li>Ideální při koupi ojetého vozu nebo ověřování jeho stavu</li>
+  </ul>
+ <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
+    ⚠️ Důležité  upozornění: Neprovádím žádné  nelegáln úpravy nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním účelům.
+  </p>
+</div>
+<!-- Aktualizace Map -->
+<div class="service-container">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/maps.png" alt="Aktualizace Map Icon" style="width: 66px; height: 66px;" />
+        <span style="font-weight: bold; color: #EBDBB1;">
+          Aktualizace map a systémů infotainmentu <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Aktualizace mapových podkladů a infotainment systémů podle značky vozidla
+      </span>
+    </div>
+  </button>
+</div>
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+    <li>Instalace nejnovějších mapových podkladů pro GPS navigace</li>
+    <li>Podpora značek: VW, BMW, Ford, Mazda, Hyundai, Nissan aj.</li>
+    <li>Možnost aktualizace systémů MMI, SYNC, iDrive a dalších</li>
+    <li>Používáme profesionální vybavení: Launch, ENET, OBD, USB, SD karty</li>
+    <li>Offline příprava map a online aktivace přímo ve vozidle</li>
+    <li>Pro ověření dostupnosti je nutné předem zaslat VIN a údaje o vozidle</li>
+  </ul>
+  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
+    ⚠️ Upozornění: Nepodporuji žádné nelegální  zásahy do systému ani instalaci neoriginálních map. Veškeré služby jsou poskytovány v souladu s možnostmi výrobce.
+  </p>
+</div>
+<!-- Kontrola Ujetých Kilometrů -->
+<div class="service-container">
+ <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/mileage.png" alt="Kontrola kilometrů" style="width: 66px; height: 66px;" />
+        <span style="font-weight: bold; color: #EBDBB1;">
+          Kontrola ujetých kilometrů <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Kontrola správnosti najetých kilometrů vozu
+      </span>
+    </div>
+  </button>
+</div>
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+    <li>Kontrola najetých kilometrů ve všech řídicích jednotkách</li>
+    <li>Porovnání hodnot z ECU, ABS, přístrojového panelu a dalších modulů</li>
+    <li>Odhalení možných nesrovnalostí nebo manipulací</li>
+    <li>Možnost zobrazení historie na základě diagnostických záznamů</li>
+    <li>Ideální při koupi ojetého vozu nebo ověřování jeho stavu</li>
+  </ul>
+ <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
+    ⚠️ Upozornění: Neposkytujeme žádné služby úpravy nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním účelům.
+  </p>
+</div>
+
+   
+<!-- Kontrola VIN Kódu -->
+<div class="service-container">
+ <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/vin.png" alt="VIN Icon" style="width: 66px; height: 66px;" />
+        <span style="font-weight: bold; color: #EBDBB1;">
+          Kontrola VIN Kódu <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Ověření platnosti a dostupných údajů podle VIN
+      </span>
+    </div>
+  </button>
+</div>
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+<ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+    <li>Ověření platnosti VIN kódu.</li>
+    <li>Zobrazení dostupných údajů podle VIN.</li>
+    <li>Vhodné při nákupu ojetého vozidla.</li>
+  </ul>
+  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
+    ⚠️  Neposkytuji žádné  služby změny VIN kódu. Ověření slouží pouze k informativním a legálním účelům.
+  </p>
+</div>
+
+
+<section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
+  <h3>Rezervace termínu</h3>
+<form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+<label for="brandSelect">Značka vozu</label>
+<select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
+  <option disabled selected>Vyberte značku</option>
+</select>
+<label for="modelSelect">Model vozu</label>
+<select id="modelSelect" name="Model vozu" required>
+  <option disabled selected>Vyberte model</option>
+</select>
+
+<label for="engineSelect">Objem motoru</label>
+<select id="engineSelect" name="Objem motoru" required>
+  <option disabled selected>Vyberte objem</option>
+</select>
+<label for="clientName">Jméno a příjmení</label>
+<input type="text" name="clientName" id="clientName" required placeholder="Zadejte své jméno">
+
+<label for="clientEmail">E-mail</label>
+<input type="email" name="clientEmail" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+
+<label for="clientPhone">Telefon</label>
+<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+  <label for="vin">VIN kód vozidla</label>
+  <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
+
+  <label for="note">Důvod návštěvy</label>
+  <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
+
+  <label for="date">Datum</label>
+  <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
+
   <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+  <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
 
-
-  <label for="datepicker">Datum:</label>
-  <div class="date-wrapper">
-    <input id="datepicker" name="Datum" type="text" placeholder="Datum auswählen" required />
-    <span class="date-arrow">▼</span>
-  </div>
-
-  <select name="Marke" required>
-    <option value="">Fahrzeugmarke wählen</option>
-    <option>Alfa Romeo</option>
-    <option>Audi</option>
-    <option>BMW</option>
-    <option>Chevrolet</option>
-    <option>Chrysler</option>
-    <option>Citroën</option>
-    <option>Dacia</option>
-    <option>Daewoo</option>
-    <option>Daihatsu</option>
-    <option>Dodge</option>
-    <option>Fiat</option>
-    <option>Ford</option>
-    <option>Honda</option>
-    <option>Hyundai</option>
-    <option>Infiniti</option>
-    <option>Isuzu</option>
-    <option>Jaguar</option>
-    <option>Jeep</option>
-    <option>Kia</option>
-    <option>Lada</option>
-    <option>Lancia</option>
-    <option>Land Rover</option>
-    <option>Lexus</option>
-    <option>Mazda</option>
-    <option>Mercedes-Benz</option>
-    <option>Mini</option>
-    <option>Mitsubishi</option>
-    <option>Nissan</option>
-    <option>Opel</option>
-    <option>Peugeot</option>
-    <option>Porsche</option>
-    <option>Renault</option>
-    <option>Saab</option>
-    <option>Seat</option>
-    <option>Škoda</option>
-    <option>Smart</option>
-    <option>Subaru</option>
-    <option>Suzuki</option>
-    <option>Tesla</option>
-    <option>Toyota</option>
-    <option>Volkswagen</option>
-    <option>Volvo</option>
-  </select>
-
-  <select name="Hubraum" required>
-    <option value="">Motorgröße wählen</option>
-    <option>0.8L</option>
-    <option>1.0L</option>
-    <option>1.1L</option>
-    <option>1.2L</option>
-    <option>1.3L</option>
-    <option>1.4L</option>
-    <option>1.5L</option>
-    <option>1.6L</option>
-    <option>1.8L</option>
-    <option>2.0L</option>
-    <option>2.2L</option>
-    <option>2.4L</option>
-    <option>2.5L</option>
-    <option>2.7L</option>
-    <option>3.0L</option>
-    <option>3.2L</option>
-    <option>3.5L</option>
-    <option>4.0L</option>
-    <option>4.2L</option>
-    <option>4.4L</option>
-    <option>4.6L</option>
-    <option>5.0L</option>
-    <option>5.5L</option>
-    <option>6.0L</option>
-  </select>
-<input type="email" name="email" placeholder="Zadejte svůj e-mail" required>
-  <textarea name="Grund" placeholder="Grund des Besuchs" required></textarea>
-      <input type="hidden" name="_subject" value="Nová rezervace z webu Auto Diagnostika">
-    <input type="hidden" name="_captcha" value="false">
-     <input type="hidden" name="_autoresponse" value="Vielen Dank für Ihre Reservierung. Wir werden Sie in Kürze zur Bestätigung kontaktieren.">
-  <button type="submit">Senden</button>
+  <button type="submit">Odeslat</button>
 </form>
-  </section>
+</section>
+<!-- زر O mně -->
+<div class="service-container">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/O mně.png" alt="O mně" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">O mně <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Informace o mně</span>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
 
-  <!-- زر من أنا -->
-  <div class="about-toggle-wrapper">
-    <div class="about-label">Über mich</div>
-    <button class="about-toggle" title="Über mich">
-      <span class="about-arrow">&#x25BC;</span>
-    </button>
+<!-- البانل القابل للفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 700px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 20px; border-radius: 8px;">
+  <div style="padding: 14px 0; font-size: 15px; line-height: 1.6;">
+    <p>Jsem profesionální  automechanik s více než 35 lety zkušeností  v oblasti oprav a diagnostiky vozidel, z toho 12 let praxe v Německu /Stuttgart. Během své kariéry jsem se specializoval na propojení klasických mechanických znalostí s moderními elektronickými systémy, což mi umožňuje přesně identifikovat závady a navrhnout účinná řešení.</p>
+    <p>Mám rozsáhlé zkušenosti s prací na inteligentních systémech ve vozidlech, včetně úprav softwarových nastavení a obnovení elektronických funkcí podle technických požadavků vozidla.</p>
+    <p>Dnes  působím v klidném prostředí přírody  v oblasti  Frýdlant nad Ostravicí -Malenovice, kde může zákazník využít profesionálních služeb v oblasti diagnostiky vozidel a zároveň si vychutnat šálek kávy nebo čaje na zahradě , nebo se projít po okolí během  kontroly vozu.</p>
+    <p>Česky mluvím  dobře, ale  ne perfektně. Německy a anglicky mluvím dobře.</p>
   </div>
+</div>
 
-  <div class="about-content">
-    <p>Ich verfüge über mehr als 30 Jahre Erfahrung in der Fahrzeugreparatur, davon 22 Jahre als Mechatroniker in Deutschland, mit Spezialisierung auf die Diagnose komplexer Fehler und die Verbindung von Mechanik mit moderner Fahrzeug-Elektronik.
+<!-- زر Ceník -->
+<div class="service-container">
+<button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="icons/Ceník.png" alt="Ceník" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">Ceník <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Přehled orientačních cen</span>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
 
-💡 Ich habe auch umfassende Kenntnisse in Software und Hardware, darunter:
-	•	Programmierung und Diagnose von Steuergeräten (ECU)
-	•	Arbeit mit professionellen Geräten wie Launch X431, FORScan, OBDeleven
-	•	Aktualisierung von Navigationssystemen und GPS-Karten
-	•	Reparatur von Elektronikgeräten wie iPhones, iPads und Computern
-
-Ich biete meine professionellen Dienstleistungen in Frýdlant nad Ostravicí an – inmitten der Natur, wo Sie während der Fahrzeugdiagnose bei Tee oder Kaffee entspannen können.</p>
-    <p>Ich spreche gut Tschechisch, aber nicht perfekt. Deutsch und Englisch spreche ich fließend.</p>
-    <p>Während Ihr Auto geprüft wird, genießen Sie einen Tee oder Kaffee in der Ruhe des Waldes.</p>
-  </div>
-
-  <!-- سكربتات -->
-  <a href="https://wa.me/420732133919" class="whatsapp" target="_blank">WhatsApp</a>
-
+<!-- البانل الذي يفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 380px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 14px; border-radius: 8px;">
+  <ul style="padding: 14px 0; list-style: disc; margin-left: 20px;">
+    <li>Regenerace DPF: 1 000–2 000 Kč</li>
+    <li>Reset výměny oleje: 300–600 Kč</li>
+    <li>Reset EPB: 500–800 Kč</li>
+    <li>Reset BMS: 400–700 Kč</li>
+    <li>Kompletní diagnostika: 500–800 Kč</li>
+  </ul>
+  <p class="note" style="font-size: 13px; padding-bottom: 12px;">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
+</div>
+<a href="https://wa.me/420732133919" target="_blank" style="
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  background-color: white;
+  color: #25D366;
+  padding: 2px 6px;
+  border: 1px solid #25D366;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: sans-serif;
+  font-size: 9px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 12px; height: 12px;">
+  WhatsApp
+</a>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/en.js"></script>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const selectedLang = document.documentElement.lang || "de";
       flatpickr("#datepicker", {
         dateFormat: "d.m.Y",
-        locale: selectedLang,
+        locale: "cs",
         disableMobile: true,
         disable: [
           "2025-05-15",
           "2025-05-20",
-          {
-            from: "2025-05-25",
-            to: "2025-05-27"
-          }
+          { from: "2025-05-25", to: "2025-05-27" }
         ]
       });
-    });
-
-    document.querySelectorAll('.accordion-button').forEach((button, index) => {
-      button.addEventListener('click', () => {
-        const allPanels = document.querySelectorAll('.accordion-panel');
-        const allButtons = document.querySelectorAll('.accordion-button');
-
-        allPanels.forEach((panel, i) => {
-          if (i === index) {
-            const isOpen = panel.style.maxHeight;
-            if (isOpen) {
-              panel.style.maxHeight = null;
-              button.querySelector('.arrow').innerHTML = '&#x25BC;';
-            } else {
-              panel.style.maxHeight = panel.scrollHeight + 'px';
-              button.querySelector('.arrow').innerHTML = '&#x25B2;';
-              setTimeout(() => {
-                panel.scrollIntoView({ behavior: 'smooth' });
-              }, 300);
-            }
-          } else {
-            panel.style.maxHeight = null;
-            allButtons[i].querySelector('.arrow').innerHTML = '&#x25BC;';
-          }
-        });
+});
+</script>
+ <script> 
+      const form = document.getElementById('booking-form');
+      form.addEventListener('submit', function () {
+        document.getElementById('success-message').style.display = 'block';
       });
     });
+  </script>
+  
+<!-- 1. carData: قائمة السيارات -->
+<!-- 1. carData: قائمة السيارات -->
+<script>
+  const carData = {
+    "Acura": {
+    "Integra": ["1.5L", "2.0L"],
+    "TLX": ["2.0L", "3.0L"],
+    "RDX": ["2.0L"],
+    "MDX": ["3.5L", "3.0L"],
+    "ZDX": ["Electric"],
+    "ILX": ["2.4L"],
+    "NSX": ["3.5L"]
+  },
+  "Alfa Romeo": {
+    "Giulia": ["2.0L", "2.9L"],
+    "Stelvio": ["2.0L", "2.9L"],
+    "Tonale": ["1.3L", "1.5L", "2.0L"],
+    "MiTo": ["0.9L", "1.4L"],
+    "Giulietta": ["1.4L", "1.6L", "2.0L"]
+  },
+  "Aston Martin": {
+    "Vantage": ["4.0L"],
+    "DB12": ["4.0L"],
+    "DBX": ["4.0L"],
+    "DB11": ["4.0L", "5.2L"]
+  },
+  "Audi": {
+    "A3": ["1.0L", "1.5L", "2.0L", "2.5L"],
+    "A4": ["2.0L", "2.9L", "3.0L"],
+    "A5": ["2.0L", "2.9L", "3.0L"],
+    "A6": ["2.0L", "2.9L", "4.0L"],
+    "A7": ["3.0L", "4.0L"],
+    "A8": ["3.0L", "4.0L"],
+    "Q2": ["1.0L", "1.5L", "2.0L"],
+    "Q3": ["1.5L", "2.0L", "2.5L"],
+    "Q4 e-tron": ["Electric"],
+    "Q5": ["2.0L", "3.0L"],
+    "Q7": ["3.0L", "4.0L"],
+    "Q8": ["3.0L", "4.0L"],
+    "e-tron GT": ["Electric"],
+    "R8": ["5.2L"],
+    "TT": ["2.0L", "2.5L"]
+  },
+  "Bentley": {
+    "Continental GT": ["4.0L", "6.0L"],
+    "Flying Spur": ["4.0L", "6.0L"],
+    "Bentayga": ["3.0L", "4.0L", "6.0L"],
+    "Mulsanne": ["6.75L"]
+  },
+  "BMW": {
+    "1 Series": ["1.5L", "2.0L"],
+    "2 Series": ["1.5L", "2.0L", "3.0L"],
+    "3 Series": ["1.5L", "2.0L", "3.0L"],
+    "4 Series": ["2.0L", "3.0L"],
+    "5 Series": ["2.0L", "3.0L", "4.4L"],
+    "7 Series": ["3.0L", "4.4L", "Electric"],
+    "8 Series": ["3.0L", "4.4L"],
+    "X1": ["1.5L", "2.0L", "Electric"],
+    "X2": ["1.5L", "2.0L"],
+    "X3": ["2.0L", "3.0L", "Electric"],
+    "X4": ["2.0L", "3.0L"],
+    "X5": ["3.0L", "4.4L"],
+    "X6": ["3.0L", "4.4L"],
+    "X7": ["3.0L", "4.4L"],
+    "i4": ["Electric"],
+    "iX": ["Electric"],
+    "Z4": ["2.0L", "3.0L"],
+    "M3": ["3.0L"],
+    "M4": ["3.0L"]
+  },
+  "Bugatti": {
+    "Chiron": ["8.0L"],
+    "Divo": ["8.0L"],
+    "Centodieci": ["8.0L"]
+  },
+  "Buick": {
+    "Encore GX": ["1.2L", "1.3L"],
+    "Envista": ["1.2L"],
+    "Envision": ["2.0L"],
+    "Enclave": ["3.6L"],
+    "LaCrosse": ["2.0L"],
+    "Regal": ["2.0L"],
+    "GL8": ["2.0L"],
+    "Verano": ["1.5L"],
+    "Encore": ["1.4L"]
+  },
+  "BYD": {
+    "Dolphin": ["Electric"],
+    "Seal": ["Electric"],
+    "Atto 3": ["Electric"],
+    "Han": ["Electric"],
+    "Tang": ["Electric"],
+    "Yuan Plus": ["Electric"],
+    "Song Plus": ["Electric"]
+  },
+  "Cadillac": {
+    "CT4": ["2.0L", "2.7L", "3.6L"],
+    "CT5": ["2.0L", "3.0L", "6.2L"],
+    "CT6": ["2.0L"],
+    "XT4": ["2.0L"],
+    "XT5": ["2.0L", "3.6L"],
+    "XT6": ["2.0L", "3.6L"],
+    "Escalade": ["3.0L", "6.2L"],
+    "Lyriq": ["Electric"],
+    "Celestiq": ["Electric"],
+    "ATS": ["2.0L", "3.6L"],
+    "XTS": ["3.6L"]
+  },
+  "Chevrolet": {
+    "Malibu": ["1.5L", "2.0L"],
+    "Camaro": ["2.0L", "3.6L", "6.2L"],
+    "Corvette": ["5.5L", "6.2L"],
+    "Bolt EV": ["Electric"],
+    "Bolt EUV": ["Electric"],
+    "Trailblazer": ["1.2L", "1.3L"],
+    "Trax": ["1.2L"],
+    "Equinox": ["1.5L", "2.0L"],
+    "Blazer": ["2.0L", "3.6L"],
+    "Blazer EV": ["Electric"],
+    "Traverse": ["3.6L"],
+    "Tahoe": ["3.0L", "5.3L", "6.2L"],
+    "Suburban": ["3.0L", "5.3L", "6.2L"],
+    "Colorado": ["2.7L"],
+    "Silverado 1500": ["2.7L", "3.0L", "5.3L", "6.2L"],
+    "Silverado HD": ["6.6L"],
+    "Silverado EV": ["Electric"],
+    "Equinox EV": ["Electric"],
+    "Spark": ["1.4L"],
+    "Aveo": ["1.5L"]
+  },
+  "Chrysler": {
+    "300": ["3.6L", "5.7L"],
+    "Pacifica": ["3.6L"],
+    "Voyager": ["3.6L"]
+  },
+  "Citroën": {
+    "C3": ["1.2L"],
+    "C3 Aircross": ["1.2L"],
+    "C4": ["1.2L", "Electric"],
+    "C5 X": ["1.6L"],
+    "C5 Aircross": ["1.6L"],
+    "C1": ["1.0L"],
+    "C-Elysée": ["1.6L"]
+  },
+  "Cupra": {
+    "Formentor": ["1.5L", "2.0L", "2.5L"],
+    "Leon": ["1.4L", "2.0L"],
+    "Born": ["Electric"],
+    "Ateca": ["2.0L"],
+    "Tavascan": ["Electric"]
+  },
+  "Dacia": {
+    "Spring": ["Electric"],
+    "Sandero": ["1.0L"],
+    "Logan": ["1.0L"],
+    "Duster": ["1.0L", "1.3L"],
+    "Jogger": ["1.0L"]
+  },
+  "Daihatsu": {
+    "Mira": ["0.66L"],
+    "Tanto": ["0.66L"],
+    "Move": ["0.66L"],
+    "Taft": ["0.66L"],
+    "Rocky": ["1.0L"],
+    "Boon": ["1.0L"],
+    "Thor": ["1.0L"],
+    "Terios": ["1.5L"],
+    "Sigra": ["1.0L", "1.2L"],
+    "Xenia": ["1.3L", "1.5L"],
+    "Ayla": ["1.0L"]
+  },
+  "Dodge": {
+    "Challenger": ["3.6L", "5.7L", "6.2L", "6.4L"],
+    "Charger": ["3.6L", "5.7L", "6.2L", "6.4L"],
+    "Durango": ["3.6L", "5.7L", "6.4L"],
+    "Hornet": ["1.3L", "2.0L"],
+    "Journey": ["2.4L"]
+  },
+  "Ferrari": {
+    "SF90 Stradale": ["4.0L"],
+    "296 GTB": ["3.0L"],
+    "Roma": ["3.9L"],
+    "Portofino": ["3.9L"],
+    "Purosangue": ["6.5L"],
+    "F8 Tributo": ["3.9L"]
+  },
+  "Fiat": {
+    "500": ["0.9L", "1.0L", "Electric"],
+    "Panda": ["0.9L", "1.0L"],
+    "Tipo": ["1.0L", "1.4L"],
+    "500X": ["1.3L", "1.6L"],
+    "500L": ["1.4L"],
+    "Punto": ["1.2L", "1.4L"]
+  },
+  "Ford": {
+    "Fiesta": ["1.0L", "1.5L"],
+    "Focus": ["1.0L", "1.5L", "2.3L"],
+    "Mondeo": ["1.5L", "2.0L"],
+    "Mustang": ["2.3L", "5.0L"],
+    "Mustang Mach-E": ["Electric"],
+    "Puma": ["1.0L"],
+    "Escape": ["1.5L", "2.0L", "2.5L"],
+    "Bronco Sport": ["1.5L", "2.0L"],
+    "Bronco": ["2.3L", "2.7L"],
+    "Edge": ["2.0L", "2.7L"],
+    "Explorer": ["2.3L", "3.0L", "3.3L"],
+    "Expedition": ["3.5L"],
+    "Maverick": ["2.0L", "2.5L"],
+    "Ranger": ["2.3L", "3.0L"],
+    "F-150": ["2.7L", "3.3L", "3.5L", "5.0L", "Electric"],
+    "F-Series Super Duty": ["6.7L", "6.8L", "7.3L"],
+    "Everest": ["2.0L", "2.3L"],
+    "Transit": ["2.0L", "2.2L", "3.5L"],
+    "Transit Custom": ["2.0L", "2.2L"],
+    "Transit Connect": ["1.0L", "1.5L", "2.0L"],
+    "Tourneo Custom": ["2.0L"],
+    "Tourneo Connect": ["1.5L", "2.0L"],
+    "EcoSport": ["1.0L", "1.5L"],
+    "Ka+": ["1.2L"],
+    "Galaxy": ["2.0L"],
+    "S-Max": ["2.0L"]
+  },
+  "Genesis": {
+    "G70": ["2.0L", "3.3L"],
+    "G80": ["2.5L", "3.5L", "Electric"],
+    "G90": ["3.5L"],
+    "GV60": ["Electric"],
+    "GV70": ["2.5L", "3.5L", "Electric"],
+    "GV80": ["2.5L", "3.5L"]
+  },
+  "GMC": {
+    "Terrain": ["1.5L"],
+    "Acadia": ["2.0L", "3.6L"],
+    "Yukon": ["3.0L", "5.3L", "6.2L"],
+    "Yukon XL": ["3.0L", "5.3L", "6.2L"],
+    "Canyon": ["2.7L"],
+    "Sierra 1500": ["2.7L", "3.0L", "5.3L", "6.2L"],
+    "Sierra HD": ["6.6L"],
+    "Hummer EV": ["Electric"],
+    "Sierra EV": ["Electric"],
+    "Savana": ["4.3L", "6.6L"]
+  },
+  "Great Wall": {
+    "Haval H6": ["1.5L", "2.0L"],
+    "Haval Jolion": ["1.5L"],
+    "Haval Big Dog": ["1.5L", "2.0L"],
+    "Wingle": ["2.0L"],
+    "Tank 300": ["2.0L"],
+    "Tank 500": ["3.0L"],
+    "ORA Good Cat": ["Electric"],
+    "Poer": ["2.0L"]
+  },
+  "Honda": {
+    "Civic": ["1.5L", "2.0L"],
+    "Accord": ["1.5L", "2.0L"],
+    "City": ["1.5L"],
+    "Amaze": ["1.2L", "1.5L"],
+    "Fit": ["1.3L", "1.5L"],
+    "HR-V": ["1.5L"],
+    "ZR-V": ["1.5L", "2.0L"],
+    "CR-V": ["1.5L", "2.0L"],
+    "Pilot": ["3.5L"],
+    "Odyssey": ["2.4L", "3.5L"],
+    "Freed": ["1.5L"],
+    "BR-V": ["1.5L"],
+    "N-Box": ["0.66L"],
+    "Ridgeline": ["3.5L"],
+    "Jazz": ["1.3L", "1.5L"],
+    "E": ["Electric"]
+  },
+  "Hyundai": {
+    "Accent": ["1.5L"],
+    "Elantra": ["1.6L", "2.0L"],
+    "i30": ["1.0L", "1.5L", "2.0L"],
+    "Sonata": ["1.6L", "2.5L"],
+    "Grandeur": ["2.5L", "3.5L"],
+    "Venue": ["1.6L"],
+    "Kona": ["1.6L", "Electric"],
+    "Creta": ["1.5L"],
+    "Tucson": ["1.6L", "2.5L"],
+    "Santa Fe": ["1.6L", "2.5L"],
+    "Palisade": ["3.8L"],
+    "Ioniq 5": ["Electric"],
+    "Ioniq 6": ["Electric"],
+    "Azera": ["3.5L"]
+  },
+  "Infiniti": {
+    "Q30": ["1.6L", "2.0L"],
+    "Q50": ["3.0L"],
+    "Q60": ["3.0L"],
+    "Q70": ["3.7L", "5.6L"],
+    "QX30": ["2.0L"],
+    "QX50": ["2.0L"],
+    "QX55": ["2.0L"],
+    "QX60": ["3.5L"],
+    "QX70": ["3.7L"],
+    "QX80": ["5.6L"]
+  },
+  "Isuzu": {
+    "D-Max": ["1.9L", "3.0L"],
+    "MU-X": ["1.9L", "3.0L"]
+  },
+  "Jaguar": {
+    "XE": ["2.0L"],
+    "XF": ["2.0L"],
+    "F-Type": ["5.0L"],
+    "E-Pace": ["2.0L"],
+    "F-Pace": ["2.0L", "3.0L", "5.0L"],
+    "I-Pace": ["Electric"],
+    "XJ": ["3.0L", "5.0L"]
+  },
+  "Jeep": {
+    "Renegade": ["1.3L", "2.4L"],
+    "Compass": ["1.3L", "2.0L", "2.4L"],
+    "Cherokee": ["2.4L", "3.2L"],
+    "Grand Cherokee": ["3.6L", "5.7L", "6.4L"],
+    "Wagoneer": ["3.0L", "5.7L", "6.4L"],
+    "Wrangler": ["2.0L", "3.6L", "6.4L"],
+    "Gladiator": ["3.6L"],
+    "Commander": ["2.0L"]
+  },
+  "Kia": {
+    "Rio": ["1.6L"],
+    "Picanto": ["1.0L", "1.2L"],
+    "Ceed": ["1.0L", "1.5L", "1.6L"],
+    "Forte": ["2.0L"],
+    "Stinger": ["2.0L", "3.3L"],
+    "K5": ["1.6L", "2.5L"],
+    "Sportage": ["1.6L", "2.5L"],
+    "Sorento": ["2.5L"],
+    "Seltos": ["1.6L", "2.0L"],
+    "Telluride": ["3.8L"],
+    "Carnival": ["3.5L"],
+    "Niro": ["1.6L", "Electric"],
+    "EV6": ["Electric"],
+    "EV9": ["Electric"],
+    "Soul": ["1.6L", "Electric"]
+  },
+  "Koenigsegg": {
+    "Jesko": ["5.0L"],
+    "Gemera": ["2.0L"],
+    "Regera": ["5.0L"]
+  },
+  "Lamborghini": {
+    "Revuelto": ["6.5L"],
+    "Huracán": ["5.2L"],
+    "Urus": ["4.0L"],
+    "Aventador": ["6.5L"]
+  },
+  "Land Rover": {
+    "Range Rover": ["3.0L", "4.4L"],
+    "Range Rover Sport": ["3.0L", "4.4L"],
+    "Range Rover Velar": ["2.0L", "3.0L"],
+    "Range Rover Evoque": ["2.0L"],
+    "Discovery": ["3.0L"],
+    "Discovery Sport": ["2.0L"],
+    "Defender": ["2.0L", "3.0L", "5.0L"],
+    "Freelander": ["2.0L"]
+  },
+  "Lexus": {
+    "IS": ["2.0L", "3.5L"],
+    "ES": ["2.5L", "3.5L"],
+    "LS": ["3.4L", "3.5L"],
+    "UX": ["2.0L", "Electric"],
+    "NX": ["2.4L", "2.5L"],
+    "RX": ["2.4L", "2.5L", "3.5L"],
+    "GX": ["4.6L"],
+    "LX": ["3.5L"],
+    "RC": ["2.0L", "3.5L", "5.0L"],
+    "LC": ["3.5L", "5.0L"],
+    "CT": ["1.8L"]
+  },
+  "Lincoln": {
+    "Corsair": ["2.0L", "2.3L", "2.5L"],
+    "Nautilus": ["2.0L", "2.7L"],
+    "Aviator": ["3.0L"],
+    "Navigator": ["3.5L"],
+    "MKZ": ["2.0L", "3.0L"]
+  },
+  "Lucid": {
+    "Air": ["Electric"]
+  },
+  "Mahindra": {
+    "XUV300": ["1.2L"],
+    "XUV400": ["Electric"],
+    "XUV700": ["2.0L"],
+    "Scorpio-N": ["2.0L"],
+    "Thar": ["2.0L"],
+    "Bolero": ["1.5L"]
+  },
+  "Maserati": {
+    "Ghibli": ["3.0L", "3.8L"],
+    "Quattroporte": ["3.0L", "3.8L"],
+    "Levante": ["3.0L", "3.8L"],
+    "MC20": ["3.0L"],
+    "Grecale": ["2.0L", "3.0L"],
+    "GranTurismo": ["3.0L", "Electric"]
+  },
+  "Mazda": {
+    "Mazda2": ["1.5L"],
+    "Mazda3": ["2.0L", "2.5L"],
+    "Mazda6": ["2.5L"],
+    "MX-5": ["1.5L", "2.0L"],
+    "MX-30": ["Electric"],
+    "CX-30": ["2.5L"],
+    "CX-5": ["2.5L"],
+    "CX-50": ["2.5L"],
+    "CX-60": ["2.5L", "3.3L"],
+    "CX-90": ["3.3L"],
+    "CX-9": ["2.5L"],
+    "BT-50": ["3.0L"]
+  },
+  "McLaren": {
+    "Artura": ["3.0L"],
+    "750S": ["4.0L"],
+    "GT": ["4.0L"],
+    "720S": ["4.0L"]
+  },
+  "Mercedes-Benz": {
+    "A-Class": ["1.3L", "2.0L"],
+    "B-Class": ["1.3L", "2.0L"],
+    "C-Class": ["2.0L", "4.0L"],
+    "E-Class": ["2.0L", "3.0L", "4.0L"],
+    "S-Class": ["3.0L", "4.0L", "6.0L"],
+    "CLA": ["1.3L", "2.0L"],
+    "CLS": ["3.0L"],
+    "SL": ["4.0L"],
+    "AMG GT 4-Door": ["3.0L", "4.0L"],
+    "AMG GT": ["4.0L"],
+    "GLA": ["1.3L", "2.0L"],
+    "GLB": ["1.3L", "2.0L"],
+    "GLC": ["2.0L", "4.0L"],
+    "GLE": ["3.0L", "4.0L"],
+    "GLS": ["3.0L", "4.0L"],
+    "G-Class": ["4.0L"],
+    "EQA": ["Electric"],
+    "EQB": ["Electric"],
+    "EQC": ["Electric"],
+    "EQE": ["Electric"],
+    "EQS": ["Electric"],
+    "V-Class": ["2.0L"]
+  },
+  "MG": {
+    "MG3": ["1.5L"],
+    "MG5": ["Electric"],
+    "MG4": ["Electric"],
+    "MG ZS": ["1.5L", "Electric"],
+    "MG HS": ["1.5L"],
+    "MG7": ["2.0L"],
+    "Hector": ["1.5L"],
+    "RX5": ["1.5L"]
+  },
+  "Mini": {
+    "Cooper": ["1.5L", "2.0L", "Electric"],
+    "Clubman": ["1.5L", "2.0L"],
+    "Countryman": ["1.5L", "2.0L", "Electric"],
+    "Convertible": ["1.5L", "2.0L"]
+  },
+  "Mitsubishi": {
+    "Mirage": ["1.2L"],
+    "Attrage": ["1.2L"],
+    "ASX": ["2.0L", "2.4L"],
+    "Outlander": ["2.4L", "2.5L"],
+    "Eclipse Cross": ["1.5L"],
+    "Xpander": ["1.5L"],
+    "Pajero Sport": ["2.4L"],
+    "L200": ["2.4L"]
+  },
+  "NIO": {
+    "ET5": ["Electric"],
+    "ET7": ["Electric"],
+    "ES6": ["Electric"],
+    "ES7": ["Electric"],
+    "ES8": ["Electric"],
+    "EC6": ["Electric"]
+  },
+  "Nissan": {
+    "Versa": ["1.6L"],
+    "Note": ["1.2L"],
+    "Micra": ["1.0L", "1.2L"],
+    "Sentra": ["1.6L", "2.0L"],
+    "Sunny": ["1.5L"],
+    "Almera": ["1.0L", "1.5L"],
+    "Tiida": ["1.6L"],
+    "Altima": ["2.0L", "2.5L"],
+    "Maxima": ["3.5L"],
+    "Sylphy": ["1.6L", "1.8L"],
+    "Bluebird": ["2.0L"],
+    "Teana": ["2.0L", "2.5L"],
+    "Leaf": ["Electric"],
+    "Ariya": ["Electric"],
+    "Juke": ["1.0L", "1.6L"],
+    "Kicks": ["1.6L"],
+    "Qashqai": ["1.2L", "1.3L", "1.5L"],
+    "Rogue": ["1.5L", "2.5L"],
+    "Rogue Sport": ["2.0L"],
+    "X-Trail": ["1.5L", "2.0L", "2.5L"],
+    "Murano": ["3.5L"],
+    "Pathfinder": ["3.5L"],
+    "Armada": ["5.6L"],
+    "Terra": ["2.5L"],
+    "Patrol": ["4.0L", "5.6L"],
+    "Xterra": ["4.0L"],
+    "Frontier": ["2.5L", "3.8L"],
+    "Navara": ["2.3L", "2.5L"],
+    "Titan": ["5.6L"],
+    "Pickup": ["2.4L"],
+    "Hardbody": ["2.4L"],
+    "GT-R": ["3.8L"],
+    "370Z": ["3.7L"],
+    "Z": ["3.0L"],
+    "NV200": ["1.5L", "2.0L"],
+    "NV350": ["2.5L", "2.7L"],
+    "Urvan": ["2.5L", "2.7L"],
+    "Evalia": ["1.5L"],
+    "Serena": ["2.0L"],
+    "Elgrand": ["2.5L", "3.5L"],
+    "Quest": ["3.5L"],
+    "Livina": ["1.5L"],
+    "Lafesta": ["2.0L"]
+  },
+  "Opel": {
+    "Corsa": ["1.2L", "Electric"],
+    "Astra": ["1.2L", "1.6L"],
+    "Insignia": ["2.0L"],
+    "Crossland": ["1.2L"],
+    "Mokka": ["1.2L", "Electric"],
+    "Grandland": ["1.2L", "1.6L"],
+    "Zafira": ["1.6L", "2.0L"]
+  },
+  "Pagani": {
+    "Huayra": ["6.0L"],
+    "Utopia": ["6.0L"],
+    "Zonda": ["7.3L"]
+  },
+  "Peugeot": {
+    "208": ["1.2L", "Electric"],
+    "308": ["1.2L", "1.6L"],
+    "508": ["1.6L"],
+    "2008": ["1.2L", "Electric"],
+    "3008": ["1.2L", "1.6L"],
+    "5008": ["1.2L", "1.6L"],
+    "408": ["1.2L", "1.6L"],
+    "4008": ["1.6L"]
+  },
+  "Polestar": {
+    "Polestar 2": ["Electric"],
+    "Polestar 3": ["Electric"],
+    "Polestar 4": ["Electric"],
+    "Polestar 1": ["2.0L"]
+  },
+  "Porsche": {
+    "718": ["2.0L", "2.5L", "4.0L"],
+    "911": ["3.0L", "4.0L"],
+    "Taycan": ["Electric"],
+    "Panamera": ["2.9L", "4.0L"],
+    "Macan": ["2.0L", "2.9L"],
+    "Cayenne": ["3.0L", "4.0L"]
+  },
+  "Ram": {
+    "1500": ["3.6L", "5.7L", "6.2L"],
+    "Heavy Duty": ["6.4L", "6.7L"],
+    "700": ["1.4L"]
+  },
+  "Renault": {
+    "Clio": ["1.0L", "1.6L"],
+    "Zoe": ["Electric"],
+    "Megane": ["1.3L", "Electric"],
+    "Arkana": ["1.3L"],
+    "Captur": ["1.0L", "1.3L"],
+    "Austral": ["1.2L", "1.3L"],
+    "Koleos": ["2.5L"],
+    "Kwid": ["1.0L"],
+    "Talisman": ["1.6L", "2.0L"]
+  },
+  "Rivian": {
+    "R1T": ["Electric"],
+    "R1S": ["Electric"]
+  },
+  "Rolls-Royce": {
+    "Phantom": ["6.75L"],
+    "Ghost": ["6.75L"],
+    "Spectre": ["Electric"],
+    "Cullinan": ["6.75L"],
+    "Wraith": ["6.6L"],
+    "Dawn": ["6.6L"]
+  },
+  "Seat": {
+    "Ibiza": ["1.0L", "1.5L"],
+    "Leon": ["1.0L", "1.5L", "2.0L"],
+    "Arona": ["1.0L"],
+    "Ateca": ["1.5L", "2.0L"],
+    "Tarraco": ["1.5L", "2.0L"],
+    "Toledo": ["1.0L", "1.6L"]
+  },
+  "Skoda": {
+    "Fabia": ["1.0L", "1.5L"],
+    "Octavia": ["1.0L", "1.5L", "2.0L"],
+    "Superb": ["1.5L", "2.0L"],
+    "Scala": ["1.0L", "1.5L"],
+    "Kamiq": ["1.0L", "1.5L"],
+    "Karoq": ["1.5L", "2.0L"],
+    "Kodiaq": ["1.5L", "2.0L"],
+    "Enyaq": ["Electric"],
+    "Rapid": ["1.0L", "1.6L"]
+  },
+  "Smart": {
+    "Fortwo": ["Electric"],
+    "#1": ["Electric"],
+    "Forfour": ["Electric"]
+  },
+  "Subaru": {
+    "Impreza": ["2.0L"],
+    "WRX": ["2.4L"],
+    "Legacy": ["2.4L", "2.5L"],
+    "Outback": ["2.4L", "2.5L"],
+    "Forester": ["2.5L"],
+    "Crosstrek": ["2.0L", "2.5L"],
+    "Ascent": ["2.4L"],
+    "BRZ": ["2.4L"],
+    "Solterra": ["Electric"]
+  },
+  "Suzuki": {
+    "Alto": ["0.66L"],
+    "Swift": ["1.2L", "1.4L"],
+    "Ignis": ["1.2L"],
+    "Ciaz": ["1.5L"],
+    "Vitara": ["1.4L"],
+    "S-Cross": ["1.4L"],
+    "Jimny": ["1.5L"],
+    "Ertiga": ["1.5L"],
+    "XL7": ["1.5L"],
+    "Grand Vitara": ["1.5L"],
+    "Baleno": ["1.2L"]
+  },
+  "Tata": {
+    "Tiago": ["1.2L"],
+    "Tigor": ["1.2L"],
+    "Altroz": ["1.2L"],
+    "Punch": ["1.2L"],
+    "Nexon": ["1.2L", "Electric"],
+    "Harrier": ["2.0L"]
+  },
+  "Tesla": {
+    "Model S": ["Electric"],
+    "Model 3": ["Electric"],
+    "Model X": ["Electric"],
+    "Model Y": ["Electric"],
+    "Cybertruck": ["Electric"]
+  },
+  "Toyota": {
+    "Corolla": ["1.6L", "1.8L", "2.0L"],
+    "Camry": ["2.0L", "2.5L", "3.5L"],
+    "Yaris": ["1.0L", "1.5L", "1.6L"],
+    "Avalon": ["2.5L", "3.5L"],
+    "Crown": ["2.4L", "2.5L"],
+    "Prius": ["1.8L", "2.0L"],
+    "Mirai": ["Electric"],
+    "Supra": ["2.0L", "3.0L"],
+    "GR86": ["2.4L"],
+    "C-HR": ["1.8L", "2.0L"],
+    "Corolla Cross": ["1.8L", "2.0L"],
+    "RAV4": ["2.0L", "2.5L"],
+    "Highlander": ["2.4L", "2.5L", "3.5L"],
+    "Grand Highlander": ["2.4L", "2.5L"],
+    "4Runner": ["4.0L"],
+    "Sequoia": ["3.5L"],
+    "Fortuner": ["2.4L", "2.7L", "2.8L", "4.0L"],
+    "Land Cruiser": ["3.3L", "3.5L", "4.0L"],
+    "Land Cruiser Prado": ["2.7L", "2.8L", "4.0L"],
+    "Hilux": ["2.4L", "2.7L", "4.0L"],
+    "Tacoma": ["2.4L", "3.5L"],
+    "Tundra": ["3.4L"],
+    "Sienna": ["2.5L"],
+    "Alphard": ["2.4L", "2.5L"],
+    "Innova": ["2.0L"],
+    "Avanza": ["1.3L", "1.5L"],
+    "bZ3": ["Electric"],
+    "bZ4X": ["Electric"],
+    "Vios": ["1.3L", "1.5L"]
+  },
+  "Volkswagen": {
+    "Up": ["1.0L"],
+    "Polo": ["1.0L", "2.0L"],
+    "Golf": ["1.0L", "1.5L", "2.0L"],
+    "Jetta": ["1.4L", "2.0L"],
+    "Passat": ["1.5L", "2.0L"],
+    "Arteon": ["2.0L"],
+    "T-Cross": ["1.0L", "1.5L"],
+    "T-Roc": ["1.0L", "1.5L", "2.0L"],
+    "Tiguan": ["1.5L", "2.0L"],
+    "Touareg": ["3.0L"],
+    "Atlas": ["2.0L", "3.6L"],
+    "ID.3": ["Electric"],
+    "ID.4": ["Electric"],
+    "ID.5": ["Electric"],
+    "ID. Buzz": ["Electric"],
+    "Sharan": ["2.0L"]
+  },
+  "Volvo": {
+    "XC40": ["2.0L", "Electric"],
+    "C40": ["Electric"],
+    "XC60": ["2.0L"],
+    "XC90": ["2.0L"],
+    "S60": ["2.0L"],
+    "V60": ["2.0L"],
+    "S90": ["2.0L"],
+    "V90": ["2.0L"],
+    "EX90": ["Electric"],
+    "S40": ["2.0L"]
+  }
+};
+</script>
 
-    const aboutBtn = document.querySelector('.about-toggle');
-    const aboutBox = document.querySelector('.about-content');
-    const aboutArrow = aboutBtn.querySelector('.about-arrow');
+<script>
+// تفعيل مكتبة Choices.js
+const brandSelect = new Choices('#brandSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const modelSelect = new Choices('#modelSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+const engineSelect = new Choices('#engineSelect', {
+  searchEnabled: true,
+  itemSelectText: '',
+});
+</script>
 
-    aboutBtn.addEventListener('click', () => {
-      aboutBox.classList.toggle('show');
-      aboutBtn.classList.toggle('open');
-      if (aboutBox.classList.contains('show')) {
+<script>
+// تعبئة ماركات السيارات
+brandSelect.setChoices(
+  Object.keys(carData).map(brand => ({
+    value: brand,
+    label: brand
+  })),
+  'value',
+  'label',
+  true
+);
+
+// عند تغيير نوع السيارة
+brandSelect.passedElement.element.addEventListener("change", function () {
+  const selectedBrand = this.value;
+
+  const models = Object.keys(carData[selectedBrand] || {});
+  modelSelect.clearChoices();
+  modelSelect.setChoices(
+    models.map(model => ({
+      value: model,
+      label: model
+    })),
+    'value',
+    'label',
+    true
+  );
+
+  // Clear engine choices لما تتغير الماركة
+  engineSelect.clearChoices();
+});
+
+// عند اختيار الموديل
+modelSelect.passedElement.element.addEventListener("change", function () {
+  const selectedBrand = brandSelect.getValue(true);
+  const selectedModel = this.value;
+
+  const engines = carData[selectedBrand][selectedModel] || [];
+  engineSelect.clearChoices();
+  engineSelect.setChoices(
+    engines.map(engine => ({
+      value: engine,
+      label: engine
+    })),
+    'value',
+    'label',
+    true
+  );
+});
+</script>
+
+<!-- سكربت فتح وإغلاق الـ Accordion -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".accordion-button");
+  const panels = document.querySelectorAll(".accordion-panel");
+
+  // اغلق جميع البانلز عند تحميل الصفحة
+  panels.forEach(panel => {
+    panel.style.maxHeight = "0";
+    panel.classList.remove("open");
+  });
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", function () {
+      const panel = panels[index];
+      const isOpen = panel.classList.contains("open");
+
+      // اغلق الكل قبل فتح المطلوب
+      panels.forEach((p, i) => {
+        p.style.maxHeight = "0";
+        p.classList.remove("open");
+        buttons[i].classList.remove("active");
+      });
+
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.classList.add("open");
+        button.classList.add("active");
+
+        // مرر الصفحة للزر/القسم المفتوح
         setTimeout(() => {
-          aboutBox.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
+          button.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 200);
       }
     });
-  </script>
+  });
+});
+</script>
 </body>
 </html>
+ 
