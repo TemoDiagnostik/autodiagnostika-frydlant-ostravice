@@ -329,6 +329,7 @@ body {
 }
 
 /* ==== موبايل ==== */
+/* ==== موبايل: تحسين الزر والظل ==== */
 @media only screen and (max-width: 768px) {
   html, body {
     min-height: 100vh;
@@ -350,14 +351,20 @@ body {
     background-color: transparent !important;
   }
 
+  .accordion-button {
+    padding: 8px 10px;
+    box-shadow: 0 0 6px rgba(235, 219, 177, 0.4); /* ظل الزر */
+    border-radius: 12px;
+  }
+
   .accordion-button .service-button {
-    padding: 10px 12px;
+    padding: 8px 10px;
     gap: 6px;
   }
 
   .service-button img {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
   }
 
   .service-button span {
@@ -365,8 +372,8 @@ body {
   }
 
   .accordion-panel {
-    font-size: 14px;
-    padding: 12px;
+    font-size: 13.5px;
+    padding: 10px;
   }
 
   form input,
@@ -383,9 +390,5 @@ body {
 
   .reservation-form {
     padding: 12px 10px;
-  }
-
-  .accordion-button {
-    padding: 6px 10px;
   }
 }
