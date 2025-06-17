@@ -349,6 +349,14 @@ body {
     background-color: black;
   }
 
+.btn-title {
+  font-size: 22px;
+}
+
+.btn-description {
+  font-size: 12px;
+}
+  
   .service-text h3 {
     font-size: 28px;
   }
@@ -407,3 +415,23 @@ body {
     font-size: 30px;
   }
 }
+
+
+.btn-title {
+  font-weight: bold;
+  color: #EBDBB1;
+  font-size: 26px; /* للحجم الطبيعي على الديسكتوب */
+}
+
+.btn-arrow {
+  font-size: 16px;
+  color: #EBDBB1;
+}
+
+.btn-description {
+  font-size: 14px;
+  color: #EBDBB1;
+  font-weight: 400;
+  margin-left: 36px;
+}
+
