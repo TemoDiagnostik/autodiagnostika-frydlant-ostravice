@@ -329,7 +329,7 @@ body {
   color: #b00;
 }
 
-/* ==== موبايل ==== */
+
 /* ==== موبايل ==== */
 @media only screen and (max-width: 768px) {
   html, body {
@@ -348,7 +348,7 @@ body {
     background-color: black;
   }
  .service-text h3 {
-    font-size: 26px;
+    font-size: 28px;
    
   main, section, .service-container {
     background-color: transparent !important;
@@ -398,5 +398,11 @@ body {
 
   .reservation-form {
     padding: 12px 10px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .service-text h3 {
+    font-size: 30px;
   }
 }
