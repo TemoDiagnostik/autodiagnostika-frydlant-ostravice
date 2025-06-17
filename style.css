@@ -329,23 +329,40 @@ body {
 }
 
 /* ==== موبايل ==== */
+/* ==== موبايل ==== */
 @media only screen and (max-width: 768px) {
-  .service-container {
-    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.25); /* تظليل ذهبي ناعم */
-    padding: 10px;
-    margin: 8px;
-    border-radius: 10px;
-    background-image: url('background-mobile.webp'); 
+  html, body {
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    background-image: url('background-mobile.webp');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-color: black;
+  }
+
+  main, section, .service-container {
+    background-color: transparent !important;
+  }
+
+  .accordion-button {
+    box-shadow: 0 12px 18px rgba(225, 205, 115, 0.25); /* تظليل الزر */
+    padding: 10px 12px;
   }
 
   .accordion-button .service-button {
-    padding: 10px 12px;
     gap: 6px;
   }
 
   .service-button img {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
   }
 
   .service-button span {
@@ -353,27 +370,23 @@ body {
   }
 
   .accordion-panel {
-    font-size: 13.5px;
-    padding: 10px;
+    font-size: 14px;
+    padding: 12px;
   }
 
   form input,
   form select,
   form textarea {
-    font-size: 13.5px;
+    font-size: 14px;
     padding: 6px 10px;
   }
 
   button[type="submit"] {
-    font-size: 13.5px;
-    padding: 7px 12px;
+    font-size: 14px;
+    padding: 8px 14px;
   }
 
   .reservation-form {
     padding: 12px 10px;
-  }
-
-  .accordion-button {
-    padding: 6px 10px;
   }
 }
