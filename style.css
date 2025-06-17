@@ -329,36 +329,16 @@ body {
 }
 
 /* ==== موبايل ==== */
-/* ==== موبايل: تحسين الزر والظل ==== */
 @media only screen and (max-width: 768px) {
-  html, body {
-    min-height: 100vh;
-    min-width: 100vw;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
-    background-image: url('background-mobile.webp');
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-color: black !important;
-  }
-
-  main, section, .service-container {
-    background-color: transparent !important;
-  }
-
-  .accordion-button {
-    padding: 8px 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);/* ظل الزر */
-    border-radius: 12px;
+  .service-container {
+    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.25); /* تظليل ذهبي ناعم */
+    padding: 10px;
+    margin: 8px;
+    border-radius: 10px;
   }
 
   .accordion-button .service-button {
-    padding: 8px 10px;
+    padding: 10px 12px;
     gap: 6px;
   }
 
@@ -379,16 +359,20 @@ body {
   form input,
   form select,
   form textarea {
-    font-size: 14px;
+    font-size: 13.5px;
     padding: 6px 10px;
   }
 
   button[type="submit"] {
-    font-size: 14px;
-    padding: 8px 14px;
+    font-size: 13.5px;
+    padding: 7px 12px;
   }
 
   .reservation-form {
     padding: 12px 10px;
+  }
+
+  .accordion-button {
+    padding: 6px 10px;
   }
 }
