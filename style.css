@@ -301,7 +301,8 @@ body {
 .service-text h3 {
   margin: 0;
   color: #E8D8B1;
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 .service-icon {
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
@@ -346,7 +347,8 @@ body {
     background-attachment: scroll;
     background-color: black;
   }
-
+ .service-text h3 {
+    font-size: 26px;
   main, section, .service-container {
     background-color: transparent !important;
   }
