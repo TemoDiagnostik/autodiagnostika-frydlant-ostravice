@@ -350,3 +350,44 @@ body {
     background-color: transparent !important;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .accordion-button .service-button {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .service-button img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .service-button span {
+    font-size: 13px;
+  }
+
+  .accordion-panel {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  .reservation-form {
+    padding: 12px 10px;
+  }
+
+  .accordion-button {
+    padding: 6px 10px;
+  }
+}
