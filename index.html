@@ -1295,7 +1295,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
-  
+  <script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    // حفظ في localStorage
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
 </body>
 </html>
  
