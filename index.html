@@ -18,20 +18,22 @@
   <!-- الشريط العلوي -->
   <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
     <!-- يسار: اللوجو -->
-    <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
-         alt="Temo Logo"
-         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" />
+    <div style="flex: 1; text-align: left;">
+      <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
+           alt="Temo Logo"
+           style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" />
+    </div>
 
-    <!-- يمين: الإيميل واللغات -->
-    <div style="display: flex; gap: 20px; align-items: center;">
-      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">
+    <!-- اللغات + الإيميل أقصى اليمين -->
+    <div style="flex: 1; text-align: right;">
+      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none; margin-right: 10px;">
         diagnostika@temosliving.de
       </a>
-      <div class="lang-switch">
+      <span class="lang-switch">
         <a href="index.html" style="color: #d8c38e; text-decoration: none;">CZ</a> |
         <a href="index.de.html" style="color: #d8c38e; text-decoration: none;">DE</a> |
         <a href="index.en.html" style="color: #d8c38e; text-decoration: none;">EN</a>
-      </div>
+      </span>
     </div>
   </div>
 
