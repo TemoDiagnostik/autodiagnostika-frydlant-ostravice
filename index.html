@@ -1295,29 +1295,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
-  <script>
-  document.getElementById("booking-form").addEventListener("submit", function (e) {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    // تأكد إن التاريخ والساعة موجودين
-    if (!date || !time) return;
-
-    const [day, month, year] = date.split(".");
-    const start = `${year}${month}${day}T${time.replace(":", "")}00`;
-
-    const [hh, mm] = time.split(":");
-    const endHour = String(parseInt(hh) + 1).padStart(2, '0');
-    const end = `${year}${month}${day}T${endHour}${mm}00`;
-
-    const googleLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Rezervace+Diagnostiky&dates=${start}/${end}&details=Auto+diagnostika+u+Temo&location=Malenovice+48`;
-
-    // فتح الرابط بعد ثواني من الإرسال
-    setTimeout(() => {
-      window.open(googleLink, "_blank");
-    }, 1000);
-  });
-</script>
+  
 </body>
 </html>
  
