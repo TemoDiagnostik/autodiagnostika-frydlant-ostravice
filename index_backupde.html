@@ -1,7 +1,5 @@
-
-
 <!DOCTYPE html>
-<html lang="de">
+<html lang="cs">
 <head>
   <meta charset="UTF-8" />
   <meta name="google" content="notranslate">
@@ -15,40 +13,46 @@
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
-<header class="overlay" style="padding: 20px 10px 0 10px; text-align: center; background-color: transparent;">
-  <!-- الشريط العلوي -->
-  <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+
+<!-- الهيدر (أعلى الصفحة): لوجو يسار، إيميل + لغات يمين -->
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+  <!-- اللوجو أقصى اليسار -->
+  <div>
     <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
          alt="Temo Logo"
          style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" />
-    
-    <div style="display: flex; gap: 20px; align-items: center;">
-      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">
-        diagnostika@temosliving.de
-      </a>
-      <div class="lang-switch">
-        <a href="index.html" style="color: #d8c38e; text-decoration: none;">CZ</a> |
-        <a href="index.de.html" style="color: #d8c38e; text-decoration: none;">DE</a> |
-        <a href="index.en.html" style="color: #d8c38e; text-decoration: none;">EN</a>
-      </div>
-    </div>
   </div>
+  <!-- الإيميل واللغات أقصى اليمين -->
+  <div style="display: flex; align-items: center;">
+    <a href="mailto:diagnostika@temosliving.de"
+       style="color: #d8c38e; text-decoration: none; margin-right: 10px;">
+      diagnostika@temosliving.de
+    </a>
 
-  <!-- العنوان الرئيسي -->
-  <h1 style="font-size: 24px; text-align: center; color: #E8D8B1; margin-top: 10px; margin-bottom: 5px;">
-    Autodiagnose in der Ruhe der Natur – ganz ohne Stress.
-  </h1>
-
-  <!-- وصف مختصر -->
-  <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-    <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
-      Während Ihr Auto diagnostiziert wird, können Sie sich bei einer Tasse Kaffee im Garten entspannen oder einen Spaziergang im umliegenden Wald machen.
-.<br>
-Faire Preise, professionelle Betreuung.
-    </p>
+     <!-- أعلام اللغات -->
+<span style="display: flex; gap: 6px;">
+  <a href="index.html">
+    <img src="https://flagcdn.com/w20/cz.png" alt="CZ" style="width: 20px; height: 14px;" />
+  </a>
+  <a href="index.de.html">
+    <img src="https://flagcdn.com/w20/de.png" alt="DE" style="width: 20px; height: 14px;" />
+  </a>
+  <a href="index.en.html">
+    <img src="https://flagcdn.com/w20/gb.png" alt="EN" style="width: 20px; height: 14px;" />
+  </a>
+</span>
   </div>
-</header>
+</div>
 
+
+<!-- العنوان والوصف (تحت الهيدر) -->
+<div style="text-align: center; max-width: 600px; margin: 40px auto 0 auto;">
+  <h1 style="color: #d8c38e; font-size: 32px; margin-bottom: 16px;">  Autodiagnose in der Ruhe der Natur – ganz ohne Stress.</h1>
+  <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
+    Während Ihr Auto diagnostiziert wird, können Sie sich bei einer Tasse Kaffee im Garten entspannen oder einen Spaziergang im umliegenden Wald machen.<br>
+     Faire Preise, professionelle Betreuung.
+  </p>
+</div>
 
   <h2 style="text-align: center; color: #E8D8B1; font-size: 28px; margin: 50px 0 30px;">Professionelle Diagnosedienstleistungen
 </h2>
@@ -60,10 +64,9 @@ Faire Preise, professionelle Betreuung.
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/reset.png" alt="Reset Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-         Zurücksetzen der Systemfunktionen
- <span style="font-size: 16px;">▼</span>
-        </span>
+       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Zurücksetzen der Systemfunktionen <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
    Wiederherstellung der Werkseinstellungen und Löschen der gespeicherten Einstellungen des Steuergeräts
@@ -120,9 +123,9 @@ Faire Preise, professionelle Betreuung.
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/diagnostika.png" alt="Diagnostika Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Diagnose <span style="font-size: 16px;">▼</span>
-        </span>
+      <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Diagnose & Systemanalyse <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
      Komplette Fahrzeugsystemdiagnose
@@ -173,9 +176,9 @@ Faire Preise, professionelle Betreuung.
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/programovani.png" alt="Programování Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Steuergeräte-Programmierung <span style="font-size: 16px;">▼</span>
-        </span>
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Steuergeräte-Programmierung <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
         Anpassung der Software und Codierung des Steuergeräts
@@ -211,9 +214,9 @@ Faire Preise, professionelle Betreuung.
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/maps.png" alt="Aktualizace Map Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-         Aktualisierung von Karten und Infotainmentsystemen <span style="font-size: 16px;">▼</span>
-        </span>
+       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Aktualisierung von Karten und Infotainmentsystemen <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
        Aktualisierung von Kartenmaterial und Infotainmentsystemen je nach Fahrzeugmarke
@@ -241,9 +244,9 @@ Faire Preise, professionelle Betreuung.
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/mileage.png" alt="Kontrola kilometrů" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Kilometerüberprüfung <span style="font-size: 16px;">▼</span>
-        </span>
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Kilometerüberprüfung <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
         Überprüfung der Richtigkeit der gefahrenen Kilometer des Fahrzeugs
@@ -271,9 +274,9 @@ Faire Preise, professionelle Betreuung.
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/vin.png" alt="VIN Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-         VIN-Code-Prüfung <span style="font-size: 16px;">▼</span>
-        </span>
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+   VIN-Code-Prüfung  <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
        Überprüfung der Gültigkeit und verfügbaren Informationen anhand der VIN
