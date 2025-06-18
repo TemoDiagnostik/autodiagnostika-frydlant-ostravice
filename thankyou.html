@@ -63,5 +63,39 @@
 <a id="google-calendar-link" target="_blank" style="display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 6px;">
   Přidat do Google Kalendáře
 </a>
+  <script>
+  // دالة لتنسيق التاريخ والوقت إلى تنسيق Google Calendar
+  function formatForGoogleCalendar(dateStr, timeStr) {
+    const [day, month, year] = dateStr.split('.');
+    const [hour, minute] = timeStr.split(':');
+
+    const start = new Date(`${year}-${month}-${day}T${hour}:${minute}:00`);
+    const end = new Date(start.getTime() + 60 * 60 * 1000); // ساعة واحدة
+
+    const format = (date) =>
+      date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+    return {
+      start: format(start),
+      end: format(end)
+    };
+  }
+
+  // التقاط البيانات من التخزين المحلي (لو تم حفظها هناك)
+  const date = localStorage.getItem('selectedDate');
+  const time = localStorage.getItem('selectedTime');
+
+  if (date && time) {
+    const { start, end } = formatForGoogleCalendar(date, time);
+
+    const title = encodeURIComponent("Objednaná auto diagnostika");
+    const details = encodeURIComponent("Vaše rezervace byla potvrzena.");
+    const location = encodeURIComponent("Malenovice č.ev. 48, Frýdlant nad Ostravicí");
+
+    const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
+
+    document.getElementById("google-calendar-link").href = url;
+  }
+</script>
 </body>
 </html>
