@@ -396,29 +396,60 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 12px; height: 12px;">
   WhatsApp
 </a>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      flatpickr("#datepicker", {
-        dateFormat: "d.m.Y",
-        locale: "cs",
-        disableMobile: true,
-        disable: [
-          "2025-05-15",
-          "2025-05-20",
-          { from: "2025-05-25", to: "2025-05-27" }
-        ]
-      });
-});
-</script>
- <script> 
-      const form = document.getElementById('booking-form');
-      form.addEventListener('submit', function () {
-        document.getElementById('success-message').style.display = 'block';
-      });
+ <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 1. المواعيد المحجوزة (يدويًا)
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ], // تواريخ محجوزة بالكامل
+      timeSlots: [
+        "2025-06-19 11:00",
+        "2025-06-19 14:30",
+        "2025-06-21 10:30"
+      ] // مواعيد محددة محجوزة (يوم + ساعة)
+    };
+
+    // 2. فلتر المنع المخصص
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const HH = String(date.getHours()).padStart(2, "0");
+      const ii = String(date.getMinutes()).padStart(2, "0");
+
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+      const dateTimeStr = `${dateStr} ${HH}:${ii}`;
+
+      // يوم سبت أو أحد
+      if (date.getDay() === 0 || date.getDay() === 6) return true;
+
+      // يوم محجوز بالكامل
+      if (bookedSlots.fullDays.includes(dateStr)) return true;
+
+      // توقيت محجوز
+      if (bookedSlots.timeSlots.includes(dateTimeStr)) return true;
+
+      return false;
+    }
+
+    // 3. Flatpickr الإعداد
+    flatpickr("#datepicker", {
+      enableTime: true,
+      dateFormat: "d.m.Y H:i",
+      time_24hr: true,
+      locale: "cs",
+      disableMobile: true,
+
+      minTime: "10:00",
+      maxTime: "17:00",
+
+      disable: [ isSlotDisabled ],
     });
-  </script>
+  });
+</script>
   
 <!-- 1. carData: قائمة السيارات -->
 <!-- 1. carData: قائمة السيارات -->
