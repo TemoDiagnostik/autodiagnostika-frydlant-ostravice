@@ -313,15 +313,15 @@
   <label for="note">Důvod návštěvy</label>
   <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
 
-<!-- حقل التاريخ -->
+<!-- التاريخ -->
 <label for="datepicker">Datum</label>
-<input type="text" id="datepicker" name="datum" placeholder="Vyberte datum a čas" required />
+<input type="text" id="datepicker" name="date" placeholder="Vyberte datum" required>
 
-<!-- حقل الوقت -->
+<!-- الوقت -->
 <label for="timepicker">Čas</label>
 <select id="timepicker" name="time" required>
   <option value="">Vyberte čas</option>
-  </select>
+</select>
   
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
@@ -405,73 +405,6 @@
 </a>
 
   
-<!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  // قائمة الحجز اليدوي
-  const bookedSlots = {
-    fullDays: ["2025-06-20", "2025-06-24"], // تواريخ محجوزة بالكامل
-    timeSlots: {
-      "2025-06-19": ["11:00", "14:30"],
-      "2025-06-21": ["10:30"]
-    }
-  };
-
-  // تحديد الوقت
-  const allTimes = [
-    "10:00", "10:30", "11:00", "11:30",
-    "12:00", "12:30", "13:00", "13:30",
-    "14:00", "14:30", "15:00", "15:30",
-    "16:00"
-  ];
-
-  // فلتر أيام ممنوعة
-  function isSlotDisabled(date) {
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, "0");
-    const dd = String(date.getDate()).padStart(2, "0");
-    const dateStr = `${yyyy}-${mm}-${dd}`;
-
-    if (date.getDay() === 0 || date.getDay() === 6) return true;
-    return bookedSlots.fullDays.includes(dateStr);
-  }
-
-  // تفعيل Flatpickr
-  flatpickr("#datepicker", {
-    enableTime: false,
-    dateFormat: "d.m.Y",
-    locale: "cs",
-    disableMobile: true,
-    disable: [isSlotDisabled],
-    onChange: function (selectedDates, dateStr, instance) {
-      const selected = selectedDates[0];
-      if (!selected) return;
-
-      const yyyy = selected.getFullYear();
-      const mm = String(selected.getMonth() + 1).padStart(2, "0");
-      const dd = String(selected.getDate()).padStart(2, "0");
-      const selectedDate = `${yyyy}-${mm}-${dd}`;
-
-      const timeSelect = document.getElementById("timepicker");
-      timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
-
-      const bookedTimes = bookedSlots.timeSlots[selectedDate] || [];
-
-      allTimes.forEach(time => {
-        if (!bookedTimes.includes(time)) {
-          const option = document.createElement("option");
-          option.value = time;
-          option.textContent = time;
-          timeSelect.appendChild(option);
-        }
-      });
-    }
-  });
-});
-</script>
 
   
 <!-- 1. carData: قائمة السيارات -->
@@ -1294,6 +1227,73 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+</script>
+  
+  <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // الأيام والتوقيتات المحجوزة
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
+      }
+    };
+
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00"
+    ];
+
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return (
+        date.getDay() === 0 || date.getDay() === 6 ||
+        bookedSlots.fullDays.includes(dateStr)
+      );
+    }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "cs",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          if (!bookedTimes.includes(time)) {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          }
+        });
+      }
+    });
+  });
 </script>
 </body>
 </html>
