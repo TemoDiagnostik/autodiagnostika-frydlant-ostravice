@@ -13,40 +13,45 @@
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
-<header class="overlay" style="padding: 20px 10px 0 10px; text-align: center; background-color: transparent;">
-  <!-- الشريط العلوي -->
-  <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center;">
+
+<!-- الهيدر (أعلى الصفحة): لوجو يسار، إيميل + لغات يمين -->
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+  <!-- اللوجو أقصى اليسار -->
+  <div>
     <img src="https://raw.githubusercontent.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/main/JPEG.jpeg"
          alt="Temo Logo"
          style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" />
-    
-    <div style="display: flex; gap: 20px; align-items: center;">
-      <a href="mailto:diagnostika@temosliving.de" class="email" style="color: #d8c38e; text-decoration: none;">
-        diagnostika@temosliving.de
-      </a>
-      <div class="lang-switch">
-        <a href="index.html" style="color: #d8c38e; text-decoration: none;">CZ</a> |
-        <a href="index.de.html" style="color: #d8c38e; text-decoration: none;">DE</a> |
-        <a href="index.en.html" style="color: #d8c38e; text-decoration: none;">EN</a>
-      </div>
-    </div>
   </div>
+  <!-- الإيميل واللغات أقصى اليمين -->
+  <div style="display: flex; align-items: center;">
+    <a href="mailto:diagnostika@temosliving.de"
+       style="color: #d8c38e; text-decoration: none; margin-right: 10px;">
+      diagnostika@temosliving.de
+    </a>
 
-  <!-- العنوان الرئيسي -->
-  <h1 style="font-size: 24px; text-align: center; color: #E8D8B1; margin-top: 10px; margin-bottom: 5px;">
-    Auto diagnostika v klidu přírody – bez stresu.
-  </h1>
-
-  <!-- وصف مختصر -->
-  <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-    <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
-      Zatímco vaše auto prochází diagnostikou, můžete si odpočinout u kávy v zahradě, nebo se projít po okolním lese.<br>
-      Férové ceny, profesionální přístup.
-    </p>
+      <!-- اعلام اللغات -->
+    <span style="margin-left: 10px;">
+  <a href="index.html" title="Čeština">
+    <img src="https://flagcdn.com/w20/cz.png" alt="CZ" style="width: 20px; height: 14px; margin-right: 6px;">
+  </a>
+  <a href="index.de.html" title="Deutsch">
+    <img src="https://flagcdn.com/w20/de.png" alt="DE" style="width: 20px; height: 14px; margin-right: 6px;">
+  </a>
+  <a href="index.en.html" title="English">
+    <img src="https://flagcdn.com/w20/gb.png" alt="EN" style="width: 20px; height: 14px;">
+  </a>
+</span>
   </div>
-</header>
+</div>
 
-
+<!-- العنوان والوصف (تحت الهيدر) -->
+<div style="text-align: center; max-width: 600px; margin: 40px auto 0 auto;">
+  <h1 style="color: #d8c38e; font-size: 32px; margin-bottom: 16px;">Auto diagnostika bez stresu – v klidu přírody.</h1>
+  <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
+   Zatímco Vaše auto prochází diagnostikou, můžete si vychutnat šálek kávy nebo čaje na zahradě, nebo se projít po okolí.<br>
+      Profesionální přístup – férové ceny.
+  </p>
+</div>
   <h2 style="text-align: center; color: #E8D8B1; font-size: 28px; margin: 50px 0 30px;">Profesionální služby diagnostiky</h2>
 
 
@@ -56,8 +61,9 @@
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/reset.png" alt="Reset Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Resetování systémových funkcí <span style="font-size: 16px;">▼</span>
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Resetování systémových funkcí <span style="font-size: 16px;">▼</span>
+</span>
         </span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
@@ -114,8 +120,8 @@
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/diagnostika.png" alt="Diagnostika Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Diagnostika <span style="font-size: 16px;">▼</span>
+       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+  Diagnostika & Analýza systému <span style="font-size: 16px;">▼</span>
         </span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
@@ -167,9 +173,9 @@
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/programovani.png" alt="Programování Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Programování Řídicí Jednotky <span style="font-size: 16px;">▼</span>
-        </span>
+       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+  Programování Řídicí Jednotky  <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
         Úprava softwaru a kódování řídicí jednotky
@@ -177,17 +183,17 @@
     </div>
   </button>
 </div>
-<div class="accordion-panel" style="
+  <div class="accordion-panel" style="
   max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
   <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
-   <li>Kontrola najetých kilometrů ve všech řídicích jednotkách</li>
-  <li>Porovnání hodnot z ECU, ABS, přístrojového panelu a dalších modulů</li>
-  <li>Odhalení možných nesrovnalostí nebo manipulací</li>
-  <li>Možnost zobrazení historie na základě diagnostických záznamů</li>
-  <li>Ideální při koupi ojetého vozu nebo ověřování jeho stavu</li>
+   <li>Aktualizace softwaru řídicích jednotek dle výrobce</li>
+  <li>Kódování nových modulů a komponent</li>
+  <li>Rekalibrace po výměně dílů (např. baterie, senzorů)</li>
+  <li>Aktivace / deaktivace funkcí na přání (např. Start-Stop, zvukový signál atd.)</li>
+  <li>Reset přizpůsobení a adaptací jednotek</li>
   </ul>
  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️ Důležité  upozornění: Neprovádím žádné  nelegáln úpravy nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním účelům.
+    ⚠️ Upozornění:  upozornění: Všechny úpravy a programování probíhají v souladu s bezpečnostními normami a platnou legislativou. Neprovádím žádné nelegální zásahy do emisních systémů nebo bezpečnostních funkcí.
   </p>
 </div>
 <!-- Aktualizace Map -->
@@ -196,9 +202,9 @@
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/maps.png" alt="Aktualizace Map Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Aktualizace map a systémů infotainmentu <span style="font-size: 16px;">▼</span>
-        </span>
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+   Aktualizace map a systémů infotainmentu <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
         Aktualizace mapových podkladů a infotainment systémů podle značky vozidla
@@ -216,7 +222,7 @@
     <li>Pro ověření dostupnosti je nutné předem zaslat VIN a údaje o vozidle</li>
   </ul>
   <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️ Upozornění: Nepodporuji žádné nelegální  zásahy do systému ani instalaci neoriginálních map. Veškeré služby jsou poskytovány v souladu s možnostmi výrobce.
+    ⚠️ Upozornění: Nepodporuji žádné nelegální  zásahy do systému ani instalaci neoreginálnich map. Veškeré služby jsou poskytovány v souladu s možnostmi výrobce.
   </p>
 </div>
 <!-- Kontrola Ujetých Kilometrů -->
@@ -225,8 +231,8 @@
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/mileage.png" alt="Kontrola kilometrů" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Kontrola ujetých kilometrů <span style="font-size: 16px;">▼</span>
+       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+ Kontrola ujetých kilometrů<span style="font-size: 16px;">▼</span>
         </span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
@@ -244,7 +250,7 @@
     <li>Ideální při koupi ojetého vozu nebo ověřování jeho stavu</li>
   </ul>
  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️ Upozornění: Neposkytujeme žádné služby úpravy nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním účelům.
+    ⚠️ Upozornění: Upozornění: Neposkytuji žádné služby jako úpravy  nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním.
   </p>
 </div>
 
@@ -255,9 +261,9 @@
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/vin.png" alt="VIN Icon" style="width: 66px; height: 66px;" />
-        <span style="font-weight: bold; color: #EBDBB1;">
-          Kontrola VIN Kódu <span style="font-size: 16px;">▼</span>
-        </span>
+       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+   Kontrola VIN Kódu <span style="font-size: 16px;">▼</span>
+</span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
         Ověření platnosti a dostupných údajů podle VIN
@@ -272,12 +278,10 @@
     <li>Vhodné při nákupu ojetého vozidla.</li>
   </ul>
   <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️  Neposkytuji žádné  služby změny VIN kódu. Ověření slouží pouze k informativním a legálním účelům.
+    ⚠️ Upozornění: Neposkytuji žádné  služby změny VIN kódu. Ověření slouží pouze k informativním a legálním účelům.
   </p>
 </div>
 
-<section class="reservation-form">
-  <h3>Rezervace termínu</h3>
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
   <h3>Rezervace termínu</h3>
 <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
@@ -318,13 +322,12 @@
   <button type="submit">Odeslat</button>
 </form>
 </section>
-
 <!-- زر O mně -->
 <div class="service-container">
   <button type="button" class="accordion-button">
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/O%20mně.png" alt="O mně" style="width: 66px; height: 66px;" />
+        <img src="icons/O mně.png" alt="O mně" style="width: 66px; height: 66px;" />
         <div style="display: flex; flex-direction: column;">
           <span style="font-weight: bold; color: #EBDBB1;">O mně <span style="font-size: 16px;">▼</span></span>
           <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Informace o mně</span>
