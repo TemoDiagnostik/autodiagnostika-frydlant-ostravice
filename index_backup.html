@@ -29,19 +29,21 @@
       diagnostika@temosliving.de
     </a>
 
-      <!-- اعلام اللغات -->
-   <span style="margin-left: 10px;">
-  <a href="index.html" title="Čeština">
-    <img src="https://flagcdn.com/w20/cz.png" alt="CZ" style="width: 20px; height: 14px; margin-right: 6px;">
+   
+  <!-- أعلام اللغات -->
+<span style="display: flex; gap: 6px;">
+  <a href="index.html">
+    <img src="https://flagcdn.com/w20/cz.png" alt="CZ" style="width: 20px; height: 14px;" />
   </a>
-  <a href="index.de.html" title="Deutsch">
-    <img src="https://flagcdn.com/w20/de.png" alt="DE" style="width: 20px; height: 14px; margin-right: 6px;">
+  <a href="index.de.html">
+    <img src="https://flagcdn.com/w20/de.png" alt="DE" style="width: 20px; height: 14px;" />
   </a>
-  <a href="index.en.html" title="English">
-    <img src="https://flagcdn.com/w20/gb.png" alt="EN" style="width: 20px; height: 14px;">
+  <a href="index.en.html">
+    <img src="https://flagcdn.com/w20/gb.png" alt="EN" style="width: 20px; height: 14px;" />
   </a>
 </span>
-
+  </div>
+</div>
 
 <!-- العنوان والوصف (تحت الهيدر) -->
 <div style="text-align: center; max-width: 600px; margin: 40px auto 0 auto;">
@@ -311,9 +313,16 @@
   <label for="note">Důvod návštěvy</label>
   <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
 
-  <label for="date">Datum</label>
-  <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
+<!-- التاريخ -->
+<label for="datepicker">Datum</label>
+<input type="text" id="datepicker" name="date" placeholder="Vyberte datum" required>
 
+<!-- الوقت -->
+<label for="timepicker">Čas</label>
+<select id="timepicker" name="time" required>
+  <option value="">Vyberte čas</option>
+</select>
+  
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
@@ -394,31 +403,10 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 12px; height: 12px;">
   WhatsApp
 </a>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      flatpickr("#datepicker", {
-        dateFormat: "d.m.Y",
-        locale: "cs",
-        disableMobile: true,
-        disable: [
-          "2025-05-15",
-          "2025-05-20",
-          { from: "2025-05-25", to: "2025-05-27" }
-        ]
-      });
-});
-</script>
- <script> 
-      const form = document.getElementById('booking-form');
-      form.addEventListener('submit', function () {
-        document.getElementById('success-message').style.display = 'block';
-      });
-    });
-  </script>
+
   
-<!-- 1. carData: قائمة السيارات -->
+
+  
 <!-- 1. carData: قائمة السيارات -->
 <script>
   const carData = {
@@ -1239,6 +1227,73 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+</script>
+  
+  <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // الأيام والتوقيتات المحجوزة
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
+      }
+    };
+
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00"
+    ];
+
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return (
+        date.getDay() === 0 || date.getDay() === 6 ||
+        bookedSlots.fullDays.includes(dateStr)
+      );
+    }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "cs",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          if (!bookedTimes.includes(time)) {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          }
+        });
+      }
+    });
+  });
 </script>
 </body>
 </html>
