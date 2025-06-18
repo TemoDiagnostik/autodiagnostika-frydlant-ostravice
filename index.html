@@ -397,9 +397,30 @@
   WhatsApp
 </a>
  <!-- Flatpickr -->
+<input id="datepicker">
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 <script>
+  // 1. قائمة الأوقات المحجوزة (حسب التنسيق: yyyy-mm-dd hh:mm)
+  const bookedSlots = [
+    "2025-06-19 11:00",
+    "2025-06-19 16:00",
+    "2025-06-20 13:30"
+  ];
+
+  // 2. توليد دالة للمقارنة مع التواريخ المحجوزة
+  function isSlotBooked(date) {
+    // تحويل التاريخ المختار لنفس التنسيق في bookedSlots
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    const hh = String(date.getHours()).padStart(2, '0');
+    const min = String(date.getMinutes()).padStart(2, '0');
+    const flatDate = `${yyyy}-${mm}-${dd} ${hh}:${min}`;
+    return bookedSlots.includes(flatDate);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     flatpickr("#datepicker", {
       dateFormat: "d.m.Y H:i",
@@ -408,26 +429,17 @@
       time_24hr: true,
       minTime: "10:00",
       maxTime: "17:00",
+      minuteIncrement: 30,
       disableMobile: true,
       disable: [
-        // عطلات وأوقات محجوزة تضيفها هنا بهذا الشكل
-        "2025-05-15 13:00",
-        "2025-05-20 12:00",
-        { from: "2025-05-25 10:00", to: "2025-05-27 17:00" },
-        // لتعطيل كل سبت وأحد
+        // تعطيل عطلة كل سبت وأحد
         function(date) {
-          // 6 = Saturday, 0 = Sunday
           return (date.getDay() === 6 || date.getDay() === 0);
-        }
+        },
+        // الدالة التي تمنع الأوقات المحجوزة
+        isSlotBooked
       ]
     });
-  });
-</script>
-<script>
-  const form = document.getElementById('booking-form');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault(); // لمنع إعادة تحميل الصفحة
-    document.getElementById('success-message').style.display = 'block';
   });
 </script>
   
