@@ -397,48 +397,51 @@
   WhatsApp
 </a>
  <!-- Flatpickr -->
-<input id="datepicker">
-
+<!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
 <script>
-  // 1. قائمة الأوقات المحجوزة (حسب التنسيق: yyyy-mm-dd hh:mm)
-  const bookedSlots = [
-    "2025-06-19 11:00",
-    "2025-06-19 16:00",
-    "2025-06-20 13:30"
-  ];
-
-  // 2. توليد دالة للمقارنة مع التواريخ المحجوزة
-  function isSlotBooked(date) {
-    // تحويل التاريخ المختار لنفس التنسيق في bookedSlots
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const dd = String(date.getDate()).padStart(2, '0');
-    const hh = String(date.getHours()).padStart(2, '0');
-    const min = String(date.getMinutes()).padStart(2, '0');
-    const flatDate = `${yyyy}-${mm}-${dd} ${hh}:${min}`;
-    return bookedSlots.includes(flatDate);
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
+    // 1. المواعيد المحجوزة يدويًا
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: [
+        "2025-06-19 11:00",
+        "2025-06-19 14:30",
+        "2025-06-21 10:30"
+      ]
+    };
+
+    // 2. دالة منع التواريخ والأوقات
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const HH = String(date.getHours()).padStart(2, "0");
+      const ii = String(date.getMinutes()).padStart(2, "0");
+
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+      const dateTimeStr = `${dateStr} ${HH}:${ii}`;
+
+      // السبت = 6، الأحد = 0
+      if (date.getDay() === 0 || date.getDay() === 6) return true;
+      if (bookedSlots.fullDays.includes(dateStr)) return true;
+      if (bookedSlots.timeSlots.includes(dateTimeStr)) return true;
+
+      return false;
+    }
+
+    // 3. تفعيل Flatpickr
     flatpickr("#datepicker", {
-      dateFormat: "d.m.Y H:i",
-      locale: "cs",
       enableTime: true,
+      dateFormat: "d.m.Y H:i",
       time_24hr: true,
+      locale: "cs",
+      disableMobile: true,
       minTime: "10:00",
       maxTime: "17:00",
-      minuteIncrement: 30,
-      disableMobile: true,
-      disable: [
-        // تعطيل عطلة كل سبت وأحد
-        function(date) {
-          return (date.getDay() === 6 || date.getDay() === 0);
-        },
-        // الدالة التي تمنع الأوقات المحجوزة
-        isSlotBooked
-      ]
+      disable: [ isSlotDisabled ]
     });
   });
 </script>
