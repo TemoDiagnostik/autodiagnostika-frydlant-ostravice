@@ -59,9 +59,12 @@
     <p>Váš termín byl úspěšně odeslán.<br>Brzy Vás budeme kontaktovat pro potvrzení.</p>
     <a href="index.html">Zpět na úvodní stránku</a>
   </div>
-  <!-- زر إضافة إلى تقويم Google -->
 <!-- زر إضافة إلى تقويم Google -->
-<a id="google-calendar-link" href="#" onclick="return handleCalendarClick()" target="_blank" style="display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 6px;">
+<a id="google-calendar-link"
+   href="#"
+   onclick="return handleCalendarClick();"
+   target="_blank"
+   style="display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 6px;">
   Přidat do Google Kalendáře
 </a>
 
@@ -85,17 +88,19 @@
   // تخزين الرابط هنا
   let calendarUrl = "";
 
-  // تجهيز الرابط عند التحميل
-  const date = localStorage.getItem('selectedDate');
-  const time = localStorage.getItem('selectedTime');
-  if (date && time) {
-    const { start, end } = formatForGoogleCalendar(date, time);
-    const title = encodeURIComponent("Objednaná auto diagnostika");
-    const details = encodeURIComponent("Vaše rezervace byla potvrzena.");
-    const location = encodeURIComponent("Malenovice č.ev. 48, Frýdlant nad Ostravicí");
+  // تجهيز الرابط عند تحميل الصفحة
+  document.addEventListener("DOMContentLoaded", function () {
+    const date = localStorage.getItem('selectedDate');
+    const time = localStorage.getItem('selectedTime');
+    if (date && time) {
+      const { start, end } = formatForGoogleCalendar(date, time);
+      const title = encodeURIComponent("Objednaná auto diagnostika");
+      const details = encodeURIComponent("Vaše rezervace byla potvrzena.");
+      const location = encodeURIComponent("Malenovice č.ev. 48, Frýdlant nad Ostravicí");
 
-    calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
-  }
+      calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
+    }
+  });
 
   // عند الضغط على الزر
   function handleCalendarClick() {
