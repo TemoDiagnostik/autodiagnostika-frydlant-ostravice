@@ -194,7 +194,7 @@
   <li>Reset přizpůsobení a adaptací jednotek</li>
   </ul>
  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️ Upozornění:  upozornění: Všechny úpravy a programování probíhají v souladu s bezpečnostními normami a platnou legislativou. Neprovádím žádné nelegální zásahy do emisních systémů nebo bezpečnostních funkcí.
+    ⚠️ Upozornění: Všechny úpravy a programování probíhají v souladu s bezpečnostními normami a platnou legislativou. Neprovádím žádné nelegální zásahy do emisních systémů nebo bezpečnostních funkcí.
   </p>
 </div>
 <!-- Aktualizace Map -->
@@ -223,7 +223,7 @@
     <li>Pro ověření dostupnosti je nutné předem zaslat VIN a údaje o vozidle</li>
   </ul>
   <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️ Upozornění: Nepodporuji žádné nelegální  zásahy do systému ani instalaci neoreginálnich map. Veškeré služby jsou poskytovány v souladu s možnostmi výrobce.
+    ⚠️ Upozornění: Nepodporuji žádné nelegální zásahy do systému ani instalaci neoreginálnich map. Veškeré služby jsou poskytovány v souladu s možnostmi výrobce.
   </p>
 </div>
 <!-- Kontrola Ujetých Kilometrů -->
@@ -251,7 +251,7 @@
     <li>Ideální při koupi ojetého vozu nebo ověřování jeho stavu</li>
   </ul>
  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
-    ⚠️ Upozornění: Upozornění: Neposkytuji žádné služby jako úpravy  nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním.
+    ⚠️ Upozornění: Neposkytuji žádné služby jako úpravy  nebo změny počtu najetých kilometrů. Kontrola slouží výhradně k informačním a legálním.
   </p>
 </div>
 
@@ -1293,6 +1293,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     });
+  });
+</script>
+  <script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    // حفظ في localStorage
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
   });
 </script>
 </body>
