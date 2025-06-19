@@ -301,6 +301,13 @@
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
   <h3>Terminanfrage</h3>
 <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+  <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Wir werden Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
+  <label for="clientEmail">E-mail</label>
+  <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+
+  
 <label for="brandSelect">Fahrzeugmarke</label>
 <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
   <option disabled selected>Vyberte značku</option>
@@ -316,9 +323,6 @@
 </select>
 <label for="clientName">Vor- und Nachname</label>
 <input type="text" name="clientName" id="clientName" required placeholder="Zadejte své jméno">
-
-<label for="clientEmail">E-mail</label>
-<input type="email" name="clientEmail" id="clientEmail" required placeholder="Zadejte svůj e-mail">
 
 <label for="clientPhone">Telefon</label>
 <input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
@@ -337,10 +341,6 @@
 <select id="timepicker" name="time" required>
   <option value="">Uhrzeit auswählen</option>
 </select>
-
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-  <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
 
   <button type="submit">Absenden</button>
 </form>
