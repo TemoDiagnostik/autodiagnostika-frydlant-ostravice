@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -47,10 +48,12 @@
 
 <!-- العنوان والوصف (تحت الهيدر) -->
 <div style="text-align: center; max-width: 600px; margin: 40px auto 0 auto;">
-  <h1 style="color: #d8c38e; font-size: 32px; margin-bottom: 16px;">  Autodiagnose in der Ruhe der Natur – ganz ohne Stress.</h1>
+  <h1 style="color: #d8c38e; font-size: 32px; margin-bottom: 16px;"> Autodiagnose ganz ohne Stress - in der Ruhe der Natur. </h1>
+
+   
   <p style="color: #E8D8B1; font-size: 16px; margin-top: 10px;">
-    Während Ihr Auto diagnostiziert wird, können Sie sich bei einer Tasse Kaffee im Garten entspannen oder einen Spaziergang im umliegenden Wald machen.<br>
-     Faire Preise, professionelle Betreuung.
+   Während Ihr Auto durch Diagnose läuft, können Sie sich bei eine Tasse Kaffee oder Tee in Garten entspannen oder einen Spaziergang machen.<br>
+   Professionelles Auftreten - faire Preise
   </p>
 </div>
 
@@ -326,8 +329,15 @@
   <label for="note">Besuchsgrund</label>
   <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
 
-  <label for="date">Datum</label>
-  <input id="datepicker" name="Datum" type="text" placeholder="Vyberte datum" required />
+<!-- التاريخ -->
+<label for="datepicker">Datum</label>
+<input type="text" id="datepicker" name="date" placeholder="Uhrzeit auswählen" required>
+
+<!-- الوقت -->
+<label for="timepicker">Uhrzeit</label>
+<select id="timepicker" name="time" required>
+  <option value="">Uhrzeit auswählen</option>
+</select>
 
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
@@ -1253,6 +1263,72 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+</script>
+    <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // الأيام والتوقيتات المحجوزة
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
+      }
+    };
+
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00"
+    ];
+
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return (
+        date.getDay() === 0 || date.getDay() === 6 ||
+        bookedSlots.fullDays.includes(dateStr)
+      );
+    }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "cs",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          if (!bookedTimes.includes(time)) {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          }
+        });
+      }
+    });
+  });
 </script>
 </body>
 </html>
