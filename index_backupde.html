@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -82,8 +81,9 @@
   max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
 <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
      <!-- Reset -->
-    <li>Ölwechsel-Reset</li>
+<li>Ölwechsel-Reset</li>
 <li>Reset der elektronischen Parkbremse (EPB)</li>
+<li>Partikelfilter-Regeneration (DPF)</li>
 <li>Lenkwinkelkalibrierung (SAS)</li>
 <li>Batteriemanagementsystem-Reset (BMS)</li>
 <li>Reifendruckkontrollsystem-Reset (TPMS)</li>
@@ -91,7 +91,6 @@
 <li>Getriebe-Anlernung</li>
 <li>Wegfahrsperren-Reset (IMMO)</li>
 <li>Injektor-Codierung</li>
-<li>Partikelfilter-Regeneration (DPF)</li>
 <li>AGR-Ventil-Reset</li>
 <li>Adaptives Scheinwerfersystem-Reset (AFS)</li>
 <li>Klimaanlagen-Initialisierung</li>
@@ -141,6 +140,7 @@
  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
  <li>Ölstandsprüfung</li>
 <li>Motorsteuergerät (ECU)</li>
+<li>DPF-Drucksensor</li>
 <li>Auslesen und Löschen von Fehlercodes (DTC)</li>
 <li>Live-Sensordaten</li>
 <li>Getriebe</li>
@@ -151,7 +151,6 @@
 <li>Beleuchtung</li>
 <li>Kraftstoffeinspritzsystem</li>
 <li>Abgassystem</li>
-<li>DPF-Drucksensor</li>
 <li>EGR-System</li>
 <li>Lade- und Batteriesystem</li>
 <li>Kühlsystem</li>
@@ -302,9 +301,16 @@
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
   <h3>Terminanfrage</h3>
 <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+  <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
+  <label for="clientEmail">E-mail</label>
+  <input type="email" name="email" id="clientEmail" required placeholder="Geben Sie Ihre E-Mail-Adresse ein">
+
+  
 <label for="brandSelect">Fahrzeugmarke</label>
-<select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
-  <option disabled selected>Vyberte značku</option>
+<select id="brandSelect" name="Automarke" required onchange="updateModelOptions()">
+  <option disabled selected>Marke auswählen</option>
 </select>
 <label for="modelSelect">Fahrzeugmodell</label>
 <select id="modelSelect" name="Model vozu" required>
@@ -312,22 +318,19 @@
 </select>
 
 <label for="engineSelect">Motorgröße</label>
-<select id="engineSelect" name="Objem motoru" required>
+<select id="engineSelect" name="Hubraum" required>
   <option disabled selected>Wählen Sie den Hubraum</option>
 </select>
 <label for="clientName">Vor- und Nachname</label>
-<input type="text" name="clientName" id="clientName" required placeholder="Zadejte své jméno">
-
-<label for="clientEmail">E-mail</label>
-<input type="email" name="clientEmail" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+<input type="text" name="clientName" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
 
 <label for="clientPhone">Telefon</label>
-<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">	 
   <label for="vin">Fahrzeug-VIN-Nummer</label>
-  <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
+  <input type="text" name="VIN kód" placeholder="Geben Sie den VIN-Code ein" required />
 
   <label for="note">Besuchsgrund</label>
-  <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
+  <textarea name="Důvod návštěvy" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
 
 <!-- التاريخ -->
 <label for="datepicker">Datum</label>
@@ -339,13 +342,20 @@
   <option value="">Uhrzeit auswählen</option>
 </select>
 
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-  <input type="hidden" name="_autoresponse" value="Děkujeme za vaši rezervaci. Brzy vás budeme kontaktovat pro potvrzení.">
-
   <button type="submit">Absenden</button>
+  
+ 
+
+<p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
+  📧 Haben Sie eine Frage? Schreiben Sie mir: 
+  <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
+    info@temosliving.de
+  </a>
+</p>
+  
 </form>
 </section>
+  
 <!-- زر O mně -->
 <div class="service-container">
   <button type="button" class="accordion-button">
@@ -362,8 +372,8 @@
 </div>
 
 <!-- البانل القابل للفتح -->
-<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 700px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 20px; border-radius: 8px;">
-  <div style="padding: 14px 0; font-size: 15px; line-height: 1.6;">
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
    <p>Ich bin ein professioneller Kfz-Mechaniker mit über 35 Jahren Erfahrung in der Fahrzeugreparatur und -diagnose, davon 12 Jahre Praxis in Deutschland (Stuttgart). Während meiner Laufbahn habe ich mich auf die Verbindung klassischer mechanischer Kenntnisse mit modernen elektronischen Systemen spezialisiert, was es mir ermöglicht, Fehler präzise zu erkennen und effektive Lösungen vorzuschlagen.</p> <p>Ich habe umfassende Erfahrung in der Arbeit mit intelligenten Fahrzeugsystemen, einschließlich der Anpassung von Softwareeinstellungen und der Wiederherstellung elektronischer Funktionen gemäß den technischen Anforderungen des Fahrzeugs.</p> 
     <p>Heute arbeite ich in der ruhigen Naturumgebung von Frýdlant nad Ostravicí – Malenovice, wo Kunden professionelle Diagnosedienste in Anspruch nehmen und gleichzeitig eine Tasse Kaffee oder Tee im Garten genießen oder einen Spaziergang während der Fahrzeugprüfung machen können.</p> 
     <p>Ich spreche gut Deutsch und Englisch. Tschechisch spreche ich auch, aber nicht perfekt.</p>
@@ -386,8 +396,8 @@
 </div>
 
 <!-- البانل الذي يفتح -->
-<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; max-width: 380px; margin: 0 auto 20px auto; color: #EBDBB1; background-color: #2a3a27; padding: 0 14px; border-radius: 8px;">
-  <ul style="padding: 14px 0; list-style: disc; margin-left: 20px;">
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
     <li>DPF-Regeneration: 1.000–2.000 Kč</li>
 <li>Ölwechsel-Reset: 300–600 Kč</li>
 <li>EPB-Reset: 500–800 Kč</li>
@@ -396,28 +406,7 @@
   </ul>
   <p class="note" style="font-size: 13px; padding-bottom: 12px;">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
 </div>
-<a href="https://wa.me/420732133919" target="_blank" style="
-  position: fixed;
-  bottom: 18px;
-  right: 18px;
-  background-color: white;
-  color: #25D366;
-  padding: 2px 6px;
-  border: 1px solid #25D366;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-family: sans-serif;
-  font-size: 9px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 12px; height: 12px;">
-  WhatsApp
-</a>
+
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
   <script>
@@ -1330,6 +1319,55 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
+<!-- زر فيسبوك ثابت -->
+<a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
+  position: fixed;
+  bottom: 58px;
+  right: 18px;
+  background-color: white;
+  color: #1877f2;
+  padding: 4px 10px;
+  border: 1px solid #1877f2;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: sans-serif;
+  font-size: 11px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook" style="width: 14px; height: 14px;">
+  Facebook
+</a>
+
+  
+<a href="https://wa.me/420732133919" target="_blank" style="
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  background-color: #ffffff;
+  color: #25D366;
+  padding: 4px 10px;
+  border: 1px solid #25D366;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 11px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 14px; height: 14px;">
+  WhatsApp
+</a>
+  
+  
 </body>
 </html>
  
