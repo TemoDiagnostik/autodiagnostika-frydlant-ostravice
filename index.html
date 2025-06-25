@@ -287,8 +287,15 @@
 
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
   <h3>Rezervace termínu</h3>
+   
+<div style="background-color: #fff3cd; color: #856404; padding: 15px; border: 1px solid #ffeeba; border-radius: 6px; margin-bottom: 15px;">
+  🔔 <strong>Důležité upozornění – Aktualizace map:</strong><br>
+  Pokud se vaše rezervace týká aktualizace map navigačního systému, vyčkejte prosím na potvrzení termínu.<br>
+  Nejprve ověříme podle VIN kódu a typu systému, zda je aktualizace možná a jaká bude přibližná cena. Poté vás budeme kontaktovat s podrobnými informacemi.
+</div>
   
 <form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
@@ -296,9 +303,7 @@
   <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
   <label for="clientName">Jméno</label>
   <input type="text" name="name" id="clientName" required placeholder="Zadejte své jméno">
- 
 
-  
 <label for="brandSelect">Značka vozu</label>
 <select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
   <option disabled selected>Vyberte značku</option>
