@@ -305,110 +305,48 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   Zuerst überprüfe ich anhand der VIN-Nummer und des Systemtyps, ob ein Update möglich ist und wie hoch die ungefähren Kosten sein werden. Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div> 
 
-<form action="https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev" method="POST">
+<form action="https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev" method="POST" id="booking-form">
   <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://github.com/TemoDiagnostik/autodiagnostika-frydlant-ostravice/blob/main/danke.html">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
-  
-  <label for="brandSelect">Fahrzeugmarke</label>
-<select id="brandSelect" name="Automarke" required onchange="updateModelOptions()">
-  <option disabled selected>Marke auswählen</option>
-</select>
-<label for="modelSelect">Fahrzeugmodell</label>
-<select id="modelSelect" name="Model vozu" required>
-  <option disabled selected>Modell auswählen</option>
-</select>
 
-<label for="engineSelect">Motorgröße</label>
-<select id="engineSelect" name="Hubraum" required>
-  <option disabled selected>Wählen Sie den Hubraum</option>
-</select>
-  
- <label for="clientEmail">E-mail</label>
+  <label for="brandSelect">Fahrzeugmarke</label>
+  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
+    <option disabled selected>Marke auswählen</option>
+  </select>
+
+  <label for="modelSelect">Fahrzeugmodell</label>
+  <select id="modelSelect" name="carModel" required>
+    <option disabled selected>Modell auswählen</option>
+  </select>
+
+  <label for="engineSelect">Motorgröße</label>
+  <select id="engineSelect" name="engine" required>
+    <option disabled selected>Wählen Sie den Hubraum</option>
+  </select>
+
+  <label for="clientEmail">E-Mail</label>
   <input type="email" name="email" id="clientEmail" required placeholder="Geben Sie Ihre E-Mail-Adresse ein">
 
-<label for="clientName">Vor- und Nachname</label>
-<input type="text" name="clientName" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
+  <label for="clientName">Vor- und Nachname</label>
+  <input type="text" name="name" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
 
-<label for="clientPhone">Telefon</label>
-<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">	 
+  <label for="clientPhone">Telefon</label>
+  <input type="tel" name="phone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">
+
   <label for="vin">Fahrzeug-VIN-Nummer</label>
-  <input type="text" name="VIN kód" placeholder="Geben Sie den VIN-Code ein" required />
+  <input type="text" name="vin" id="vin" placeholder="Geben Sie den VIN-Code ein" required />
 
   <label for="note">Besuchsgrund</label>
-  <textarea name="Důvod návštěvy" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
+  <textarea name="reason" id="note" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
 
-<!-- التاريخ -->
-<label for="datepicker">Datum</label>
-<input type="text" id="datepicker" name="date" placeholder="Uhrzeit auswählen" required>
+  <label for="datepicker">Datum</label>
+  <input type="text" id="datepicker" name="date" required>
 
-<!-- الوقت -->
-<label for="timepicker">Uhrzeit</label>
-<select id="timepicker" name="time" required>
-  <option value="">Uhrzeit auswählen</option>
-</select>
- <button type="submit">Odeslat</button>
-</form>
-  
-<!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
-  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-
-  flatpickr("#datepicker", {
-    dateFormat: "Y-m-d",
-    disable: reservedDates,
-    onChange: function(selectedDates, dateStr, instance) {
-      const timepicker = document.getElementById("timepicker");
-      timepicker.innerHTML = '<option value="">Uhrzeit auswählen</option>';
-      if (reservedDates.includes(dateStr)) {
-        const option = document.createElement("option");
-        option.text = "Reserviert";
-        option.disabled = true;
-        timepicker.appendChild(option);
-      } else {
-        timeSlots.forEach(function(time) {
-          const option = document.createElement("option");
-          option.value = time;
-          option.text = time;
-          timepicker.appendChild(option);
-        });
-      }
-    }
-  });
-</script>
-
-<!-- Doppelter Versand: an Google Apps Script und Formsubmit -->
-<script>
-  document.getElementById("booking-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // 🟡 Senden an Google Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev", {
-      method: "POST",
-      body: formData
-    });
-
-  // 🟢 Senden an Formsubmit
-    fetch(form.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = form.querySelector('input[name="_next"]').value;
-    })
-    .catch(error => {Add commentMore actions
-      alert("Fehler beim Senden.");
-      console.error(error);
-    });
-  });
-</script>
- 
-
- 
+  <label for="timepicker">Uhrzeit</label>
+  <select id="timepicker" name="time" required>
+    <option value="">Uhrzeit auswählen</option>
+  </select>
 
 <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Haben Sie eine Frage? Schreiben Sie mir: 
