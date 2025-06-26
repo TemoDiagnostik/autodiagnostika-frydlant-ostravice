@@ -439,23 +439,22 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const form = event.target;
   const formData = new FormData(form);
 
-  // 1. An Google Apps Script senden
-  fetch("https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev", {
+  // 1. إرسال إلى Google Apps Script
+  fetch("https://script.google.com/macros/s/AKfycb.../exec", {
     method: "POST",
     body: formData
   })
-  .then(() => {
-    // 2. Dann an Formsubmit senden
-    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
+  .then(response => response.text())
+  .then(result => {
+    if (result === "OK") {
+      // ✅ تحويل بعد نجاح الإرسال
       window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-    });
+    } else {
+      alert("Es ist ein Fehler aufgetreten: " + result);
+    }
   })
   .catch(error => {
-    alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+    alert("Fehler beim Senden.");
     console.error(error);
   });
 });
