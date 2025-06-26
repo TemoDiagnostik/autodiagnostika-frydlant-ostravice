@@ -294,74 +294,67 @@
   Nejprve ověříme podle VIN kódu a typu systému, zda je aktualizace možná a jaká bude přibližná cena. Poté vás budu kontaktovat s podrobnými informacemi.
 </div>
   
-<form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
-
+<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
+
   <label for="clientEmail">E-mail</label>
   <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+
   <label for="clientName">Jméno</label>
   <input type="text" name="name" id="clientName" required placeholder="Zadejte své jméno">
 
-<label for="brandSelect">Značka vozu</label>
-<select id="brandSelect" name="Značka vozu" required onchange="updateModelOptions()">
-  <option disabled selected>Vyberte značku</option>
-</select>
-<label for="modelSelect">Model vozu</label>
-<select id="modelSelect" name="Model vozu" required>
-  <option disabled selected>Vyberte model</option>
-</select>
+  <label for="brandSelect">Značka vozu</label>
+  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
+    <option disabled selected>Vyberte značku</option>
+  </select>
 
-<label for="engineSelect">Objem motoru</label>
-<select id="engineSelect" name="Objem motoru" required>
-  <option disabled selected>Vyberte objem</option>
-</select>
-<label for="clientName">Jméno a příjmení</label>
-<input type="text" name="clientName" id="clientName" required placeholder="Zadejte své jméno">
+  <label for="modelSelect">Model vozu</label>
+  <select id="modelSelect" name="carModel" required>
+    <option disabled selected>Vyberte model</option>
+  </select>
 
-<label for="clientPhone">Telefon</label>
-<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+  <label for="engineSelect">Objem motoru</label>
+  <select id="engineSelect" name="engine" required>
+    <option disabled selected>Vyberte objem</option>
+  </select>
+
+  <label for="clientName">Jméno a příjmení</label>
+  <input type="text" name="clientName" id="clientName2" required placeholder="Zadejte celé jméno">
+
+  <label for="clientPhone">Telefon</label>
+  <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+
   <label for="vin">VIN kód vozidla</label>
-  <input type="text" name="VIN kód" placeholder="Zadejte VIN kód" required />
+  <input type="text" name="vin" placeholder="Zadejte VIN kód" required />
 
   <label for="note">Důvod návštěvy</label>
-  <textarea name="Důvod návštěvy" placeholder="Napište důvod návštěvy" required></textarea>
+  <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
 
-<!-- التاريخ -->
-<label for="datepicker">Datum</label>
-<input type="text" id="datepicker" name="date" placeholder="Vyberte datum" required>
+  <label for="datepicker">Datum</label>
+  <input type="text" id="datepicker" name="date" required placeholder="Vyberte datum">
 
-<!-- الوقت -->
-<label for="timepicker">Čas</label>
-<select id="timepicker" name="time" required>
-  <option value="">Vyberte čas</option>
-</select>
+  <label for="timepicker">Čas</label>
+  <select id="timepicker" name="time" required>
+    <option value="">Vyberte čas</option>
+  </select>
 
-<!-- سكربت Flatpickr -->
+  <button type="submit">Odeslat</button>
+</form>
+
+<!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-  // 🟡 قائمة الأيام المحجوزة بصيغة YYYY-MM-DD
-  const reservedDates = [
-    "2025-07-01",
-    "2025-07-03",
-    "2025-07-07"
-  ];
+  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
+  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
 
-  // 🟢 الأوقات المتاحة في الأيام غير المحجوزة
-  const timeSlots = [
-    "08:00", "09:00", "10:00", "11:00", "12:00",
-    "13:00", "14:00", "15:00", "16:00"
-  ];
-
-  // ⏰ تفعيل التقويم والاختيار الديناميكي للوقت
   flatpickr("#datepicker", {
     dateFormat: "Y-m-d",
     disable: reservedDates,
     onChange: function(selectedDates, dateStr, instance) {
       const timepicker = document.getElementById("timepicker");
       timepicker.innerHTML = '<option value="">Vyberte čas</option>';
-
       if (reservedDates.includes(dateStr)) {
         const option = document.createElement("option");
         option.text = "Zamluveno";
@@ -378,7 +371,34 @@
     }
   });
 </script>
-  
+
+<!-- إرسال مزدوج: إلى Google Apps Script وFormsubmit -->
+<script>
+  document.getElementById("booking-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // 🟡 إرسال إلى Google Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbwwQUd2Df7fVuwxnqcblrErVD4Ayp7lxmMsmunacm6oqF_pxjd4zknr71UElOvCvijMHNQ/exec", {
+      method: "POST",
+      body: formData
+    });
+
+    // 🟢 إرسال إلى Formsubmit
+    fetch(form.action, {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = form.querySelector('input[name="_next"]').value;
+    })
+    .catch(error => {
+      alert("Chyba při odeslání.");
+      console.error(error);
+    });
+  });
+</script>
   <button type="submit">Odeslat</button>
 
 
@@ -1344,6 +1364,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 </script>
 
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // 1. إرسال إلى Google Apps Script
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+    });
+  })
+  .catch(error => {
+    alert("Chyba při odesílání. Zkuste to prosím znovu.");
+    console.error(error);
+  });
+});
+</script>
+  
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
   position: fixed;
