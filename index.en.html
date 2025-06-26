@@ -362,7 +362,7 @@ First, I will verify the VIN number and the type of system to see if the update 
 </form>
 </section>
 
- <script>
+<script>
 document.getElementById("bookingForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -370,13 +370,13 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const formData = new FormData(form);
 
   // إرسال البيانات إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbzYRGRa7WWQGyJNv7bQb5KEGkM7vfGeYG97djmw8debjYgcKxkpFWckeb-BbznCvIDn/exec", { // ← ضع هنا رابط السكربت
+  fetch("https://script.google.com/macros/s/AKfycbzYRGRa7WWQGyJNv7bQb5KEGkM7vfGeYG97djmw8debjYgcKxkpFWckeb-BbznCvIDn/exec", {
     method: "POST",
     body: formData
   })
   .then(response => response.text())
   .then(result => {
-    if (result === "OK") {
+    if (result.trim() === "OK") {
       // ✅ بعد النجاح، تحويل المستخدم إلى صفحة الشكر الإنجليزية
       window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
     } else {
@@ -388,7 +388,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     console.error(error);
   });
 });
-</script> 
+</script>
 <!-- زر O mně -->
 <div class="service-container">
   <button type="button" class="accordion-button">
