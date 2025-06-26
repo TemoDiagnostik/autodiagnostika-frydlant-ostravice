@@ -299,11 +299,6 @@
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
 
-  <label for="clientEmail">E-mail</label>
-  <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
-
-  <label for="clientName">Jméno</label>
-  <input type="text" name="name" id="clientName" required placeholder="Zadejte své jméno">
 
   <label for="brandSelect">Značka vozu</label>
   <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
@@ -320,8 +315,11 @@
     <option disabled selected>Vyberte objem</option>
   </select>
 
-  <label for="clientName">Jméno a příjmení</label>
-  <input type="text" name="clientName" id="clientName2" required placeholder="Zadejte celé jméno">
+  <label for="clientEmail">E-mail</label>
+  <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+
+  <label for="clientName">Jméno</label>
+  <input type="text" name="name" id="clientName" required placeholder="Zadejte své jméno">
 
   <label for="clientPhone">Telefon</label>
   <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
