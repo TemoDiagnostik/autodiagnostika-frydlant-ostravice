@@ -337,6 +337,46 @@
 <select id="timepicker" name="time" required>
   <option value="">Vyberte čas</option>
 </select>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  // قائمة الأيام المحجوزة بصيغة YYYY-MM-DD
+  const reservedDates = [
+    "2025-07-01",
+    "2025-07-03",
+    "2025-07-07"
+  ];
+
+  // أوقات العمل الثابتة التي ستُعرض في الأيام المتاحة
+  const timeSlots = [
+    "08:00", "09:00", "10:00", "11:00", "12:00",
+    "13:00", "14:00", "15:00", "16:00"
+  ];
+
+  // تفعيل Flatpickr على التاريخ
+  flatpickr("#datepicker", {
+    dateFormat: "Y-m-d",
+    disable: reservedDates,
+    onChange: function(selectedDates, dateStr, instance) {
+      const timepicker = document.getElementById("timepicker");
+      timepicker.innerHTML = '<option value="">Vyberte čas</option>';
+
+      if (reservedDates.includes(dateStr)) {
+        const option = document.createElement("option");
+        option.text = "Zamluveno";
+        option.disabled = true;
+        timepicker.appendChild(option);
+      } else {
+        timeSlots.forEach(function(time) {
+          const option = document.createElement("option");
+          option.value = time;
+          option.text = time;
+          timepicker.appendChild(option);
+        });
+      }
+    }
+  });
+</script>
   
   <button type="submit">Odeslat</button>
 
