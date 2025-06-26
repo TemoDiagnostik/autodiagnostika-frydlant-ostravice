@@ -389,28 +389,21 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
       body: formData
     });
 
- // 🟢 إرسال إلى Formsubmit
-fetch(form.action, {
-  method: "POST",
-  body: formData
-});
-
-// ✅ إرسال إلى Google Script وتوجيه بعد النجاح
-fetch("https://script.google.com/macros/s/AKfycbz6at8KpY-AJN6dxsQQTDz_KWTOvNUUi86Ahs4Cyn87/dev", {
-  method: "POST",
-  body: formData
-})
-.then(response => response.text())
-.then(result => {
-  if (result === "OK") {
-    window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-  } else {
-    alert("Chyba při odeslání.");
-    console.error(result);
-  }
-});
-
-  
+  // 🟢 Senden an Formsubmit
+    fetch(form.action, {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = form.querySelector('input[name="_next"]').value;
+    })
+    .catch(error => {Add commentMore actions
+      alert("Fehler beim Senden.");
+      console.error(error);
+    });
+  });
+</script>
+ 
   <button type="submit">Absenden</button>
   
  
