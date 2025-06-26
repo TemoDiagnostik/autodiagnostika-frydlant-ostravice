@@ -306,7 +306,7 @@ First, I will verify the VIN number and the type of system to see if the update 
 </div>
 
 
-  <form id="bookingForm" action="https://script.google.com/macros/s/AKfycbzYRGRa7WWQGyJNv7bQb5KEGkM7vfGeYG97djmw8debjYgcKxkpFWckeb-BbznCvIDn/exec" method="POST">
+  <form id="bookingForm" action="https://script.google.com/macros/s/AKfycbypTGFXofIAMztc7bTjhELLViKyrtOAV0drmj7Z7Ps/dev" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="The appointment has been successfully submitted. I will contact you shortly to confirm the appointment. Thank you.">
@@ -370,7 +370,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const formData = new FormData(form);
 
   // إرسال البيانات إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbzYRGRa7WWQGyJNv7bQb5KEGkM7vfGeYG97djmw8debjYgcKxkpFWckeb-BbznCvIDn/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbypTGFXofIAMztc7bTjhELLViKyrtOAV0drmj7Z7Ps/dev", {
     method: "POST",
     body: formData
   })
