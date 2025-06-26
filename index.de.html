@@ -1322,6 +1322,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
+
+  <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Reservierte Tage und Zeiten
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
+      }
+    };
+
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00"
+    ];
+
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return (
+        date.getDay() === 0 || date.getDay() === 6 ||
+        bookedSlots.fullDays.includes(dateStr)
+      );
+    }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "de",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Uhrzeit auswählen</option>';
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          if (!bookedTimes.includes(time)) {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<!-- Lokale Speicherung von Datum und Uhrzeit -->
+<script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
+
+<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // 1. An Google Apps Script senden
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    // 2. Dann an Formsubmit senden
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+    });
+  })
+  .catch(error => {
+    alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+    console.error(error);
+  });
+});
+</script>
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
   position: fixed;
