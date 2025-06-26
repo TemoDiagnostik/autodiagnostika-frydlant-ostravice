@@ -439,18 +439,18 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const form = event.target;
   const formData = new FormData(form);
 
-  // 1. إرسال إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycb.../exec", {
+  // إرسال إلى Google Apps Script
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
     method: "POST",
     body: formData
   })
   .then(response => response.text())
   .then(result => {
     if (result === "OK") {
-      // ✅ تحويل بعد نجاح الإرسال
+      // ✅ تحويل لصفحة الشكر بعد نجاح الإرسال
       window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
     } else {
-      alert("Es ist ein Fehler aufgetreten: " + result);
+      alert("Ein Fehler ist aufgetreten: " + result);
     }
   })
   .catch(error => {
