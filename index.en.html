@@ -304,8 +304,9 @@ Electronic Control Unit Programming <span style="font-size: 16px;">▼</span>
 If your booking request concerns a navigation system map update, please wait for confirmation.<br>
 First, I will verify the VIN number and the type of system to see if the update is possible and what the approximate cost will be. Then I will contact you with the detailed information.
 </div>
-  
-<form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+
+
+<form action="https://script.google.com/macros/s/AKfycbzYRGRa7WWQGyJNv7bQb5KEGkM7vfGeYG97djmw8debjYgcKxkpFWckeb-BbznCvIDn/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="The appointment has been successfully submitted. I will contact you shortly to confirm the appointment. Thank you.">
@@ -359,6 +360,34 @@ First, I will verify the VIN number and the type of system to see if the update 
   
 </form>
 </section>
+
+ <script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // إرسال البيانات إلى Google Apps Script
+  fetch("https://script.google.com/macros/s/AKfycbzYRGRa7WWQGyJNv7bQb5KEGkM7vfGeYG97djmw8debjYgcKxkpFWckeb-BbznCvIDn/exec", { // ← ضع هنا رابط السكربت
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+    if (result === "OK") {
+      // ✅ بعد النجاح، تحويل المستخدم إلى صفحة الشكر الإنجليزية
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
+    } else {
+      alert("An error occurred: " + result);
+    }
+  })
+  .catch(error => {
+    alert("Failed to send the form.");
+    console.error(error);
+  });
+});
+</script> 
 <!-- زر O mně -->
 <div class="service-container">
   <button type="button" class="accordion-button">
