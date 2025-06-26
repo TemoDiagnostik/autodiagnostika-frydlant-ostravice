@@ -70,7 +70,7 @@
 </span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-   Wiederherstellung der Werkseinstellungen und Löschen der gespeicherten Einstellungen des Steuergeräts
+   Wiederherstellung der Werkseinstellungen und löschen der gespeicherten Einstellungen des Steuergeräts
 
       </span>
     </div>
@@ -216,11 +216,11 @@
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/maps.png" alt="Aktualizace Map Icon" style="width: 66px; height: 66px;" />
        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
- Aktualisierung von Karten und Infotainmentsystemen <span style="font-size: 16px;">▼</span>
+Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16px;">▼</span>
 </span>
       </div>
       <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-       Aktualisierung von Kartenmaterial und Infotainmentsystemen je nach Fahrzeugmarke
+       Professionelle Aktualisierung und Optimierung von Navigationssystemen und Fahrzeugsoftware
       </span>
     </div>
   </button>
@@ -304,59 +304,169 @@
   Falls Ihre Anfrage eine Aktualisierung des Navigationssystems betrifft, warten Sie bitte auf die Terminbestätigung.<br>
   Zuerst überprüfe ich anhand der VIN-Nummer und des Systemtyps, ob ein Update möglich ist und wie hoch die ungefähren Kosten sein werden. Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div> 
-<form action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+
+<form action="https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev" method="POST" id="booking-form">
   <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
-  <label for="clientEmail">E-mail</label>
+
+  <label for="brandSelect">Fahrzeugmarke</label>
+  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
+    <option disabled selected>Marke auswählen</option>
+  </select>
+
+  <label for="modelSelect">Fahrzeugmodell</label>
+  <select id="modelSelect" name="carModel" required>
+    <option disabled selected>Modell auswählen</option>
+  </select>
+
+  <label for="engineSelect">Motorgröße</label>
+  <select id="engineSelect" name="engine" required>
+    <option disabled selected>Wählen Sie den Hubraum</option>
+  </select>
+
+  <label for="clientEmail">E-Mail</label>
   <input type="email" name="email" id="clientEmail" required placeholder="Geben Sie Ihre E-Mail-Adresse ein">
 
-  
-<label for="brandSelect">Fahrzeugmarke</label>
-<select id="brandSelect" name="Automarke" required onchange="updateModelOptions()">
-  <option disabled selected>Marke auswählen</option>
-</select>
-<label for="modelSelect">Fahrzeugmodell</label>
-<select id="modelSelect" name="Model vozu" required>
-  <option disabled selected>Modell auswählen</option>
-</select>
+  <label for="clientName">Vor- und Nachname</label>
+  <input type="text" name="name" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
 
-<label for="engineSelect">Motorgröße</label>
-<select id="engineSelect" name="Hubraum" required>
-  <option disabled selected>Wählen Sie den Hubraum</option>
-</select>
-<label for="clientName">Vor- und Nachname</label>
-<input type="text" name="clientName" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
+  <label for="clientPhone">Telefon</label>
+  <input type="tel" name="phone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">
 
-<label for="clientPhone">Telefon</label>
-<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">	 
   <label for="vin">Fahrzeug-VIN-Nummer</label>
-  <input type="text" name="VIN kód" placeholder="Geben Sie den VIN-Code ein" required />
+  <input type="text" name="vin" id="vin" placeholder="Geben Sie den VIN-Code ein" required />
 
   <label for="note">Besuchsgrund</label>
-  <textarea name="Důvod návštěvy" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
+  <textarea name="reason" id="note" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
 
-<!-- التاريخ -->
-<label for="datepicker">Datum</label>
-<input type="text" id="datepicker" name="date" placeholder="Uhrzeit auswählen" required>
+  <label for="datepicker">Datum</label>
+  <input type="text" id="datepicker" name="date" required>
 
-<!-- الوقت -->
-<label for="timepicker">Uhrzeit</label>
-<select id="timepicker" name="time" required>
-  <option value="">Uhrzeit auswählen</option>
-</select>
-
-  <button type="submit">Absenden</button>
+  <label for="timepicker">Uhrzeit</label>
+  <select id="timepicker" name="time" required>
+    <option value="">Uhrzeit auswählen</option>
+  </select>
+ <button type="submit">Absenden</button>
   
- 
+</form>
+  
+ <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Reservierte Tage und Zeiten
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
+      }
+    };
+
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00"
+    ];
+
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return (
+        date.getDay() === 0 || date.getDay() === 6 ||
+        bookedSlots.fullDays.includes(dateStr)
+      );
+    }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "de",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Uhrzeit auswählen</option>';
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          if (!bookedTimes.includes(time)) {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<!-- Lokale Speicherung von Datum und Uhrzeit -->
+<script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
+
+<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // 1. An Google Apps Script senden
+  fetch("https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    // 2. Dann an Formsubmit senden
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+    });
+  })
+  .catch(error => {
+    alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+    console.error(error);
+  });
+});
+</script>
+  
 <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Haben Sie eine Frage? Schreiben Sie mir: 
   <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
     info@temosliving.de
-  </a>
+    </a>
 </p>
-  
 </form>
 </section>
   
@@ -367,7 +477,7 @@
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/O mně.png" alt="O mně" style="width: 66px; height: 66px;" />
         <div style="display: flex; flex-direction: column;">
-          <span style="font-weight: bold; color: #EBDBB1;">O mně <span style="font-size: 16px;">▼</span></span>
+          <span style="font-weight: bold; color: #EBDBB1;">Über mich <span style="font-size: 16px;">▼</span></span>
           <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;"> Informationen über mich</span>
         </div>
       </div>
@@ -408,7 +518,7 @@
 <li>BMS-Reset: 400–700 Kč</li>
 <li>Komplettdiagnose: 500–800 Kč</li>
   </ul>
-  <p class="note" style="font-size: 13px; padding-bottom: 12px;">Ceny se liší dle typu vozu a rozsahu poskytované služby.</p>
+  <p class="note" style="font-size: 13px; padding-bottom: 12px;"> Die Preise variieren je nach Fahrzeugtyp und Umfang der angebotenen Dienstleistung.</p>
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -1323,6 +1433,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
+
+ 
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
   position: fixed;
