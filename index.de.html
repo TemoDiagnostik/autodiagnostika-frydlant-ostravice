@@ -310,15 +310,17 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
 
- <label for="modelSelect">Fahrzeugmodell</label>
-  <select id="modelSelect" name="carModel" required>
-    <option disabled selected>Modell auswählen</option>
+ <label for="brandSelect">Fahrzeugmarke</label>
+  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
+    <option disabled selected>Marke auswählen</option>
   </select>
+
 
    <label for="modelSelect">Fahrzeugmodell</label>
   <select id="modelSelect" name="carModel" required>
     <option disabled selected>Modell auswählen</option>
   </select>
+
 
   <label for="engineSelect">Motorgröße</label>
   <select id="engineSelect" name="engine" required>
