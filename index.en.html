@@ -363,31 +363,30 @@ First, I will verify the VIN number and the type of system to see if the update 
 </section>
 
 <script>
-document.getElementById("booking-form") {
-  event.preventDefault();
+  document.getElementById("booking-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // منع الإرسال التقليدي
 
-  const form = event.target;
-  const formData = new FormData(form);
+    const form = event.target;
+    const formData = new FormData(form);
 
-  // إرسال البيانات إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbwYYr1qnO3AIx4d-zA1Ih2mFr9yetNRo3eYjdAu1JXi5bHxyyAzESwuQZBFdGPqwpqdZg/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(response => response.text())
-  .then(result => {
-    if (result.trim() === "OK") {
-      // ✅ بعد النجاح، تحويل المستخدم إلى صفحة الشكر الإنجليزية
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
-    } else {
-      alert("An error occurred: " + result);
-    }
-  })
-  .catch(error => {
-    alert("Failed to send the form.");
-    console.error(error);
+    fetch("https://script.google.com/macros/s/AKfycbwYYr1qnO3AIx4d-zA1Ih2mFr9yetNRo3eYjdAu1JXi5bHxyyAzESwuQZBFdGPqwpqdZg/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      if (result.trim() === "OK") {
+        // تحويل المستخدم إلى صفحة الشكر
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
+      } else {
+        alert("An error occurred: " + result);
+      }
+    })
+    .catch(error => {
+      alert("Failed to send the form.");
+      console.error(error);
+    });
   });
-});
 </script>
 <!-- زر O mně -->
 <div class="service-container">
