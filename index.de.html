@@ -357,13 +357,12 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
     </a>
 </p>
 </form>
- <!-- Flatpickr -->
+<!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Reservierte Tage und Zeiten
     const bookedSlots = {
       fullDays: [ "2025-06-20", "2025-06-24" ],
       timeSlots: {
@@ -426,7 +425,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
 
 <!-- Lokale Speicherung von Datum und Uhrzeit -->
 <script>
-  const form = document.getElementById("booking-form");
+  const form = document.getElementById("bookingForm");
 
   form.addEventListener("submit", function () {
     const date = document.getElementById("datepicker").value;
@@ -446,7 +445,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const formData = new FormData(form);
 
   // 1. An Google Apps Script senden
-  fetch("https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev", {
+  fetch("https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/exec", {
     method: "POST",
     body: formData
   })
