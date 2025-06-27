@@ -294,7 +294,7 @@
   Nejprve ověříme podle VIN kódu a typu systému, zda je aktualizace možná a jaká bude přibližná cena. Poté vás budu kontaktovat s podrobnými informacemi.
 </div>
   
-  <form id="booking-form" method="POST">
+<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
@@ -352,10 +352,10 @@
     disable: reservedDates,
     onChange: function(selectedDates, dateStr, instance) {
       const timepicker = document.getElementById("timepicker");
-      timepicker.innerHTML = '<option value="">Vyberte čas</option>';
+      timepicker.innerHTML = '<option value="">Uhrzeit wählen</option>';
       if (reservedDates.includes(dateStr)) {
         const option = document.createElement("option");
-        option.text = "Zamluveno";
+        option.text = "Reserviert";
         option.disabled = true;
         timepicker.appendChild(option);
       } else {
@@ -370,7 +370,20 @@
   });
 </script>
 
-<!-- إرسال مزدوج: إلى Google Apps Script وFormsubmit -->
+<!-- Lokale Speicherung von Datum und Uhrzeit -->
+<script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
+
+<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
 <script>
   document.getElementById("booking-form").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -383,20 +396,22 @@
       body: formData
     });
 
-  // 🟢 إرسال إلى Formsubmit
+    // 🟢 إرسال إلى Formsubmit
     fetch(form.action, {
-      method: "POST",Add commentMore actions
+      method: "POST",
       body: formData
     })
     .then(() => {
-      window.location.href = form.querySelector('input[name="_next"]').value;
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
     })
     .catch(error => {
-      alert("Chyba při odeslání.");
+      alert("Fehler beim Senden.");
       console.error(error);
     });
   });
 </script>
+  
+
   
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
