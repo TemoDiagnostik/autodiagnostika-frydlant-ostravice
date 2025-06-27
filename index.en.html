@@ -362,28 +362,71 @@ First, I will verify the VIN number and the type of system to see if the update 
 </form>
 </section>
 
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-  document.getElementById("booking-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // منع الإرسال التقليدي
+  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
+  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
 
-    const form = event.target;
+  flatpickr("#datepicker", {
+    dateFormat: "Y-m-d",
+    disable: reservedDates,
+    onChange: function(selectedDates, dateStr, instance) {
+      const timepicker = document.getElementById("timepicker");
+      timepicker.innerHTML = '<option value="">Uhrzeit wählen</option>';
+      if (reservedDates.includes(dateStr)) {
+        const option = document.createElement("option");
+        option.text = "Reserviert";
+        option.disabled = true;
+        timepicker.appendChild(option);
+      } else {
+        timeSlots.forEach(function(time) {
+          const option = document.createElement("option");
+          option.value = time;
+          option.text = time;
+          timepicker.appendChild(option);
+        });
+      }
+    }
+  });
+</script>
+
+<!-- Lokale Speicherung von Datum und Uhrzeit -->
+<script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
+
+<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
+<script>
+  document.getElementById("booking-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const form = e.target;
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbwAa98d0OylQToIP4ELebs8qLiG1boRDryi1RuHbgPPTqYqRbWyLx-BV7b-b_DqE0FxEw/exec, {
+    // 🟡 إرسال إلى Google Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbwAa98d0OylQToIP4ELebs8qLiG1boRDryi1RuHbgPPTqYqRbWyLx-BV7b-b_DqE0FxEw/exec", {
+      method: "POST",
+      body: formData
+    });
+
+    // 🟢 إرسال إلى Formsubmit
+    fetch(form.action, {
       method: "POST",
       body: formData
     })
-    .then(response => response.text())
-    .then(result => {
-      if (result.trim() === "OK") {
-        // تحويل المستخدم إلى صفحة الشكر
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
-      } else {
-        alert("An error occurred: " + result);
-      }
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
     })
     .catch(error => {
-      alert("Failed to send the form.");
+      alert("Fehler beim Senden.");
       console.error(error);
     });
   });
