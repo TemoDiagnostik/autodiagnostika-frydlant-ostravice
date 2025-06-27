@@ -305,7 +305,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   Zuerst überprüfe ich anhand der VIN-Nummer und des Systemtyps, ob ein Update möglich ist und wie hoch die ungefähren Kosten sein werden. Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div> 
 
-<form id="bookingForm" action="https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev" method="POST">
+<form id="bookingForm" action="https://script.google.com/macros/s/AKfycbx1fauVkup_LfZ4kZEUx61CUbHAf4NFn0hXlVjsEmvtjavwyWJO-iUW-sX8J16utcedgw/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-de.html">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich übermittelt. Ich werde Sie bald zur Bestätigung kontaktieren. Vielen Dank.">
@@ -445,7 +445,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   const formData = new FormData(form);
 
   // 1. An Google Apps Script senden
-  fetch("https://script.google.com/macros/s/AKfycbyNbyVv7G_Cxpc_TvQCav8iYgS51GaJ7XsfNui9w-X_/dev", {
+  fetch("https://script.google.com/macros/s/AKfycbx1fauVkup_LfZ4kZEUx61CUbHAf4NFn0hXlVjsEmvtjavwyWJO-iUW-sX8J16utcedgw/exec", {
     method: "POST",
     body: formData
   })
