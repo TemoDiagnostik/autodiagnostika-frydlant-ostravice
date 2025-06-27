@@ -322,33 +322,38 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
 
   <label for="engineSelect">Motorgröße</label>
   <select id="engineSelect" name="engine" required>
-    <option disabled selected>Größe wählen</option>
+    <option disabled selected>Wählen Sie den Hubraum</option>
   </select>
 
   <label for="clientEmail">E-Mail</label>
-  <input type="email" name="email" id="clientEmail" required placeholder="Ihre E-Mail eingeben">
+  <input type="email" name="email" id="clientEmail" required placeholder="Geben Sie Ihre E-Mail-Adresse ein">
 
-  <label for="clientName">Vor- und Nachname</label>
-  <input type="text" name="name" id="clientName" required placeholder="Ihr Name">
+<label for="clientName">Vor- und Nachname</label>
+  <input type="text" name="name" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
 
-  <label for="clientPhone">Telefon</label>
-  <input type="tel" name="phone" id="clientPhone" required placeholder="Ihre Telefonnummer">	 
 
-  <label for="vin">Fahrzeug-VIN-Nummer</label>
-  <input type="text" name="vin" placeholder="VIN-Code eingeben" required />
+   <label for="clientPhone">Telefon</label>
+  <input type="tel" name="phone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">
 
-  <label for="note">Grund des Besuchs</label>
-  <textarea name="reason" placeholder="Warum kommen Sie?" required></textarea>
 
-  <label for="datepicker">Datum</label>
+   <label for="vin">Fahrzeug-VIN-Nummer</label>
+  <input type="text" name="vin" id="vin" placeholder="Geben Sie den VIN-Code ein" required />
+
+ <label for="note">Besuchsgrund</label>
+  <textarea name="reason" id="note" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
+
+  
+<label for="datepicker">Datum</label>
   <input type="text" id="datepicker" name="date" placeholder="Datum wählen" required>
-
-  <label for="timepicker">Uhrzeit</label>
+  
+ 
+ <label for="timepicker">Uhrzeit</label>
   <select id="timepicker" name="time" required>
-    <option value="">Uhrzeit wählen</option>
+    <option value="">Uhrzeit auswählen</option>
   </select>
-
-  <button type="submit">Senden</button>
+ <button type="submit">Absenden</button>
+  
+</form>
 
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
     📧 Haben Sie eine Frage? Schreiben Sie mir: 
