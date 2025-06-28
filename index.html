@@ -1463,6 +1463,22 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   WhatsApp
 </a>  
 
+<script>
+  document.getElementById("booking-form").addEventListener("submit", function(event) {
+    const vinInput = document.querySelector('input[name="VIN code"]');
+    const vin = vinInput.value.trim().toUpperCase();
+
+    // شروط التحقق من صحة VIN
+    const invalidChars = /[IOQ]/;
+    if (vin.length !== 17 || invalidChars.test(vin)) {
+      event.preventDefault(); // يمنع الإرسال
+      alert("❌ VIN code must be 17 characters and must not contain I, O, or Q.");
+      vinInput.style.border = "2px solid red"; // تمييز الخانة باللون الأحمر
+    } else {
+      vinInput.style.border = ""; // إزالة التمييز لو صحيح
+    }
+  });
+</script>
 <!-- End MailerLite Universal -->
 </body>
 </html>
