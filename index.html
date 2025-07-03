@@ -1514,9 +1514,8 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     vinInput.style.border = "2px solid #4CAF50";
     vinInput.style.backgroundColor = "";
 
-    // ✅ هنا فقط نسمح بالإرسال الطبيعي بعد التأكد
-    form.removeEventListener("submit", arguments.callee); // منع الحلقة اللانهائية
-    form.submit(); // الآن نرسل النموذج يدويًا بعد التأكد تمامًا
+ form.removeEventListener("submit", arguments.callee);
+form.submit(); // ✅ فقط لو فعلاً محتاج ترسله يدويًا بعد نجاح كل الشروط
   }
 
     });
