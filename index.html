@@ -1473,20 +1473,19 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     }
 
     form.addEventListener("submit", function(event) {
-      // البحث عن حقل VIN بعدة أسماء محتملة (تشيكي/إنجليزي)
+      event.preventDefault(); // منع الإرسال المباشر
+      
       const vinInput = document.querySelector('input[name="VIN code"], input[name="VIN"], input[name="vin"], input[name="vinový kód"], input[name="číslo VIN"]');
       
       if (!vinInput) {
         console.error("VIN pole nebylo nalezeno");
         alert("Chyba: Nelze najít pole pro VIN kód");
-        event.preventDefault();
         return;
       }
 
       const vin = vinInput.value.trim().toUpperCase();
       let errorMessage = "";
       
-      // تحسينات التحقق من الصحة
       if (vin.length !== 17) {
         errorMessage += "VIN kód musí mít přesně 17 znaků\n";
       }
@@ -1500,24 +1499,24 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
       }
 
       if (errorMessage) {
-        event.preventDefault();
         alert("Chyba:\n" + errorMessage);
         vinInput.style.border = "2px solid #ff3e3e";
         vinInput.style.backgroundColor = "#ffebeb";
         vinInput.focus();
         
-        // إضافة تأثير اهتزاز للإشارة للخطأ
         vinInput.classList.add("shake-animation");
         setTimeout(() => {
           vinInput.classList.remove("shake-animation");
         }, 500);
       } else {
-        vinInput.style.border = "2px solid #4CAF50";
+        vinInput.style.border = "2px solid  #EBDBB1";
         vinInput.style.backgroundColor = "";
+        
+        // الإرسال يدويًا بعد التحقق
+        form.submit();
       }
     });
 
-    // إضافة CSS للاهتزاز مباشرة في السكريبت
     const style = document.createElement("style");
     style.innerHTML = `
       .shake-animation {
