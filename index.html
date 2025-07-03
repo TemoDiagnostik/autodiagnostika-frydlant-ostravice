@@ -1466,6 +1466,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("booking-form");
+    let formSubmitted = false; // متغير لتتبع حالة الإرسال
     
     if (!form) {
       console.error("Formulář nebyl nalezen");
@@ -1473,6 +1474,8 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     }
 
     form.addEventListener("submit", function(event) {
+      if (formSubmitted) return; // إذا تم الإرسال بالفعل، لا تفعل شيئاً
+      
       event.preventDefault(); // منع الإرسال المباشر
       
       const vinInput = document.querySelector('input[name="VIN code"], input[name="VIN"], input[name="vin"], input[name="vinový kód"], input[name="číslo VIN"]');
@@ -1509,11 +1512,11 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
           vinInput.classList.remove("shake-animation");
         }, 500);
       } else {
-        vinInput.style.border = "2px solid  #EBDBB1";
+        vinInput.style.border = "2px solid #4CAF50";
         vinInput.style.backgroundColor = "";
         
-        // الإرسال يدويًا بعد التحقق
-        form.submit();
+        formSubmitted = true; // وضع علامة أن النموذج تم إرساله
+        form.submit(); // الإرسال الفعلي للنموذج
       }
     });
 
