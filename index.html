@@ -1500,24 +1500,25 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
       if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
         errorMessage += "VIN kód obsahuje neplatné znaky";
       }
+if (errorMessage) {
+  alert("Chyba:\n" + errorMessage);
+  vinInput.style.border = "2px solid #ff3e3e";
+  vinInput.style.backgroundColor = "#ffebeb";
+  vinInput.focus();
 
-      if (errorMessage) {
-        alert("Chyba:\n" + errorMessage);
-        vinInput.style.border = "2px solid #ff3e3e";
-        vinInput.style.backgroundColor = "#ffebeb";
-        vinInput.focus();
-        
-        vinInput.classList.add("shake-animation");
-        setTimeout(() => {
-          vinInput.classList.remove("shake-animation");
-        }, 500);
-      } else {
-        vinInput.style.border = "2px solid #4CAF50";
-        vinInput.style.backgroundColor = "";
-        
-        formSubmitted = true; // وضع علامة أن النموذج تم إرساله
-        form.submit(); // الإرسال الفعلي للنموذج
-      }
+  vinInput.classList.add("shake-animation");
+  setTimeout(() => {
+    vinInput.classList.remove("shake-animation");
+  }, 500);
+
+  return; // ⛔ هذا السطر مهم جدًا لمنع الإرسال عند وجود خطأ
+} else {
+  vinInput.style.border = "2px solid #4CAF50";
+  vinInput.style.backgroundColor = "";
+
+  formSubmitted = true; // لو بتستخدمه فعلاً لاحقًا
+  form.submit(); // ✅ يتم الإرسال فقط إذا كان كل شيء سليم
+}
     });
 
     const style = document.createElement("style");
