@@ -1473,52 +1473,52 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
       return;
     }
 
-    form.addEventListener("submit", function(event) {
-      if (formSubmitted) return; // إذا تم الإرسال بالفعل، لا تفعل شيئاً
-      
-      event.preventDefault(); // منع الإرسال المباشر
-      
-      const vinInput = document.querySelector('input[name="VIN code"], input[name="VIN"], input[name="vin"], input[name="vinový kód"], input[name="číslo VIN"]');
-      
-      if (!vinInput) {
-        console.error("VIN pole nebylo nalezeno");
-        alert("Chyba: Nelze najít pole pro VIN kód");
-        return;
-      }
+   form.addEventListener("submit", function(event) {
+  event.preventDefault(); // منع الإرسال دائمًا مؤقتًا
 
-      const vin = vinInput.value.trim().toUpperCase();
-      let errorMessage = "";
-      
-      if (vin.length !== 17) {
-        errorMessage += "VIN kód musí mít přesně 17 znaků\n";
-      }
-      
-      if (/[IOQ]/.test(vin)) {
-        errorMessage += "VIN kód nesmí obsahovat písmena I, O, Q\n";
-      }
-      
-      if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
-        errorMessage += "VIN kód obsahuje neplatné znaky";
-      }
-if (errorMessage) {
-  alert("Chyba:\n" + errorMessage);
-  vinInput.style.border = "2px solid #ff3e3e";
-  vinInput.style.backgroundColor = "#ffebeb";
-  vinInput.focus();
+  const vinInput = document.querySelector('input[name="VIN code"], input[name="VIN"], input[name="vin"], input[name="vinový kód"], input[name="číslo VIN"]');
 
-  vinInput.classList.add("shake-animation");
-  setTimeout(() => {
-    vinInput.classList.remove("shake-animation");
-  }, 500);
+  if (!vinInput) {
+    console.error("VIN pole nebylo nalezeno");
+    alert("Chyba: Nelze najít pole pro VIN kód");
+    return;
+  }
 
-  return; // ⛔ هذا السطر مهم جدًا لمنع الإرسال عند وجود خطأ
-} else {
-  vinInput.style.border = "2px solid #4CAF50";
-  vinInput.style.backgroundColor = "";
+  const vin = vinInput.value.trim().toUpperCase();
+  let errorMessage = "";
 
-  formSubmitted = true; // لو بتستخدمه فعلاً لاحقًا
-  form.submit(); // ✅ يتم الإرسال فقط إذا كان كل شيء سليم
-}
+  if (vin.length !== 17) {
+    errorMessage += "VIN kód musí mít přesně 17 znaků\n";
+  }
+
+  if (/[IOQ]/.test(vin)) {
+    errorMessage += "VIN kód nesmí obsahovat písmena I, O, Q\n";
+  }
+
+  if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
+    errorMessage += "VIN kód obsahuje neplatné znaky";
+  }
+
+  if (errorMessage) {
+    alert("Chyba:\n" + errorMessage);
+    vinInput.style.border = "2px solid #ff3e3e";
+    vinInput.style.backgroundColor = "#ffebeb";
+    vinInput.focus();
+
+    vinInput.classList.add("shake-animation");
+    setTimeout(() => {
+      vinInput.classList.remove("shake-animation");
+    }, 500);
+    return; // ضروري لمنع استمرار التنفيذ
+  } else {
+    vinInput.style.border = "2px solid #4CAF50";
+    vinInput.style.backgroundColor = "";
+
+    // ✅ هنا فقط نسمح بالإرسال الطبيعي بعد التأكد
+    form.removeEventListener("submit", arguments.callee); // منع الحلقة اللانهائية
+    form.submit(); // الآن نرسل النموذج يدويًا بعد التأكد تمامًا
+  }
+
     });
 
     const style = document.createElement("style");
