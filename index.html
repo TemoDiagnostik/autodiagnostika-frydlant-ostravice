@@ -1464,16 +1464,16 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
 </a>  
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("booking-form");
-
+    
     if (!form) {
       console.error("Formulář nebyl nalezen");
       return;
     }
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault(); // منع الإرسال مؤقتًا
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // منع الإرسال دائماً
 
       const vinInput = document.querySelector('input[name="VIN code"], input[name="VIN"], input[name="vin"], input[name="vinový kód"], input[name="číslo VIN"]');
 
@@ -1508,17 +1508,15 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
         setTimeout(() => {
           vinInput.classList.remove("shake-animation");
         }, 500);
-        return;
       } else {
         vinInput.style.border = "2px solid #4CAF50";
         vinInput.style.backgroundColor = "";
-
-        // ✅ يتم الإرسال يدويًا فقط بعد نجاح التحقق
-        form.submit();
+        
+        // عرض رسالة بدلاً من إرسال النموذج
+        alert("VIN kód je platný. Formulář nelze odeslat - tato funkce je vypnuta.");
       }
     });
 
-    // إضافة تأثير اهتزاز
     const style = document.createElement("style");
     style.innerHTML = `
       .shake-animation {
