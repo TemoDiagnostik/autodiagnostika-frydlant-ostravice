@@ -78,26 +78,39 @@
 
 
 
-<!-- Reset Funkce -->
+<!-- زر Zurücksetzen der Systemfunktionen -->
 <div class="service-container">
   <button type="button" class="accordion-button">
     <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <img src="icons/reset.png" alt="Reset Icon" style="width: 66px; height: 66px;" />
-       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
- Zurücksetzen der Systemfunktionen <span style="font-size: 16px;">▼</span>
-</span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">
+            Zurücksetzen der Systemfunktionen <span style="font-size: 16px;">▼</span>
+          </span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">
+            Werkseinstellungen wiederherstellen & Steuergerät löschen
+          </span>
+        </div>
       </div>
-      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-   Wiederherstellung der Werkseinstellungen und löschen der gespeicherten Einstellungen des Steuergeräts
-
-      </span>
     </div>
   </button>
 </div>
+
+<!-- البانل القابل للفتح -->
 <div class="accordion-panel" style="
-  max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
-<ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 18px auto;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+    <!-- قائمة المحتوى هنا -->
+  </ul>
+</div>
      <!-- Reset -->
 <li>Ölwechsel-Reset</li>
 <li>Reset der elektronischen Parkbremse (EPB)</li>
@@ -137,25 +150,34 @@
   </ul>
 </div>
 
- <!-- Diagnose -->
+<!-- Diagnose & Systemanalyse -->
 <div class="service-container">
   <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/diagnostika.png" alt="Diagnostika Icon" style="width: 66px; height: 66px;" />
-      <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
- Diagnose & Systemanalyse <span style="font-size: 16px;">▼</span>
-</span>
+        <img src="icons/diagnostika.png" alt="Diagnostika Icon" style="width: 44px; height: 44px;" />
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+          Diagnose & Systemanalyse <span style="font-size: 16px;">▼</span>
+        </span>
       </div>
-      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-     Komplette Fahrzeugsystemdiagnose
+      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Komplette Fahrzeugsystemdiagnose
       </span>
     </div>
   </button>
 </div>
+
+<!-- Accordion Panel -->
 <div class="accordion-panel" style="
-  max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
- <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 18px auto;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
  <li>Ölstandsprüfung</li>
 <li>Motorsteuergerät (ECU)</li>
 <li>DPF-Drucksensor</li>
@@ -190,33 +212,34 @@
 </ul>
   </div>
 
-<!-- 3Steuergeräte-Programmierung-->
+<!-- Steuergeräte-Programmierung -->
 <div class="service-container">
   <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/programovani.png" alt="Programování Icon" style="width: 66px; height: 66px;" />
+        <img src="icons/programovani.png" alt="Programování Icon" style="width: 44px; height: 44px;" />
         <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
- Steuergeräte-Programmierung <span style="font-size: 16px;">▼</span>
-</span>
+          Steuergeräte-Programmierung <span style="font-size: 16px;">▼</span>
+        </span>
       </div>
-      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-        Anpassung der Software und Codierung des Steuergeräts
+      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Software-Anpassung und Steuergeräte-Codierung
       </span>
     </div>
   </button>
 </div>
 
+<!-- Accordion Panel -->
 <div class="accordion-panel" style="
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
   padding: 0 20px;
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 0 0 8px 8px;
   max-width: 500px;
   margin: 0 auto 18px auto;">
-  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
     <li>Softwareaktualisierung der Steuergeräte gemäß Herstellerangaben</li>
     <li>Codierung neuer Module und Komponenten</li>
     <li>Neukalibrierung nach dem Austausch von Teilen (z. B. Batterie, Sensoren)</li>
@@ -228,24 +251,34 @@
   </p>
 </div>
   
-<!-- Aktualizace Map -->
+<!-- Professionelle Aktualisierung von Navigationssystemen -->
 <div class="service-container">
   <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/maps.png" alt="Aktualizace Map Icon" style="width: 66px; height: 66px;" />
-       <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
-Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16px;">▼</span>
-</span>
+        <img src="icons/maps.png" alt="Navigationsupdate Icon" style="width: 44px; height: 44px;" />
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
+          Navigations- & Systemaktualisierung <span style="font-size: 16px;">▼</span>
+        </span>
       </div>
-      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-       Professionelle Aktualisierung und Optimierung von Navigationssystemen und Fahrzeugsoftware
+      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Update von Navigationskarten & Fahrzeugsoftware je nach Marke und Systemtyp
       </span>
     </div>
   </button>
 </div>
-<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
- <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+
+<!-- Accordion Panel -->
+<div class="accordion-panel" style="
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 18px auto;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
     <li>Installation der neuesten Karten für GPS-Navigation</li>
 <li>Unterstützte Marken: VW, BMW, Ford, Mazda, Hyundai, Nissan u. a.</li>
 <li>Möglichkeit zur Aktualisierung von MMI-, SYNC-, iDrive-Systemen und weiteren</li>
@@ -258,24 +291,34 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   </p>
 </div>
   
-<!-- Kontrola Ujetých Kilometrů -->
+<!-- Kilometerüberprüfung -->
 <div class="service-container">
- <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/mileage.png" alt="Kontrola kilometrů" style="width: 66px; height: 66px;" />
+        <img src="icons/mileage.png" alt="Kilometerstand Icon" style="width: 44px; height: 44px;" />
         <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
- Kilometerüberprüfung <span style="font-size: 16px;">▼</span>
-</span>
+          Kilometerüberprüfung <span style="font-size: 16px;">▼</span>
+        </span>
       </div>
-      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-        Überprüfung der Richtigkeit der gefahrenen Kilometer des Fahrzeugs
+      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Verifizierung der tatsächlichen Kilometerlaufleistung des Fahrzeugs
       </span>
     </div>
   </button>
 </div>
-<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
- <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+
+<!-- Accordion Panel -->
+<div class="accordion-panel" style="
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 18px auto;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
     <li>Überprüfung der Kilometerstände in allen Steuergeräten</li>
 <li>Vergleich der Werte aus ECU, ABS, Kombiinstrument und weiteren Modulen</li>
 <li>Aufdeckung möglicher Unstimmigkeiten oder Manipulationen</li>
@@ -288,24 +331,34 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
 </div>
 
    
-<!-- Kontrola VIN Kódu -->
+<!-- VIN-Code-Prüfung -->
 <div class="service-container">
- <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
+  <button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/vin.png" alt="VIN Icon" style="width: 66px; height: 66px;" />
+        <img src="icons/vin.png" alt="VIN Icon" style="width: 44px; height: 44px;" />
         <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
-   VIN-Code-Prüfung  <span style="font-size: 16px;">▼</span>
-</span>
+          VIN-Code-Prüfung <span style="font-size: 16px;">▼</span>
+        </span>
       </div>
-      <span style="font-size: 12px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-       Überprüfung der Gültigkeit und verfügbaren Informationen anhand der VIN
+      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
+        Prüfung der Gültigkeit und Fahrzeugdaten anhand der VIN-Nummer
       </span>
     </div>
   </button>
 </div>
-<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
-<ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+
+<!-- Accordion Panel -->
+<div class="accordion-panel" style="
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 8px 8px;
+  max-width: 500px;
+  margin: 0 auto 18px auto;">
+  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
    <li>Überprüfung der Gültigkeit des VIN-Codes.</li>
 <li>Anzeige der verfügbaren Informationen basierend auf der VIN.</li>
 <li>Geeignet beim Kauf eines Gebrauchtwagens.</li>
