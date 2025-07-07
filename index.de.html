@@ -1368,7 +1368,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-    <!-- Flatpickr -->
+  
+  <!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 
@@ -1434,8 +1435,48 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
+  <script>
+  const form = document.getElementById("booking-form");
 
- 
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    // حفظ في localStorage
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // 1. إرسال إلى Google Apps Script
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+    });
+  })
+  .catch(error => {
+    alert("Chyba při odesílání. Zkuste to prosím znovu.");
+    console.error(error);
+  });
+});
+</script>
+  
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
   position: fixed;
@@ -1484,8 +1525,57 @@ document.addEventListener("DOMContentLoaded", function () {
   WhatsApp
 </a>  
 
-  
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("booking-form");
+    const vinInput = document.getElementById("vin-input");
+    const vinError = document.getElementById("vin-error");
 
+    if (!form || !vinInput || !vinError) return;
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // منع الإرسال دائماً
+      
+      // إعادة تعيين الحالة
+      vinInput.classList.remove("input-error", "input-valid", "shake");
+      vinError.style.display = "none";
+      
+      const vin = vinInput.value.trim().toUpperCase();
+      let errors = [];
+      
+      // التحقق من الصحة
+      if (vin.length !== 17) {
+        errors.push("VIN musí mít přesně 17 znaků");
+      }
+      
+      if (/[IOQ]/.test(vin)) {
+        errors.push("VIN nesmí obsahovat písmena I, O, nebo Q");
+      }
+      
+      if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
+        errors.push("VIN obsahuje neplatné znaky");
+      }
+      
+      // معالجة الأخطاء
+      if (errors.length > 0) {
+        vinInput.classList.add("input-error", "shake");
+        vinError.textContent = errors.join(" • ");
+        vinError.style.display = "block";
+        vinInput.focus();
+      } else {
+        vinInput.classList.add("input-valid");
+        // عرض رسالة بدلاً من الإرسال
+        alert("VIN je platný. Formulář nelze odeslat - tato funkce je vypnuta.");
+      }
+    });
+    
+    // التحقق أثناء الكتابة (اختياري)
+    vinInput.addEventListener("input", function() {
+      this.value = this.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "");
+    });
+  });
+</script>
+<!-- End MailerLite Universal -->
 </body>
 </html>
- 
+
