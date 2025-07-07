@@ -43,6 +43,7 @@
     </a>
 
 
+
      <!-- أعلام اللغات -->
 <span style="display: flex; gap: 6px;">
   <a href="index.html">
@@ -312,71 +313,68 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
 
 
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
-  <h3>Terminanfrage</h3>
- <div style="background-color: #fff3cd; color: #856404; padding: 15px; border: 1px solid #ffeeba; border-radius: 6px; margin-bottom: 15px;">
-  🔔 <strong>Wichtiger Hinweis – Kartenaktualisierung:</strong><br>
-  Falls Ihre Anfrage eine Aktualisierung des Navigationssystems betrifft, warten Sie bitte auf die Terminbestätigung.<br>
-  Zuerst überprüfe ich anhand der VIN-Nummer und des Systemtyps, ob ein Update möglich ist und wie hoch die ungefähren Kosten sein werden. Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
-</div> 
 
 <form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
-  <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
-
- <label for="brandSelect">Fahrzeugmarke</label>
-  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
-    <option disabled selected>Marke auswählen</option>
-  </select>
-
-
-   <label for="modelSelect">Fahrzeugmodell</label>
-  <select id="modelSelect" name="carModel" required>
-    <option disabled selected>Modell auswählen</option>
-  </select>
-
-
-  <label for="engineSelect">Motorgröße</label>
-  <select id="engineSelect" name="engine" required>
-    <option disabled selected>Wählen Sie den Hubraum</option>
-  </select>
-
-  <label for="clientEmail">E-Mail</label>
-  <input type="email" name="email" id="clientEmail" required placeholder="Geben Sie Ihre E-Mail-Adresse ein">
-
-<label for="clientName">Vor- und Nachname</label>
-  <input type="text" name="name" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
-
-
-   <label for="clientPhone">Telefon</label>
-  <input type="tel" name="phone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">
-
-
-   <label for="vin">Fahrzeug-VIN-Nummer</label>
-  <input type="text" name="vin" id="vin" placeholder="Geben Sie den VIN-Code ein" required />
-
- <label for="note">Besuchsgrund</label>
-  <textarea name="reason" id="note" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
-
-  
-<label for="datepicker">Datum</label>
-  <input type="text" id="datepicker" name="date" placeholder="Datum wählen" required>
-  
  
- <label for="timepicker">Uhrzeit</label>
-  <select id="timepicker" name="time" required>
-    <option value="">Uhrzeit auswählen</option>
-  </select>
- <button type="submit">Absenden</button>
-  
-</form>
 
-  <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
-    📧 Haben Sie eine Frage? Schreiben Sie mir: 
-    <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
-      info@temosliving.de
-    </a>
-  </p>
+<!-- عنوان القسم -->
+<h2 style="text-align: center; color: #EBDBB1; font-size: 24px; margin-top: 0px; margin-bottom: 16px;">
+  📅 Rezervace termínu
+</h2>
+
+<!-- صندوق التنبيه -->
+<div style="background-color: #fffacd; border-radius: 8px; padding: 16px; max-width: 500px; margin: 0 auto 24px auto; color: #222; font-size: 14px; line-height: 1.6;">
+  <strong style="color: #cc0000;">Důležité upozornění – Aktualizace map:</strong><br>
+  Pokud se Vaše rezervace týká aktualizace map navigačního systému, vyčkejte prosím na potvrzení termínu.<br>
+  Nejprve ověříme podle VIN kódu a typu systému, zda je aktualizace možná a jaká bude přibližná cena. Poté Vás budu kontaktovat s podrobnými informacemi.
+</div>
+
+<!-- نموذج الحجز -->
+<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
+  <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
+
+
+  <label for="brandSelect">Značka vozu</label>
+  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
+    <option disabled selected>Vyberte značku</option>
+  </select>
+
+  <label for="modelSelect">Model vozu</label>
+  <select id="modelSelect" name="carModel" required>
+    <option disabled selected>Vyberte model</option>
+  </select>
+
+  <label for="engineSelect">Objem motoru</label>
+  <select id="engineSelect" name="engine" required>
+    <option disabled selected>Vyberte objem</option>
+  </select>
+
+  <label for="clientEmail">E-mail</label>
+  <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+
+  <label for="clientName">Jméno</label>
+  <input type="text" name="name" id="clientName" required placeholder="Zadejte své jméno">
+
+  <label for="clientPhone">Telefon</label>
+  <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
+
+  <label for="vin">VIN kód vozidla</label>
+  <input type="text" name="vin" placeholder="Zadejte VIN kód" required />
+
+  <label for="note">Důvod návštěvy</label>
+  <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
+
+  <label for="datepicker">Datum</label>
+  <input type="text" id="datepicker" name="date" required placeholder="Vyberte datum">
+
+  <label for="timepicker">Čas</label>
+  <select id="timepicker" name="time" required>
+    <option value="">Vyberte čas</option>
+  </select>
+
+  <button type="submit">Odeslat</button>
 </form>
   
 <!-- Flatpickr -->
