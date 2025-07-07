@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -308,51 +307,64 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
 
 <form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
   <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-  <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
+  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
+  <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
 
-
-  <label for="brandSelect">Značka vozu</label>
+ <label for="brandSelect">Fahrzeugmarke</label>
   <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
-    <option disabled selected>Vyberte značku</option>
+    <option disabled selected>Marke auswählen</option>
   </select>
 
-  <label for="modelSelect">Model vozu</label>
+
+   <label for="modelSelect">Fahrzeugmodell</label>
   <select id="modelSelect" name="carModel" required>
-    <option disabled selected>Vyberte model</option>
+    <option disabled selected>Modell auswählen</option>
   </select>
 
-  <label for="engineSelect">Objem motoru</label>
+
+  <label for="engineSelect">Motorgröße</label>
   <select id="engineSelect" name="engine" required>
-    <option disabled selected>Vyberte objem</option>
+    <option disabled selected>Wählen Sie den Hubraum</option>
   </select>
 
-  <label for="clientEmail">E-mail</label>
-  <input type="email" name="email" id="clientEmail" required placeholder="Zadejte svůj e-mail">
+  <label for="clientEmail">E-Mail</label>
+  <input type="email" name="email" id="clientEmail" required placeholder="Geben Sie Ihre E-Mail-Adresse ein">
 
-  <label for="clientName">Jméno</label>
-  <input type="text" name="name" id="clientName" required placeholder="Zadejte své jméno">
+<label for="clientName">Vor- und Nachname</label>
+  <input type="text" name="name" id="clientName" required placeholder="Geben Sie Ihren Namen ein">
 
-  <label for="clientPhone">Telefon</label>
-  <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
-  <label for="vin">VIN kód vozidla</label>
-  <input type="text" name="vin" placeholder="Zadejte VIN kód" required />
+   <label for="clientPhone">Telefon</label>
+  <input type="tel" name="phone" id="clientPhone" required placeholder="Geben Sie Ihre Telefonnummer ein">
 
-  <label for="note">Důvod návštěvy</label>
-  <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
 
-  <label for="datepicker">Datum</label>
-  <input type="text" id="datepicker" name="date" required placeholder="Vyberte datum">
+   <label for="vin">Fahrzeug-VIN-Nummer</label>
+  <input type="text" name="vin" id="vin" placeholder="Geben Sie den VIN-Code ein" required />
 
-  <label for="timepicker">Čas</label>
+ <label for="note">Besuchsgrund</label>
+  <textarea name="reason" id="note" placeholder="Geben Sie den Besuchsgrund ein" required></textarea>
+
+  
+<label for="datepicker">Datum</label>
+  <input type="text" id="datepicker" name="date" placeholder="Datum wählen" required>
+  
+ 
+ <label for="timepicker">Uhrzeit</label>
   <select id="timepicker" name="time" required>
-    <option value="">Vyberte čas</option>
+    <option value="">Uhrzeit auswählen</option>
   </select>
-
-  <button type="submit">Odeslat</button>
+ <button type="submit">Absenden</button>
+  
 </form>
 
+  <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
+    📧 Haben Sie eine Frage? Schreiben Sie mir: 
+    <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
+      info@temosliving.de
+    </a>
+  </p>
+</form>
+  
 <!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
@@ -403,7 +415,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
     const formData = new FormData(form);
 
     // 🟡 إرسال إلى Google Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxz1UKkfRGCXOP_Gz0xNZ89fCA0q3upGj7CfiO94Tcaj21-2yxt4QAxnmQznvLssmJ-/exec", {
       method: "POST",
       body: formData
     });
@@ -414,7 +426,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
       body: formData
     })
     .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
     })
     .catch(error => {
       alert("Fehler beim Senden.");
@@ -425,86 +437,56 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   
 
   
-  <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
-  📧 Máte dotaz? Napište mi: 
-  <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
-    info@temosliving.de
-  </a>
-</p>
-</form>
-</section>
-<!-- O mně -->
+<!-- زر O mně -->
 <div class="service-container">
   <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/O mně.png" alt="O mně" style="width: 44px; height: 44px;" />
-        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
-          O mně <span style="font-size: 16px;">▼</span>
-        </span>
+        <img src="icons/O mně.png" alt="O mně" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">Über mich <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;"> Informationen über mich</span>
+        </div>
       </div>
-      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-        Informace o mně
-      </span>
     </div>
   </button>
 </div>
 
-<!-- Accordion Panel -->
-<div class="accordion-panel" style="
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  padding: 0 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 0 0 8px 8px;
-  max-width: 500px;
-  margin: 0 auto 18px auto;">
-  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
-    <p>Jsem profesionální  automechanik s více než 35 lety zkušeností  v oblasti oprav a diagnostiky vozidel, z toho 12 let praxe v Německu /Stuttgart. Během své kariéry jsem se specializoval na propojení klasických mechanických znalostí s moderními elektronickými systémy, což mi umožňuje přesně identifikovat závady a navrhnout účinná řešení.</p>
-    <p>Mám rozsáhlé zkušenosti s prací na inteligentních systémech ve vozidlech, včetně úprav softwarových nastavení a obnovení elektronických funkcí podle technických požadavků vozidla.</p>
-    <p>Dnes  působím v klidném prostředí přírody  v oblasti  Frýdlant nad Ostravicí -Malenovice, kde může zákazník využít profesionálních služeb v oblasti diagnostiky vozidel a zároveň si vychutnat šálek kávy nebo čaje na zahradě , nebo se projít po okolí během  kontroly vozu.</p>
-    <p>Česky mluvím  dobře, ale  ne perfektně. Německy a anglicky mluvím dobře.</p>
+<!-- البانل القابل للفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+   <p>Ich bin ein professioneller Kfz-Mechaniker mit über 35 Jahren Erfahrung in der Fahrzeugreparatur und -diagnose, davon 12 Jahre Praxis in Deutschland (Stuttgart). Während meiner Laufbahn habe ich mich auf die Verbindung klassischer mechanischer Kenntnisse mit modernen elektronischen Systemen spezialisiert, was es mir ermöglicht, Fehler präzise zu erkennen und effektive Lösungen vorzuschlagen.</p> <p>Ich habe umfassende Erfahrung in der Arbeit mit intelligenten Fahrzeugsystemen, einschließlich der Anpassung von Softwareeinstellungen und der Wiederherstellung elektronischer Funktionen gemäß den technischen Anforderungen des Fahrzeugs.</p> 
+    <p>Heute arbeite ich in der ruhigen Naturumgebung von Frýdlant nad Ostravicí – Malenovice, wo Kunden professionelle Diagnosedienste in Anspruch nehmen und gleichzeitig eine Tasse Kaffee oder Tee im Garten genießen oder einen Spaziergang während der Fahrzeugprüfung machen können.</p> 
+    <p>Ich spreche gut Deutsch und Englisch. Tschechisch spreche ich auch, aber nicht perfekt.</p>
   </div>
 </div>
 
-<!-- Ceník -->
+<!-- زر Ceník -->
 <div class="service-container">
-  <button type="button" class="accordion-button">
-    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
+<button type="button" class="accordion-button">
+    <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div style="display: flex; align-items: center; gap: 12px;">
-        <img src="icons/Ceník.png" alt="Ceník" style="width: 44px; height: 44px;" />
-        <span style="font-weight: bold; color: #EBDBB1; font-size: 22px;">
-          Ceník <span style="font-size: 16px;">▼</span>
-        </span>
+        <img src="icons/Ceník.png" alt="Ceník" style="width: 66px; height: 66px;" />
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-weight: bold; color: #EBDBB1;">Price list <span style="font-size: 16px;">▼</span></span>
+          <span style="font-size: 12px; color: #EBDBB1; font-weight: 400;">Preisliste – Unverbindliche Richtwerte</span>
+        </div>
       </div>
-      <span style="font-size: 18px; color: #EBDBB1; font-weight: 400; margin-left: 36px;">
-        Přehled orientačních cen
-      </span>
     </div>
   </button>
 </div>
 
-<!-- Accordion Panel -->
-<div class="accordion-panel" style="
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  padding: 0 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 0 0 8px 8px;
-  max-width: 500px;
-  margin: 0 auto 18px auto;">
-  <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
-    <li>Regenerace DPF: 1 000–2 000 Kč</li>
-    <li>Reset výměny oleje: 300–600 Kč</li>
-    <li>Reset EPB: 500–800 Kč</li>
-    <li>Reset BMS: 400–700 Kč</li>
-    <li>Kompletní diagnostika: 500–800 Kč</li>
+<!-- البانل الذي يفتح -->
+<div class="accordion-panel" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.55); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;">
+ <ul style="list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400 !important;">
+    <li>DPF-Regeneration: 1.000–2.000 Kč</li>
+<li>Ölwechsel-Reset: 300–600 Kč</li>
+<li>EPB-Reset: 500–800 Kč</li>
+<li>BMS-Reset: 400–700 Kč</li>
+<li>Komplettdiagnose: 500–800 Kč</li>
   </ul>
-  <p class="note" style="font-size: 13px; padding-bottom: 12px;">💡 Ceny jsou orientační. Přesnou cenu Vám sdělím po diagnostice.</p>
+  <p class="note" style="font-size: 13px; padding-bottom: 12px;"> Die Preise variieren je nach Fahrzeugtyp und Umfang der angebotenen Dienstleistung.</p>
 </div>
-
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
@@ -522,7 +504,14 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
       });
 });
 </script>
-
+ <script> 
+      const form = document.getElementById('booking-form');
+      form.addEventListener('submit', function () {
+        document.getElementById('success-message').style.display = 'block';
+      });
+    });
+  </script>
+  
 <!-- 1. carData: قائمة السيارات -->
 <!-- 1. carData: قائمة السيارات -->
 <script>
