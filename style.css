@@ -445,7 +445,7 @@ body {
   .accordion-button {
     width: 100%;
     background-color: transparent;
-    border: 2px solid rgba(235, 219, 177, 0.3);
+    border: 2px solid transparent;
     border-radius: 12px;
     padding: 16px 20px;
     cursor: pointer;
