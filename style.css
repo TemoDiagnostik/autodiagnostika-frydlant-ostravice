@@ -437,34 +437,51 @@ body {
 
 
 <style>
-/* قاعدة عامة لكل الأزرار داخل .service-button */
-.service-button {
-  width: 100%;
-  max-width: 500px;
-  height: 100px; /* 👈 توحيد الارتفاع */
-  padding: 10px 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  .service-container {
+    max-width: 500px;
+    margin: 0 auto 18px auto;
+  }
 
-/* أيقونة الزر */
-.service-button img {
-  width: 44px;
-  height: 44px;
-}
+  .accordion-button {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid rgba(235, 219, 177, 0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+  }
 
-/* نص العنوان */
-.service-button span {
-  font-size: 18px;
-}
+  .accordion-button:hover {
+    background-color: rgba(235, 219, 177, 0.08);
+  }
 
-/* زر كامل */
-.accordion-button {
-  width: 100%;
-  border: none;
-  background: transparent;
-  padding: 0;
-}
+  .service-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-button img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .service-button span:first-child {
+    font-weight: bold;
+    color: #EBDBB1;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-button span:last-child {
+    font-size: 16px;
+    color: #EBDBB1;
+    font-weight: 400;
+    margin-left: 52px; /* يضمن المحاذاة أسفل الأيقونة */
+    margin-top: 4px;
+  }
 </style>
