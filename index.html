@@ -1686,5 +1686,22 @@ document.getElementById("booking-form").addEventListener("submit", function(even
 });
 </script>
 <!-- End MailerLite Universal -->
+<script>
+  document.getElementById("booking-form").addEventListener("submit", function(event) {
+    const vinField = document.getElementById("vin"); // تأكد من ID الحقل
+    const vin = vinField.value.trim();
+
+    const vinPattern = /^[A-HJ-NPR-Z0-9]{17}$/; // بدون I, O, Q + 17 حرف
+
+    if (!vinPattern.test(vin)) {
+      event.preventDefault();
+      vinField.style.border = "2px solid red";
+      alert("كود VIN غير صحيح، يرجى التأكد وإعادة المحاولة");
+    } else {
+      vinField.style.border = "";
+    }
+  });
+</script>
+  
 </body>
 </html>
