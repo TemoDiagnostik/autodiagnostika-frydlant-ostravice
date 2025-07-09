@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -475,7 +476,7 @@
   <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
   <label for="vin">VIN kód vozidla</label>
- <input type="text" name="vin" id="vin" placeholder="Zadejte VIN kód" required />
+  <input type="text" name="vin" placeholder="Zadejte VIN kód" required />
 
   <label for="note">Důvod návštěvy</label>
   <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
@@ -491,6 +492,47 @@
   <button type="submit">Odeslat</button>
 </form>
 
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
+  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
+
+  flatpickr("#datepicker", {
+    dateFormat: "Y-m-d",
+    disable: reservedDates,
+    onChange: function(selectedDates, dateStr, instance) {
+      const timepicker = document.getElementById("timepicker");
+      timepicker.innerHTML = '<option value="">Uhrzeit wählen</option>';
+      if (reservedDates.includes(dateStr)) {
+        const option = document.createElement("option");
+        option.text = "Reserviert";
+        option.disabled = true;
+        timepicker.appendChild(option);
+      } else {
+        timeSlots.forEach(function(time) {
+          const option = document.createElement("option");
+          option.value = time;
+          option.text = time;
+          timepicker.appendChild(option);
+        });
+      }
+    }
+  });
+</script>
+
+<!-- Lokale Speicherung von Datum und Uhrzeit -->
+<script>
+  const form = document.getElementById("booking-form");
+
+  form.addEventListener("submit", function () {
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+  });
+</script>
 
 <!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
 <script>
@@ -1425,129 +1467,109 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
   
+  <!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const bookedSlots = {
-    fullDays: ["2025-07-14", "2025-07-16"],
-    timeSlots: {
-      "2025-07-13": ["10:00", "14:30"],
-      "2025-07-15": ["11:00"]
-    }
-  };
-
-  const allTimes = [
-    "10:00", "10:30", "11:00", "11:30",
-    "12:00", "12:30", "13:00", "13:30",
-    "14:00", "14:30", "15:00", "15:30",
-    "16:00"
-  ];
-
-  // Flatpickr
-  flatpickr("#datepicker", {
-    locale: "cs",
-    dateFormat: "Y-m-d",
-    disable: [
-      function(date) {
-        const str = date.toISOString().split('T')[0];
-        return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(str);
+  document.addEventListener("DOMContentLoaded", function () {
+    // الأيام والتوقيتات المحجوزة
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
       }
-    ],
-    onChange: function(selectedDates) {
-      const date = selectedDates[0];
-      if (!date) return;
+    };
 
-      const str = date.toISOString().split('T')[0];
-      const booked = bookedSlots.timeSlots[str] || [];
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00"
+    ];
 
-      timepicker.setChoices(
-        allTimes.map(time => ({
-          value: time,
-          label: booked.includes(time) ? `${time} - rezervováno` : time,
-          disabled: booked.includes(time)
-        })),
-        'value',
-        'label',
-        true
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return (
+        date.getDay() === 0 || date.getDay() === 6 ||
+        bookedSlots.fullDays.includes(dateStr)
       );
     }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "cs",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          if (!bookedTimes.includes(time)) {
+            const option = document.createElement("option");
+            option.value = time;
+            option.textContent = time;
+            timeSelect.appendChild(option);
+          }
+        });
+      }
+    });
   });
+</script>
+  <script>
+  const form = document.getElementById("booking-form");
 
-  // تهيئة Choices.js على timepicker
-  const timepicker = new Choices('#timepicker', {
-    searchEnabled: false,
-    itemSelectText: '',
-    shouldSort: false,
-    placeholderValue: 'Vyberte čas'
-  });
-
-  // تحقق من VIN
-  function isValidVIN(vin) {
-    return vin.length === 17 && /^[A-HJ-NPR-Z0-9]{17}$/i.test(vin);
-  }
-
-  // عند الإرسال
-  document.getElementById("booking-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const vin = document.getElementById("vin").value.trim().toUpperCase();
+  form.addEventListener("submit", function () {
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
 
-    if (!isValidVIN(vin)) {
-      alert("❌ كود VIN غير صحيح. يجب أن يكون 17 حرفًا ولا يحتوي على I, O, Q.");
-      document.getElementById("vin").style.borderColor = "red";
-      return;
-    }
-
-    const booked = bookedSlots.timeSlots[date] || [];
-    if (booked.includes(time)) {
-      alert("❌ هذا الوقت محجوز مسبقًا.");
-      return;
-    }
-
-    const form = e.target;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = form.querySelector('input[name="_next"]').value;
-    })
-    .catch(err => {
-      alert("حدث خطأ أثناء الإرسال.");
-      console.error(err);
-    });
+    // حفظ في localStorage
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
   });
-});
 </script>
-  
-<script>
-document.getElementById("booking-form").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  const form = e.target;
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
   const formData = new FormData(form);
 
   // 1. إرسال إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
     method: "POST",
     body: formData
   })
   .then(() => {
-    // 2. بعد نجاح Google Sheet → إرسال إلى Formsubmit
-    return fetch(form.action, {
+    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
       method: "POST",
       body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
     });
   })
-  .then(() => {
-    // 3. إعادة التوجيه إلى صفحة الشكر
-    window.location.href = form.querySelector('input[name="_next"]').value;
-  })
   .catch(error => {
-    alert("حدث خطأ أثناء الإرسال. حاول مرة أخرى.");
+    alert("Chyba při odesílání. Zkuste to prosím znovu.");
     console.error(error);
   });
 });
@@ -1601,7 +1623,56 @@ document.getElementById("booking-form").addEventListener("submit", function(e) {
   WhatsApp
 </a>  
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("booking-form");
+    const vinInput = document.getElementById("vin-input");
+    const vinError = document.getElementById("vin-error");
 
+    if (!form || !vinInput || !vinError) return;
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // منع الإرسال دائماً
+      
+      // إعادة تعيين الحالة
+      vinInput.classList.remove("input-error", "input-valid", "shake");
+      vinError.style.display = "none";
+      
+      const vin = vinInput.value.trim().toUpperCase();
+      let errors = [];
+      
+      // التحقق من الصحة
+      if (vin.length !== 17) {
+        errors.push("VIN musí mít přesně 17 znaků");
+      }
+      
+      if (/[IOQ]/.test(vin)) {
+        errors.push("VIN nesmí obsahovat písmena I, O, nebo Q");
+      }
+      
+      if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
+        errors.push("VIN obsahuje neplatné znaky");
+      }
+      
+      // معالجة الأخطاء
+      if (errors.length > 0) {
+        vinInput.classList.add("input-error", "shake");
+        vinError.textContent = errors.join(" • ");
+        vinError.style.display = "block";
+        vinInput.focus();
+      } else {
+        vinInput.classList.add("input-valid");
+        // عرض رسالة بدلاً من الإرسال
+        alert("VIN je platný. Formulář nelze odeslat - tato funkce je vypnuta.");
+      }
+    });
+    
+    // التحقق أثناء الكتابة (اختياري)
+    vinInput.addEventListener("input", function() {
+      this.value = this.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "");
+    });
+  });
+</script>
+<!-- End MailerLite Universal -->
 </body>
 </html>
-
