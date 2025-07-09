@@ -1524,14 +1524,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
 
-        allTimes.forEach(time => {
-          if (!bookedTimes.includes(time)) {
-            const option = document.createElement("option");
-            option.value = time;
-            option.textContent = time;
-            timeSelect.appendChild(option);
-          }
-        });
+       allTimes.forEach(time => {
+  const option = document.createElement("option");
+  option.value = time;
+  if (bookedTimes.includes(time)) {
+    option.textContent = `${time} - محجوز`;
+    option.disabled = true;
+  } else {
+    option.textContent = time;
+  }
+  timeSelect.appendChild(option);
+});
       }
     });
   });
