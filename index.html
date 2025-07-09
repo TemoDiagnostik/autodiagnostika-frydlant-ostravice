@@ -1425,11 +1425,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
   
-<!-- Flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const bookedSlots = {
@@ -1447,7 +1442,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "16:00"
   ];
 
-  // تهيئة التقويم
+  // Flatpickr
   flatpickr("#datepicker", {
     locale: "cs",
     dateFormat: "Y-m-d",
@@ -1459,27 +1454,38 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     onChange: function(selectedDates) {
       const date = selectedDates[0];
+      if (!date) return;
+
       const str = date.toISOString().split('T')[0];
-      const timeSelect = document.getElementById("timepicker");
-      timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
       const booked = bookedSlots.timeSlots[str] || [];
 
-      allTimes.forEach(time => {
-        const option = document.createElement("option");
-        option.value = time;
-        option.textContent = booked.includes(time) ? `${time} - rezervováno` : time;
-        option.disabled = booked.includes(time);
-        timeSelect.appendChild(option);
-      });
+      timepicker.setChoices(
+        allTimes.map(time => ({
+          value: time,
+          label: booked.includes(time) ? `${time} - rezervováno` : time,
+          disabled: booked.includes(time)
+        })),
+        'value',
+        'label',
+        true
+      );
     }
   });
 
-  // التحقق من صحة VIN
+  // تهيئة Choices.js على timepicker
+  const timepicker = new Choices('#timepicker', {
+    searchEnabled: false,
+    itemSelectText: '',
+    shouldSort: false,
+    placeholderValue: 'Vyberte čas'
+  });
+
+  // تحقق من VIN
   function isValidVIN(vin) {
     return vin.length === 17 && /^[A-HJ-NPR-Z0-9]{17}$/i.test(vin);
   }
 
-  // إرسال النموذج
+  // عند الإرسال
   document.getElementById("booking-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -1487,21 +1493,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
 
-    // فحص VIN
     if (!isValidVIN(vin)) {
       alert("❌ كود VIN غير صحيح. يجب أن يكون 17 حرفًا ولا يحتوي على I, O, Q.");
       document.getElementById("vin").style.borderColor = "red";
       return;
     }
 
-    // فحص ما إذا كان الموعد محجوزًا
     const booked = bookedSlots.timeSlots[date] || [];
     if (booked.includes(time)) {
-      alert("❌ هذا الموعد محجوز مسبقًا. يرجى اختيار وقت مختلف.");
+      alert("❌ هذا الوقت محجوز مسبقًا.");
       return;
     }
 
-    // ✅ المتابعة بالإرسال
     const form = e.target;
     const formData = new FormData(form);
 
@@ -1519,6 +1522,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+  
 <script>
 document.getElementById("bookingForm").addEventListener("submit", function(event) {
   event.preventDefault();
