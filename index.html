@@ -1518,15 +1518,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
 
-       allTimes.forEach(time => {
+allTimes.forEach(time => {
   const option = document.createElement("option");
   option.value = time;
+
   if (bookedTimes.includes(time)) {
-    option.textContent = `${time} - محجوز`;
+    option.textContent = `${time} (محجوز)`;
     option.disabled = true;
+    option.style.color = "gray";
   } else {
     option.textContent = time;
   }
+
   timeSelect.appendChild(option);
 });
       }
@@ -1696,7 +1699,7 @@ document.getElementById("booking-form").addEventListener("submit", function(even
     if (!vinPattern.test(vin)) {
       event.preventDefault();
       vinField.style.border = "2px solid red";
-      alert("كود VIN غير صحيح، يرجى التأكد وإعادة المحاولة");
+      alert("option.textContent = `${time} (obsazeno)`; 
     } else {
       vinField.style.border = "";
     }
