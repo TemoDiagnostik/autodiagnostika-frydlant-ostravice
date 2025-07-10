@@ -428,7 +428,6 @@
 
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
 
-<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
  <!-- عنوان القسم -->
 <h2 style="text-align: center; color: #EBDBB1; font-size: 24px; margin-top: 0px; margin-bottom: 16px;">
   📅 Rezervace termínu
@@ -472,8 +471,8 @@
   <label for="clientPhone">Telefon</label>
   <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
-  <label for="vin">VIN kód vozidla</label>
 <input type="text" id="vin" name="vin" required />
+  <div id="vin-error" style="color:red; display:none; font-size:13px; margin-top:4px;"></div>
 
   <label for="note">Důvod návštěvy</label>
   <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
