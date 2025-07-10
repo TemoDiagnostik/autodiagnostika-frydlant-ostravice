@@ -1451,17 +1451,13 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  // ① تحميل المحجوزات
   fetch("https://script.google.com/macros/s/AKfycbz98hriJwBK42uBb7WNJU5S2F-F6CaVG4EC3toiGdHxasgoddNF2Pmi7c-bhOEXhJXULA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      console.log("📅 تم تحميل المحجوزات:", bookedSlots);
       initFlatpickr();
-    })
-    .catch(err => console.error("❌ فشل تحميل المحجوزات:", err));
+    });
 
-  // ② إعداد flatpickr
   function initFlatpickr() {
     flatpickr("#datepicker", {
       enableTime: false,
@@ -1472,18 +1468,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const yyyy = date.getFullYear();
         const mm = String(date.getMonth() + 1).padStart(2, "0");
         const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
+        const dateStr = ${yyyy}-${mm}-${dd};
         return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
       }],
       onChange: function (selectedDates) {
         const date = selectedDates[0];
         if (!date) return;
-
         const yyyy = date.getFullYear();
         const mm = String(date.getMonth() + 1).padStart(2, "0");
         const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-
+        const dateStr = ${yyyy}-${mm}-${dd};
         const timeSelect = document.getElementById("timepicker");
         timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
 
@@ -1494,26 +1488,22 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
-
         allTimes.forEach(time => {
           const option = document.createElement("option");
           option.value = time;
-
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Rez)`;
+            option.textContent = ${time} (Rez);
             option.disabled = true;
             option.style.color = "gray";
           } else {
             option.textContent = time;
           }
-
           timeSelect.appendChild(option);
         });
       }
     });
   }
 
- // ③ التعامل مع النموذج
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -1569,7 +1559,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // إذا لم يكن الموعد مكررًا → أرسل عبر Formsubmit
       fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
@@ -1582,8 +1571,8 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("⚠️ حدث خطأ أثناء إرسال النموذج. حاول مرة أخرى.");
     });
   });
-  });
 });
 </script>
+
 </body>
 </html>
