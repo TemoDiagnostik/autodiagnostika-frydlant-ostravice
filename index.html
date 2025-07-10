@@ -1531,7 +1531,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (/[IOQ]/.test(vin)) {
-        errors.push("VIN nesmí obsahovat I, O nebo Q");
+        errors.push("VIN obsahuje neplatné znaky");
         isValid = false;
       }
 
