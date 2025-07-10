@@ -1452,7 +1452,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
   // ① تحميل المحجوزات
-  fetch("https://script.google.com/macros/s/AKfycbwjblDhczUkyZT1iJslRd4Q6nd7ZZZiBIj7S9S704-7i2oGXUuAm-rDgopTO7MuJES_oA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbz98hriJwBK42uBb7WNJU5S2F-F6CaVG4EC3toiGdHxasgoddNF2Pmi7c-bhOEXhJXULA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1513,7 +1513,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ③ التعامل مع النموذج
+ // ③ التعامل مع النموذج
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -1558,12 +1558,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbwjblDhczUkyZT1iJslRd4Q6nd7ZZZiBIj7S9S704-7i2oGXUuAm-rDgopTO7MuJES_oA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz98hriJwBK42uBb7WNJU5S2F-F6CaVG4EC3toiGdHxasgoddNF2Pmi7c-bhOEXhJXULA/exec", {
       method: "POST",
       body: formData
     })
-    .catch(() => {})
-    .finally(() => {
+    .then(response => response.text())
+    .then(text => {
+      if (text.includes("Tento termín je již rezervován")) {
+        alert("❌ هذا الموعد محجوز بالفعل. الرجاء اختيار موعد مختلف.");
+        return;
+      }
+
+      // إذا لم يكن الموعد مكررًا → أرسل عبر Formsubmit
       fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
@@ -1571,7 +1577,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .finally(() => {
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
       });
+    })
+    .catch(() => {
+      alert("⚠️ حدث خطأ أثناء إرسال النموذج. حاول مرة أخرى.");
     });
+  });
   });
 });
 </script>
