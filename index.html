@@ -1441,8 +1441,14 @@ document.addEventListener("DOMContentLoaded", function () {
   WhatsApp
 </a>  
 
+<!-- Scripts at bottom -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // 1. بيانات الحجوزات
     const bookedSlots = {
       fullDays: ["2025-06-20", "2025-06-24"],
       timeSlots: {
@@ -1457,6 +1463,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "14:00", "14:30", "15:00", "15:30", "16:00"
     ];
 
+    // 2. تعطيل التواريخ
     function isSlotDisabled(date) {
       const yyyy = date.getFullYear();
       const mm = String(date.getMonth() + 1).padStart(2, "0");
@@ -1465,6 +1472,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
     }
 
+    // 3. تفعيل Flatpickr
     flatpickr("#datepicker", {
       enableTime: false,
       dateFormat: "d.m.Y",
@@ -1501,6 +1509,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // 4. معالجة الإرسال
     const formElement = document.getElementById("booking-form");
 
     formElement.addEventListener("submit", function (event) {
@@ -1511,6 +1520,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("selectedDate", date);
       localStorage.setItem("selectedTime", time);
 
+      // 5. التحقق من VIN
       const vinInput = document.getElementById("vin");
       const vinError = document.getElementById("vin-error");
       const vin = vinInput.value.trim().toUpperCase();
@@ -1527,7 +1537,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (/[IOQ]/.test(vin)) {
-        errors.push("VIN obsahuje neplatné znaky");
+        errors.push("VIN nesmí obsahovat I, O nebo Q");
         isValid = false;
       }
 
@@ -1544,6 +1554,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // 6. إرسال البيانات
       const formData = new FormData(formElement);
 
       fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
@@ -1560,8 +1571,8 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
       })
       .catch(error => {
-        console.error(error);
-        alert("Chyba při odesílání.");
+        console.error("Chyba:", error);
+        alert("Chyba při odesílání. Zkuste to prosím znovu.");
       });
     });
   });
