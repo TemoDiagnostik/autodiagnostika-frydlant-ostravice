@@ -489,34 +489,6 @@
   <button type="submit">Odeslat</button>
 </form>
 
-<!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
-  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-
-  flatpickr("#datepicker", {
-    dateFormat: "Y-m-d",
-    disable: reservedDates,
-    onChange: function(selectedDates, dateStr, instance) {
-      const timepicker = document.getElementById("timepicker");
-      timepicker.innerHTML = '<option value="">Uhrzeit wählen</option>';
-      if (reservedDates.includes(dateStr)) {
-        const option = document.createElement("option");
-        option.text = "Reserviert";
-        option.disabled = true;
-        timepicker.appendChild(option);
-      } else {
-        timeSlots.forEach(function(time) {
-          const option = document.createElement("option");
-          option.value = time;
-          option.text = time;
-          timepicker.appendChild(option);
-        });
-      }
-    }
-  });
-</script>
 
 <!-- Lokale Speicherung von Datum und Uhrzeit -->
 <script>
