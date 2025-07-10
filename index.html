@@ -1494,13 +1494,14 @@ document.addEventListener("DOMContentLoaded", function () {
           const option = document.createElement("option");
           option.value = time;
 
-          if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (محجوز)`;
-            option.disabled = true;
-            option.style.color = "gray";
-          } else {
-            option.textContent = time;
-          }
+         if (bookedTimes.includes(time)) {
+  option.textContent = `${time} (Rez)`; // يمكنك تغيير "Rez" لأي كلمة
+  option.disabled = true;
+  option.style.color = "gray";
+  option.style.fontStyle = "italic";
+} else {
+  option.textContent = time;
+}
 
           timeSelect.appendChild(option);
         });
