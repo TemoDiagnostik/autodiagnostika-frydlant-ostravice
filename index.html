@@ -1446,12 +1446,11 @@ document.addEventListener("DOMContentLoaded", function () {
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 
-<!-- 📦 كل شيء داخل سكريبت واحد -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbz98hriJwBK42uBb7WNJU5S2F-F6CaVG4EC3toiGdHxasgoddNF2Pmi7c-bhOEXhJXULA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbyooDWTznMNjRf3ozrmWo6CsnXyJrPpGLx6PJGrVQaFa2F1o-3Ih9pJTa5FpTHAZHaHaw/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1468,16 +1467,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const yyyy = date.getFullYear();
         const mm = String(date.getMonth() + 1).padStart(2, "0");
         const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = ${yyyy}-${mm}-${dd};
+        const dateStr = `${yyyy}-${mm}-${dd}`;
         return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
       }],
       onChange: function (selectedDates) {
         const date = selectedDates[0];
         if (!date) return;
+
         const yyyy = date.getFullYear();
         const mm = String(date.getMonth() + 1).padStart(2, "0");
         const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = ${yyyy}-${mm}-${dd};
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
         const timeSelect = document.getElementById("timepicker");
         timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
 
@@ -1488,11 +1489,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
         allTimes.forEach(time => {
           const option = document.createElement("option");
           option.value = time;
           if (bookedTimes.includes(time)) {
-            option.textContent = ${time} (Rez);
+            option.textContent = `${time} (Rez)`;
             option.disabled = true;
             option.style.color = "gray";
           } else {
@@ -1527,12 +1529,10 @@ document.addEventListener("DOMContentLoaded", function () {
       errors.push("VIN musí mít přesně 17 znaků");
       isValid = false;
     }
-
     if (/[IOQ]/.test(vin)) {
       errors.push("VIN nesmí obsahovat I, O nebo Q");
       isValid = false;
     }
-
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
       errors.push("VIN obsahuje neplatné znaky");
       isValid = false;
@@ -1548,13 +1548,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbz98hriJwBK42uBb7WNJU5S2F-F6CaVG4EC3toiGdHxasgoddNF2Pmi7c-bhOEXhJXULA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbyooDWTznMNjRf3ozrmWo6CsnXyJrPpGLx6PJGrVQaFa2F1o-3Ih9pJTa5FpTHAZHaHaw/exec", {
       method: "POST",
       body: formData
     })
     .then(response => response.text())
     .then(text => {
-      if (text.includes("Tento termín je již rezervován")) {
+      if (text.includes("DUPLICATE")) {
         alert("❌ هذا الموعد محجوز بالفعل. الرجاء اختيار موعد مختلف.");
         return;
       }
