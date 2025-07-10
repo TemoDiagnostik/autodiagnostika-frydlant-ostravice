@@ -428,8 +428,7 @@
 
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
 
-<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
- <!-- عنوان القسم -->
+<!-- عنوان القسم -->
 <h2 style="text-align: center; color: #EBDBB1; font-size: 24px; margin-top: 0px; margin-bottom: 16px;">
   📅 Rezervace termínu
 </h2>
@@ -473,7 +472,8 @@
   <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
   <label for="vin">VIN kód vozidla</label>
-<input type="text" id="vin" name="vin" required />
+  <input type="text" id="vin" name="vin" required />
+  <div id="vin-error" style="color:red; display:none; font-size:13px; margin-top:4px;"></div>
 
   <label for="note">Důvod návštěvy</label>
   <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
@@ -518,33 +518,39 @@
   });
 </script>
 
-<!-- Lokale Speicherung von Datum und Uhrzeit -->
-<script>
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function () {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-  });
-</script>
-
-<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
+<!-- Odeslání formuláře s validací VIN kódu -->
 <script>
   document.getElementById("booking-form").addEventListener("submit", function(e) {
     e.preventDefault();
     const form = e.target;
+
+    const vinInput = document.getElementById("vin");
+    const vinError = document.getElementById("vin-error");
+    const vin = vinInput.value.trim().toUpperCase();
+    const vinPattern = /^[A-HJ-NPR-Z0-9]{17}$/;
+
+    vinInput.classList.remove("invalid-field");
+    vinError.style.display = "none";
+
+    if (!vinPattern.test(vin)) {
+      vinInput.classList.add("invalid-field");
+      vinError.textContent = "VIN musí mít 17 znaků a nesmí obsahovat I, O nebo Q.";
+      vinError.style.display = "block";
+      return;
+    }
+
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+
     const formData = new FormData(form);
 
-    // 🟡 إرسال إلى Google Apps Script
     fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
       method: "POST",
       body: formData
     });
 
-    // 🟢 إرسال إلى Formsubmit
     fetch(form.action, {
       method: "POST",
       body: formData
@@ -567,7 +573,6 @@
     info@temosliving.de
   </a>
 </p>
-</form>
 </section>
 <!-- O mně -->
 <div class="service-container">
@@ -1535,48 +1540,6 @@ allTimes.forEach(time => {
       }
     });
   });
-</script>
-  <script>
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function () {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    // حفظ في localStorage
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-  });
-</script>
-
-<script>
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const form = event.target;
-  const formData = new FormData(form);
-
-  // 1. إرسال إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
-    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    });
-  })
-  .catch(error => {
-    alert("Chyba při odesílání. Zkuste to prosím znovu.");
-    console.error(error);
-  });
-});
-</script>
   
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
@@ -1626,85 +1589,7 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   WhatsApp
 </a>  
 
-<script>
-document.getElementById("booking-form").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const vinInput = document.getElementById("vin-input");
-  const vinError = document.getElementById("vin-error");
-  const vin = vinInput.value.trim().toUpperCase();
-
-  // Reset
-  vinInput.style.borderColor = "#ccc";
-  vinError.style.display = "none";
-
-  // Validation
-  let isValid = true;
-  let errors = [];
-
-  if (vin.length !== 17) {
-    errors.push("VIN musí mít přesně 17 znaků");
-    isValid = false;
-  }
-
-  if (/[IOQ]/.test(vin)) {
-    errors.push("VIN nesmí obsahovat I, O nebo Q");
-    isValid = false;
-  }
-
-  if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
-    errors.push("VIN obsahuje neplatné znaky");
-    isValid = false;
-  }
-
-  if (!isValid) {
-    vinInput.style.borderColor = "red";
-    vinError.textContent = errors.join(" • ");
-    vinError.style.display = "block";
-    vinInput.focus();
-    return;
-  }
-
-  // تابع الإرسال إلى Google Apps Script و Formsubmit
-  const form = event.target;
-  const formData = new FormData(form);
-
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-      method: "POST",
-      body: formData
-    });
-  })
-  .then(() => {
-    window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-  })
-  .catch(error => {
-    alert("Chyba při odesílání. Zkuste to prosím znovu.");
-    console.error(error);
-  });
-});
-</script>
 <!-- End MailerLite Universal -->
-<script>
-  document.getElementById("booking-form").addEventListener("submit", function(event) {
-    const vinField = document.getElementById("vin"); // تأكد من ID الحقل
-    const vin = vinField.value.trim();
-
-    const vinPattern = /^[A-HJ-NPR-Z0-9]{17}$/; // بدون I, O, Q + 17 حرف
-
-    if (!vinPattern.test(vin)) {
-      event.preventDefault();
-      vinField.style.border = "2px solid red";
-      alert("option.textContent = `${time} (obsazeno)`; 
-    } else {
-      vinField.style.border = "";
-    }
-  });
-</script>
 
 </body>
 </html>
