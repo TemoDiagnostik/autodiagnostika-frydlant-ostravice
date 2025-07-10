@@ -95,6 +95,10 @@ body {
   color: #ffffff;
   transform: scale(1.03);
 }
+.invalid-field {
+  border: 2px solid red !important;
+  background-color: #ffe6e6 !important;
+}
 .reservation-form select option {
   color: black;
   background-color: white;
@@ -436,7 +440,6 @@ body {
 }
 
 
-<style>
   .service-container {
     max-width: 500px;
     margin: 0 auto 18px auto;
@@ -484,4 +487,3 @@ body {
     margin-left: 52px; /* يضمن المحاذاة أسفل الأيقونة */
     margin-top: 4px;
   }
-</style>
