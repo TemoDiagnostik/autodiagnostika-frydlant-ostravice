@@ -1548,22 +1548,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const formData = new FormData(form);
+    const form = event.target;
+  const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(() => {
-        return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-          method: "POST",
-          body: formData
-        });
-      })
-      .then(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-      })
+  // 1. إرسال إلى Google Apps Script
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
     });
+  })
   });
 </script>
 </body>
