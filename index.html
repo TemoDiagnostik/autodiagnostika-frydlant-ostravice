@@ -499,52 +499,7 @@
   </select>
 
   <button type="submit">Odeslat</button>
-</form>
 
-
-<!-- Lokale Speicherung von Datum und Uhrzeit -->
-<script>
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function () {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-  });
-</script>
-
-<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
-<script>
-  document.getElementById("booking-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // 🟡 إرسال إلى Google Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
-      method: "POST",
-      body: formData
-    });
-
-    // 🟢 إرسال إلى Formsubmit
-    fetch(form.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    })
-    .catch(error => {
-      alert("Fehler beim Senden.");
-      console.error(error);
-    });
-  });
-</script>
-  
-
-  
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
   <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
