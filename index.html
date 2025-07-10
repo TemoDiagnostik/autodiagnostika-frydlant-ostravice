@@ -20,10 +20,22 @@
 
   
   <!-- مكتبة Choices.js لتنسيق القوائم الاحترافية -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soukromá Auto Diagnostika</title>
+
+  <!-- ملف التنسيقات الخاص بالموقع -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Choices.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+
+  <!-- Flatpickr CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-<link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
+
+  <!-- أيقونة الموقع -->
+  <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
 
@@ -1486,7 +1498,8 @@ document.addEventListener("DOMContentLoaded", function () {
   WhatsApp
 </a>  
 
-<!-- Flatpickr & Czech Translation -->
+<!-- Scripts at bottom -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 
@@ -1510,7 +1523,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const yyyy = date.getFullYear();
       const mm = String(date.getMonth() + 1).padStart(2, "0");
       const dd = String(date.getDate()).padStart(2, "0");
-      const dateStr = ${yyyy}-${mm}-${dd};
+      const dateStr = `${yyyy}-${mm}-${dd}`;
       return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
     }
 
@@ -1527,7 +1540,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const yyyy = date.getFullYear();
         const mm = String(date.getMonth() + 1).padStart(2, "0");
         const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = ${yyyy}-${mm}-${dd};
+        const dateStr = `${yyyy}-${mm}-${dd}`;
 
         const timeSelect = document.getElementById("timepicker");
         timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
@@ -1538,7 +1551,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = ${time} (obsazeno);
+            option.textContent = `${time} (obsazeno)`;
             option.disabled = true;
             option.style.color = "gray";
           } else {
@@ -1554,13 +1567,11 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      // حفظ البيانات محليًا
       const date = document.getElementById("datepicker").value;
       const time = document.getElementById("timepicker").value;
       localStorage.setItem("selectedDate", date);
       localStorage.setItem("selectedTime", time);
 
-      // التحقق من VIN
       const vinInput = document.getElementById("vin");
       const vinError = document.getElementById("vin-error");
       const vin = vinInput.value.trim().toUpperCase();
@@ -1594,10 +1605,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // الإرسال إلى Google Apps Script + Formsubmit
       const formData = new FormData(form);
 
-     fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
         method: "POST",
         body: formData
       })
@@ -1617,6 +1627,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
-
 </body>
 </html>
