@@ -1446,132 +1446,135 @@ document.addEventListener("DOMContentLoaded", function () {
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 
+<!-- ① تحميل المحجوزات -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const bookedSlots = {
-      fullDays: [ "2025-06-20", "2025-06-24" ],
-      timeSlots: {
-        "2025-06-19": ["11:00", "14:30"],
-        "2025-06-21": ["10:30"]
-      }
-    };
+let bookedSlots = { fullDays: [], timeSlots: {} };
 
-    const allTimes = [
-      "10:00", "10:30", "11:00", "11:30",
-      "12:00", "12:30", "13:00", "13:30",
-      "14:00", "14:30", "15:00", "15:30", "16:00"
-    ];
+fetch("https://script.google.com/macros/s/AKfycbwjblDhczUkyZT1iJslRd4Q6nd7ZZZiBIj7S9S704-7i2oGXUuAm-rDgopTO7MuJES_oA/exec")
+  .then(res => res.json())
+  .then(data => {
+    bookedSlots = data;
+    console.log("📅 تم تحميل المحجوزات:", bookedSlots);
+  })
+  .catch(err => console.error("❌ فشل تحميل المحجوزات:", err));
+</script>
 
-    function isSlotDisabled(date) {
+<!-- ② إعداد Flatpickr وحجز الوقت -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  flatpickr("#datepicker", {
+    enableTime: false,
+    dateFormat: "d.m.Y",
+    locale: "cs",
+    disableMobile: true,
+    disable: [function (date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+      return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
+    }],
+    onChange: function (selectedDates) {
+      const date = selectedDates[0];
+      if (!date) return;
+
       const yyyy = date.getFullYear();
       const mm = String(date.getMonth() + 1).padStart(2, "0");
       const dd = String(date.getDate()).padStart(2, "0");
       const dateStr = `${yyyy}-${mm}-${dd}`;
 
-      return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
+      const timeSelect = document.getElementById("timepicker");
+      timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+
+      const allTimes = [
+        "10:00", "10:30", "11:00", "11:30",
+        "12:00", "12:30", "13:00", "13:30",
+        "14:00", "14:30", "15:00", "15:30", "16:00"
+      ];
+
+      const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+      allTimes.forEach(time => {
+        const option = document.createElement("option");
+        option.value = time;
+
+        if (bookedTimes.includes(time)) {
+          option.textContent = `${time} (Rez)`;
+          option.disabled = true;
+          option.style.color = "gray";
+        } else {
+          option.textContent = time;
+        }
+
+        timeSelect.appendChild(option);
+      });
+    }
+  });
+
+  // ③ التعامل مع النموذج
+  const form = document.getElementById("booking-form");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+    localStorage.setItem("selectedDate", date);
+    localStorage.setItem("selectedTime", time);
+
+    // تحقق من VIN
+    const vinInput = document.getElementById("vin");
+    const vinError = document.getElementById("vin-error");
+    const vin = vinInput.value.trim().toUpperCase();
+
+    vinInput.style.borderColor = "#ccc";
+    vinError.style.display = "none";
+
+    let isValid = true;
+    let errors = [];
+
+    if (vin.length !== 17) {
+      errors.push("VIN musí mít přesně 17 znaků");
+      isValid = false;
     }
 
-    flatpickr("#datepicker", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      locale: "cs",
-      disableMobile: true,
-      disable: [isSlotDisabled],
-      onChange: function (selectedDates) {
-        const date = selectedDates[0];
-        if (!date) return;
+    if (/[IOQ]/.test(vin)) {
+      errors.push("VIN nesmí obsahovat I, O nebo Q");
+      isValid = false;
+    }
 
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
+    if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
+      errors.push("VIN obsahuje neplatné znaky");
+      isValid = false;
+    }
 
-        const timeSelect = document.getElementById("timepicker");
-        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
-        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+    if (!isValid) {
+      vinInput.style.borderColor = "red";
+      vinError.textContent = errors.join(" • ");
+      vinError.style.display = "block";
+      vinInput.focus();
+      return;
+    }
 
-        allTimes.forEach(time => {
-          const option = document.createElement("option");
-          option.value = time;
+    const formData = new FormData(form);
 
-         if (bookedTimes.includes(time)) {
-  option.textContent = `${time} (Rez)`; // يمكنك تغيير "Rez" لأي كلمة
-  option.disabled = true;
-  option.style.color = "gray";
-  option.style.fontStyle = "italic";
-} else {
-  option.textContent = time;
-}
-
-          timeSelect.appendChild(option);
-        });
-      }
-    });
-
-    // حفظ الوقت في localStorage
-    const form = document.getElementById("booking-form");
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const date = document.getElementById("datepicker").value;
-      const time = document.getElementById("timepicker").value;
-      localStorage.setItem("selectedDate", date);
-      localStorage.setItem("selectedTime", time);
-
-      // ✅ تحقق من VIN
-      const vinInput = document.getElementById("vin");
-      const vinError = document.getElementById("vin-error");
-      const vin = vinInput.value.trim().toUpperCase();
-
-      vinInput.style.borderColor = "#ccc";
-      vinError.style.display = "none";
-
-      let isValid = true;
-      let errors = [];
-
-      if (vin.length !== 17) {
-        errors.push("VIN musí mít přesně 17 znaků");
-        isValid = false;
-      }
-
-      if (/[IOQ]/.test(vin)) {
-        errors.push("VIN nesmí obsahovat I, O nebo Q");
-        isValid = false;
-      }
-
-      if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
-        errors.push("VIN obsahuje neplatné znaky");
-        isValid = false;
-      }
-
-      if (!isValid) {
-        vinInput.style.borderColor = "red";
-        vinError.textContent = errors.join(" • ");
-        vinError.style.display = "block";
-        vinInput.focus();
-        return; // 🛑 لا إرسال النموذج
-      }
-
-      const formData = new FormData(form);
-
-      // Google Apps Script
-      fetch("https://script.google.com/macros/s/AKfycbwNrtijnJXoGFLS3v3YJ7o55NE89bO_zB-bcHlU1LShVaAKCgN0mELYxLtSqx_GPU8dRg/exec", {
+    // إرسال إلى Google Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbwjblDhczUkyZT1iJslRd4Q6nd7ZZZiBIj7S9S704-7i2oGXUuAm-rDgopTO7MuJES_oA/exec", {
+      method: "POST",
+      body: formData
+    })
+    .catch(() => {})
+    .finally(() => {
+      // إرسال إلى Formsubmit بعد Google Apps Script
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
       })
-      .catch(() => {})
       .finally(() => {
-        // Formsubmit
-        fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-          method: "POST",
-          body: formData
-        })
-        .finally(() => {
-          window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-        });
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
       });
     });
   });
+});
 </script>
 </body>
 </html>
