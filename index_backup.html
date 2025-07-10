@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -429,10 +428,7 @@
 
 <section class="reservation-form" style="max-width: 380px; margin: 0 auto;">
 
-<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
- 
-
-<!-- عنوان القسم -->
+ <!-- عنوان القسم -->
 <h2 style="text-align: center; color: #EBDBB1; font-size: 24px; margin-top: 0px; margin-bottom: 16px;">
   📅 Rezervace termínu
 </h2>
@@ -456,7 +452,7 @@
     <option disabled selected>Vyberte značku</option>
   </select>
 
-  <label for="modelSelect">Model vozu</label>
+ <label for="modelSelect">Model vozu</label>
   <select id="modelSelect" name="carModel" required>
     <option disabled selected>Vyberte model</option>
   </select>
@@ -475,8 +471,9 @@
   <label for="clientPhone">Telefon</label>
   <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
-  <label for="vin">VIN kód vozidla</label>
-  <input type="text" name="vin" placeholder="Zadejte VIN kód" required />
+<label for="vin">VIN kód vozidla</label>
+<input type="text" id="vin" name="vin" placeholder="Zadejte VIN kód" required />
+<div id="vin-error" style="color:red; display:none; font-size:13px; margin-top:4px;"></div>
 
   <label for="note">Důvod návštěvy</label>
   <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
@@ -491,86 +488,13 @@
 
   <button type="submit">Odeslat</button>
 </form>
-
-<!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
-  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-
-  flatpickr("#datepicker", {
-    dateFormat: "Y-m-d",
-    disable: reservedDates,
-    onChange: function(selectedDates, dateStr, instance) {
-      const timepicker = document.getElementById("timepicker");
-      timepicker.innerHTML = '<option value="">Uhrzeit wählen</option>';
-      if (reservedDates.includes(dateStr)) {
-        const option = document.createElement("option");
-        option.text = "Reserviert";
-        option.disabled = true;
-        timepicker.appendChild(option);
-      } else {
-        timeSlots.forEach(function(time) {
-          const option = document.createElement("option");
-          option.value = time;
-          option.text = time;
-          timepicker.appendChild(option);
-        });
-      }
-    }
-  });
-</script>
-
-<!-- Lokale Speicherung von Datum und Uhrzeit -->
-<script>
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function () {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-  });
-</script>
-
-<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
-<script>
-  document.getElementById("booking-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // 🟡 إرسال إلى Google Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
-      method: "POST",
-      body: formData
-    });
-
-    // 🟢 إرسال إلى Formsubmit
-    fetch(form.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    })
-    .catch(error => {
-      alert("Fehler beim Senden.");
-      console.error(error);
-    });
-  });
-</script>
-  
-
-  
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
   <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
     info@temosliving.de
   </a>
 </p>
-</form>
+
 </section>
 <!-- O mně -->
 <div class="service-container">
@@ -1467,113 +1391,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
   
-  <!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // الأيام والتوقيتات المحجوزة
-    const bookedSlots = {
-      fullDays: [ "2025-06-20", "2025-06-24" ],
-      timeSlots: {
-        "2025-06-19": ["11:00", "14:30"],
-        "2025-06-21": ["10:30"]
-      }
-    };
-
-    const allTimes = [
-      "10:00", "10:30", "11:00", "11:30",
-      "12:00", "12:30", "13:00", "13:30",
-      "14:00", "14:30", "15:00", "15:30",
-      "16:00"
-    ];
-
-    function isSlotDisabled(date) {
-      const yyyy = date.getFullYear();
-      const mm = String(date.getMonth() + 1).padStart(2, "0");
-      const dd = String(date.getDate()).padStart(2, "0");
-      const dateStr = `${yyyy}-${mm}-${dd}`;
-
-      return (
-        date.getDay() === 0 || date.getDay() === 6 ||
-        bookedSlots.fullDays.includes(dateStr)
-      );
-    }
-
-    flatpickr("#datepicker", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      locale: "cs",
-      disableMobile: true,
-      disable: [isSlotDisabled],
-      onChange: function (selectedDates) {
-        const date = selectedDates[0];
-        if (!date) return;
-
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-
-        const timeSelect = document.getElementById("timepicker");
-        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
-
-        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
-
-        allTimes.forEach(time => {
-          if (!bookedTimes.includes(time)) {
-            const option = document.createElement("option");
-            option.value = time;
-            option.textContent = time;
-            timeSelect.appendChild(option);
-          }
-        });
-      }
-    });
-  });
-</script>
-  <script>
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function () {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    // حفظ في localStorage
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-  });
-</script>
-
-<script>
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const form = event.target;
-  const formData = new FormData(form);
-
-  // 1. إرسال إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
-    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    });
-  })
-  .catch(error => {
-    alert("Chyba při odesílání. Zkuste to prosím znovu.");
-    console.error(error);
-  });
-});
-</script>
   
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
@@ -1623,56 +1441,136 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
   WhatsApp
 </a>  
 
+
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
+    const bookedSlots = {
+      fullDays: [ "2025-06-20", "2025-06-24" ],
+      timeSlots: {
+        "2025-06-19": ["11:00", "14:30"],
+        "2025-06-21": ["10:30"]
+      }
+    };
+
+    const allTimes = [
+      "10:00", "10:30", "11:00", "11:30",
+      "12:00", "12:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30", "16:00"
+    ];
+
+    function isSlotDisabled(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+
+      return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
+    }
+
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "cs",
+      disableMobile: true,
+      disable: [isSlotDisabled],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          const option = document.createElement("option");
+          option.value = time;
+
+          if (bookedTimes.includes(time)) {
+            option.textContent = `${time} (محجوز)`;
+            option.disabled = true;
+            option.style.color = "gray";
+          } else {
+            option.textContent = time;
+          }
+
+          timeSelect.appendChild(option);
+        });
+      }
+    });
+
+    // حفظ الوقت في localStorage
     const form = document.getElementById("booking-form");
-    const vinInput = document.getElementById("vin-input");
-    const vinError = document.getElementById("vin-error");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    if (!form || !vinInput || !vinError) return;
+      const date = document.getElementById("datepicker").value;
+      const time = document.getElementById("timepicker").value;
+      localStorage.setItem("selectedDate", date);
+      localStorage.setItem("selectedTime", time);
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault(); // منع الإرسال دائماً
-      
-      // إعادة تعيين الحالة
-      vinInput.classList.remove("input-error", "input-valid", "shake");
-      vinError.style.display = "none";
-      
+      // ✅ تحقق من VIN
+      const vinInput = document.getElementById("vin");
+      const vinError = document.getElementById("vin-error");
       const vin = vinInput.value.trim().toUpperCase();
+
+      vinInput.style.borderColor = "#ccc";
+      vinError.style.display = "none";
+
+      let isValid = true;
       let errors = [];
-      
-      // التحقق من الصحة
+
       if (vin.length !== 17) {
         errors.push("VIN musí mít přesně 17 znaků");
+        isValid = false;
       }
-      
+
       if (/[IOQ]/.test(vin)) {
-        errors.push("VIN nesmí obsahovat písmena I, O, nebo Q");
+        errors.push("VIN nesmí obsahovat I, O nebo Q");
+        isValid = false;
       }
-      
+
       if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
         errors.push("VIN obsahuje neplatné znaky");
+        isValid = false;
       }
-      
-      // معالجة الأخطاء
-      if (errors.length > 0) {
-        vinInput.classList.add("input-error", "shake");
+
+      if (!isValid) {
+        vinInput.style.borderColor = "red";
         vinError.textContent = errors.join(" • ");
         vinError.style.display = "block";
         vinInput.focus();
-      } else {
-        vinInput.classList.add("input-valid");
-        // عرض رسالة بدلاً من الإرسال
-        alert("VIN je platný. Formulář nelze odeslat - tato funkce je vypnuta.");
+        return; // 🛑 لا إرسال النموذج
       }
-    });
-    
-    // التحقق أثناء الكتابة (اختياري)
-    vinInput.addEventListener("input", function() {
-      this.value = this.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "");
+
+      const formData = new FormData(form);
+
+      // Google Apps Script
+      fetch("https://script.google.com/macros/s/AKfycbxg5gfi_uja3YLI_ZM3MoYz6MeZl-TNm-9ElneMyy7_WZtMqyMy9XXuggYZFM8TaT7V_A/exec", {
+        method: "POST",
+        body: formData
+      })
+      .catch(() => {})
+      .finally(() => {
+        // Formsubmit
+        fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+          method: "POST",
+          body: formData
+        })
+        .finally(() => {
+          window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+        });
+      });
     });
   });
 </script>
-<!-- End MailerLite Universal -->
 </body>
 </html>
