@@ -1557,15 +1557,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // 6. إرسال البيانات
       const formData = new FormData(formElement);
 
-      fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(() => {
-        return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-          method: "POST",
-          body: formData
-        });
+     fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+  method: "POST",
+  body: formData
+})
+.then(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+  return; // ✅ هذا مهم!
+});
       })
       .then(() => {
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
