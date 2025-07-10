@@ -1441,11 +1441,6 @@ document.addEventListener("DOMContentLoaded", function () {
   WhatsApp
 </a>  
 
-<!-- Scripts at bottom -->
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const bookedSlots = {
@@ -1506,8 +1501,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    const form = document.getElementById("booking-form");
-    form.addEventListener("submit", function (event) {
+    const formElement = document.getElementById("booking-form");
+
+    formElement.addEventListener("submit", function (event) {
       event.preventDefault();
 
       const date = document.getElementById("datepicker").value;
@@ -1548,10 +1544,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const formData = new FormData(form);
+      const formData = new FormData(formElement);
 
-      // ✅ Google Script ثم Formsubmit
-      fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxoe-_UXnXtrBlyKxCm-42taVZnsbUO8eR5DrxsjlcLQjM_QlKNrQhzUGcWaNqEWwSagg/exec", {
         method: "POST",
         body: formData
       })
@@ -1565,11 +1560,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
       })
       .catch(error => {
-        alert("Chyba při odesílání. Zkuste to prosím znovu.");
         console.error(error);
+        alert("Chyba při odesílání.");
       });
     });
   });
 </script>
-</body>
-</html>
