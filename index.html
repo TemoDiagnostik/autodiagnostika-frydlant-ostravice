@@ -460,11 +460,11 @@
 
 
   <label for="brandSelect">Značka vozu</label>
- <select id="brandSelect" name="carMake" required>
+  <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
     <option disabled selected>Vyberte značku</option>
   </select>
 
-  <label for="modelSelect">Model vozu</label>
+ <label for="modelSelect">Model vozu</label>
   <select id="modelSelect" name="carModel" required>
     <option disabled selected>Vyberte model</option>
   </select>
