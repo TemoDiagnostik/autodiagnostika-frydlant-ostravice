@@ -1705,46 +1705,6 @@ document.getElementById("booking-form").addEventListener("submit", function(even
     }
   });
 </script>
-  <input type="text" id="search-box" placeholder="Zadejte hledané slovo…" style="padding: 10px; width: 100%; margin-bottom: 20px;" oninput="highlightText(this.value)">
 
-<script>
-function highlightText(keyword) {
-  // أولًا: تنظيف كل العلامات القديمة
-  const spans = document.querySelectorAll("mark.search-match");
-  spans.forEach(span => {
-    const parent = span.parentNode;
-    parent.replaceChild(document.createTextNode(span.textContent), span);
-    parent.normalize();
-  });
-
-  if (!keyword) return;
-
-  const body = document.body;
-  const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, false);
-
-  while (walker.nextNode()) {
-    const node = walker.currentNode;
-    if (
-      node.parentNode.nodeName !== "SCRIPT" &&
-      node.parentNode.nodeName !== "STYLE" &&
-      node.nodeValue.toLowerCase().includes(keyword.toLowerCase())
-    ) {
-      const span = document.createElement("mark");
-      span.className = "search-match";
-      span.style.backgroundColor = "yellow";
-      span.style.color = "black";
-
-      const index = node.nodeValue.toLowerCase().indexOf(keyword.toLowerCase());
-      const match = node.nodeValue.substr(index, keyword.length);
-
-      const after = node.splitText(index);
-      after.nodeValue = after.nodeValue.substring(keyword.length);
-      const middle = document.createTextNode(match);
-      span.appendChild(middle);
-      node.parentNode.insertBefore(span, after);
-    }
-  }
-}
-</script>
 </body>
 </html>
