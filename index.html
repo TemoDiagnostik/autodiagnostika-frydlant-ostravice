@@ -1548,24 +1548,27 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-    const form = event.target;
-  const formData = new FormData(form);
+      const formData = new FormData(form);
 
-  // 1. إرسال إلى Google Apps Script
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(() => {
-    // 2. إرسال إلى Formsubmit بعد نجاح إرسال Google Script
-    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+      // ✅ Google Script ثم Formsubmit
+      fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(() => {
+        return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+          method: "POST",
+          body: formData
+        });
+      })
+      .then(() => {
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+      })
+      .catch(error => {
+        alert("Chyba při odesílání. Zkuste to prosím znovu.");
+        console.error(error);
+      });
     });
-  })
   });
 </script>
 </body>
