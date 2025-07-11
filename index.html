@@ -1550,18 +1550,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch(scriptURL, {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Chyba serveru");
-      }
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    })
-    .catch(() => {
-      alert("⚠️ Došlo k chybě při odesílání formuláře. Zkuste to prosím znovu.");
+      // Google Apps Script
+      fetch("https://script.google.com/macros/s/AKfycbx2hqQhdkzOIw06E4He-4uXaVJusebMtOOfIpM8w7S0FiNwezPZfnr9yi4gmeFFpgjQIg/exec", {
+        method: "POST",
+        body: formData
+      })
+      .catch(() => {})
+      .finally(() => {
+        // Formsubmit
+        fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+          method: "POST",
+          body: formData
+        })
+        .finally(() => {
+          window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
     });
   });
 });
