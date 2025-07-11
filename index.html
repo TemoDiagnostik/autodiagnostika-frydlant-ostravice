@@ -1450,7 +1450,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbzH81uiA0K3vKWmqwT-aIuzAEgc2XIhjm1pCle7bT7thoVNfywa_mkwACSLFGBn-ADJxA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbxs2be9KgtCI64Uj9zPm5Mu7B5gGJtJnHIoMTFz4cjxEQUlQJM88zfr0kYtLoD1L8T_Kg/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1496,7 +1496,8 @@ document.addEventListener("DOMContentLoaded", function () {
           if (bookedTimes.includes(time)) {
             option.textContent = `${time} (Rez)`;
             option.disabled = true;
-            option.style.color = "gray";
+            option.style.color = "red";
+            option.style.fontWeight = "bold";
           } else {
             option.textContent = time;
           }
@@ -1548,7 +1549,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbzH81uiA0K3vKWmqwT-aIuzAEgc2XIhjm1pCle7bT7thoVNfywa_mkwACSLFGBn-ADJxA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxs2be9KgtCI64Uj9zPm5Mu7B5gGJtJnHIoMTFz4cjxEQUlQJM88zfr0kYtLoD1L8T_Kg/exec", {
       method: "POST",
       body: formData
     })
@@ -1573,6 +1574,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
 </body>
 </html>
