@@ -338,45 +338,46 @@ First, I will verify the VIN number and the type of system to see if the update 
 
      
 <label for="brandSelect">Car brand</label>
-<select id="brandSelect" name="Car make" required>
+<select id="brandSelect" name="carBrand" required>
   <option disabled selected>Select car make</option>
 </select>
+
 <label for="modelSelect">Car model</label>
-<select id="modelSelect" name="Car model" required>
+<select id="modelSelect" name="carModel" required>
   <option disabled selected>Select model</option>
 </select>
 
 <label for="engineSelect">Engine size</label>
-<select id="engineSelect" name="Engine capacity" required>
+<select id="engineSelect" name="engineSize" required>
   <option disabled selected>Select engine capacity</option>
 </select>
 
-   <label for="clientEmail">E-mail</label>
-  <input type="email" name="email" id="clientEmail" required placeholder="Enter your e-mail">
+<label for="clientEmail">E-mail</label>
+<input type="email" name="email" id="clientEmail" required placeholder="Enter your e-mail">
+
 <label for="clientName">First and last name</label>
-<input type="text" name="clientName" id="clientName" required placeholder="Enter your name">
+<input type="text" name="name" id="clientName" required placeholder="Enter your name">
 
 <label for="clientPhone">Phone</label>
-<input type="tel" name="clientPhone" id="clientPhone" required placeholder="Enter your phone number">	 
-  <label for="vin">Vehicle VIN number</label>
-  <input type="text" name="VIN code" placeholder="Enter VIN code" required />
+<input type="tel" name="phone" id="clientPhone" required placeholder="Enter your phone number">	 
 
-  <label for="note">Reason for visit</label>
-  <textarea name="Reason for visit" placeholder="Enter reason for visit" required></textarea>
+<label for="vin">Vehicle VIN number</label>
+<input type="text" name="vin" id="vin" placeholder="Enter VIN code" required />
 
-<!-- التاريخ -->
+<label for="note">Reason for visit</label>
+<textarea name="reason" id="note" placeholder="Enter reason for visit" required></textarea>
+
 <label for="datepicker">Date</label>
 <input type="text" id="datepicker" name="date" placeholder="Select date" required>
 
-<!-- الوقت -->
 <label for="timepicker">Time</label>
 <select id="timepicker" name="time" required>
   <option value="">Select time</option>
 </select>
 
-  <button type="submit">Send</button>
-  </form>
-
+<button type="submit">Send</button>
+</form> 
+  
 <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Have a question? Write me at: 
   <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
