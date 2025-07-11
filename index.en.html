@@ -387,75 +387,7 @@ First, I will verify the VIN number and the type of system to see if the update 
 </form>
 </section>
 
-<!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-  const reservedDates = ["2025-07-01", "2025-07-03", "2025-07-07"];
-  const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
 
-  flatpickr("#datepicker", {
-    dateFormat: "Y-m-d",
-    disable: reservedDates,
-    onChange: function(selectedDates, dateStr, instance) {
-      const timepicker = document.getElementById("timepicker");
-      timepicker.innerHTML = '<option value="">Uhrzeit wählen</option>';
-      if (reservedDates.includes(dateStr)) {
-        const option = document.createElement("option");
-        option.text = "Reserviert";
-        option.disabled = true;
-        timepicker.appendChild(option);
-      } else {
-        timeSlots.forEach(function(time) {
-          const option = document.createElement("option");
-          option.value = time;
-          option.text = time;
-          timepicker.appendChild(option);
-        });
-      }
-    }
-  });
-</script>
-
-<!-- Lokale Speicherung von Datum und Uhrzeit -->
-<script>
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function () {
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-  });
-</script>
-
-<!-- Formularabsendung: zuerst an Google, dann an Formsubmit -->
-<script>
-  document.getElementById("booking-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // 🟡 إرسال إلى Google Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbwAa98d0OylQToIP4ELebs8qLiG1boRDryi1RuHbgPPTqYqRbWyLx-BV7b-b_DqE0FxEw/exec", {
-      method: "POST",
-      body: formData
-    });
-
-    // 🟢 إرسال إلى Formsubmit
-    fetch(form.action, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
-    })
-    .catch(error => {
-      alert("Fehler beim Senden.");
-      console.error(error);
-    });
-  });
-</script>
 <!-- زر O mně -->
 <div class="service-container">
   <button type="button" class="accordion-button">
@@ -508,31 +440,7 @@ First, I will verify the VIN number and the type of system to see if the update 
   <p class="note" style="font-size: 13px; padding-bottom: 12px;"> 💡Prices vary depending on the vehicle type and the scope of the provided service</p>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      flatpickr("#datepicker", {
-        dateFormat: "d.m.Y",
-        locale: "cs",
-        disableMobile: true,
-        disable: [
-          "2025-05-15",
-          "2025-05-20",
-          { from: "2025-05-25", to: "2025-05-27" }
-        ]
-      });
-});
-</script>
- <script> 
-      const form = document.getElementById('booking-form');
-      form.addEventListener('submit', function () {
-        document.getElementById('success-message').style.display = 'block';
-      });
-    });
-  </script>
-  
-<!-- 1. carData: قائمة السيارات -->
+ 
 <!-- 1. carData: قائمة السيارات -->
 <script>
   const carData = {
@@ -1354,72 +1262,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-    <!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // الأيام والتوقيتات المحجوزة
-    const bookedSlots = {
-      fullDays: [ "2025-06-20", "2025-06-24" ],
-      timeSlots: {
-        "2025-06-19": ["11:00", "14:30"],
-        "2025-06-21": ["10:30"]
-      }
-    };
-
-    const allTimes = [
-      "10:00", "10:30", "11:00", "11:30",
-      "12:00", "12:30", "13:00", "13:30",
-      "14:00", "14:30", "15:00", "15:30",
-      "16:00"
-    ];
-
-    function isSlotDisabled(date) {
-      const yyyy = date.getFullYear();
-      const mm = String(date.getMonth() + 1).padStart(2, "0");
-      const dd = String(date.getDate()).padStart(2, "0");
-      const dateStr = `${yyyy}-${mm}-${dd}`;
-
-      return (
-        date.getDay() === 0 || date.getDay() === 6 ||
-        bookedSlots.fullDays.includes(dateStr)
-      );
-    }
-
-    flatpickr("#datepicker", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      locale: "cs",
-      disableMobile: true,
-      disable: [isSlotDisabled],
-      onChange: function (selectedDates) {
-        const date = selectedDates[0];
-        if (!date) return;
-
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-
-        const timeSelect = document.getElementById("timepicker");
-        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
-
-        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
-
-        allTimes.forEach(time => {
-          if (!bookedTimes.includes(time)) {
-            const option = document.createElement("option");
-            option.value = time;
-            option.textContent = time;
-            timeSelect.appendChild(option);
-          }
-        });
-      }
-    });
-  });
-</script>
+    
 <!-- زر فيسبوك ثابت -->
 <a href="https://www.facebook.com/profile.php?id=61576295517464" target="_blank" style="
   position: fixed;
@@ -1467,8 +1310,129 @@ document.addEventListener("DOMContentLoaded", function () {
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 14px; height: 14px;">
   WhatsApp
 </a>
-  
-  
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/default.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  let bookedSlots = { fullDays: [], timeSlots: {} };
+
+  fetch("https://script.google.com/macros/s/AKfycbwLTWomoG71rF8xz0BeUQ-wALBTCEpRFR8ZUZ8GuwaTn2IV2BT5zaRCpsiOo8GVY2v0ZA/exec")
+    .then(res => res.json())
+    .then(data => {
+      bookedSlots = data;
+      initFlatpickr();
+    });
+
+  function initFlatpickr() {
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "default",
+      disableMobile: true,
+      disable: [function (date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+        return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
+      }],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
+
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Select Time</option>';
+
+        const allTimes = [
+          "10:00", "10:30", "11:00", "11:30",
+          "12:00", "12:30", "13:00", "13:30",
+          "14:00", "14:30", "15:00", "15:30", "16:00"
+        ];
+
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+
+        allTimes.forEach(time => {
+          const option = document.createElement("option");
+          option.value = time;
+
+          if (bookedTimes.includes(time)) {
+            option.textContent = `${time} (Booked)`;
+            option.disabled = true;
+            option.style.color = "red";
+            option.style.fontWeight = "bold";
+          } else {
+            option.textContent = time;
+          }
+
+          timeSelect.appendChild(option);
+        });
+      }
+    });
+  }
+
+  const form = document.getElementById("booking-form");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
+    const vinInput = document.getElementById("vin");
+    const vinError = document.getElementById("vin-error");
+    const vin = vinInput.value.trim().toUpperCase();
+
+    vinInput.style.borderColor = "#ccc";
+    vinError.style.display = "none";
+
+    let isValid = true;
+    let errors = [];
+
+    if (vin.length !== 17) {
+      errors.push("VIN must be exactly 17 characters");
+      isValid = false;
+    }
+    if (/[IOQ]/.test(vin)) {
+      errors.push("VIN cannot contain I, O, or Q");
+      isValid = false;
+    }
+    if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
+      errors.push("VIN contains invalid characters");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      vinInput.style.borderColor = "red";
+      vinError.textContent = errors.join(" • ");
+      vinError.style.display = "block";
+      vinInput.focus();
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbwLTWomoG71rF8xz0BeUQ-wALBTCEpRFR8ZUZ8GuwaTn2IV2BT5zaRCpsiOo8GVY2v0ZA/exec", {
+      method: "POST",
+      body: formData
+    })
+    .catch(() => {})
+    .finally(() => {
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+        method: "POST",
+        body: formData
+      })
+      .finally(() => {
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
  
