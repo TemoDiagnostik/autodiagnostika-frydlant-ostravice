@@ -1450,7 +1450,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbxs2be9KgtCI64Uj9zPm5Mu7B5gGJtJnHIoMTFz4cjxEQUlQJM88zfr0kYtLoD1L8T_Kg/exec")
+  // ⛳️ ضع هنا رابط Google Apps Script الصحيح
+  const scriptURL = "https://script.google.com/macros/s/AKfycbx2hqQhdkzOIw06E4He-4uXaVJusebMtOOfIpM8w7S0FiNwezPZfnr9yi4gmeFFpgjQIg/exec";
+
+  fetch(scriptURL)
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1513,9 +1516,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
-    localStorage.setItem("selectedDate", date);
-    localStorage.setItem("selectedTime", time);
-
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1549,7 +1549,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbxs2be9KgtCI64Uj9zPm5Mu7B5gGJtJnHIoMTFz4cjxEQUlQJM88zfr0kYtLoD1L8T_Kg/exec", {
+    fetch(scriptURL, {
       method: "POST",
       body: formData
     })
@@ -1559,14 +1559,8 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("❌ هذا الموعد محجوز بالفعل. الرجاء اختيار موعد مختلف.");
         return;
       }
-
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-      });
+      // ✅ الحجز نجح، انتقل لصفحة الشكر
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
     })
     .catch(() => {
       alert("⚠️ حدث خطأ أثناء إرسال النموذج. حاول مرة أخرى.");
