@@ -1424,21 +1424,15 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       body: formData
     })
-    .then(res => res.text())
-    .then(result => {
-      console.log("✅ Google Script result:", result);
-      return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+    .catch(() => {})
+    .finally(() => {
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
-      });
-    })
-    .then(() => {
-      console.log("✅ Submitted to formsubmit. Redirecting...");
+      })
+      .finally(() => {
       window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
-    })
-    .catch(error => {
-      console.error("❌ Submission error:", error);
-      alert("Something went wrong while submitting. Please try again later.");
+     });
     });
   });
 });
