@@ -1312,6 +1312,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
 
 <!-- Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
@@ -1329,7 +1330,7 @@ document.addEventListener("DOMContentLoaded", function () {
     flatpickr("#datepicker", {
       enableTime: false,
       dateFormat: "d.m.Y",
-      locale: "default",
+      locale: "en", // ✅ لغة إنجليزية
       disableMobile: true,
       disable: [function (date) {
         const yyyy = date.getFullYear();
