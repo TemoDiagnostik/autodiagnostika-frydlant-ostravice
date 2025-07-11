@@ -1317,66 +1317,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  let bookedSlots = { fullDays: [], timeSlots: {} };
-
-  fetch("https://script.google.com/macros/s/AKfycbwU_-hm_noB3fTHVcstDamVLXBEaMStEaOOawV11nKm9Ep_k9EwfgXj2ukJyeCm_DHgEA/exec")
-    .then(res => res.json())
-    .then(data => {
-      bookedSlots = data;
-      initFlatpickr();
-    });
-
-  function initFlatpickr() {
-    flatpickr("#datepicker", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      locale: "en", // ✅ لغة إنجليزية
-      disableMobile: true,
-      disable: [function (date) {
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-        return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
-      }],
-      onChange: function (selectedDates) {
-        const date = selectedDates[0];
-        if (!date) return;
-
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-
-        const timeSelect = document.getElementById("timepicker");
-        timeSelect.innerHTML = '<option value="">Select Time</option>';
-
-        const allTimes = [
-          "10:00", "10:30", "11:00", "11:30",
-          "12:00", "12:30", "13:00", "13:30",
-          "14:00", "14:30", "15:00", "15:30", "16:00"
-        ];
-
-        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
-
-        allTimes.forEach(time => {
-          const option = document.createElement("option");
-          option.value = time;
-
-          if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Booked)`;
-            option.disabled = true;
-            option.style.color = "red";
-            option.style.fontWeight = "bold";
-          } else {
-            option.textContent = time;
-          }
-
-          timeSelect.appendChild(option);
-        });
-      }
-    });
-  }
+  // ... باقي الكود مثل flatpickr
 
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
@@ -1417,18 +1358,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbwU_-hm_noB3fTHVcstDamVLXBEaMStEaOOawV11nKm9Ep_k9EwfgXj2ukJyeCm_DHgEA/exec", {
+    console.log("Submitting form to Google Script...");
+
+    fetch("https://script.google.com/macros/s/AKfycbwLTWomoG71rF8xz0BeUQ-wALBTCEpRFR8ZUZ8GuwaTn2IV2BT5zaRCpsiOo8GVY2v0ZA/exec", {
       method: "POST",
       body: formData
     })
-    .catch(() => {})
+    .then(response => {
+      console.log("Google Script Response:", response);
+    })
+    .catch((error) => {
+      console.error("Error with Google Script:", error);
+    })
     .finally(() => {
+      console.log("Sending to formsubmit...");
       fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
       })
-      .finally(() => {
+      .then(() => {
+        console.log("Redirecting to thank you page...");
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
+      })
+      .catch((error) => {
+        console.error("Error with Formsubmit:", error);
       });
     });
   });
