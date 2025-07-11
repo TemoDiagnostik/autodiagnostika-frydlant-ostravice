@@ -1450,62 +1450,64 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
-  .then(res => res.json())
-  .then(data => {
-    bookedSlots = data;
-    initFlatpickr();
-  });
+  fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
+    .then(res => res.json())
+    .then(data => {
+      bookedSlots = data;
+      initFlatpickr(); // فقط بعد تحميل المواعيد
+    });
 
-function initFlatpickr() {
-  flatpickr("#datepicker", {
-    enableTime: false,
-    dateFormat: "d.m.Y",
-    locale: "cs",
-    disableMobile: true,
-    disable: [function (date) {
-      const yyyy = date.getFullYear();
-      const mm = String(date.getMonth() + 1).padStart(2, "0");
-      const dd = String(date.getDate()).padStart(2, "0");
-      const dateStr = `${yyyy}-${mm}-${dd}`;
-      return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
-    }],
-    onChange: function (selectedDates) {
-      const date = selectedDates[0];
-      if (!date) return;
+  function initFlatpickr() {
+    flatpickr("#datepicker", {
+      enableTime: false,
+      dateFormat: "d.m.Y",
+      locale: "cs",
+      disableMobile: true,
+      disable: [function (date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+        return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
+      }],
+      onChange: function (selectedDates) {
+        const date = selectedDates[0];
+        if (!date) return;
 
-      const yyyy = date.getFullYear();
-      const mm = String(date.getMonth() + 1).padStart(2, "0");
-      const dd = String(date.getDate()).padStart(2, "0");
-      const dateStr = `${yyyy}-${mm}-${dd}`;
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, "0");
+        const dd = String(date.getDate()).padStart(2, "0");
+        const dateStr = `${yyyy}-${mm}-${dd}`;
 
-      const timeSelect = document.getElementById("timepicker");
-      timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
+        const timeSelect = document.getElementById("timepicker");
+        timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
 
-      const allTimes = [
-        "10:00", "10:30", "11:00", "11:30",
-        "12:00", "12:30", "13:00", "13:30",
-        "14:00", "14:30", "15:00", "15:30", "16:00"
-      ];
+        const allTimes = [
+          "10:00", "10:30", "11:00", "11:30",
+          "12:00", "12:30", "13:00", "13:30",
+          "14:00", "14:30", "15:00", "15:30", "16:00"
+        ];
 
-      const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
+        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
 
-      allTimes.forEach(time => {
-  const option = document.createElement("option");
-  option.value = time;
-  if (bookedTimes.includes(time)) {
-    option.textContent = `${time} (Rez)`; // ← التعديل هنا فقط
-    option.disabled = true;
-    option.style.color = "red";
-    option.style.fontWeight = "bold";
-  } else {
-    option.textContent = time;
+        allTimes.forEach(time => {
+          const option = document.createElement("option");
+          option.value = time;
+
+          if (bookedTimes.includes(time)) {
+            option.textContent = `${time} (Rez)`; // ✅ كلمة محجوز بالتشيكية
+            option.disabled = true;
+            option.style.color = "red";
+            option.style.fontWeight = "bold";
+          } else {
+            option.textContent = time;
+          }
+
+          timeSelect.appendChild(option);
+        });
+      }
+    });
   }
-  timeSelect.appendChild(option);
-});
-    }
-  });
-}
 
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
@@ -1523,7 +1525,6 @@ function initFlatpickr() {
     let isValid = true;
     let errors = [];
 
-    // التحقق من صحة VIN
     if (vin.length !== 17) {
       errors.push("VIN musí mít přesně 17 znaků");
       isValid = false;
@@ -1547,20 +1548,19 @@ function initFlatpickr() {
 
     const formData = new FormData(form);
 
-      // Google Apps Script
-      fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+      method: "POST",
+      body: formData
+    })
+    .catch(() => {})
+    .finally(() => {
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
       })
-      .catch(() => {})
       .finally(() => {
-        // Formsubmit
-        fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-          method: "POST",
-          body: formData
-        })
-        .finally(() => {
-          window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+      });
     });
   });
 });
