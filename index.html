@@ -1450,7 +1450,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-fetch("https://script.google.com/macros/s/AKfycbzVV6lrx1MLgCX6SX9KmTEhtUOpMlzDkfquSyyBwDiSsWB0Mi5gfMDjD92WoAN9NuJtaQ/exec")
+fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
   .then(res => res.json())
   .then(data => {
     bookedSlots = data;
@@ -1491,18 +1491,18 @@ function initFlatpickr() {
       const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
 
       allTimes.forEach(time => {
-        const option = document.createElement("option");
-        option.value = time;
-        if (bookedTimes.includes(time)) {
-          option.textContent = `${time} (Rez)`;
-          option.disabled = true;
-          option.style.color = "red";
-          option.style.fontWeight = "bold";
-        } else {
-          option.textContent = time;
-        }
-        timeSelect.appendChild(option);
-      });
+  const option = document.createElement("option");
+  option.value = time;
+  if (bookedTimes.includes(time)) {
+    option.textContent = `${time} (Rez)`; // ← التعديل هنا فقط
+    option.disabled = true;
+    option.style.color = "red";
+    option.style.fontWeight = "bold";
+  } else {
+    option.textContent = time;
+  }
+  timeSelect.appendChild(option);
+});
     }
   });
 }
@@ -1548,7 +1548,7 @@ function initFlatpickr() {
     const formData = new FormData(form);
 
       // Google Apps Script
-      fetch("https://script.google.com/macros/s/AKfycbzVV6lrx1MLgCX6SX9KmTEhtUOpMlzDkfquSyyBwDiSsWB0Mi5gfMDjD92WoAN9NuJtaQ/exec", {
+      fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
         method: "POST",
         body: formData
       })
