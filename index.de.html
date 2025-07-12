@@ -1355,6 +1355,7 @@ document.addEventListener("DOMContentLoaded", function () {
   WhatsApp
 </a>
   
+<!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
@@ -1366,10 +1367,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr();
-    })
-    .catch(() => {
-      alert("Fehler beim Laden der Daten");
+      initFlatpickr(); // ✅ بعد تحميل البيانات
     });
 
   function initFlatpickr() {
@@ -1428,6 +1426,8 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1461,21 +1461,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    // إرسال فقط إلى FormSubmit (إيميل منسق)
- fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
-  method: "POST",
-  mode: "no-cors", // 👈 يمنع الخطأ الظاهر
-  body: formData
-});
-
-setTimeout(() => {
-  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-}, 500); // 👈 تحويل بعد نصف ثانية فقط
-
+    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+    })
+    .catch(() => {
+      alert("Fehler beim Senden.");
+    });
   });
 });
-  });
 </script>
-
 </body>
 </html>  
