@@ -1461,10 +1461,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
-      method: "POST",
-      body: formData
-    })
+   
     .catch(() => {})
      .finally(() => {
       fetch("https://formsubmit.co/diagnostika@temosliving.de", {
