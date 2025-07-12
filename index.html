@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -486,7 +487,7 @@
     <option value="">Vyberte čas</option>
   </select>
 
-  <button type="submit">Absenden</button>
+  <button type="submit">Odeslat</button>
 </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
@@ -1495,7 +1496,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Obsazeno)`; // ✅ كلمة محجوز بالتشيكية
+            option.textContent = `${time} (Rez)`; // ✅ كلمة محجوز بالتشيكية
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
