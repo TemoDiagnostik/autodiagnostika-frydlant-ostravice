@@ -1452,11 +1452,11 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbzSJMwF8ioMe0cWNvTWEYrx_WMV6HdMLEJVh_SOutyuBk9bcfYo8_X0AOYhXAqpWDa4pA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbx52XUdj3xFEnxYA-xExpFfHQ-AgUVoNlPiL5PXIpm3rZsZEHfkohXIZLrL2GTQL5EdUA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr(); // فقط بعد تحميل المواعيد
+      initFlatpickr();
     });
 
   function initFlatpickr() {
@@ -1495,16 +1495,12 @@ document.addEventListener("DOMContentLoaded", function () {
         allTimes.forEach(time => {
           const option = document.createElement("option");
           option.value = time;
-
+          option.textContent = bookedTimes.includes(time) ? `${time} (Rez)` : time;
+          option.disabled = bookedTimes.includes(time);
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Rez)`; // ✅ كلمة محجوز بالتشيكية
-            option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
-          } else {
-            option.textContent = time;
           }
-
           timeSelect.appendChild(option);
         });
       }
@@ -1515,8 +1511,6 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1550,20 +1544,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbzSJMwF8ioMe0cWNvTWEYrx_WMV6HdMLEJVh_SOutyuBk9bcfYo8_X0AOYhXAqpWDa4pA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbx52XUdj3xFEnxYA-xExpFfHQ-AgUVoNlPiL5PXIpm3rZsZEHfkohXIZLrL2GTQL5EdUA/exec", {
       method: "POST",
       body: formData
     })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-      });
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+    })
+    .catch(() => {
+      alert("Chyba při odesílání formuláře. Zkuste to prosím znovu.");
     });
   });
 });
 </script>
+</body>
+</html>
