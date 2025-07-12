@@ -1358,21 +1358,18 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
   
 <!-- Flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbw0H6DHKZ8lL01zv1mt2AeETT9iIiWA5w2gXrC2565Pzhw2DNDmUdMSnOxozxTRGnFX/exec")
+  fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr();
-    })
-    .catch(err => {
-      console.error("❌ Fehler beim Laden der Reservierungsdaten:", err);
+      initFlatpickr(); // فقط بعد تحميل المواعيد
     });
 
   function initFlatpickr() {
@@ -1398,7 +1395,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const dateStr = `${yyyy}-${mm}-${dd}`;
 
         const timeSelect = document.getElementById("timepicker");
-        timeSelect.innerHTML = '<option value="">Uhrzeit wählen</option>';
+        timeSelect.innerHTML = '<option value="">Uhrzeit auswählen</option>';
 
         const allTimes = [
           "10:00", "10:30", "11:00", "11:30",
@@ -1413,7 +1410,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Besetzt)`;
+            option.textContent = `${time} (Besetzt)`; // ✅ بالألمانية
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1444,11 +1441,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let errors = [];
 
     if (vin.length !== 17) {
-      errors.push("VIN muss genau 17 Zeichen lang sein");
+      errors.push("Die VIN muss genau 17 Zeichen lang sein");
       isValid = false;
     }
     if (/[IOQ]/.test(vin)) {
-      errors.push("VIN darf keine I, O oder Q enthalten");
+      errors.push("Die VIN darf keine I, O oder Q enthalten");
       isValid = false;
     }
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
@@ -1465,9 +1462,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const formData = new FormData(form);
-    console.log("📤 Sende Formular...");
 
-    fetch("https://script.google.com/macros/s/AKfycbw0H6DHKZ8lL01zv1mt2AeETT9iIiWA5w2gXrC2565Pzhw2DNDmUdMSnOxozxTRGnFX/exec, {
+    fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
       method: "POST",
       body: formData
     })
@@ -1478,8 +1474,8 @@ document.addEventListener("DOMContentLoaded", function () {
         body: formData
       })
       .finally(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-   });
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+      });
     });
   });
 });
