@@ -1466,9 +1466,13 @@ document.addEventListener("DOMContentLoaded", function () {
       body: formData
     })
     .catch(() => {})
-    .finally(() => {
-  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-
+     .finally(() => {
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+        method: "POST",
+        body: formData
+      })
+      .finally(() => {
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
       });
     });
   });
@@ -1476,5 +1480,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
- 
   
