@@ -1364,7 +1364,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
   // ✅ تحميل الأيام المحجوزة
-  fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
+  fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1461,7 +1461,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
       method: "POST",
       body: formData
     })
