@@ -376,8 +376,9 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
-<button type="submit">Absenden</button>
-  
+<button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
+  Absenden
+</button>  
   </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
     📧 Haben Sie eine Frage? Schreiben Sie mir: 
