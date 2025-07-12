@@ -1363,7 +1363,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbx6oIBoq6Wz9-Ts2SP8rwAAwyyh6HrVH0dt1L9IonCnxi_7e3G0ClnWr3WFbnehcZxa/exec")
+  fetch("https://script.google.com/macros/s/AKfycbyO56ng_v3bCevL0xpypFHChjYib8wl2EaTVg-9ecFfdicvT3AZJEIq-mjuooZbrF50/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1465,7 +1465,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = new FormData(form);
     console.log("📤 Sende Formular...");
 
-    fetch("https://script.google.com/macros/s/AKfycbx6oIBoq6Wz9-Ts2SP8rwAAwyyh6HrVH0dt1L9IonCnxi_7e3G0ClnWr3WFbnehcZxa/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbyO56ng_v3bCevL0xpypFHChjYib8wl2EaTVg-9ecFfdicvT3AZJEIq-mjuooZbrF50/exec, {
       method: "POST",
       body: formData
     })
