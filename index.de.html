@@ -1459,10 +1459,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-
     const formData = new FormData(form);
 
-    // Step 1: إرسال البيانات إلى Google Sheet
     fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
       method: "POST",
       body: formData
@@ -1475,13 +1473,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .then(() => {
-      // Step 3: بعد كل شيء تمام، انتقل لصفحة الشكر
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-    })
-    .catch(() => {});
-   });
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+      });
+    });
   });
 });
 </script>
 </body>
-</html>  
+</html>
+ 
+  
