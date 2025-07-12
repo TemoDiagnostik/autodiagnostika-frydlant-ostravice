@@ -1367,7 +1367,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr(); // ✅ بعد تحميل البيانات
+      initFlatpickr();
     });
 
   function initFlatpickr() {
@@ -1426,8 +1426,6 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1461,15 +1459,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+    // Step 1: إرسال البيانات إلى Google Sheet
+    fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
       method: "POST",
       body: formData
     })
     .then(() => {
+      // Step 2: بعد النجاح، أرسل إلى FormSubmit (الإيميل المرتب)
+      return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+        method: "POST",
+        body: formData
+      });
+    })
+    .then(() => {
+      // Step 3: بعد كل شيء تمام، انتقل لصفحة الشكر
       window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
     })
-    .catch(() => {
-      alert("Fehler beim Senden.");
+    .catch(error => {
+      alert("Fehler beim Senden der Daten. Bitte versuchen Sie es erneut.");
+      console.error("Submission Error:", error);
     });
   });
 });
