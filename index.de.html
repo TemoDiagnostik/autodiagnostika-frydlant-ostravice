@@ -1475,9 +1475,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Step 3: بعد كل شيء تمام، انتقل لصفحة الشكر
       window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
     })
-    .catch(error => {
-      alert("Fehler beim Senden der Daten. Bitte versuchen Sie es erneut.");
-      console.error("Submission Error:", error);
+    .catch(() => {});
     });
   });
 });
