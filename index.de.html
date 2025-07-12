@@ -1363,18 +1363,19 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec")
+  // ✅ تحميل الأيام المحجوزة
+  fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr(); // فقط بعد تحميل المواعيد
+      initFlatpickr(); // ✅ شغّل التقويم بعد تحميل البيانات
     });
 
   function initFlatpickr() {
     flatpickr("#datepicker", {
       enableTime: false,
       dateFormat: "d.m.Y",
-      locale: "de",
+      locale: "de", // ✅ بالألمانية
       disableMobile: true,
       disable: [function (date) {
         const yyyy = date.getFullYear();
@@ -1422,12 +1423,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ✅ إرسال النموذج
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1439,15 +1439,15 @@ document.addEventListener("DOMContentLoaded", function () {
     let errors = [];
 
     if (vin.length !== 17) {
-      errors.push("Die VIN muss genau 17 Zeichen lang sein");
+      errors.push("VIN muss genau 17 Zeichen haben");
       isValid = false;
     }
     if (/[IOQ]/.test(vin)) {
-      errors.push("Die VIN darf keine I, O oder Q enthalten");
+      errors.push("VIN darf keine I, O oder Q enthalten");
       isValid = false;
     }
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
-      errors.push("Ungültige Zeichen in der VIN");
+      errors.push("VIN enthält ungültige Zeichen");
       isValid = false;
     }
 
@@ -1461,16 +1461,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-   
-    .catch(() => {})
-     .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-      });
+    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+    })
+    .catch(err => {
+      alert("Fehler beim Senden: " + err.message);
     });
   });
 });
