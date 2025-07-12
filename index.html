@@ -1467,6 +1467,10 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(data => {
       bookedSlots = data;
       initFlatpickr();
+    })
+    .catch(() => {
+      console.warn("⚠️ Nepodařilo se načíst rezervace. Flatpickr poběží bez blokací.");
+      initFlatpickr(); // fallback
     });
 
   function initFlatpickr() {
@@ -1518,6 +1522,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const form = document.getElementById("booking-form");
+  const submitButton = document.getElementById("submitButton");
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -1554,6 +1560,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
+    submitButton.disabled = true;
+    submitButton.innerText = "Wird gesendet...";
+
     fetch("https://script.google.com/macros/s/AKfycbx52XUdj3xFEnxYA-xExpFfHQ-AgUVoNlPiL5PXIpm3rZsZEHfkohXIZLrL2GTQL5EdUA/exec", {
       method: "POST",
       body: formData
@@ -1563,6 +1572,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(() => {
       alert("Chyba při odesílání formuláře. Zkuste to prosím znovu.");
+      submitButton.disabled = false;
+      submitButton.innerText = "Absenden";
     });
   });
 });
