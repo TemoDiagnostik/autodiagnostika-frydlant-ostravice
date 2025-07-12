@@ -1462,7 +1462,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbxTxKUSzh0F_ZvOU5lkZ6f63RPgTU6SxfZco0jKXHezjpRAwrJm4xyRJF0tv58R8nXnpg/exec")
+  fetch("https://script.google.com/macros/s/AKfycbypg-SwSeXhiGn5qWdjcooFqgZkQiQMv2s-gAUspdDZvoqMTPOtN8pcn4Cn4arILResiA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1563,7 +1563,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.disabled = true;
     submitButton.innerText = "Wird gesendet...";
 
-    fetch("https://script.google.com/macros/s/AKfycbxTxKUSzh0F_ZvOU5lkZ6f63RPgTU6SxfZco0jKXHezjpRAwrJm4xyRJF0tv58R8nXnpg/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbypg-SwSeXhiGn5qWdjcooFqgZkQiQMv2s-gAUspdDZvoqMTPOtN8pcn4Cn4arILResiA/exec", {
       method: "POST",
       body: formData
     })
@@ -1582,4 +1582,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
-</html>
+
