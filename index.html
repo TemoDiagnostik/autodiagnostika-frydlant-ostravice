@@ -486,8 +486,9 @@
   <select id="timepicker" name="time" required>
     <option value="">Vyberte čas</option>
   </select>
-
-  <button type="submit">Odeslat</button>
+<button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
+  Absenden
+</button>
 </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
@@ -1451,7 +1452,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
+  fetch("https://script.google.com/macros/s/AKfycbzyA857DIDBSU_5aITV8bladg29w0fYTN_rMZPX4H4KR6cMaovYwNHaGNuGrvR-H0Izrg/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1549,7 +1550,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbzyA857DIDBSU_5aITV8bladg29w0fYTN_rMZPX4H4KR6cMaovYwNHaGNuGrvR-H0Izrg/exec, {
       method: "POST",
       body: formData
     })
