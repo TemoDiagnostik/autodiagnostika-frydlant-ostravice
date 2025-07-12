@@ -1465,14 +1465,13 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       body: formData
     })
-    .then(() => {
-      // Step 2: بعد النجاح، أرسل إلى FormSubmit (الإيميل المرتب)
-      return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+    .catch(() => {})
+    .finally(() => {
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
-      });
-    })
-    .then(() => {
+      })
+      .finally(() => {
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
       });
     });
