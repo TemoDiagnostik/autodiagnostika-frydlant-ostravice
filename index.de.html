@@ -1410,7 +1410,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Reserviert)`;
+            option.textContent = `${time} (Besetzt)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
