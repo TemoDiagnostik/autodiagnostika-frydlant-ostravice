@@ -327,40 +327,11 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div>
 
-  <form id="booking-form">
+  <form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
-</form>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("booking-form");
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-
-    // Step 1: إرسال إلى Google Sheet
-    fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      // Step 2: إرسال إلى FormSubmit لإيميل مرتب
-      return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      });
-    })
-    .then(() => {
-      // Step 3: نقل المستخدم إلى صفحة الشكر
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-    });
-  });
-});
-</script>
 
  <label for="brandSelect">Fahrzeugmarke</label>
   <select id="brandSelect" name="carMake" required>
