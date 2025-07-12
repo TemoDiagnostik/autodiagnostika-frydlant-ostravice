@@ -1563,20 +1563,23 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.disabled = true;
     submitButton.innerText = "Wird gesendet...";
 
-    fetch("https://script.google.com/macros/s/AKfycbx52XUdj3xFEnxYA-xExpFfHQ-AgUVoNlPiL5PXIpm3rZsZEHfkohXIZLrL2GTQL5EdUA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
       method: "POST",
       body: formData
     })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    })
-    .catch(() => {
-      alert("Chyba při odesílání formuláře. Zkuste to prosím znovu.");
-      submitButton.disabled = false;
-      submitButton.innerText = "Absenden";
+    .catch(() => {})
+    .finally(() => {
+      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+        method: "POST",
+        body: formData
+      })
+      .finally(() => {
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+    });
     });
   });
 });
 </script>
 </body>
+</html>
 </html>
