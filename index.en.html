@@ -1366,7 +1366,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Booked)`;
+            option.textContent = `${time} (Busy)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
