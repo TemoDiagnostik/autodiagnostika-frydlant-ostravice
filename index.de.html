@@ -1462,16 +1462,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = new FormData(form);
 
     // إرسال فقط إلى FormSubmit (إيميل منسق)
-    fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-    })
-    .catch(() => {
-      alert("Fehler beim Senden");
-    });
+   fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
+  method: "POST",
+  body: formData
+})
+.then(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+})
+.catch(() => {
+  alert("Fehler beim Senden");
+});
   });
 });
 </script>
