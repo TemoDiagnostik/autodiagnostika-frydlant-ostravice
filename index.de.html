@@ -1367,7 +1367,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr();
+      initFlatpickr(); // فقط بعد تحميل المواعيد
     });
 
   function initFlatpickr() {
@@ -1408,7 +1408,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Besetzt)`;
+            option.textContent = `${time} (Besetzt)`; // ✅ بالألمانية
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1426,6 +1426,8 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    const date = document.getElementById("datepicker").value;
+    const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1457,6 +1459,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+
     const formData = new FormData(form);
 
     // Step 1: إرسال البيانات إلى Google Sheet
@@ -1477,6 +1480,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(() => {});
     });
+  });
   });
 });
 </script>
