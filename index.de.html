@@ -1367,7 +1367,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr(); // فقط بعد تحميل المواعيد
+      initFlatpickr();
     });
 
   function initFlatpickr() {
@@ -1408,7 +1408,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Besetzt)`; // ✅ بالألمانية
+            option.textContent = `${time} (Besetzt)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1426,8 +1426,6 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
     const vin = vinInput.value.trim().toUpperCase();
@@ -1461,19 +1459,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
+    // Step 1: Send to Google Sheets
     fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
       method: "POST",
       body: formData
     })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
+    .then(() => {
+      // Step 2: Send formatted email
+      return fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
       });
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
     });
   });
 });
