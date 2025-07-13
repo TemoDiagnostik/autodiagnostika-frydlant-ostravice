@@ -1424,10 +1424,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
+    
     event.preventDefault();
 const submitBtn = form.querySelector("button[type='submit']");
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Wird gesendet..."; // أو "جاري الإرسال..."
+submitBtn.disabled = true;
+submitBtn.innerText = "Wird gesendet...";
+
+const formData = new FormData(form);
+
+fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
+  method: "POST",
+  body: formData
+})
+.then(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+})
+.catch((error) => {
+  alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+  submitBtn.disabled = false;
+  submitBtn.innerText = "Absenden";
+});
     
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
