@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -1451,7 +1450,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
+  fetch("https://script.google.com/macros/s/AKfycbz7me7WPWDfigg-oRD48m4fP1ODttChaABQ_U2DALoQKnW1VyriV2obVcAHqjy6Dj2-NQ/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1496,7 +1495,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Rez)`; // ✅ كلمة محجوز بالتشيكية
+            option.textContent = `${time} (Obsazeno)`; // ✅ كلمة محجوز بالتشيكية
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1549,7 +1548,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz7me7WPWDfigg-oRD48m4fP1ODttChaABQ_U2DALoQKnW1VyriV2obVcAHqjy6Dj2-NQ/exec", {
       method: "POST",
       body: formData
     })
