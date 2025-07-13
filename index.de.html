@@ -327,7 +327,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div>
 
-  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbw0H6DHKZ8lL01zv1mt2AeETT9iIiWA5w2gXrC2565Pzhw2DNDmUdMSnOxozxTRGnFX/exec" method="POST">
+  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
 
@@ -1463,15 +1463,8 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       body: formData
     })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
+    
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-      });
     });
   });
 });
