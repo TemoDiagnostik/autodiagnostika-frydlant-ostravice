@@ -1452,7 +1452,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec")
+  fetch("https://script.google.com/macros/s/AKfycbypg-SwSeXhiGn5qWdjcooFqgZkQiQMv2s-gAUspdDZvoqMTPOtN8pcn4Cn4arILResiA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1497,7 +1497,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Rez)`; // ✅ كلمة محجوز بالتشيكية
+            option.textContent = `${time} (Obsazeno)`; // ✅ كلمة محجوز بالتشيكية
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1550,7 +1550,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycby_DSPzGWl8n82BLL14useWoYoh7Gvq9II-MLvIRvKNnrvzctU_E_1zkGjdqDmZUfXIpQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbypg-SwSeXhiGn5qWdjcooFqgZkQiQMv2s-gAUspdDZvoqMTPOtN8pcn4Cn4arILResiA/exec", {
       method: "POST",
       body: formData
     })
