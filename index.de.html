@@ -375,9 +375,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
-<button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...';">
-  Absenden
-</button>
+<button type="submit">Odeslat</button>
   
   </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
@@ -1425,11 +1423,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
         event.preventDefault();
-    
-    const submitBtn = form.querySelector("button[type='submit']");
-submitBtn.disabled = true;
-submitBtn.innerText = "Wird gesendet...";
-
     
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
