@@ -452,18 +452,13 @@
 </div>
 
 <!-- نموذج الحجز -->
-<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-  <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
-
-
+<form id="booking-form">
   <label for="brandSelect">Značka vozu</label>
   <select id="brandSelect" name="carMake" required onchange="updateModelOptions()">
     <option disabled selected>Vyberte značku</option>
   </select>
 
- <label for="modelSelect">Model vozu</label>
+  <label for="modelSelect">Model vozu</label>
   <select id="modelSelect" name="carModel" required>
     <option disabled selected>Vyberte model</option>
   </select>
@@ -482,23 +477,24 @@
   <label for="clientPhone">Telefon</label>
   <input type="tel" name="phone" id="clientPhone" required placeholder="Zadejte telefonní číslo">	 
 
-<label for="vin">VIN kód vozidla</label>
-<input type="text" id="vin" name="vin" placeholder="Zadejte VIN kód" required />
-<div id="vin-error" style="color:red; display:none; font-size:13px; margin-top:4px;"></div>
+  <label for="vin">VIN kód vozidla</label>
+  <input type="text" id="vin" name="vin" placeholder="Zadejte VIN kód" required />
+  <div id="vin-error" style="color:red; display:none; font-size:13px; margin-top:4px;"></div>
 
   <label for="note">Důvod návštěvy</label>
   <textarea name="reason" placeholder="Napište důvod návštěvy" required></textarea>
 
   <label for="datepicker">Datum</label>
-  <input type="text" id="datepicker" name="date" required placeholder="Vyberte datum">
+  <input type="text" id="datepicker" name="Datum" required placeholder="Vyberte datum">
 
   <label for="timepicker">Čas</label>
-  <select id="timepicker" name="time" required>
+  <select id="timepicker" name="Čas" required>
     <option value="">Vyberte čas</option>
   </select>
-<button type="submit" id="submitButton">
-  Absenden
-</button>
+
+  <button type="submit" id="submitButton">
+    Absenden
+  </button>
 </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
@@ -1460,40 +1456,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const BASEROW_API_TOKEN = "ARSLtdvdXkGFGeo7JEJJQlHc6fAhMkXc";
+  const DATABASE_ID = 256373;
+  const TABLE_ID = 605527;
+
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbypg-SwSeXhiGn5qWdjcooFqgZkQiQMv2s-gAUspdDZvoqMTPOtN8pcn4Cn4arILResiA/exec")
-    .then(res => res.json())
-    .then(data => {
-      bookedSlots = data;
-      initFlatpickr();
-    })
-    .catch(() => {
-      console.warn("⚠️ Nepodařilo se načíst rezervace. Flatpickr poběží bez blokací.");
-      initFlatpickr(); // fallback
+  // 1. تحميل المواعيد المحجوزة من Baserow
+  fetch(`https://api.baserow.io/api/database/rows/table/${TABLE_ID}/?user_field_names=true`, {
+    headers: { Authorization: `Token ${BASEROW_API_TOKEN}` }
+  })
+  .then(res => res.json())
+  .then(json => {
+    bookedSlots = parseBaserowData(json.results);
+    initFlatpickr();
+  })
+  .catch(() => {
+    console.warn("⚠️ Nepodařilo se načíst rezervace.");
+    initFlatpickr();
+  });
+
+  function parseBaserowData(rows) {
+    const fullDays = [];
+    const timeSlots = {};
+    rows.forEach(row => {
+      const date = row.Datum; // التاريخ
+      const time = row.Čas;   // الوقت
+      if (!timeSlots[date]) timeSlots[date] = [];
+      timeSlots[date].push(time);
     });
+
+    // تجميع الأيام الممتلئة
+    for (const date in timeSlots) {
+      if (timeSlots[date].length >= 7) fullDays.push(date);
+    }
+    return { fullDays, timeSlots };
+  }
 
   function initFlatpickr() {
     flatpickr("#datepicker", {
       enableTime: false,
-      dateFormat: "d.m.Y",
+      dateFormat: "Y-m-d",
       locale: "cs",
       disableMobile: true,
       disable: [function (date) {
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
+        const dateStr = date.toISOString().split("T")[0];
         return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
       }],
       onChange: function (selectedDates) {
         const date = selectedDates[0];
         if (!date) return;
-
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
+        const dateStr = date.toISOString().split("T")[0];
 
         const timeSelect = document.getElementById("timepicker");
         timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
@@ -1505,7 +1518,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
-
         allTimes.forEach(time => {
           const option = document.createElement("option");
           option.value = time;
@@ -1524,7 +1536,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("booking-form");
   const submitButton = document.getElementById("submitButton");
 
-  form.addEventListener("submit", function (event) {
+  form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const vinInput = document.getElementById("vin");
@@ -1558,24 +1570,43 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const formData = new FormData(form);
-
     submitButton.disabled = true;
-    submitButton.innerText = "Wird gesendet...";
+    submitButton.innerText = "Probíhá odeslání...";
 
-    fetch("https://script.google.com/macros/s/AKfycbypg-SwSeXhiGn5qWdjcooFqgZkQiQMv2s-gAUspdDZvoqMTPOtN8pcn4Cn4arILResiA/exec", {
+    const formData = new FormData(form);
+    const data = {};
+    for (let [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+
+    // 2. التحقق من عدم تكرار الحجز
+    const dateStr = data.Datum;
+    const timeStr = data.Čas;
+    const alreadyBooked = (bookedSlots.timeSlots[dateStr] || []).includes(timeStr);
+
+    if (alreadyBooked) {
+      alert("⚠️ Tento termín je již rezervován. Vyberte prosím jiný.");
+      submitButton.disabled = false;
+      submitButton.innerText = "Odeslat";
+      return;
+    }
+
+    // 3. إرسال البيانات إلى Baserow
+    fetch(`https://api.baserow.io/api/database/rows/table/${TABLE_ID}/`, {
       method: "POST",
-      body: formData
+      headers: {
+        Authorization: `Token ${BASEROW_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
     })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-    });
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+    })
+    .catch(err => {
+      alert("Chyba při odesílání rezervace.");
+      submitButton.disabled = false;
+      submitButton.innerText = "Odeslat";
     });
   });
 });
