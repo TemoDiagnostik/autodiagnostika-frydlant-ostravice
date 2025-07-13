@@ -1366,7 +1366,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr(); // فقط بعد تحميل المواعيد
+      initFlatpickr(); // بعد تحميل المواعيد فقط
     });
 
   function initFlatpickr() {
@@ -1407,7 +1407,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Besetzt)`; // ✅ بالألمانية
+            option.textContent = `${time} (Besetzt)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1460,17 +1460,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
+    // إرسال إلى Google Apps Script
     fetch("https://script.google.com/macros/s/AKfycbw0H6DHKZ8lL01zv1mt2AeETT9iIiWA5w2gXrC2565Pzhw2DNDmUdMSnOxozxTRGnFX/exec", {
       method: "POST",
       body: formData
     })
     .catch(() => {})
     .finally(() => {
+      // ثم إلى Formsubmit
       fetch("https://formsubmit.co/diagnostika@temosliving.de", {
         method: "POST",
         body: formData
       })
-     
+      .finally(() => {
+        // ثم الانتقال إلى صفحة الشكر
+        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-de.html";
+      });
     });
   });
 });
