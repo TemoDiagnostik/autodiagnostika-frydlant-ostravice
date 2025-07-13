@@ -1337,6 +1337,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
 
   
+<!-- Flatpickr -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
@@ -1345,7 +1346,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr();
+      initFlatpickr(); // فقط بعد تحميل المواعيد
     });
 
   function initFlatpickr() {
@@ -1439,6 +1440,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // منع التكرار عند الضغط
     submitBtn.disabled = true;
     submitBtn.innerText = "Wird gesendet...";
 
@@ -1448,23 +1450,9 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       body: formData
     })
-    .then(response => {
-      if (response.ok) {
-        window.location.replace("https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html");
-      } else {
-        alert("Fehler beim Senden.");
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Odeslat";
-      }
-    })
-    .catch(error => {
-      console.error("Fehler:", error);
-      alert("Verbindungsfehler:\n" + error.message);
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Odeslat";
+    .then(() => {
+      window.location.replace("https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html");
     });
-
-    return false;
   });
 });
 </script>
