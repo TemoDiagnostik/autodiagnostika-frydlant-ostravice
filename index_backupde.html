@@ -1387,7 +1387,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Besetzt)`; // ✅ بالألمانية
+            option.textContent = `${time} (Besetzt)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1402,9 +1402,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const form = document.getElementById("booking-form");
+  const submitBtn = form.querySelector("button[type='submit']");
+
   form.addEventListener("submit", function (event) {
-        event.preventDefault();
-    
+    event.preventDefault();
+
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
@@ -1438,19 +1440,21 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-   const formData = new FormData(form);
+    // منع التكرار عند الضغط
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Wird gesendet...";
 
-fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
-  method: "POST",
-  body: formData
-})
-.then(() => {
-  // بغض النظر عن الرد، ننتقل لصفحة الشكر
-  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-})
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
     });
   });
+});
 </script>
 </body>
 </html>
-  
