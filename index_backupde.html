@@ -327,9 +327,8 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div>
 
-  <form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
+  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbw0H6DHKZ8lL01zv1mt2AeETT9iIiWA5w2gXrC2565Pzhw2DNDmUdMSnOxozxTRGnFX/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
 
  <label for="brandSelect">Fahrzeugmarke</label>
@@ -376,9 +375,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
- <button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
-  Absenden
-</button>
+<button type="submit">Absenden</button>
   
   </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
@@ -1356,8 +1353,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 14px; height: 14px;">
   WhatsApp
 </a>
-  
-<!-- Flatpickr -->
+  <!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
@@ -1365,7 +1361,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec")
+  fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1463,7 +1459,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbwFGqM8remTEdcb_1OUggX9ExWDAHLtjSLlc2AApLALih5RFjDw8SqRHzt8RD8x6YSL/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
       method: "POST",
       body: formData
     })
