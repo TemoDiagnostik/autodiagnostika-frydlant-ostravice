@@ -1469,11 +1469,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(() => {})
     .finally(() => {
-      // ثم إلى Email
-      fetch("https://script.google.com/macros/s/AKfycbxsu20ovmm1AH73qNPzcngyVpRzl91aT85cy0hIUDwRkoRXR0OwMYRvs5hYfRhzhfVX/exec", {
-  method: "POST",
-  body: formData
-      })
       .finally(() => {
         // ثم الانتقال إلى صفحة الشكر
         window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
