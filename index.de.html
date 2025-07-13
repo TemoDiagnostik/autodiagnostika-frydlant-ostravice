@@ -1442,11 +1442,16 @@ fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Q
   method: "POST",
   body: formData
 })
-.then(() => {
-  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+.then(response => {
+  if (response.ok) {
+    window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+  } else {
+    alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+  }
 })
-.catch(() => {
-  alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+.catch((error) => {
+  console.error("Fehler:", error);
+  alert("Verbindungsfehler:\n" + error.message);
 });
     });
   });
