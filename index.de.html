@@ -1463,16 +1463,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = new FormData(form);
 
     // إرسال إلى Google Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbxsu20ovmm1AH73qNPzcngyVpRzl91aT85cy0hIUDwRkoRXR0OwMYRvs5hYfRhzhfVX/exec", {
+   fetch("https://script.google.com/macros/s/AKfycbxsu20ovmm1AH73qNPzcngyVpRzl91aT85cy0hIUDwRkoRXR0OwMYRvs5hYfRhzhfVX/exec", {
       method: "POST",
       body: formData
     })
     .catch(() => {})
     .finally(() => {
-      .finally(() => {
-        // ثم الانتقال إلى صفحة الشكر
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-      });
+      // ثم الانتقال إلى صفحة الشكر
+      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+    });
     });
   });
 });
