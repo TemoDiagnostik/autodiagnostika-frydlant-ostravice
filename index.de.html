@@ -375,7 +375,9 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
-<button type="submit">Absenden</button>
+ <button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
+  Absenden
+</button>
   
   </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
@@ -1467,10 +1469,10 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(() => {})
     .finally(() => {
-      // ثم إلى Formsubmit
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
+      // ثم إلى Email
+      fetch("https://script.google.com/macros/s/AKfycbxsu20ovmm1AH73qNPzcngyVpRzl91aT85cy0hIUDwRkoRXR0OwMYRvs5hYfRhzhfVX/exec", {
+  method: "POST",
+  body: formData
       })
       .finally(() => {
         // ثم الانتقال إلى صفحة الشكر
