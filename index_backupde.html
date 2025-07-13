@@ -5,11 +5,14 @@
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Private Auto-Diagnose</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
   <link rel="stylesheet" href="style.css" />
-  <!-- مكتبة Choices.js لتنسيق القوائم الاحترافية -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+  
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
@@ -327,7 +330,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   Anschließend werde ich Sie mit den genauen Informationen kontaktieren.
 </div>
 
-  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbw0H6DHKZ8lL01zv1mt2AeETT9iIiWA5w2gXrC2565Pzhw2DNDmUdMSnOxozxTRGnFX/exec" method="POST">
+  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_autoresponse" value="Der Termin wurde erfolgreich gesendet. Ich werde Sie in Kürze kontaktieren, um den Termin zu bestätigen. Vielen Dank.">
 
@@ -375,7 +378,9 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
-<button type="submit">Absenden</button>
+<button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
+  Odeslat
+</button>
   
   </form>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
@@ -459,31 +464,8 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <p style="font-size: 13px; padding-bottom: 12px;">💡 Die Preise sind Richtwerte. Den genauen Preis teile ich Ihnen nach der Diagnose mit.</p>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      flatpickr("#datepicker", {
-        dateFormat: "d.m.Y",
-        locale: "cs",
-        disableMobile: true,
-        disable: [
-          "2025-05-15",
-          "2025-05-20",
-          { from: "2025-05-25", to: "2025-05-27" }
-        ]
-      });
-});
-</script>
- <script> 
-      const form = document.getElementById('booking-form');
-      form.addEventListener('submit', function () {
-        document.getElementById('success-message').style.display = 'block';
-      });
-    });
-  </script>
   
-<!-- 1. carData: قائمة السيارات -->
+  
 <!-- 1. carData: قائمة السيارات -->
 <script>
   const carData = {
@@ -1353,10 +1335,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 14px; height: 14px;">
   WhatsApp
 </a>
-  <!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
+  
+<!-- Flatpickr -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
@@ -1422,8 +1403,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("booking-form");
   form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
+        event.preventDefault();
+    
     const date = document.getElementById("datepicker").value;
     const time = document.getElementById("timepicker").value;
     const vinInput = document.getElementById("vin");
@@ -1457,26 +1438,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const formData = new FormData(form);
+   const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
-      method: "POST",
-      body: formData
-    })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-      });
+fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
+  method: "POST",
+  body: formData
+})
+.then(() => {
+  // بغض النظر عن الرد، ننتقل لصفحة الشكر
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+})
     });
   });
-});
 </script>
 </body>
 </html>
- 
   
