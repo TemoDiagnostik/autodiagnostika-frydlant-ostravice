@@ -378,7 +378,7 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
-<button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
+<button type="submit" id="submit-btn">
   Odeslat
 </button>
   
@@ -1337,7 +1337,6 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
 
   
-<!-- Flatpickr -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
@@ -1346,7 +1345,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr(); // فقط بعد تحميل المواعيد
+      initFlatpickr();
     });
 
   function initFlatpickr() {
@@ -1440,7 +1439,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // منع التكرار عند الضغط
     submitBtn.disabled = true;
     submitBtn.innerText = "Wird gesendet...";
 
@@ -1450,9 +1448,23 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       body: formData
     })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+    .then(response => {
+      if (response.ok) {
+        window.location.replace("https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html");
+      } else {
+        alert("Fehler beim Senden.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Odeslat";
+      }
+    })
+    .catch(error => {
+      console.error("Fehler:", error);
+      alert("Verbindungsfehler:\n" + error.message);
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Odeslat";
     });
+
+    return false;
   });
 });
 </script>
