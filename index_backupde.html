@@ -378,8 +378,8 @@ Professionelle Aktualisierung von Navigationssystemen <span style="font-size: 16
   <select id="timepicker" name="time" required>
     <option value="">Uhrzeit auswählen</option>
   </select>
-<button type="submit" onclick="this.disabled=true; this.innerText='Wird gesendet...'; this.form.submit();">
-  Odeslat
+<button type="submit" id="submit-btn">
+ Schicken
 </button>
   
   </form>
@@ -1447,12 +1447,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-    });
+  method: "POST",
+  body: formData
+})
+.finally(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+});
   });
 });
 </script>
