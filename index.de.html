@@ -1447,13 +1447,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
-      method: "POST",
-      body: formData,
-       mode: "no-cors"
-    })
-    .finally(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-    });
+  method: "POST",
+  body: formData
+})
+.finally(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+});
   });
 });
 </script>
