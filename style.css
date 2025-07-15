@@ -486,22 +486,35 @@ body {
   }
 </style>
 
-#payment-button {
+.floating-button {
   position: fixed;
-  bottom: 15px;
   left: 15px;
-  background-color: #007bff;
+  width: 45px;
+  height: 45px;
+  background-color: #198754;
   color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  font-size: 22px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   z-index: 999;
+  text-decoration: none;
   transition: background-color 0.3s;
 }
 
-#payment-button:hover {
-  background-color: #0056b3;
+/* زر الدفع نقدًا */
+.cash-btn {
+  bottom: 80px;
+  background-color: #ffc107;
+}
+
+/* زر QR */
+.qr-btn {
+  bottom: 25px;
+  background-color: #0d6efd;
+}
+
+.floating-button:hover {
+  filter: brightness(90%);
 }
