@@ -1375,10 +1375,9 @@ document.addEventListener("DOMContentLoaded", function () {
         timeSelect.innerHTML = '<option value="">Uhrzeit auswählen</option>';
 
         const allTimes = [
-          "10:00", "10:30", "11:00", "11:30",
-          "12:00", "12:30", "13:00", "13:30",
-          "14:00", "14:30", "15:00", "15:30", "16:00"
-        ];
+  "10:00", "11:30", "13:00", "14:30", "16:00" , "17:30" , "19:00"
+];
+        
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
 
@@ -1419,14 +1418,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isValid = true;
     let errors = [];
 
-    if (vin.length !== 17) {
-      errors.push("Die VIN muss genau 17 Zeichen lang sein");
-      isValid = false;
-    }
-    if (/[IOQ]/.test(vin)) {
-      errors.push("Die VIN darf keine I, O oder Q enthalten");
-      isValid = false;
-    }
+   
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
       errors.push("Ungültige Zeichen in der VIN");
       isValid = false;
