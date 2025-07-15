@@ -1446,9 +1446,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
@@ -1464,7 +1461,7 @@ document.addEventListener("DOMContentLoaded", function () {
     flatpickr("#datepicker", {
       enableTime: false,
       dateFormat: "d.m.Y",
-      locale: "cs",
+       locale: "cs",
       disableMobile: true,
       disable: [function (date) {
         const yyyy = date.getFullYear();
@@ -1498,7 +1495,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Obsazeno)`; // ✅ كلمة محجوز بالتشيكية
+            option.textContent = `${time} (Obsazeno)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1513,6 +1510,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const form = document.getElementById("booking-form");
+  const submitBtn = form.querySelector("button[type='submit']");
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -1529,11 +1528,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let errors = [];
 
     if (vin.length !== 17) {
-      errors.push("VIN musí mít přesně 17 znaků");
+      errors.push("VIN obsahuje neplatné znaky");
       isValid = false;
     }
     if (/[IOQ]/.test(vin)) {
-      errors.push("VIN nesmí obsahovat I, O nebo Q");
+      errors.push("VIN obsahuje neplatné znaky");
       isValid = false;
     }
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
@@ -1549,22 +1548,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // منع التكرار عند الضغط
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Bude odesláno...";
+
     const formData = new FormData(form);
 
     fetch("https://script.google.com/macros/s/AKfycbz7me7WPWDfigg-oRD48m4fP1ODttChaABQ_U2DALoQKnW1VyriV2obVcAHqjy6Dj2-NQ/exec", {
-      method: "POST",
-      body: formData
-    })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-      });
-    });
+  method: "POST",
+  body: formData
+})
+.finally(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+});
   });
 });
 </script>
