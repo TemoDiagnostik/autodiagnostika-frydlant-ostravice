@@ -336,7 +336,7 @@ If your booking request concerns a navigation system map update, please wait for
 First, I will verify the VIN number and the type of system to see if the update is possible and what the approximate cost will be. Then I will contact you with the detailed information.
 </div>
   
-  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec" method="POST">
+  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbxPV7A8FY5qyZxRrVEgxfpEJbTpMaxQ_Boz8iqW-rIzSezGFxJFZyWn9eOLS8CnnpMRgA/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
   <input type="hidden" name="_autoresponse" value="The appointment has been successfully submitted. I will contact you shortly to confirm the appointment. Thank you.">
@@ -381,7 +381,9 @@ First, I will verify the VIN number and the type of system to see if the update 
   <option value="">Select time</option>
 </select>
 
-<button type="submit">Absenden</button>
+<button type="submit" id="submit-btn">
+ Send
+</button>
 </form> 
 <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Have a question? Write me at: 
@@ -1316,21 +1318,15 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
 
 <!-- Flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbymQlNVkG4204a1RYjyn3biYbkssKqQXhvAVX_aCBdSXl7eemnuHs1DDaxTJJqHyCuCNA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbxPV7A8FY5qyZxRrVEgxfpEJbTpMaxQ_Boz8iqW-rIzSezGFxJFZyWn9eOLS8CnnpMRgA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
-      initFlatpickr();
-    })
-    .catch(err => {
-      console.error("❌ Failed to load booking data:", err);
+      initFlatpickr(); // فقط بعد تحميل المواعيد
     });
 
   function initFlatpickr() {
@@ -1386,6 +1382,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const form = document.getElementById("booking-form");
+  const submitBtn = form.querySelector("button[type='submit']");
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -1402,11 +1400,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let errors = [];
 
     if (vin.length !== 17) {
-      errors.push("VIN must be exactly 17 characters");
+      errors.push("VIN contains invalid characters");
       isValid = false;
     }
     if (/[IOQ]/.test(vin)) {
-      errors.push("VIN cannot contain I, O, or Q");
+      errors.push("VIN contains invalid characters");
       isValid = false;
     }
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
@@ -1422,26 +1420,21 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const formData = new FormData(form);
-    console.log("📤 Submitting form...");
+    // منع التكرار عند الضغط
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Will be sent...";
 
-    fetch("https://script.google.com/macros/s/AKfycbymQlNVkG4204a1RYjyn3biYbkssKqQXhvAVX_aCBdSXl7eemnuHs1DDaxTJJqHyCuCNA/exec", {
-      method: "POST",
-      body: formData
-    })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-      window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html";
-     });
-    });
+    const formData = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbxPV7A8FY5qyZxRrVEgxfpEJbTpMaxQ_Boz8iqW-rIzSezGFxJFZyWn9eOLS8CnnpMRgA/exec", {
+  method: "POST",
+  body: formData
+})
+.finally(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
+});
   });
 });
 </script>
 </body>
 </html>
- 
