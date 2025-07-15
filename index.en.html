@@ -336,7 +336,7 @@ If your booking request concerns a navigation system map update, please wait for
 First, I will verify the VIN number and the type of system to see if the update is possible and what the approximate cost will be. Then I will contact you with the detailed information.
 </div>
   
-  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbxr8pPH0JwhfHWpAGUKxIlbOLkb8PpTkBMu_zwYXsbmVhOHPAKfOEbSmMpLom7gY0zLzA/exec" method="POST">
+  <form id="booking-form" action="https://script.google.com/macros/s/AKfycbwrEE4KDC8qbhN1F85ScL_zeS1eEfHzPOV3gB7CjT0VTHKkbhqkxgixFrvBJdiZHf0Heg/exec" method="POST">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_autoresponse" value="The appointment has been successfully submitted. I will contact you shortly to confirm the appointment. Thank you.">
 
@@ -1321,7 +1321,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbxr8pPH0JwhfHWpAGUKxIlbOLkb8PpTkBMu_zwYXsbmVhOHPAKfOEbSmMpLom7gY0zLzA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbwrEE4KDC8qbhN1F85ScL_zeS1eEfHzPOV3gB7CjT0VTHKkbhqkxgixFrvBJdiZHf0Heg/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1425,7 +1425,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbxr8pPH0JwhfHWpAGUKxIlbOLkb8PpTkBMu_zwYXsbmVhOHPAKfOEbSmMpLom7gY0zLzA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwrEE4KDC8qbhN1F85ScL_zeS1eEfHzPOV3gB7CjT0VTHKkbhqkxgixFrvBJdiZHf0Heg/exec", {
   method: "POST",
   body: formData
 })
