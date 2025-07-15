@@ -1419,14 +1419,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isValid = true;
     let errors = [];
 
-    if (vin.length !== 17) {
-      errors.push("Die VIN muss genau 17 Zeichen lang sein");
-      isValid = false;
-    }
-    if (/[IOQ]/.test(vin)) {
-      errors.push("Die VIN darf keine I, O oder Q enthalten");
-      isValid = false;
-    }
+   
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
       errors.push("Ungültige Zeichen in der VIN");
       isValid = false;
