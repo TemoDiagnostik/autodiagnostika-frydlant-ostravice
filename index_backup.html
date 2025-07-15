@@ -16,13 +16,14 @@
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soukromá Auto Diagnostika</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
   <link rel="stylesheet" href="style.css" />
-
-  
   <!-- مكتبة Choices.js لتنسيق القوائم الاحترافية -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+  
 <link rel="icon" type="image/jpeg" href="logo-temo.jpeg">
 </head>
 <body>
@@ -61,7 +62,7 @@
 <!-- واجهة الصفحة - Hero Section -->
 <div style="text-align: center; max-width: 700px; margin: 60px auto 0 auto;">
   <h1 style="color: #E8D8B1; font-size: 36px; font-weight: bold; margin-bottom: 20px;">
-   🛠️Soukromá diagnostika vozidel a aktualizace navigací. <br> Bez stresu - v přírodě
+   🛠️Soukromá Diagnostika vozidel a aktualizace navigací. <br> Bez stresu - v přírodě
   </h1>
   <p style="color: #E8D8B1; font-size: 18px; line-height: 1.6;">
    
@@ -441,10 +442,9 @@
 </div>
 
 <!-- نموذج الحجز -->
-<form id="booking-form" action="https://formsubmit.co/diagnostika@temosliving.de" method="POST">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html">
-  <input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
+<form id="booking-form" action="https://script.google.com/macros/s/AKfycbz7me7WPWDfigg-oRD48m4fP1ODttChaABQ_U2DALoQKnW1VyriV2obVcAHqjy6Dj2-NQ/exec" method="POST">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_autoresponse" value="Termín byl úspěšně odeslán. Brzy Vás budu kontaktovat pro potvrzení termínu. Děkujeme.">
 
 
   <label for="brandSelect">Značka vozu</label>
@@ -486,8 +486,9 @@
     <option value="">Vyberte čas</option>
   </select>
 
-  <button type="submit">Odeslat</button>
-</form>
+  <button type="submit" id="submit-btn">
+Odeslat
+</button>
   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">
   📧 Máte dotaz? Napište mi: 
   <a href="mailto:info@temosliving.de" style="color: #25D366; text-decoration: none;">
@@ -1442,15 +1443,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>  
 
 
-<!-- Flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
 
+<!-- Flatpickr -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   let bookedSlots = { fullDays: [], timeSlots: {} };
 
-  fetch("https://script.google.com/macros/s/AKfycbz7me7WPWDfigg-oRD48m4fP1ODttChaABQ_U2DALoQKnW1VyriV2obVcAHqjy6Dj2-NQ/exec")
+  fetch("https://script.google.com/macros/s/AKfycbxPV7A8FY5qyZxRrVEgxfpEJbTpMaxQ_Boz8iqW-rIzSezGFxJFZyWn9eOLS8CnnpMRgA/exec")
     .then(res => res.json())
     .then(data => {
       bookedSlots = data;
@@ -1461,7 +1460,7 @@ document.addEventListener("DOMContentLoaded", function () {
     flatpickr("#datepicker", {
       enableTime: false,
       dateFormat: "d.m.Y",
-      locale: "cs",
+       locale: "cs",
       disableMobile: true,
       disable: [function (date) {
         const yyyy = date.getFullYear();
@@ -1482,11 +1481,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const timeSelect = document.getElementById("timepicker");
         timeSelect.innerHTML = '<option value="">Vyberte čas</option>';
 
-        const allTimes = [
-          "10:00", "10:30", "11:00", "11:30",
-          "12:00", "12:30", "13:00", "13:30",
-          "14:00", "14:30", "15:00", "15:30", "16:00"
-        ];
+       const allTimes = [
+  "10:00", "11:30", "13:00", "14:30", "16:00" , "17:30" , "19:00"
+];
 
         const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
 
@@ -1495,7 +1492,7 @@ document.addEventListener("DOMContentLoaded", function () {
           option.value = time;
 
           if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Obsazeno)`; // ✅ كلمة محجوز بالتشيكية
+            option.textContent = `${time} (Obsazeno)`;
             option.disabled = true;
             option.style.color = "red";
             option.style.fontWeight = "bold";
@@ -1510,6 +1507,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const form = document.getElementById("booking-form");
+  const submitBtn = form.querySelector("button[type='submit']");
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -1525,14 +1524,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isValid = true;
     let errors = [];
 
-    if (vin.length !== 17) {
-      errors.push("VIN musí mít přesně 17 znaků");
-      isValid = false;
-    }
-    if (/[IOQ]/.test(vin)) {
-      errors.push("VIN nesmí obsahovat I, O nebo Q");
-      isValid = false;
-    }
+    
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
       errors.push("VIN obsahuje neplatné znaky");
       isValid = false;
@@ -1546,22 +1538,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // منع التكرار عند الضغط
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Bude odesláno...";
+
     const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbz7me7WPWDfigg-oRD48m4fP1ODttChaABQ_U2DALoQKnW1VyriV2obVcAHqjy6Dj2-NQ/exec", {
-      method: "POST",
-      body: formData
-    })
-    .catch(() => {})
-    .finally(() => {
-      fetch("https://formsubmit.co/diagnostika@temosliving.de", {
-        method: "POST",
-        body: formData
-      })
-      .finally(() => {
-        window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
-      });
-    });
+    fetch("https://script.google.com/macros/s/AKfycbxPV7A8FY5qyZxRrVEgxfpEJbTpMaxQ_Boz8iqW-rIzSezGFxJFZyWn9eOLS8CnnpMRgA/exec", {
+  method: "POST",
+  body: formData
+})
+.finally(() => {
+  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html";
+});
   });
 });
 </script>
