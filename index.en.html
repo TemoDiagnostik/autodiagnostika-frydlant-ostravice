@@ -1398,14 +1398,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isValid = true;
     let errors = [];
 
-    if (vin.length !== 17) {
-      errors.push("VIN contains invalid characters");
-      isValid = false;
-    }
-    if (/[IOQ]/.test(vin)) {
-      errors.push("VIN contains invalid characters");
-      isValid = false;
-    }
+    
     if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
       errors.push("VIN contains invalid characters");
       isValid = false;
