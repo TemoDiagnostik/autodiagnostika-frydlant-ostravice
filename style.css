@@ -297,7 +297,23 @@ body {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+   display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 16px;
+    border-radius: 12px;
+    margin: 0 auto 24px auto;
+    max-width: 500px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease; /* إضافة تأثير سلس */
 }
+
+.service-button:hover {
+    background: rgba(0, 0, 0, 0.8);  /* تغيير الخلفية عند التمرير */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* إضافة ظل أكبر */
+}
+
 .service-text h3 {
   margin: 0;
   color: #E8D8B1;
@@ -486,5 +502,8 @@ body {
   }
 </style>
 
-
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
