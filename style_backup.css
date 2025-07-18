@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -302,7 +301,8 @@ body {
 .service-text h3 {
   margin: 0;
   color: #E8D8B1;
-  font-size: 20px;
+  font-size: 28px;
+  font-weight: bold;
 }
 .service-icon {
   filter: brightness(0) saturate(100%) invert(72%) sepia(26%) saturate(537%) hue-rotate(11deg) brightness(93%) contrast(85%);
@@ -329,6 +329,8 @@ body {
   color: #b00;
 }
 
+
+/* ==== موبايل ==== */
 /* ==== موبايل ==== */
 @media only screen and (max-width: 768px) {
   html, body {
@@ -340,14 +342,149 @@ body {
     padding: 0;
     overflow: auto;
     background-image: url('background-mobile.webp');
-    background-size: 100vw 100vh;
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-color: black;
   }
 
+.btn-title {
+  font-size: 22px;
+}
+
+.btn-description {
+  font-size: 12px;
+}
+  
+  .service-text h3 {
+    font-size: 28px;
+  }
+
   main, section, .service-container {
     background-color: transparent !important;
   }
+
+  /* تصغير حجم الزر وتظليله */
+  .accordion-button {
+    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.25);  /* تظليل الزر */
+    padding: 8px 10px;
+  }
+
+  .accordion-button .service-button {
+    gap: 6px;
+  }
+
+  /* تكبير عنوان الزر */
+  .service-button span:first-of-type {
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  /* الجملة التوضيحية تبقى صغيرة */
+  .service-button span:nth-of-type(2) {
+    font-size: 13px;
+    font-weight: normal;
+  }
+
+  .accordion-panel {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  .reservation-form {
+    padding: 12px 10px;
+  }
 }
+
+/* ==== ديسكتوب ==== */
+@media only screen and (min-width: 769px) {
+  .service-text h3 {
+    font-size: 30px;
+  }
+}
+
+
+.btn-title {
+  font-weight: bold;
+  color: #EBDBB1;
+  font-size: 26px; /* للحجم الطبيعي على الديسكتوب */
+}
+
+.btn-arrow {
+  font-size: 16px;
+  color: #EBDBB1;
+}
+
+.btn-description {
+  font-size: 14px;
+  color: #EBDBB1;
+  font-weight: 400;
+  margin-left: 36px;
+}
+
+
+
+  .service-container {
+    max-width: 500px;
+    margin: 0 auto 18px auto;
+  }
+
+  .accordion-button {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+  }
+
+  .accordion-button:hover {
+    background-color: rgba(235, 219, 177, 0.08);
+  }
+
+  .service-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-button img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .service-button span:first-child {
+    font-weight: bold;
+    color: #EBDBB1;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-button span:last-child {
+    font-size: 16px;
+    color: #EBDBB1;
+    font-weight: 400;
+    margin-left: 52px; /* يضمن المحاذاة أسفل الأيقونة */
+    margin-top: 4px;
+  }
+</style>
+
+
+
