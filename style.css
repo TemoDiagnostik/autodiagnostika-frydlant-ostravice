@@ -351,6 +351,7 @@ body {
 
 
 /* ==== موبايل ==== */
+/* ==== موبايل ==== */
 @media only screen and (max-width: 768px) {
   html, body {
     min-height: 100vh;
@@ -368,31 +369,25 @@ body {
     background-color: black;
   }
 
-  .btn-title {
-    font-size: 22px;
-  }
+.btn-title {
+  font-size: 22px;
+}
 
-  .btn-description {
-    font-size: 12px;
-  }
-
+.btn-description {
+  font-size: 12px;
+}
+  
   .service-text h3 {
-    font-size: 24px;
-  }
-
-  .service-button {
-    width: 240px;
-    height: 120px;
-    padding: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 28px;
   }
 
   main, section, .service-container {
     background-color: transparent !important;
   }
 
+  /* تصغير حجم الزر وتظليله */
   .accordion-button {
-    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.25);
+    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.25);  /* تظليل الزر */
     padding: 8px 10px;
   }
 
@@ -400,11 +395,13 @@ body {
     gap: 6px;
   }
 
+  /* تكبير عنوان الزر */
   .service-button span:first-of-type {
     font-size: 17px;
     font-weight: bold;
   }
 
+  /* الجملة التوضيحية تبقى صغيرة */
   .service-button span:nth-of-type(2) {
     font-size: 13px;
     font-weight: normal;
@@ -437,20 +434,13 @@ body {
   .service-text h3 {
     font-size: 30px;
   }
-
-  .service-button {
-    width: 260px;
-    height: 130px;
-    padding: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  }
 }
 
-/* ==== عام ==== */
+
 .btn-title {
   font-weight: bold;
   color: #EBDBB1;
-  font-size: 26px;
+  font-size: 26px; /* للحجم الطبيعي على الديسكتوب */
 }
 
 .btn-arrow {
@@ -465,58 +455,56 @@ body {
   margin-left: 36px;
 }
 
-.service-container {
-  max-width: 500px;
-  margin: 0 auto 18px auto;
-}
 
-.accordion-button {
-  width: 100%;
-  background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 16px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: block;
-}
 
-.accordion-button:hover {
-  background-color: rgba(235, 219, 177, 0.08);
-}
+  .service-container {
+    max-width: 500px;
+    margin: 0 auto 18px auto;
+  }
 
-.service-button {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background: rgba(0, 0, 0, 0.6);
-  border: none !important;
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  margin: 0 auto 24px auto;
-}
+  .accordion-button {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+  }
 
-.service-button img {
-  width: 44px;
-  height: 44px;
-}
+  .accordion-button:hover {
+    background-color: rgba(235, 219, 177, 0.08);
+  }
 
-.service-button span:first-child {
-  font-weight: bold;
-  color: #EBDBB1;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+  .service-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.service-button span:last-child {
-  font-size: 16px;
-  color: #EBDBB1;
-  font-weight: 400;
-  margin-left: 52px;
-  margin-top: 4px;
-}
+  .service-button img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .service-button span:first-child {
+    font-weight: bold;
+    color: #EBDBB1;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-button span:last-child {
+    font-size: 16px;
+    color: #EBDBB1;
+    font-weight: 400;
+    margin-left: 52px; /* يضمن المحاذاة أسفل الأيقونة */
+    margin-top: 4px;
+  }
+</style>
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
