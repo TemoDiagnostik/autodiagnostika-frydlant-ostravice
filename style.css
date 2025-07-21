@@ -296,23 +296,23 @@ body {
   box-sizing: border-box;
 }
 .service-button {
-  background: transparent !important;
+  background: rgba(0, 0, 0, 0.6);
   border: none !important;
-  box-shadow: none !important;
-   display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 16px;
-    border-radius: 12px;
-    margin: 0 auto 24px auto;
-    width: 240px;
-    height: 120px;
-    margin: 0 auto 24px auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease; /* إضافة تأثير سلس */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 280px;
+  min-height: 130px;
+  margin: 0 auto 24px auto;
+  transition: all 0.3s ease; /* تأثير سلس */
+  text-align: left;
+  box-sizing: border-box;
 }
-
 .service-button:hover {
     background: rgba(0, 0, 0, 0.8);  /* تغيير الخلفية عند التمرير */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* إضافة ظل أكبر */
