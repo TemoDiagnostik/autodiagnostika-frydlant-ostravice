@@ -289,8 +289,10 @@ body {
 .service-box {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 160px;
   margin: 25px auto;
-  max-width: 380px;
   box-sizing: border-box;
 }
 .service-button {
@@ -304,7 +306,9 @@ body {
     padding: 16px;
     border-radius: 12px;
     margin: 0 auto 24px auto;
-    max-width: 500px;
+    width: 320px;
+    height: 160px;
+    margin: 0 auto 24px auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease; /* إضافة تأثير سلس */
 }
