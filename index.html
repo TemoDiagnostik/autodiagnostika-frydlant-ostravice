@@ -46,7 +46,25 @@ src="https://www.facebook.com/tr?id=1443820870216904&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
   </head>
 <body>
-
+<script>
+fetch('https://graph.facebook.com/v17.0/1443820870216904/events?access_token=EAAoczubYPnMBPGkq6xJUGtAsAGGjznZBVvZAHa5n75ofT8rWQlAdPWAQmh08kYz6AXcVpZA9ZA51I5ejIku7W05F2lPJbtZCyTnOZB4qSiZCPJTIAIJ9kx5YtdcZB1qRAZBZCQKLg7MM57fPqzkTJfyHDU97w0wVA32U30PtUCqf1I91QYUBEKWK3N4fU0IWf82QZDZD', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    data: [{
+      event_name: 'PageView',
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: 'website',
+      user_data: {
+        client_ip_address: '{{auto}}',
+        client_user_agent: navigator.userAgent
+      }
+    }]
+  })
+});
+</script>
 <!-- الهيدر (أعلى الصفحة): لوجو يسار، إيميل + لغات يمين -->
 <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
   <!-- اللوجو أقصى اليسار -->
