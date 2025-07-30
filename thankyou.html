@@ -59,7 +59,7 @@
     <p>Váš termín byl úspěšně odeslán.<br>Brzy Vás budeme kontaktovat pro potvrzení.</p>
     <a href="index.html">Zpět na úvodní stránku</a>
   </div>
- <script>
+<script>
 function sha256(input) {
   const encoder = new TextEncoder();
   const data = encoder.encode(input.toLowerCase().trim());
@@ -70,18 +70,18 @@ function sha256(input) {
   });
 }
 
-const userEmail = "kunde@email.de";  // ← اكتب هنا بريد العميل لو متاح
+// ← استبدل هذا بالإيميل الفعلي للعميل إن توفر. لو مش متاح، ممكن تتركه "".
+const userEmail = "kunde@email.de";
 
 sha256(userEmail).then(hashedEmail => {
   const payload = {
     data: [
       {
-        event_name: "Lead",  // ← غيرنا الحدث من Purchase إلى Lead
+        event_name: "Lead",  // ← أهم نقطة: حدث Lead وليس Purchase
         event_time: Math.floor(Date.now() / 1000),
         action_source: "website",
         user_data: {
-          em: [hashedEmail],
-          ph: [null]
+          em: [hashedEmail]
         }
       }
     ]
@@ -95,8 +95,8 @@ sha256(userEmail).then(hashedEmail => {
     body: JSON.stringify(payload)
   })
   .then(response => response.json())
-  .then(result => console.log("Meta Event sent:", result))
-  .catch(error => console.error("Error:", error));
+  .then(result => console.log("Meta Lead event sent:", result))
+  .catch(error => console.error("Error sending Meta event:", error));
 });
 </script> 
 </body>
