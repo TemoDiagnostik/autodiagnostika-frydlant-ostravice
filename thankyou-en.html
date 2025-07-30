@@ -59,5 +59,45 @@
     <p>Your appointment has been successfully submitted.<br>We will contact you shortly for confirmation.</p>
     <a href="index.en.html">Back to Homepage</a>
   </div>
+  <script>
+function sha256(input) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(input.toLowerCase().trim());
+  return crypto.subtle.digest('SHA-256', data).then((hashBuffer) => {
+    return Array.from(new Uint8Array(hashBuffer))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  });
+}
+
+const userEmail = "kunde@email.de";  // ← اكتب هنا بريد العميل لو متاح
+
+sha256(userEmail).then(hashedEmail => {
+  const payload = {
+    data: [
+      {
+        event_name: "Lead",  // ← غيرنا الحدث من Purchase إلى Lead
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: "website",
+        user_data: {
+          em: [hashedEmail],
+          ph: [null]
+        }
+      }
+    ]
+  };
+
+  fetch("https://graph.facebook.com/v17.0/1443820870216904/events?access_token=EAAoczubYPnMBPGkq6xJUGtAsAGGjznZBVvZAHa5n75ofT8rWQlAdPWAQmh08kYz6AXcVpZA9ZA51I5ejIku7W05F2lPJbtZCyTnOZB4qSiZCPJTIAIJ9kx5YtdcZB1qRAZBZCQKLg7MM57fPqzkTJfyHDU97w0wVA32U30PtUCqf1I91QYUBEKWK3N4fU0IWf82QZDZD", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => response.json())
+  .then(result => console.log("Meta Event sent:", result))
+  .catch(error => console.error("Error:", error));
+});
+</script>
 </body>
 </html>
