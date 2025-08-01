@@ -17,26 +17,29 @@
 
 <!-- Meta Pixel Code -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1443820870216904');
-fbq('track', 'PageView');
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '1825780088337394'); 
+  fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1443820870216904&ev=PageView&noscript=1"
-/></noscript>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1825780088337394&ev=PageView&noscript=1"/>
+</noscript>
 <!-- End Meta Pixel Code -->
-  
 </head>
+
 <body>
 <script>
-fetch('https://graph.facebook.com/v17.0/1443820870216904/events?access_token=EAAoczubYPnMBPGkq6xJUGtAsAGGjznZBVvZAHa5n75ofT8rWQlAdPWAQmh08kYz6AXcVpZA9ZA51I5ejIku7W05F2lPJbtZCyTnOZB4qSiZCPJTIAIJ9kx5YtdcZB1qRAZBZCQKLg7MM57fPqzkTJfyHDU97w0wVA32U30PtUCqf1I91QYUBEKWK3N4fU0IWf82QZDZD', {
+fetch('https://graph.facebook.com/v17.0/1825780088337394/events?access_token=EAAoczubYPnMBPGkq6xJUGtAsAGGjznZBVvZAHa5n75ofT8rWQlAdPWAQmh08kYz6AXcVpZA9ZA51I5ejIku7W05F2lPJbtZCyTnOZB4qSiZCPJTIAIJ9kx5YtdcZB1qRAZBZCQKLg7MM57fPqzkTJfyHDU97w0wVA32U30PtUCqf1I91QYUBEKWK3N4fU0IWf82QZDZD', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -47,12 +50,14 @@ fetch('https://graph.facebook.com/v17.0/1443820870216904/events?access_token=EAA
       event_time: Math.floor(Date.now() / 1000),
       action_source: 'website',
       user_data: {
-        client_ip_address: '{{auto}}',
         client_user_agent: navigator.userAgent
       }
     }]
   })
-});
+})
+.then(response => response.json())
+.then(data => console.log("Meta Event Sent:", data))
+.catch(error => console.error("Meta API Error:", error));
 </script>
 <!-- الهيدر (أعلى الصفحة): لوجو يسار، إيميل + لغات يمين -->
 <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
