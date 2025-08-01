@@ -61,44 +61,27 @@
     <a href="index.de.html">Zurück zur Startseite</a>
   </div>
 <script>
-function sha256(input) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(input.toLowerCase().trim());
-  return crypto.subtle.digest('SHA-256', data).then((hashBuffer) => {
-    return Array.from(new Uint8Array(hashBuffer))
-      .map(b => b.toString(16).padStart(2, '0'))
-      .join('');
-  });
-}
-
-// ← استبدل هذا بالإيميل الفعلي للعميل إن توفر. لو مش متاح، ممكن تتركه "".
-const userEmail = "kunde@email.de";
-
-sha256(userEmail).then(hashedEmail => {
-  const payload = {
+fetch('https://graph.facebook.com/v17.0/1825780088337394/events?access_token=EAAoczubYPnMBPGkq6xJUGtAsAGGjznZBVvZAHa5n75ofT8rWQlAdPWAQmh08kYz6AXcVpZA9ZA51I5ejIku7W05F2lPJbtZCyTnOZB4qSiZCPJTIAIJ9kx5YtdcZB1qRAZBZCQKLg7MM57fPqzkTJfyHDU97w0wVA32U30PtUCqf1I91QYUBEKWK3N4fU0IWf82QZDZD', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
     data: [
       {
-        event_name: "Lead",  // ← أهم نقطة: حدث Lead وليس Purchase
+        event_name: "Lead",  // ← ده الحدث اللي بيدل إن العميل حجز
         event_time: Math.floor(Date.now() / 1000),
         action_source: "website",
         user_data: {
-          em: [hashedEmail]
+          client_user_agent: navigator.userAgent
         }
       }
     ]
-  };
-
-  fetch("https://graph.facebook.com/v17.0/1443820870216904/events?access_token=EAAoczubYPnMBPGkq6xJUGtAsAGGjznZBVvZAHa5n75ofT8rWQlAdPWAQmh08kYz6AXcVpZA9ZA51I5ejIku7W05F2lPJbtZCyTnOZB4qSiZCPJTIAIJ9kx5YtdcZB1qRAZBZCQKLg7MM57fPqzkTJfyHDU97w0wVA32U30PtUCqf1I91QYUBEKWK3N4fU0IWf82QZDZD", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
   })
-  .then(response => response.json())
-  .then(result => console.log("Meta Lead event sent:", result))
-  .catch(error => console.error("Error sending Meta event:", error));
-});
+})
+.then(response => response.json())
+.then(data => console.log("✅ Meta Lead event sent:", data))
+.catch(error => console.error("❌ Error sending Meta Lead event:", error));
 </script>
 </body>
 </html>
