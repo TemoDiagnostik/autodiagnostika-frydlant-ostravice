@@ -143,6 +143,25 @@
         });
     }
 
+    const submitThroughHiddenFrame = (submitUrl) => {
+      const frameName = "temo-booking-submit-frame";
+      let frame = document.querySelector(`iframe[name='${frameName}']`);
+
+      if (!frame) {
+        frame = document.createElement("iframe");
+        frame.name = frameName;
+        frame.style.display = "none";
+        frame.setAttribute("aria-hidden", "true");
+        document.body.appendChild(frame);
+      }
+
+      form.action = submitUrl;
+      form.method = "POST";
+      form.target = frameName;
+
+      HTMLFormElement.prototype.submit.call(form);
+    };
+
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -172,35 +191,30 @@
         return;
       }
 
-      if (!apiUrl) {
+      const submitUrl = config.submitUrl || apiUrl || form.getAttribute("action");
+      if (!submitUrl) {
         window.alert(config.submitError || "The reservation could not be sent. Please try again.");
         return;
       }
 
-      const originalButtonText = submitBtn ? submitBtn.textContent : "";
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = config.sendingLabel || "Sending...";
       }
 
-      fetch(apiUrl, {
-        method: "POST",
-        body: new FormData(form)
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Booking request failed with status ${response.status}`);
-          }
+      try {
+        submitThroughHiddenFrame(submitUrl);
+        window.setTimeout(() => {
           window.location.href = config.thankYouUrl || "thankyou.html";
-        })
-        .catch((error) => {
-          console.error("Booking submission failed.", error);
-          window.alert(config.submitError || "The reservation could not be sent. Please try again.");
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalButtonText;
-          }
-        });
+        }, 1400);
+      } catch (error) {
+        console.error("Booking submission failed.", error);
+        window.alert(config.submitError || "The reservation could not be sent. Please try again.");
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = config.submitButtonLabel || "Send";
+        }
+      }
     });
   });
 })();
