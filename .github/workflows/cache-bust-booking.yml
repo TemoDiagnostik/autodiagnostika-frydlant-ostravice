@@ -1,0 +1,52 @@
+name: Refresh booking script cache
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/cache-bust-booking.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update booking script version
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          files = [Path('index.html'), Path('index.de.html'), Path('index.en.html')]
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('booking.js?v=20260715-1', 'booking.js?v=20260715-2')
+              path.write_text(text, encoding='utf-8')
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          marker = '''  <button type="submit" id="submit-btn">
+ Odeslat
+ </button>
+   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">'''
+          replacement = '''  <button type="submit" id="submit-btn">
+ Odeslat
+ </button>
+ </form>
+   <p style="text-align: center; font-size: 14px; color: #E8D8B1; margin-top: 15px;">'''
+          if marker in text:
+              text = text.replace(marker, replacement, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit refreshed references
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html index.de.html index.en.html
+          git diff --cached --quiet || git commit -m "Refresh booking script and close Czech form"
+          git push
