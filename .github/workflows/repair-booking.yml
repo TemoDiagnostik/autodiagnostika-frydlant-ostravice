@@ -1,0 +1,102 @@
+name: Repair booking form
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/repair-booking.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Replace fragile booking scripts
+        shell: python
+        run: |
+          from pathlib import Path
+          import json
+          import re
+
+          configs = {
+              "index.html": {
+                  "apiUrl": "https://script.google.com/macros/s/AKfycbxPV7A8FY5qyZxRrVEgxfpEJbTpMaxQ_Boz8iqW-rIzSezGFxJFZyWn9eOLS8CnnpMRgA/exec",
+                  "locale": "cs",
+                  "timePlaceholder": "Vyberte čas",
+                  "busyLabel": "Obsazeno",
+                  "sendingLabel": "Bude odesláno...",
+                  "dateTimeError": "Vyberte prosím datum a čas.",
+                  "submitError": "Rezervaci se nepodařilo odeslat. Zkuste to prosím znovu.",
+                  "vinError": "VIN musí mít přesně 17 platných znaků.",
+                  "thankYouUrl": "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou.html"
+              },
+              "index.de.html": {
+                  "apiUrl": "https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec",
+                  "locale": "de",
+                  "timePlaceholder": "Uhrzeit auswählen",
+                  "busyLabel": "Besetzt",
+                  "sendingLabel": "Wird gesendet...",
+                  "dateTimeError": "Bitte wählen Sie ein Datum und eine Uhrzeit aus.",
+                  "submitError": "Die Reservierung konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+                  "vinError": "Die VIN muss genau 17 gültige Zeichen enthalten.",
+                  "thankYouUrl": "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html"
+              },
+              "index.en.html": {
+                  "apiUrl": "https://script.google.com/macros/s/AKfycbwrEE4KDC8qbhN1F85ScL_zeS1eEfHzPOV3gB7CjT0VTHKkbhqkxgixFrvBJdiZHf0Heg/exec",
+                  "locale": "default",
+                  "timePlaceholder": "Select time",
+                  "busyLabel": "Busy",
+                  "sendingLabel": "Sending...",
+                  "dateTimeError": "Please select a date and time.",
+                  "submitError": "The reservation could not be sent. Please try again.",
+                  "vinError": "The VIN must contain exactly 17 valid characters.",
+                  "thankYouUrl": "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/thankyou-en.html"
+              }
+          }
+
+          pattern = re.compile(
+              r"<!-- Flatpickr -->\s*<script>.*?</script>(?=\s*</body>)",
+              re.DOTALL
+          )
+
+          for filename, config in configs.items():
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              config_json = json.dumps(config, ensure_ascii=False, indent=2)
+              replacement = (
+                  "<!-- Booking date/time -->\n"
+                  "<script>\n"
+                  f"window.TEMO_BOOKING_CONFIG = {config_json};\n"
+                  "</script>\n"
+                  "<script src=\"booking.js?v=20260715-1\"></script>"
+              )
+
+              text, replacements = pattern.subn(replacement, text, count=1)
+              if replacements != 1:
+                  raise RuntimeError(f"Could not locate the booking script in {filename}")
+
+              if filename == "index.html":
+                  text = text.replace(
+                      "https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js",
+                      "https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"
+                  )
+
+              path.write_text(text, encoding="utf-8")
+
+      - name: Commit repaired booking form
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html index.de.html index.en.html
+          if git diff --cached --quiet; then
+            echo "No changes were required."
+            exit 0
+          fi
+          git commit -m "Fix booking date and time selection"
+          git push
