@@ -1490,116 +1490,20 @@ document.addEventListener("DOMContentLoaded", function () {
 </a>
 
   
-<!-- Flatpickr -->
+<!-- Booking date/time -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  let bookedSlots = { fullDays: [], timeSlots: {} };
-
-  fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec")
-    .then(res => res.json())
-    .then(data => {
-      bookedSlots = data;
-      initFlatpickr(); // فقط بعد تحميل المواعيد
-    });
-
-  function initFlatpickr() {
-    flatpickr("#datepicker", {
-      enableTime: false,
-      dateFormat: "d.m.Y",
-      locale: "de",
-      disableMobile: true,
-      disable: [function (date) {
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-        return date.getDay() === 0 || date.getDay() === 6 || bookedSlots.fullDays.includes(dateStr);
-      }],
-      onChange: function (selectedDates) {
-        const date = selectedDates[0];
-        if (!date) return;
-
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, "0");
-        const dd = String(date.getDate()).padStart(2, "0");
-        const dateStr = `${yyyy}-${mm}-${dd}`;
-
-        const timeSelect = document.getElementById("timepicker");
-        timeSelect.innerHTML = '<option value="">Uhrzeit auswählen</option>';
-
-        const allTimes = [
-  "10:00", "11:30", "13:00", "14:30", "16:00" , "17:30" , "19:00"
-];
-        
-
-        const bookedTimes = bookedSlots.timeSlots[dateStr] || [];
-
-        allTimes.forEach(time => {
-          const option = document.createElement("option");
-          option.value = time;
-
-          if (bookedTimes.includes(time)) {
-            option.textContent = `${time} (Besetzt)`;
-            option.disabled = true;
-            option.style.color = "red";
-            option.style.fontWeight = "bold";
-          } else {
-            option.textContent = time;
-          }
-
-          timeSelect.appendChild(option);
-        });
-      }
-    });
-  }
-
-  const form = document.getElementById("booking-form");
-  const submitBtn = form.querySelector("button[type='submit']");
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const date = document.getElementById("datepicker").value;
-    const time = document.getElementById("timepicker").value;
-    const vinInput = document.getElementById("vin");
-    const vinError = document.getElementById("vin-error");
-    const vin = vinInput.value.trim().toUpperCase();
-
-    vinInput.style.borderColor = "#ccc";
-    vinError.style.display = "none";
-
-    let isValid = true;
-    let errors = [];
-
-   
-    if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
-      errors.push("Ungültige Zeichen in der VIN");
-      isValid = false;
-    }
-
-    if (!isValid) {
-      vinInput.style.borderColor = "red";
-      vinError.textContent = errors.join(" • ");
-      vinError.style.display = "block";
-      vinInput.focus();
-      return;
-    }
-
-    // منع التكرار عند الضغط
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Wird gesendet...";
-
-    const formData = new FormData(form);
-
-    fetch("https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec", {
-  method: "POST",
-  body: formData
-})
-.finally(() => {
-  window.location.href = "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html";
-});
-  });
-});
+window.TEMO_BOOKING_CONFIG = {
+  "apiUrl": "https://script.google.com/macros/s/AKfycbwFEZ3eYDRJ6RZyaKYLQ34Y8feeQmBA9Qg6bK6U0ryO7ofUr6GFrlDoyflpSQ_uEAn6/exec",
+  "locale": "de",
+  "timePlaceholder": "Uhrzeit auswählen",
+  "busyLabel": "Besetzt",
+  "sendingLabel": "Wird gesendet...",
+  "dateTimeError": "Bitte wählen Sie ein Datum und eine Uhrzeit aus.",
+  "submitError": "Die Reservierung konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+  "vinError": "Die VIN muss genau 17 gültige Zeichen enthalten.",
+  "thankYouUrl": "https://temodiagnostik.github.io/autodiagnostika-frydlant-ostravice/danke.html"
+};
 </script>
+<script src="booking.js?v=20260715-1"></script>
 </body>
 </html>
