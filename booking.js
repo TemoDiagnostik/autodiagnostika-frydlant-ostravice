@@ -1,6 +1,35 @@
 (() => {
   "use strict";
 
+  const moveVehicleServiceFirst = () => {
+    const headings = Array.from(document.querySelectorAll("h3"));
+    const mainHeading = headings.find((heading) =>
+      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Servis a diagnostika|Fahrzeugservice und Diagnose|Vehicle servicing and diagnostics/i.test(heading.textContent)
+    );
+
+    const serviceHeading = headings.find((heading) =>
+      /Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)
+    );
+
+    if (!mainHeading || !serviceHeading) return;
+
+    const serviceContainer = serviceHeading.nextElementSibling;
+    const servicePanel = serviceContainer && serviceContainer.nextElementSibling;
+    if (!serviceContainer || !serviceContainer.classList.contains("service-container") || !servicePanel) return;
+
+    const firstService = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+      /Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)
+    );
+
+    if (!firstService || !firstService.parentNode) return;
+
+    firstService.parentNode.insertBefore(serviceContainer, firstService);
+    firstService.parentNode.insertBefore(servicePanel, firstService);
+    serviceHeading.remove();
+  };
+
+  moveVehicleServiceFirst();
+
   document.addEventListener("DOMContentLoaded", () => {
     const config = window.TEMO_BOOKING_CONFIG || {};
     const apiUrl = config.apiUrl;
@@ -14,15 +43,8 @@
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
 
-    if (!form || !dateInput || !timeSelect || !vinInput || !vinError) {
-      console.error("Booking form initialization failed: required form elements are missing.");
-      return;
-    }
-
-    if (typeof window.flatpickr !== "function") {
-      console.error("Booking form initialization failed: Flatpickr is not available.");
-      return;
-    }
+    if (!form || !dateInput || !timeSelect || !vinInput || !vinError) return;
+    if (typeof window.flatpickr !== "function") return;
 
     const submitBtn = form.querySelector("button[type='submit']");
     let bookedSlots = { fullDays: [], timeSlots: {} };
@@ -36,19 +58,12 @@
     };
 
     const normalizeBookedSlots = (data) => {
-      const fullDays = Array.isArray(data && data.fullDays)
-        ? data.fullDays.map(String)
-        : [];
-
-      const sourceSlots = data && data.timeSlots && typeof data.timeSlots === "object"
-        ? data.timeSlots
-        : {};
-
+      const fullDays = Array.isArray(data && data.fullDays) ? data.fullDays.map(String) : [];
+      const sourceSlots = data && data.timeSlots && typeof data.timeSlots === "object" ? data.timeSlots : {};
       const timeSlots = {};
+
       Object.keys(sourceSlots).forEach((dateKey) => {
-        timeSlots[dateKey] = Array.isArray(sourceSlots[dateKey])
-          ? sourceSlots[dateKey].map(String)
-          : [];
+        timeSlots[dateKey] = Array.isArray(sourceSlots[dateKey]) ? sourceSlots[dateKey].map(String) : [];
       });
 
       return { fullDays, timeSlots };
@@ -70,18 +85,15 @@
 
     const populateTimes = (date) => {
       resetTimeSelect();
-
       if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
         timeSelect.disabled = true;
         return;
       }
 
       const bookedTimes = bookedSlots.timeSlots[toDateKey(date)] || [];
-
       allTimes.forEach((time) => {
         const option = document.createElement("option");
         option.value = time;
-
         if (bookedTimes.includes(time)) {
           option.textContent = `${time} (${config.busyLabel || "Busy"})`;
           option.disabled = true;
@@ -90,10 +102,8 @@
         } else {
           option.textContent = time;
         }
-
         timeSelect.appendChild(option);
       });
-
       timeSelect.disabled = false;
     };
 
@@ -109,9 +119,7 @@
       }
     };
 
-    if (config.locale && config.locale !== "default") {
-      calendarOptions.locale = config.locale;
-    }
+    if (config.locale && config.locale !== "default") calendarOptions.locale = config.locale;
 
     resetTimeSelect();
     timeSelect.disabled = true;
@@ -120,16 +128,13 @@
     if (apiUrl) {
       fetch(apiUrl, { method: "GET", cache: "no-store" })
         .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Availability request failed with status ${response.status}`);
-          }
+          if (!response.ok) throw new Error(`Availability request failed with status ${response.status}`);
           return response.json();
         })
         .then((data) => {
           bookedSlots = normalizeBookedSlots(data);
           calendar.set("disable", [isDateDisabled]);
           calendar.redraw();
-
           const selectedDate = calendar.selectedDates[0];
           if (selectedDate && isDateDisabled(selectedDate)) {
             calendar.clear();
@@ -138,15 +143,12 @@
             populateTimes(selectedDate);
           }
         })
-        .catch((error) => {
-          console.warn("Booked appointments could not be loaded; the booking form remains usable.", error);
-        });
+        .catch((error) => console.warn("Booked appointments could not be loaded.", error));
     }
 
     const submitThroughHiddenFrame = (submitUrl) => {
       const frameName = "temo-booking-submit-frame";
       let frame = document.querySelector(`iframe[name='${frameName}']`);
-
       if (!frame) {
         frame = document.createElement("iframe");
         frame.name = frameName;
@@ -154,7 +156,6 @@
         frame.setAttribute("aria-hidden", "true");
         document.body.appendChild(frame);
       }
-
       form.action = submitUrl;
       form.method = "POST";
       form.target = frameName;
@@ -163,7 +164,6 @@
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-
       const date = dateInput.value.trim();
       const time = timeSelect.value;
       const vin = vinInput.value.trim().toUpperCase();
@@ -213,14 +213,9 @@
       }
     });
   });
-})();
-
-(() => {
-  "use strict";
 
   const applyServiceContent = () => {
     const lang = (document.documentElement.lang || "cs").toLowerCase().slice(0, 2);
-
     const content = {
       cs: {
         title: "Soukromý servis, opravy a diagnostika vozidel | Malenovice",
@@ -307,27 +302,17 @@
     }
 
     const headings = Array.from(document.querySelectorAll("h3"));
-    const diagnosticHeading = headings.find((heading) =>
-      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Diagnostika a servis|Diagnose und Fahrzeugservice|Diagnostics and vehicle service|Servis a diagnostika vozidel|Fahrzeugservice und Diagnose|Vehicle servicing and diagnostics/i.test(heading.textContent)
+    const mainHeading = headings.find((heading) =>
+      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Servis a diagnostika|Fahrzeugservice und Diagnose|Vehicle servicing and diagnostics/i.test(heading.textContent)
+    );
+    if (mainHeading) mainHeading.textContent = t.servicesHeading;
+
+    const serviceContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+      /Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
     );
 
-    if (diagnosticHeading) {
-      diagnosticHeading.textContent = t.servicesHeading;
-    }
-
-    const serviceContainers = Array.from(document.querySelectorAll(".service-container"));
-    const serviceContainer = serviceContainers.find((container) =>
-      /Aktualizace map|Kartenaktualisierung|Map update|Servis a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
-    );
-
+    const servicePanel = serviceContainer && serviceContainer.nextElementSibling;
     if (serviceContainer) {
-      const servicePanel = serviceContainer.nextElementSibling && serviceContainer.nextElementSibling.classList.contains("accordion-panel")
-        ? serviceContainer.nextElementSibling
-        : null;
-      const oldHeading = serviceContainer.previousElementSibling && serviceContainer.previousElementSibling.tagName === "H3"
-        ? serviceContainer.previousElementSibling
-        : null;
-
       const icon = serviceContainer.querySelector("img");
       if (icon) {
         icon.src = "icons/reset.png";
@@ -335,59 +320,31 @@
         icon.style.width = "52px";
         icon.style.height = "52px";
       }
-
       const titleElement = serviceContainer.querySelector(".service-button > div span");
       const subtitleElement = serviceContainer.querySelector(".service-button > span");
-      if (titleElement) {
-        titleElement.innerHTML = `${t.serviceTitle} <span style="font-size:16px;">▼</span>`;
-      }
+      if (titleElement) titleElement.innerHTML = `${t.serviceTitle} <span style="font-size:16px;">▼</span>`;
       if (subtitleElement) subtitleElement.textContent = t.serviceSubtitle;
-
-      if (servicePanel) {
-        servicePanel.innerHTML = `
-          <div style="color:#EBDBB1; font-size:15px; line-height:1.7; padding:10px 0;">
-            <p>${t.serviceP1}</p>
-            <p>${t.serviceP2}</p>
-            <p>${t.serviceP3}</p>
-          </div>`;
-      }
-
-      if (diagnosticHeading && diagnosticHeading.parentNode) {
-        const referenceNode = diagnosticHeading.nextElementSibling;
-        const parent = diagnosticHeading.parentNode;
-        parent.insertBefore(serviceContainer, referenceNode);
-        if (servicePanel) parent.insertBefore(servicePanel, referenceNode);
-      }
-
-      if (oldHeading && oldHeading !== diagnosticHeading) oldHeading.remove();
     }
 
-    const warningStrong = Array.from(document.querySelectorAll(".reservation-form strong")).find((element) =>
-      /map|kart|naviga|Servisní práce|Servicearbeiten|Service work/i.test(element.textContent)
-    );
-    const warningBox = warningStrong && warningStrong.parentElement;
+    if (servicePanel && servicePanel.classList.contains("accordion-panel")) {
+      servicePanel.innerHTML = `<div style="color:#EBDBB1;font-size:15px;line-height:1.7;padding:10px 0;"><p>${t.serviceP1}</p><p>${t.serviceP2}</p><p>${t.serviceP3}</p></div>`;
+    }
+
+    const warningBox = document.querySelector(".reservation-form div[style*='fffacd']");
     if (warningBox) {
-      warningBox.innerHTML = `
-        <strong style="color:#cc0000;">${t.bookingTitle}</strong><br>
-        ${t.bookingP1}<br>
-        ${t.bookingP2}`;
+      warningBox.innerHTML = `<strong style="color:#cc0000;">${t.bookingTitle}</strong><br>${t.bookingP1}<br>${t.bookingP2}`;
     }
 
-    const aboutParagraphs = Array.from(document.querySelectorAll("p"));
-    const experienceParagraph = aboutParagraphs.find((paragraph) =>
-      /35/i.test(paragraph.textContent) &&
-      /Německu|Deutschland|Germany|Stuttgart/i.test(paragraph.textContent)
+    const aboutContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+      /O mně|Über mich|About me/i.test(container.textContent)
     );
-    if (experienceParagraph) experienceParagraph.textContent = t.experience;
-
-    const locationParagraph = aboutParagraphs.find((paragraph) =>
-      /Malenovice/i.test(paragraph.textContent) &&
-      /Dnes|Heute|Today|operate|arbeite/i.test(paragraph.textContent) &&
-      /diagnost|Diagnose/i.test(paragraph.textContent)
-    );
+    const aboutPanel = aboutContainer && aboutContainer.nextElementSibling;
+    const aboutParagraphs = aboutPanel ? Array.from(aboutPanel.querySelectorAll("p")) : [];
+    if (aboutParagraphs[0]) aboutParagraphs[0].textContent = t.experience;
+    const locationParagraph = aboutParagraphs.find((paragraph) => /Malenovice/i.test(paragraph.textContent));
     if (locationParagraph) locationParagraph.textContent = t.about;
 
-    const priceContainer = serviceContainers.find((container) =>
+    const priceContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
       /Ceník|Preisliste|Price list/i.test(container.textContent)
     );
     const pricePanel = priceContainer && priceContainer.nextElementSibling;
