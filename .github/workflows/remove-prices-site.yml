@@ -1,0 +1,178 @@
+name: Remove price sections from website
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/remove-prices-site.yml
+
+permissions:
+  contents: write
+
+jobs:
+  remove-prices:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Remove all public price sections
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          PRICE_TERMS = re.compile(
+              r"Ceník|Preisliste|Price list|Orientační ceny|Unverbindliche Richtpreise|Indicative prices",
+              re.I,
+          )
+          DIV_TOKEN = re.compile(r"(?is)<div\b[^>]*>|</div\s*>")
+          SERVICE_OPEN = re.compile(
+              r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\bservice-container\b[^\"']*\1[^>]*>"
+          )
+          PANEL_OPEN = re.compile(
+              r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\baccordion-panel\b[^\"']*\1[^>]*>"
+          )
+
+          def matching_div_end(text: str, start: int) -> int:
+              depth = 0
+              for match in DIV_TOKEN.finditer(text, start):
+                  token = match.group(0).lower()
+                  if token.startswith("<div"):
+                      depth += 1
+                  else:
+                      depth -= 1
+                      if depth == 0:
+                          return match.end()
+              raise RuntimeError("Unclosed div element")
+
+          def skip_space_comments(text: str, pos: int) -> int:
+              while True:
+                  pos += re.match(r"\s*", text[pos:]).end()
+                  if text.startswith("<!--", pos):
+                      end = text.find("-->", pos + 4)
+                      if end < 0:
+                          return pos
+                      pos = end + 3
+                      continue
+                  return pos
+
+          def remove_price_section(text: str) -> tuple[str, int]:
+              removed = 0
+              while True:
+                  target = None
+                  for opening in SERVICE_OPEN.finditer(text):
+                      end = matching_div_end(text, opening.start())
+                      fragment = text[opening.start():end]
+                      if PRICE_TERMS.search(fragment):
+                          target = (opening.start(), end)
+                          break
+                  if target is None:
+                      break
+
+                  start, end = target
+                  next_pos = skip_space_comments(text, end)
+                  panel = PANEL_OPEN.match(text, next_pos)
+                  if panel:
+                      end = matching_div_end(text, panel.start())
+                  text = text[:start] + text[end:]
+                  removed += 1
+
+              # Remove any standalone price heading/subtitle accidentally left behind.
+              text = re.sub(
+                  r"(?is)<(?:h[1-6]|p)\b[^>]*>[^<]*(?:Ceník|Preisliste|Price list|Orientační ceny|Unverbindliche Richtpreise|Indicative prices)[^<]*</(?:h[1-6]|p)\s*>",
+                  "",
+                  text,
+              )
+              return text, removed
+
+          changed = []
+          for path in sorted(Path('.').glob('index*.html')):
+              original = path.read_text(encoding='utf-8')
+              updated, removed = remove_price_section(original)
+              if updated != original:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+                  print(f"Removed {removed} price section(s) from {path}")
+
+          booking = Path('booking.js')
+          if booking.exists():
+              original = booking.read_text(encoding='utf-8')
+              updated = original
+
+              # Remove translated price strings.
+              updated = re.sub(r"(?m)^\s*price:\s*[^\n]+\n?", "", updated)
+
+              # Remove the dynamic code that appended a repair-price row.
+              updated = re.sub(
+                  r"(?s)\n\s*const priceContainer = Array\.from\(document\.querySelectorAll\(\"\.service-container\"\)\)\.find\(\(container\) =>.*?priceList\.appendChild\(item\);\n\s*}\n",
+                  "\n",
+                  updated,
+                  count=1,
+              )
+
+              marker = '  const removePriceSection = () => {'
+              anchor = '  const findServiceHeading = () =>'
+              block = r'''  const removePriceSection = () => {
+    const pricePattern = /Ceník|Preisliste|Price list|Orientační ceny|Unverbindliche Richtpreise|Indicative prices/i;
+
+    Array.from(document.querySelectorAll(".service-container")).forEach((container) => {
+      if (!pricePattern.test(container.textContent || "")) return;
+      const previous = container.previousElementSibling;
+      const panel = container.nextElementSibling;
+      if (panel?.classList.contains("accordion-panel")) panel.remove();
+      container.remove();
+      if (previous && /^(H[1-6]|P)$/.test(previous.tagName) && pricePattern.test(previous.textContent || "")) {
+        previous.remove();
+      }
+    });
+  };
+
+'''
+              if marker not in updated:
+                  if anchor not in updated:
+                      raise RuntimeError('booking.js price-removal insertion point not found')
+                  updated = updated.replace(anchor, block + anchor, 1)
+
+              if 'removePriceSection();' not in updated:
+                  call_anchor = '  removeLegacyMapService();'
+                  if call_anchor not in updated:
+                      raise RuntimeError('booking.js price-removal call point not found')
+                  updated = updated.replace(call_anchor, '  removePriceSection();\n' + call_anchor, 1)
+
+              if updated != original:
+                  booking.write_text(updated, encoding='utf-8')
+                  changed.append('booking.js')
+                  print('Removed dynamic price content from booking.js')
+
+          forbidden = re.compile(
+              r"Ceník|Preisliste|Price list|Orientační ceny|Unverbindliche Richtpreise|Indicative prices|DPF-Regeneration:\s*[\d.]|Ölwechsel-Reset:\s*\d|Komplettdiagnose:\s*\d",
+              re.I,
+          )
+          for path in (Path('index.html'), Path('index.de.html'), Path('index.en.html')):
+              content = path.read_text(encoding='utf-8')
+              match = forbidden.search(content)
+              if match:
+                  raise RuntimeError(f"{path}: price content remains: {match.group(0)}")
+
+          if booking.exists():
+              content = booking.read_text(encoding='utf-8')
+              if re.search(r"(?m)^\s*price:\s*", content):
+                  raise RuntimeError('booking.js: translated price entry remains')
+
+          print('Changed files:', ', '.join(changed) if changed else 'none')
+          PY
+
+      - name: Commit removal
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index*.html booking.js
+          if git diff --cached --quiet; then
+            echo "No public price content remained"
+          else
+            git commit -m "Remove prices from all website languages"
+            git push
+          fi
