@@ -1,0 +1,168 @@
+name: Update multilingual About section
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/update-about-section.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-about:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update About section in all languages
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          booking = Path('booking.js')
+          text = booking.read_text(encoding='utf-8')
+
+          marker = '  const improveAboutSection = () => {'
+          insertion_anchor = '  // The script is loaded at the end of the page'
+
+          block = r'''  const improveAboutSection = () => {
+    const aboutTranslations = {
+      cs: {
+        subtitle: "35 let zkušeností s automechanikou a diagnostikou vozidel",
+        paragraphs: [
+          "Jsem automechatronik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 14 let v Německu (Stuttgart). Zaměřuji se na propojení klasické automobilové mechaniky s moderní elektronikou a diagnostickou technikou. Díky tomu mohu závady přesně lokalizovat a navrhovat odborná řešení.",
+          "Dnes v Malenovicích u Frýdlantu nad Ostravicí nabízím profesionální diagnostiku vozidel, údržbu a opravy po předchozí domluvě. Rozsah práce a cena jsou vždy dohodnuty před zahájením prací. Vozidlo u mě může během opravy zůstat; po dokončení zákazníka informuji.",
+          "Mluvím německy, anglicky a česky."
+        ]
+      },
+      de: {
+        subtitle: "35 Jahre Erfahrung in Fahrzeugmechanik und Diagnosetechnik",
+        paragraphs: [
+          "Ich bin Kfz-Mechatroniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, darunter 14 Jahre in Deutschland (Stuttgart). Mein Schwerpunkt liegt in der Verbindung klassischer Fahrzeugmechanik mit moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler präzise eingrenzen und fachgerechte Lösungen entwickeln.",
+          "Heute biete ich in Malenovice bei Frýdlant nad Ostravicí professionelle Fahrzeugdiagnose, Wartung und Reparaturen nach vorheriger Absprache an. Arbeitsumfang und Preis werden vor Beginn der Arbeiten gemeinsam vereinbart. Das Fahrzeug kann während der Reparatur bei mir bleiben; nach Abschluss der Arbeiten informiere ich den Kunden.",
+          "Ich spreche Deutsch, Englisch und Tschechisch."
+        ]
+      },
+      en: {
+        subtitle: "35 years of experience in vehicle mechanics and diagnostics",
+        paragraphs: [
+          "I am an automotive mechatronics technician and vehicle diagnostics specialist with more than 35 years of professional experience, including 14 years in Germany (Stuttgart). My work combines traditional vehicle mechanics with modern electronics and diagnostic technology, allowing me to pinpoint faults accurately and develop professional solutions.",
+          "Today, I provide professional vehicle diagnostics, maintenance and repairs in Malenovice near Frýdlant nad Ostravicí by prior arrangement. The scope of work and price are agreed before work begins. The vehicle may remain with me during the repair; I contact the customer when the work is completed.",
+          "I speak German, English and Czech."
+        ]
+      }
+    };
+
+    const copy = aboutTranslations[language] || aboutTranslations.cs;
+    const aboutContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+      /O mně|Über mich|About me/i.test(container.textContent || "")
+    );
+    if (!aboutContainer) return;
+
+    const button = aboutContainer.querySelector(".accordion-button");
+    const card = aboutContainer.querySelector(".service-button");
+    const titleRow = card?.querySelector(":scope > div");
+    const subtitle = card?.querySelector(":scope > span");
+    const panel = aboutContainer.nextElementSibling;
+
+    if (button) {
+      button.style.width = "100%";
+      button.style.background = "none";
+      button.style.border = "none";
+      button.style.padding = "0";
+    }
+
+    if (card) {
+      card.style.height = "auto";
+      card.style.minHeight = "0";
+      card.style.padding = "14px 16px";
+      card.style.margin = "0 auto 12px auto";
+      card.style.maxWidth = "500px";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      card.style.alignItems = "flex-start";
+    }
+
+    if (titleRow) {
+      titleRow.style.margin = "0";
+      titleRow.style.minHeight = "0";
+      titleRow.style.display = "flex";
+      titleRow.style.alignItems = "center";
+      titleRow.style.gap = "12px";
+    }
+
+    if (subtitle) {
+      subtitle.textContent = copy.subtitle;
+      subtitle.style.fontSize = "14px";
+      subtitle.style.lineHeight = "1.45";
+      subtitle.style.marginLeft = "64px";
+      subtitle.style.marginTop = "6px";
+      subtitle.style.marginBottom = "0";
+      subtitle.style.textAlign = "left";
+    }
+
+    if (panel?.classList.contains("accordion-panel")) {
+      panel.innerHTML = copy.paragraphs
+        .map((paragraph) => `<p style="margin:0 0 18px 0;color:#EBDBB1;font-size:16px;line-height:1.7;">${paragraph}</p>`)
+        .join("");
+      panel.style.padding = "18px 20px 4px";
+      panel.style.maxWidth = "500px";
+      panel.style.margin = "0 auto 18px auto";
+    }
+  };
+
+'''
+
+          if marker not in text:
+              if insertion_anchor not in text:
+                  raise RuntimeError('Could not find About-section insertion point in booking.js')
+              text = text.replace(insertion_anchor, block + insertion_anchor, 1)
+
+          call_pattern = re.compile(r'(prepareServiceSection\(\);\s*\n\s*applyPageContent\(\);)')
+          if 'applyPageContent();\n  improveAboutSection();' not in text:
+              text, count = call_pattern.subn(r'\1\n  improveAboutSection();', text, count=1)
+              if count != 1:
+                  raise RuntimeError('Could not add improveAboutSection call')
+
+          booking.write_text(text, encoding='utf-8')
+
+          version = '20260801-5'
+          for path in sorted(Path('.').glob('index*.html')):
+              html = path.read_text(encoding='utf-8')
+              updated = re.sub(
+                  r'booking\.js(?:\?v=[^"\']*)?',
+                  f'booking.js?v={version}',
+                  html,
+              )
+              if updated != html:
+                  path.write_text(updated, encoding='utf-8')
+                  print(f'Updated About section script version in {path}')
+
+          final = booking.read_text(encoding='utf-8')
+          required = [
+              'Kfz-Mechatroniker und Fahrzeugdiagnostiker',
+              'automechatronik a diagnostik vozidel',
+              'automotive mechatronics technician and vehicle diagnostics specialist',
+              '35 Jahre Erfahrung in Fahrzeugmechanik und Diagnosetechnik',
+          ]
+          missing = [item for item in required if item not in final]
+          if missing:
+              raise RuntimeError(f'Missing multilingual About content: {missing}')
+          PY
+
+      - name: Commit About section update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add booking.js index*.html
+          if git diff --cached --quiet; then
+            echo "About section already updated"
+          else
+            git commit -m "Update About section in all languages"
+            git push
+          fi
