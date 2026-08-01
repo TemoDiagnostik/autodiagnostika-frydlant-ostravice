@@ -1,0 +1,212 @@
+name: Update vehicle repair service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/update-repair-service.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Replace navigation service with vehicle repairs
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          HEADING_STYLE = 'text-align:center; color:#EBDBB1; font-size:20px; margin:50px 0 20px; font-weight:600;'
+          PANEL_STYLE = 'max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.6); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;'
+          LIST_STYLE = 'list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400;'
+
+          def repair_block(heading, title, subtitle, items, notice, comment):
+              bullets = '\n'.join(f'    <li>{item}</li>' for item in items)
+              return f'''<!-- {comment} -->
+          <h3 style="{HEADING_STYLE}">
+            🔧 {heading}
+          </h3>
+          <div class="service-container">
+            <button type="button" class="accordion-button" style="width: 100%; background: none; border: none; padding: 0;">
+              <div class="service-button" style="display: flex; flex-direction: column; align-items: flex-start; background: rgba(0, 0, 0, 0.6); padding: 16px; border-radius: 12px; margin: 0 auto 24px auto; max-width: 500px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span aria-hidden="true" style="font-size: 52px; line-height: 1; width: 60px; text-align: center;">🔧</span>
+                  <span style="font-weight: bold; color: #EBDBB1; font-size: 20px;">
+                    {title} <span style="font-size: 16px;">▼</span>
+                  </span>
+                </div>
+                <span style="font-size: 14px; color: #EBDBB1; font-weight: 400; margin-left: 72px; margin-top: 8px;">
+                  {subtitle}
+                </span>
+              </div>
+            </button>
+          </div>
+          <div class="accordion-panel" style="{PANEL_STYLE}">
+            <ul style="{LIST_STYLE}">
+          {bullets}
+            </ul>
+            <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">
+              ⚠️ {notice}
+            </p>
+          </div>'''
+
+          DATA = {
+              'index.html': {
+                  'lang': 'cs',
+                  'title': 'Soukromá diagnostika a opravy vozidel – Malenovice',
+                  'description': 'Soukromá diagnostika, opravy a údržba vozidel v klidném prostředí Malenovic u Frýdlantu nad Ostravicí. Férové ceny a 35 let zkušeností.',
+                  'hero': '🛠️ Soukromá diagnostika a opravy vozidel.<br> Bez stresu – v přírodě',
+                  'intro': 'Diagnostika, opravy a údržba vozidel v klidném prostředí Malenovic (Frýdlant nad Ostravicí).<br>Profesionální přístup • 35 let zkušeností • Férové ceny •<br>Zatímco se postarám o Váš vůz, můžete si vychutnat kávu nebo čaj.',
+                  'start': '<!-- 🛰️ Navigace a software -->',
+                  'end': '<!-- 🔍 Kontrola vozidla -->',
+                  'block': repair_block(
+                      'Opravy vozidel',
+                      'Opravy a údržba vozidel',
+                      'Mechanické opravy a údržba po předchozí kontrole a dohodě',
+                      [
+                          'Kontrola a určení závady před zahájením opravy',
+                          'Mechanické opravy a údržba vozidel podle dohody',
+                          'Výměna opotřebených nebo poškozených dílů',
+                          'Rozsah práce a cena jsou vždy předem odsouhlaseny',
+                          'Náhradní díly se volí po dohodě se zákazníkem',
+                          'Termín závisí na rozsahu opravy a dostupnosti dílů',
+                      ],
+                      'Každá oprava je posuzována individuálně podle technického stavu vozidla. Práce se provádějí pouze po předchozí dohodě.',
+                      '🔧 Opravy vozidel'
+                  ),
+                  'booking': '''<div style="background-color: #fffacd; border-radius: 8px; padding: 16px; max-width: 500px; margin: 0 auto 24px auto; color: #222; font-size: 14px; line-height: 1.6;">
+            <strong style="color: #cc0000;">Důležité upozornění – Opravy vozidel:</strong><br>
+            Pokud se Vaše rezervace týká opravy vozidla, vyčkejte prosím na potvrzení termínu.<br>
+            Nejprve podle popisu závady a údajů o vozidle posoudím rozsah práce a dostupnost potřebných dílů. Poté Vás budu kontaktovat s dalším postupem a orientační cenou.
+          </div>''',
+                  'forbidden': ['aktualizace navigací', 'Aktualizace map', 'Navigace a software', 'aktualizace map navigačního systému'],
+                  'required': 'Opravy a údržba vozidel',
+              },
+              'index.de.html': {
+                  'lang': 'de',
+                  'title': 'Private Fahrzeugdiagnose und Reparaturen – Malenovice',
+                  'description': 'Private Fahrzeugdiagnose, Reparaturen und Wartung in der ruhigen Umgebung von Malenovice bei Frýdlant nad Ostravicí. Faire Preise und 35 Jahre Erfahrung.',
+                  'hero': '🛠️ Private Fahrzeugdiagnose und Reparaturen.<br> Ganz ohne Stress – in der Natur',
+                  'intro': 'Fahrzeugdiagnose, Reparaturen und Wartung in der ruhigen Umgebung von Malenovice (Frýdlant nad Ostravicí).<br>Professioneller Service • 35 Jahre Erfahrung • Faire Preise •<br>Während ich mich um Ihr Fahrzeug kümmere, können Sie eine Tasse Kaffee oder Tee genießen.',
+                  'start': '<!-- Aktualizace Map -->',
+                  'end': '<!-- Kontrola Ujetých Kilometrů -->',
+                  'block': repair_block(
+                      'Fahrzeugreparaturen',
+                      'Reparatur und Wartung von Fahrzeugen',
+                      'Mechanische Reparaturen und Wartung nach vorheriger Prüfung und Absprache',
+                      [
+                          'Prüfung und Feststellung des Fehlers vor Beginn der Reparatur',
+                          'Mechanische Reparaturen und Wartung nach Absprache',
+                          'Austausch verschlissener oder beschädigter Teile',
+                          'Arbeitsumfang und Preis werden vorab vereinbart',
+                          'Ersatzteile werden gemeinsam mit dem Kunden ausgewählt',
+                          'Der Termin richtet sich nach Arbeitsumfang und Teileverfügbarkeit',
+                      ],
+                      'Jede Reparatur wird individuell nach dem technischen Zustand des Fahrzeugs beurteilt. Die Arbeiten erfolgen nur nach vorheriger Absprache.',
+                      '🔧 Fahrzeugreparaturen'
+                  ),
+                  'booking': '''<div style="background-color: #fffacd; border-radius: 8px; padding: 16px; max-width: 500px; margin: 0 auto 24px auto; color: #222; font-size: 14px; line-height: 1.6;">
+            <strong style="color: #cc0000;">🔔 Wichtiger Hinweis – Fahrzeugreparaturen:</strong><br>
+            Wenn Ihre Terminanfrage eine Fahrzeugreparatur betrifft, warten Sie bitte auf die Terminbestätigung.<br>
+            Zunächst beurteile ich anhand Ihrer Fehlerbeschreibung und der Fahrzeugdaten den voraussichtlichen Arbeitsumfang sowie die Verfügbarkeit der benötigten Teile. Anschließend erhalten Sie weitere Informationen und eine ungefähre Preisangabe.
+          </div>''',
+                  'forbidden': ['Navi Updates', 'Navigations-Updates', 'Navigation & Software', 'Kartenaktualisierung', 'Aktualisierung des Navigationssystems'],
+                  'required': 'Reparatur und Wartung von Fahrzeugen',
+              },
+              'index.en.html': {
+                  'lang': 'en',
+                  'title': 'Private Vehicle Diagnostics and Repairs – Malenovice',
+                  'description': 'Private vehicle diagnostics, repairs, and maintenance in the peaceful surroundings of Malenovice near Frýdlant nad Ostravicí. Fair prices and 35 years of experience.',
+                  'hero': '🛠️ Private Vehicle Diagnostics and Repairs.<br> Stress-free – in Nature',
+                  'intro': 'Vehicle diagnostics, repairs, and maintenance in the peaceful surroundings of Malenovice (Frýdlant nad Ostravicí).<br>Professional service • 35 years of experience • Fair prices •<br>While I take care of your vehicle, you can enjoy a cup of coffee or tea.',
+                  'start': '<!-- 📡 Navigation & Software -->',
+                  'end': '<!-- 🔍 Vehicle Verification -->',
+                  'block': repair_block(
+                      'Vehicle Repairs',
+                      'Vehicle Repair and Maintenance',
+                      'Mechanical repairs and maintenance after inspection and prior agreement',
+                      [
+                          'Inspection and fault assessment before work begins',
+                          'Mechanical repairs and vehicle maintenance as agreed',
+                          'Replacement of worn or damaged parts',
+                          'Work scope and price are agreed in advance',
+                          'Spare parts are selected in consultation with the customer',
+                          'Appointment timing depends on the work scope and parts availability',
+                      ],
+                      'Each repair is assessed individually according to the vehicle’s technical condition. Work is carried out only after prior agreement.',
+                      '🔧 Vehicle Repairs'
+                  ),
+                  'booking': '''<div style="background-color: #fffacd; border-radius: 8px; padding: 16px; max-width: 500px; margin: 0 auto 24px auto; color: #222; font-size: 14px; line-height: 1.6;">
+            <strong style="color: #cc0000;">Important notice – Vehicle repairs:</strong><br>
+            If your booking request concerns a vehicle repair, please wait for appointment confirmation.<br>
+            I will first assess the likely work scope and the availability of the required parts based on your fault description and vehicle details. I will then contact you with the next steps and an approximate price.
+          </div>''',
+                  'forbidden': ['Navi Updates', 'navigation updates', 'Navigation & Software', 'Navigation map update', 'navigation system map update'],
+                  'required': 'Vehicle Repair and Maintenance',
+              },
+          }
+
+          def replace_meta(text, key, value):
+              pattern = rf'(<meta\s+(?:property|name)="{re.escape(key)}"\s+content=")[^"]*(")'
+              return re.sub(pattern, lambda m: m.group(1) + value + m.group(2), text)
+
+          for filename, cfg in DATA.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+
+              text = re.sub(r'<title>.*?</title>', f'<title>{cfg["title"]}</title>', text, flags=re.S)
+              text = re.sub(r'(<meta\s+name="description"\s+content=")[^"]*(")', lambda m: m.group(1) + cfg['description'] + m.group(2), text)
+              for meta_key in ('og:title', 'twitter:title'):
+                  text = replace_meta(text, meta_key, cfg['title'])
+              for meta_key in ('og:description', 'twitter:description'):
+                  text = replace_meta(text, meta_key, cfg['description'])
+
+              hero_pattern = r'(<h1 style="color: #E8D8B1; font-size: 36px; font-weight: bold; margin-bottom: 20px;">).*?(</h1>)'
+              text, hero_count = re.subn(hero_pattern, lambda m: m.group(1) + '\n   ' + cfg['hero'] + '\n  ' + m.group(2), text, count=1, flags=re.S)
+              if hero_count != 1:
+                  raise RuntimeError(f'{filename}: hero heading was not found exactly once')
+
+              intro_pattern = r'(<p style="color: #E8D8B1; font-size: 18px; line-height: 1\.6;">).*?(</p>)'
+              text, intro_count = re.subn(intro_pattern, lambda m: m.group(1) + '\n    ' + cfg['intro'] + '\n  ' + m.group(2), text, count=1, flags=re.S)
+              if intro_count != 1:
+                  raise RuntimeError(f'{filename}: hero paragraph was not found exactly once')
+
+              section_pattern = re.escape(cfg['start']) + r'.*?(?=\s*' + re.escape(cfg['end']) + r')'
+              text, section_count = re.subn(section_pattern, cfg['block'] + '\n\n', text, count=1, flags=re.S)
+              if section_count != 1:
+                  raise RuntimeError(f'{filename}: navigation section was not found exactly once')
+
+              alert_pattern = r'<div style="background-color: #fffacd; border-radius: 8px; padding: 16px; max-width: 500px; margin: 0 auto 24px auto; color: #222; font-size: 14px; line-height: 1\.6;">.*?</div>'
+              text, alert_count = re.subn(alert_pattern, cfg['booking'], text, count=1, flags=re.S)
+              if alert_count != 1:
+                  raise RuntimeError(f'{filename}: booking notice was not found exactly once')
+
+              for phrase in cfg['forbidden']:
+                  if phrase.casefold() in text.casefold():
+                      raise RuntimeError(f'{filename}: old navigation phrase remains: {phrase}')
+              if cfg['required'] not in text:
+                  raise RuntimeError(f'{filename}: replacement service is missing')
+
+              path.write_text(text, encoding='utf-8')
+              print(f'Updated {filename}')
+          PY
+
+      - name: Commit updated website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html index.de.html index.en.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Replace map updates with vehicle repair service"
+            git push
+          fi
