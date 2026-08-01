@@ -25,21 +25,110 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Fix multilingual repair and reset buttons
+      - name: Prepare multilingual service pages
         run: |
           python <<'PY'
           from pathlib import Path
+          import html
+          import re
 
-          path = Path("booking.js")
-          text = path.read_text(encoding="utf-8")
+          MAP_TERMS = (
+              "aktualizace map a systémů",
+              "aktualizace map",
+              "navigace a software",
+              "karten- und systemaktualisierung",
+              "kartenaktualisierung",
+              "navigation und software",
+              "map and system updates",
+              "map updates",
+              "navigation and software",
+          )
+
+          DIV_TOKEN = re.compile(r"(?is)<div\b[^>]*>|</div\s*>")
+          SERVICE_OPEN = re.compile(
+              r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\bservice-container\b[^\"']*\1[^>]*>"
+          )
+          PANEL_OPEN = re.compile(
+              r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\baccordion-panel\b[^\"']*\1[^>]*>"
+          )
+          SIMPLE_BLOCK = re.compile(r"(?is)<(h[1-6]|p)\b[^>]*>.*?</\1\s*>")
+          TAGS = re.compile(r"(?is)<[^>]+>")
+
+          def plain_text(fragment):
+              return html.unescape(TAGS.sub(" ", fragment)).lower()
+
+          def contains_map_text(fragment):
+              text = plain_text(fragment)
+              return any(term in text for term in MAP_TERMS)
+
+          def matching_div_end(text, start):
+              depth = 0
+              for match in DIV_TOKEN.finditer(text, start):
+                  if match.group(0).lower().startswith("<div"):
+                      depth += 1
+                  else:
+                      depth -= 1
+                      if depth == 0:
+                          return match.end()
+              raise RuntimeError("Unclosed div element")
+
+          def skip_space_and_comments(text, pos):
+              while True:
+                  pos += re.match(r"\s*", text[pos:]).end()
+                  if text.startswith("<!--", pos):
+                      end = text.find("-->", pos + 4)
+                      if end < 0:
+                          return pos
+                      pos = end + 3
+                      continue
+                  return pos
+
+          def remove_map_service(text):
+              while True:
+                  target = None
+                  for opening in SERVICE_OPEN.finditer(text):
+                      end = matching_div_end(text, opening.start())
+                      if contains_map_text(text[opening.start():end]):
+                          target = (opening.start(), end)
+                          break
+                  if target is None:
+                      break
+
+                  start, end = target
+                  panel_pos = skip_space_and_comments(text, end)
+                  panel = PANEL_OPEN.match(text, panel_pos)
+                  if panel:
+                      end = matching_div_end(text, panel.start())
+                  text = text[:start] + text[end:]
+
+              return SIMPLE_BLOCK.sub(
+                  lambda match: "" if contains_map_text(match.group(0)) else match.group(0),
+                  text,
+              )
+
+          for path in sorted(Path('.').glob('index*.html')):
+              original = path.read_text(encoding='utf-8')
+              updated = remove_map_service(original)
+              if updated != original:
+                  path.write_text(updated, encoding='utf-8')
+                  print(f"Removed map-update service from {path}")
+
+          booking = Path('booking.js')
+          text = booking.read_text(encoding='utf-8')
+
+          for legacy in (
+              'Navigace a software|Navigation und Software|Navigation and software|',
+              'Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|',
+          ):
+              text = text.replace(legacy, '')
 
           text = text.replace(
-              '/Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)',
-              '/Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs|Diagnostika a opravy|Diagnose und Reparaturen|Diagnostics and Repairs/i.test(heading.textContent)'
+              '/Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)',
+              '/Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs|Diagnostika a opravy|Diagnose und Reparaturen|Diagnostics and Repairs/i.test(heading.textContent)'
           )
           text = text.replace(
-              '/Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)',
-              '/Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Reparatur und Wartung von Fahrzeugen|Vehicle Repair and Maintenance|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)'
+              '/Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)',
+              '/Opravy a údržba vozidel|Reparatur und Wartung von Fahrzeugen|Vehicle Repair and Maintenance|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)'
           )
           text = text.replace(
               '/Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)',
@@ -126,7 +215,16 @@ jobs:
           if anchor in text and 'const resetButton = resetContainer.querySelector(".accordion-button");' not in text:
               text = text.replace(anchor, replacement, 1)
 
-          path.write_text(text, encoding="utf-8")
+          booking.write_text(text, encoding='utf-8')
+
+          for path in (Path('index.html'), Path('index.de.html'), Path('index.en.html')):
+              remaining = [term for term in MAP_TERMS if term in path.read_text(encoding='utf-8').lower()]
+              if remaining:
+                  raise RuntimeError(f"{path}: map-update content remains: {remaining}")
+
+          remaining = [term for term in MAP_TERMS if term in booking.read_text(encoding='utf-8').lower()]
+          if remaining:
+              raise RuntimeError(f"booking.js: map-update content remains: {remaining}")
           PY
 
       - name: Configure GitHub Pages
