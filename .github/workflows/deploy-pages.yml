@@ -25,7 +25,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Prepare multilingual service pages
+      - name: Remove discontinued services and public prices
         run: |
           python <<'PY'
           from pathlib import Path
@@ -44,6 +44,15 @@ jobs:
               "navigation and software",
           )
 
+          PRICE_TERMS = (
+              "ceník",
+              "orientační ceny",
+              "preisliste",
+              "unverbindliche richtpreise",
+              "price list",
+              "indicative prices",
+          )
+
           DIV_TOKEN = re.compile(r"(?is)<div\b[^>]*>|</div\s*>")
           SERVICE_OPEN = re.compile(
               r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\bservice-container\b[^\"']*\1[^>]*>"
@@ -56,10 +65,6 @@ jobs:
 
           def plain_text(fragment):
               return html.unescape(TAGS.sub(" ", fragment)).lower()
-
-          def contains_map_text(fragment):
-              text = plain_text(fragment)
-              return any(term in text for term in MAP_TERMS)
 
           def matching_div_end(text, start):
               depth = 0
@@ -83,12 +88,17 @@ jobs:
                       continue
                   return pos
 
-          def remove_map_service(text):
+          def contains_any(fragment, terms):
+              text = plain_text(fragment)
+              return any(term in text for term in terms)
+
+          def remove_service_blocks(text, terms):
+              removed = 0
               while True:
                   target = None
                   for opening in SERVICE_OPEN.finditer(text):
                       end = matching_div_end(text, opening.start())
-                      if contains_map_text(text[opening.start():end]):
+                      if contains_any(text[opening.start():end], terms):
                           target = (opening.start(), end)
                           break
                   if target is None:
@@ -100,131 +110,40 @@ jobs:
                   if panel:
                       end = matching_div_end(text, panel.start())
                   text = text[:start] + text[end:]
+                  removed += 1
 
-              return SIMPLE_BLOCK.sub(
-                  lambda match: "" if contains_map_text(match.group(0)) else match.group(0),
+              text = SIMPLE_BLOCK.sub(
+                  lambda match: "" if contains_any(match.group(0), terms) else match.group(0),
                   text,
               )
+              return text, removed
 
           for path in sorted(Path('.').glob('index*.html')):
               original = path.read_text(encoding='utf-8')
-              updated = remove_map_service(original)
+              updated, map_removed = remove_service_blocks(original, MAP_TERMS)
+              updated, price_removed = remove_service_blocks(updated, PRICE_TERMS)
               if updated != original:
                   path.write_text(updated, encoding='utf-8')
-                  print(f"Removed map-update service from {path}")
+              print(f"{path}: removed map={map_removed}, price={price_removed}")
 
           booking = Path('booking.js')
-          text = booking.read_text(encoding='utf-8')
+          if booking.exists():
+              text = booking.read_text(encoding='utf-8')
+              text = re.sub(r"(?m)^\s*price:\s*[^\n]+\n?", "", text)
+              text = re.sub(
+                  r"(?s)\n\s*const priceContainer = Array\.from\(document\.querySelectorAll\(\"\.service-container\"\)\)\.find\(\(container\) =>.*?priceList\.appendChild\(item\);\n\s*}\n",
+                  "\n",
+                  text,
+                  count=1,
+              )
+              booking.write_text(text, encoding='utf-8')
 
-          for legacy in (
-              'Navigace a software|Navigation und Software|Navigation and software|',
-              'Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|',
-          ):
-              text = text.replace(legacy, '')
-
-          text = text.replace(
-              '/Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)',
-              '/Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs|Diagnostika a opravy|Diagnose und Reparaturen|Diagnostics and Repairs/i.test(heading.textContent)'
-          )
-          text = text.replace(
-              '/Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)',
-              '/Opravy a údržba vozidel|Reparatur und Wartung von Fahrzeugen|Vehicle Repair and Maintenance|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)'
-          )
-          text = text.replace(
-              '/Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)',
-              '/Resetování systémových funkcí|Zurücksetzen der Systemfunktionen|Systemfunktionen zurücksetzen|Resetting system functions|Reset system functions/i.test(container.textContent)'
-          )
-
-          anchor = '''    if (subtitle) {
-      subtitle.textContent = t.serviceSubtitle;
-      subtitle.style.fontSize = "14px";
-      subtitle.style.color = "#EBDBB1";
-      subtitle.style.fontWeight = "400";
-      subtitle.style.marginLeft = "64px";
-      subtitle.style.marginTop = "8px";
-    }
-
-    if (servicePanel?.classList.contains("accordion-panel")) {'''
-
-          replacement = '''    if (subtitle) {
-      subtitle.textContent = t.serviceSubtitle;
-      subtitle.style.fontSize = "14px";
-      subtitle.style.color = "#EBDBB1";
-      subtitle.style.fontWeight = "400";
-      subtitle.style.marginLeft = "64px";
-      subtitle.style.marginTop = "8px";
-    }
-
-    const resetButton = resetContainer.querySelector(".accordion-button");
-    const resetCard = resetContainer.querySelector(".service-button");
-    const resetTitleRow = resetCard?.querySelector(":scope > div");
-    const resetTitle = resetTitleRow?.querySelector("span:last-child");
-    const resetIcon = resetTitleRow?.querySelector("img");
-    const resetSubtitle = resetCard?.querySelector(":scope > span");
-
-    if (resetButton) {
-      resetButton.style.width = "100%";
-      resetButton.style.background = "none";
-      resetButton.style.border = "none";
-      resetButton.style.padding = "0";
-    }
-
-    if (resetCard) {
-      resetCard.style.display = "flex";
-      resetCard.style.flexDirection = "column";
-      resetCard.style.alignItems = "flex-start";
-      resetCard.style.background = "rgba(0, 0, 0, 0.6)";
-      resetCard.style.padding = "16px";
-      resetCard.style.borderRadius = "12px";
-      resetCard.style.margin = "0 auto 24px auto";
-      resetCard.style.maxWidth = "500px";
-      resetCard.style.minHeight = "130px";
-      resetCard.style.boxShadow = "0 2px 5px rgba(0,0,0,0.15)";
-    }
-
-    if (resetTitleRow) {
-      resetTitleRow.style.display = "flex";
-      resetTitleRow.style.alignItems = "center";
-      resetTitleRow.style.gap = "12px";
-    }
-
-    if (resetTitle) {
-      resetTitle.style.fontSize = "20px";
-      resetTitle.style.lineHeight = "1.25";
-    }
-
-    if (resetIcon) {
-      resetIcon.style.width = "44px";
-      resetIcon.style.height = "44px";
-      resetIcon.style.objectFit = "contain";
-      resetIcon.style.marginLeft = "4px";
-      resetIcon.style.marginRight = "4px";
-      resetIcon.style.flexShrink = "0";
-    }
-
-    if (resetSubtitle) {
-      resetSubtitle.style.fontSize = "14px";
-      resetSubtitle.style.color = "#EBDBB1";
-      resetSubtitle.style.fontWeight = "400";
-      resetSubtitle.style.marginLeft = "64px";
-      resetSubtitle.style.marginTop = "8px";
-    }
-
-    if (servicePanel?.classList.contains("accordion-panel")) {'''
-
-          if anchor in text and 'const resetButton = resetContainer.querySelector(".accordion-button");' not in text:
-              text = text.replace(anchor, replacement, 1)
-
-          booking.write_text(text, encoding='utf-8')
-
+          forbidden = tuple(MAP_TERMS) + tuple(PRICE_TERMS)
           for path in (Path('index.html'), Path('index.de.html'), Path('index.en.html')):
-              remaining = [term for term in MAP_TERMS if term in path.read_text(encoding='utf-8').lower()]
+              content = plain_text(path.read_text(encoding='utf-8'))
+              remaining = [term for term in forbidden if term in content]
               if remaining:
-                  raise RuntimeError(f"{path}: map-update content remains: {remaining}")
-
-          remaining = [term for term in MAP_TERMS if term in booking.read_text(encoding='utf-8').lower()]
-          if remaining:
-              raise RuntimeError(f"booking.js: map-update content remains: {remaining}")
+                  raise RuntimeError(f"{path}: discontinued content remains: {remaining}")
           PY
 
       - name: Configure GitHub Pages
