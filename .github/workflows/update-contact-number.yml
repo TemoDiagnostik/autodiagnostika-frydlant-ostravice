@@ -33,7 +33,8 @@ jobs:
           wa_link = re.compile(r"https://wa\.me/(?:\+?420)?\d{9}", re.I)
           whatsapp_api = re.compile(r"(https://api\.whatsapp\.com/send\?[^\"'\s>]*?phone=)(?:\+?420)?\d{9}", re.I)
           phone_query = re.compile(r"([?&]phone=)(?:\+?420)?\d{9}", re.I)
-          tel_link = re.compile(r"tel:(?:\+|00)?420?[\s\u00A0.-]*\d{3}[\s\u00A0.-]*\d{3}[\s\u00A0.-]*\d{3}", re.I)
+          tel_link = re.compile(r"tel:(?:(?:\+|00)?420[\s\u00A0.-]*)?\d{3}[\s\u00A0.-]*\d{3}[\s\u00A0.-]*\d{3}", re.I)
+          script_pattern = re.compile(r"booking\.js(?:\?v=[^\"']*)?")
 
           changed = []
           candidates = []
@@ -53,6 +54,8 @@ jobs:
                   candidates.append((str(path), match.group(0)))
               for match in wa_link.finditer(original):
                   candidates.append((str(path), match.group(0)))
+              for match in tel_link.finditer(original):
+                  candidates.append((str(path), match.group(0)))
 
               updated = original
               updated = wa_link.sub(f"https://wa.me/{COMPACT}", updated)
@@ -61,12 +64,11 @@ jobs:
               updated = tel_link.sub(f"tel:{TEL}", updated)
               updated = phone_display.sub(DISPLAY, updated)
 
-              # Replace spaced local Czech mobile numbers only in contact-related files/content.
               if any(token in updated.lower() for token in ('whatsapp', 'telefon', 'phone', 'kontakt', 'contact')):
                   updated = phone_local.sub(DISPLAY, updated)
 
               if path.suffix.lower() == '.html':
-                  updated = re.sub(r'booking\.js(?:\?v=[^\"\']*)?', 'booking.js?v=20260801-7', updated)
+                  updated = script_pattern.sub('booking.js?v=20260801-7', updated)
 
               if updated != original:
                   path.write_text(updated, encoding='utf-8')
