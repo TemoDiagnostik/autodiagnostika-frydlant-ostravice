@@ -21,8 +21,12 @@
       bookingTitle: "Důležité upozornění – Servisní práce:",
       bookingP1: "Pokud se Vaše rezervace týká servisu nebo opravy, uveďte prosím co nejpřesnější popis problému a VIN vozidla.",
       bookingP2: "Termín bude potvrzen po ověření rozsahu práce a dostupnosti.",
-      experience: "Jsem profesionální automechanik s více než 35 lety zkušeností v oblasti oprav a diagnostiky vozidel, z toho 14 let praxe v Německu (Stuttgart). Během své kariéry jsem se specializoval na propojení klasických mechanických znalostí s moderními elektronickými systémy, což mi umožňuje přesně identifikovat závady a navrhnout účinná řešení.",
-      about: "Dnes působím v klidném prostředí přírody v oblasti Frýdlant nad Ostravicí – Malenovice, kde nabízím profesionální servis, opravy a diagnostiku vozidel. Vozidlo lze po předchozí domluvě ponechat a po dokončení práce zákazníka kontaktuji.",
+      aboutSubtitle: "35 let zkušeností s automechanikou a diagnostikou vozidel",
+      aboutParagraphs: [
+        "Jsem automechatronik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 14 let v Německu (Stuttgart). Zaměřuji se na propojení klasické automobilové mechaniky s moderní elektronikou a diagnostickou technikou. Díky tomu mohu závady přesně lokalizovat a navrhovat odborná řešení.",
+        "Dnes v Malenovicích u Frýdlantu nad Ostravicí nabízím profesionální diagnostiku vozidel, údržbu a opravy po předchozí domluvě. Rozsah práce a cena jsou vždy dohodnuty před zahájením prací. Vozidlo u mě může během opravy zůstat; po dokončení zákazníka informuji.",
+        "Mluvím německy, anglicky a česky."
+      ],
       price: "Servis, údržba a opravy vozidel: cena podle rozsahu práce a technického stavu vozidla"
     },
     de: {
@@ -42,8 +46,12 @@
       bookingTitle: "Wichtiger Hinweis – Servicearbeiten:",
       bookingP1: "Wenn Ihre Anfrage Service- oder Reparaturarbeiten betrifft, geben Sie bitte eine möglichst genaue Problembeschreibung und die VIN des Fahrzeugs an.",
       bookingP2: "Der Termin wird nach Prüfung des Arbeitsumfangs und der Verfügbarkeit bestätigt.",
-      experience: "Ich bin professioneller Kfz-Mechaniker mit mehr als 35 Jahren Erfahrung in der Fahrzeugreparatur und -diagnose, davon 14 Jahre Berufserfahrung in Deutschland (Stuttgart). Im Laufe meiner Karriere habe ich mich auf die Verbindung klassischer mechanischer Kenntnisse mit modernen elektronischen Systemen spezialisiert, um Fehler präzise zu erkennen und wirksame Lösungen vorzuschlagen.",
-      about: "Heute arbeite ich in der ruhigen Naturumgebung von Frýdlant nad Ostravicí – Malenovice und biete professionellen Fahrzeugservice, Reparaturen und Diagnose an. Das Fahrzeug kann nach vorheriger Absprache abgestellt werden; nach Abschluss der Arbeiten kontaktiere ich den Kunden.",
+      aboutSubtitle: "35 Jahre Erfahrung in Fahrzeugmechanik und Diagnosetechnik",
+      aboutParagraphs: [
+        "Ich bin Kfz-Mechatroniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, darunter 14 Jahre in Deutschland (Stuttgart). Mein Schwerpunkt liegt in der Verbindung klassischer Fahrzeugmechanik mit moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler präzise eingrenzen und fachgerechte Lösungen entwickeln.",
+        "Heute biete ich in Malenovice bei Frýdlant nad Ostravicí professionelle Fahrzeugdiagnose, Wartung und Reparaturen nach vorheriger Absprache an. Arbeitsumfang und Preis werden vor Beginn der Arbeiten gemeinsam vereinbart. Das Fahrzeug kann während der Reparatur bei mir bleiben; nach Abschluss der Arbeiten informiere ich den Kunden.",
+        "Ich spreche Deutsch, Englisch und Tschechisch."
+      ],
       price: "Fahrzeugservice, Wartung und Reparaturen: Preis nach Arbeitsumfang und technischem Zustand des Fahrzeugs"
     },
     en: {
@@ -63,50 +71,56 @@
       bookingTitle: "Important notice – Service work:",
       bookingP1: "If your booking concerns servicing or repairs, please provide the most accurate possible description of the problem and the vehicle VIN.",
       bookingP2: "The appointment will be confirmed after reviewing the scope of work and availability.",
-      experience: "I am a professional vehicle mechanic with more than 35 years of experience in vehicle repairs and diagnostics, including 14 years of professional experience in Germany (Stuttgart). Throughout my career, I have specialised in combining traditional mechanical expertise with modern electronic systems, allowing me to identify faults accurately and propose effective solutions.",
-      about: "I operate in the peaceful surroundings of Frýdlant nad Ostravicí – Malenovice and provide professional vehicle servicing, repairs and diagnostics. The vehicle may be left by prior arrangement, and I will contact the customer when the work is completed.",
+      aboutSubtitle: "35 years of experience in vehicle mechanics and diagnostics",
+      aboutParagraphs: [
+        "I am an automotive mechatronics technician and vehicle diagnostics specialist with more than 35 years of professional experience, including 14 years in Germany (Stuttgart). My work combines traditional vehicle mechanics with modern electronics and diagnostic technology, allowing me to pinpoint faults accurately and develop professional solutions.",
+        "Today, I provide professional vehicle diagnostics, maintenance and repairs in Malenovice near Frýdlant nad Ostravicí by prior arrangement. The scope of work and price are agreed before work begins. The vehicle may remain with me during the repair; I contact the customer when the work is completed.",
+        "I speak German, English and Czech."
+      ],
       price: "Vehicle servicing, maintenance and repairs: price according to the scope of work and the vehicle’s technical condition"
     }
   };
 
   const t = translations[language] || translations.cs;
 
+  const removeLegacyMapService = () => {
+    const pattern = /Aktualizace map|Navigace a software|Kartenaktualisierung|Karten- und Systemaktualisierung|Navigation und Software|Map and system updates|Map updates|Navigation and software/i;
+
+    Array.from(document.querySelectorAll(".service-container")).forEach((container) => {
+      if (!pattern.test(container.textContent || "")) return;
+      const previous = container.previousElementSibling;
+      const panel = container.nextElementSibling;
+      if (panel?.classList.contains("accordion-panel")) panel.remove();
+      container.remove();
+      if (previous && /^(H[1-6]|P)$/.test(previous.tagName) && pattern.test(previous.textContent || "")) previous.remove();
+    });
+  };
+
   const findServiceHeading = () => Array.from(document.querySelectorAll("h3")).find((heading) =>
-    /Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)
+    /Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs|Diagnostika a opravy|Diagnose und Reparaturen|Diagnostics and Repairs/i.test(heading.textContent)
   );
 
   const findServiceContainer = () => {
     const heading = findServiceHeading();
-    if (heading && heading.nextElementSibling?.classList.contains("service-container")) {
-      return heading.nextElementSibling;
-    }
+    if (heading && heading.nextElementSibling?.classList.contains("service-container")) return heading.nextElementSibling;
     return Array.from(document.querySelectorAll(".service-container")).find((container) =>
-      /Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
+      /Opravy a údržba vozidel|Reparatur und Wartung von Fahrzeugen|Vehicle Repair and Maintenance|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
     );
   };
 
-  const prepareServiceSection = () => {
-    const serviceHeading = findServiceHeading();
-    const serviceContainer = findServiceContainer();
-    const servicePanel = serviceContainer?.nextElementSibling;
-    const resetContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
-      /Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)
-    );
+  const findResetContainer = () => Array.from(document.querySelectorAll(".service-container")).find((container) =>
+    /Resetování systémových funkcí|Zurücksetzen der Systemfunktionen|Systemfunktionen zurücksetzen|Resetting system functions|Reset system functions/i.test(container.textContent)
+  );
 
-    if (!serviceContainer || !resetContainer || !resetContainer.parentNode) return;
-
-    const button = serviceContainer.querySelector(".accordion-button");
-    const card = serviceContainer.querySelector(".service-button");
-    const titleRow = card?.querySelector(":scope > div");
-    const subtitle = card?.querySelector(":scope > span");
-
+  const styleServiceCard = (container, minHeight = "130px") => {
+    const button = container?.querySelector(".accordion-button");
+    const card = container?.querySelector(".service-button");
     if (button) {
       button.style.width = "100%";
       button.style.background = "none";
       button.style.border = "none";
       button.style.padding = "0";
     }
-
     if (card) {
       card.style.display = "flex";
       card.style.flexDirection = "column";
@@ -116,9 +130,24 @@
       card.style.borderRadius = "12px";
       card.style.margin = "0 auto 24px auto";
       card.style.maxWidth = "500px";
-      card.style.minHeight = "130px";
+      card.style.minHeight = minHeight;
       card.style.boxShadow = "0 2px 5px rgba(0,0,0,0.15)";
     }
+  };
+
+  const prepareServiceSection = () => {
+    const serviceHeading = findServiceHeading();
+    const serviceContainer = findServiceContainer();
+    const servicePanel = serviceContainer?.nextElementSibling;
+    const resetContainer = findResetContainer();
+    if (!serviceContainer || !resetContainer || !resetContainer.parentNode) return;
+
+    styleServiceCard(serviceContainer);
+    styleServiceCard(resetContainer);
+
+    const card = serviceContainer.querySelector(".service-button");
+    const titleRow = card?.querySelector(":scope > div");
+    const subtitle = card?.querySelector(":scope > span");
 
     if (titleRow) {
       titleRow.style.display = "flex";
@@ -150,10 +179,66 @@
     }
 
     resetContainer.parentNode.insertBefore(serviceContainer, resetContainer);
-    if (servicePanel?.classList.contains("accordion-panel")) {
-      resetContainer.parentNode.insertBefore(servicePanel, resetContainer);
-    }
+    if (servicePanel?.classList.contains("accordion-panel")) resetContainer.parentNode.insertBefore(servicePanel, resetContainer);
     serviceHeading?.remove();
+  };
+
+  const applyAboutSection = () => {
+    const aboutContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+      /O mně|Über mich|About me/i.test(container.textContent || "")
+    );
+    if (!aboutContainer) return;
+
+    const button = aboutContainer.querySelector(".accordion-button");
+    const card = aboutContainer.querySelector(".service-button");
+    const titleRow = card?.querySelector(":scope > div");
+    const subtitle = card?.querySelector(":scope > span");
+    const panel = aboutContainer.nextElementSibling;
+
+    if (button) {
+      button.style.width = "100%";
+      button.style.background = "none";
+      button.style.border = "none";
+      button.style.padding = "0";
+    }
+
+    if (card) {
+      card.style.height = "auto";
+      card.style.minHeight = "0";
+      card.style.padding = "14px 16px";
+      card.style.margin = "0 auto 12px auto";
+      card.style.maxWidth = "500px";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      card.style.alignItems = "flex-start";
+    }
+
+    if (titleRow) {
+      titleRow.style.margin = "0";
+      titleRow.style.minHeight = "0";
+      titleRow.style.display = "flex";
+      titleRow.style.alignItems = "center";
+      titleRow.style.gap = "12px";
+    }
+
+    if (subtitle) {
+      subtitle.textContent = t.aboutSubtitle;
+      subtitle.style.fontSize = "14px";
+      subtitle.style.lineHeight = "1.45";
+      subtitle.style.marginLeft = "64px";
+      subtitle.style.marginTop = "6px";
+      subtitle.style.marginBottom = "0";
+      subtitle.style.textAlign = "left";
+    }
+
+    if (panel?.classList.contains("accordion-panel")) {
+      panel.innerHTML = t.aboutParagraphs
+        .map((paragraph) => `<p style="margin:0 0 18px 0;color:#EBDBB1;font-size:16px;line-height:1.7;">${paragraph}</p>`)
+        .join("");
+      panel.style.padding = "18px 20px 4px";
+      panel.style.maxWidth = "500px";
+      panel.style.margin = "0 auto 18px auto";
+    }
   };
 
   const applyPageContent = () => {
@@ -184,15 +269,6 @@
       warningBox.innerHTML = `<strong style="color:#cc0000;">${t.bookingTitle}</strong><br>${t.bookingP1}<br>${t.bookingP2}`;
     }
 
-    const aboutContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
-      /O mně|Über mich|About me/i.test(container.textContent)
-    );
-    const aboutPanel = aboutContainer?.nextElementSibling;
-    const aboutParagraphs = aboutPanel ? Array.from(aboutPanel.querySelectorAll("p")) : [];
-    if (aboutParagraphs[0]) aboutParagraphs[0].textContent = t.experience;
-    const locationParagraph = aboutParagraphs.find((paragraph) => /Malenovice/i.test(paragraph.textContent));
-    if (locationParagraph) locationParagraph.textContent = t.about;
-
     const priceContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
       /Ceník|Preisliste|Price list/i.test(container.textContent)
     );
@@ -206,12 +282,14 @@
     }
   };
 
-  // The script is loaded at the end of the page, so the service can be moved
-  // before the existing accordion DOMContentLoaded handler builds its indexes.
+  removeLegacyMapService();
   prepareServiceSection();
   applyPageContent();
+  applyAboutSection();
 
   document.addEventListener("DOMContentLoaded", () => {
+    applyAboutSection();
+
     const config = window.TEMO_BOOKING_CONFIG || {};
     const apiUrl = config.apiUrl;
     const allTimes = Array.isArray(config.allTimes) && config.allTimes.length
