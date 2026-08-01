@@ -1,0 +1,163 @@
+name: Remove map update service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/remove-map-updates.yml
+
+permissions:
+  contents: write
+
+jobs:
+  remove-map-service:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Remove map update cards and legacy script references
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import html
+          import re
+
+          MAP_TERMS = (
+              "aktualizace map a systémů",
+              "aktualizace map",
+              "navigace a software",
+              "karten- und systemaktualisierung",
+              "kartenaktualisierung",
+              "navigation und software",
+              "map and system updates",
+              "map updates",
+              "navigation and software",
+          )
+
+          DIV_TOKEN = re.compile(r"(?is)<div\b[^>]*>|</div\s*>")
+          SERVICE_OPEN = re.compile(
+              r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\bservice-container\b[^\"']*\1[^>]*>"
+          )
+          PANEL_OPEN = re.compile(
+              r"(?is)<div\b[^>]*class\s*=\s*([\"'])[^\"']*\baccordion-panel\b[^\"']*\1[^>]*>"
+          )
+          SIMPLE_BLOCK = re.compile(r"(?is)<(h[1-6]|p)\b[^>]*>.*?</\1\s*>")
+          TAGS = re.compile(r"(?is)<[^>]+>")
+
+          def plain_text(fragment: str) -> str:
+              return html.unescape(TAGS.sub(" ", fragment)).lower()
+
+          def has_map_term(fragment: str) -> bool:
+              text = plain_text(fragment)
+              return any(term in text for term in MAP_TERMS)
+
+          def matching_div_end(text: str, start: int) -> int:
+              depth = 0
+              for match in DIV_TOKEN.finditer(text, start):
+                  token = match.group(0).lower()
+                  if token.startswith("<div"):
+                      depth += 1
+                  else:
+                      depth -= 1
+                      if depth == 0:
+                          return match.end()
+              raise RuntimeError("Unclosed div element")
+
+          def skip_space_and_comments(text: str, pos: int) -> int:
+              while True:
+                  space = re.match(r"\s*", text[pos:])
+                  pos += space.end()
+                  if text.startswith("<!--", pos):
+                      end = text.find("-->", pos + 4)
+                      if end < 0:
+                          return pos
+                      pos = end + 3
+                      continue
+                  return pos
+
+          def remove_map_cards(text: str) -> tuple[str, int]:
+              removed = 0
+              while True:
+                  target = None
+                  for opening in SERVICE_OPEN.finditer(text):
+                      end = matching_div_end(text, opening.start())
+                      if has_map_term(text[opening.start():end]):
+                          target = (opening.start(), end)
+                          break
+                  if target is None:
+                      break
+
+                  start, end = target
+                  next_pos = skip_space_and_comments(text, end)
+                  panel = PANEL_OPEN.match(text, next_pos)
+                  if panel:
+                      end = matching_div_end(text, panel.start())
+
+                  text = text[:start] + text[end:]
+                  removed += 1
+
+              def remove_heading(match: re.Match) -> str:
+                  nonlocal removed
+                  block = match.group(0)
+                  if has_map_term(block):
+                      removed += 1
+                      return ""
+                  return block
+
+              text = SIMPLE_BLOCK.sub(remove_heading, text)
+              return text, removed
+
+          changed = []
+          for path in sorted(Path('.').glob('index*.html')):
+              original = path.read_text(encoding='utf-8')
+              updated, removed = remove_map_cards(original)
+              if updated != original:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+                  print(f"Removed {removed} map-related block(s) from {path}")
+
+          booking = Path('booking.js')
+          if booking.exists():
+              original = booking.read_text(encoding='utf-8')
+              updated = original
+              for legacy in (
+                  'Navigace a software|Navigation und Software|Navigation and software|',
+                  'Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|',
+              ):
+                  updated = updated.replace(legacy, '')
+              if updated != original:
+                  booking.write_text(updated, encoding='utf-8')
+                  changed.append(str(booking))
+                  print('Removed legacy map-update matching from booking.js')
+
+          active_files = [Path('index.html'), Path('index.de.html'), Path('index.en.html')]
+          forbidden = tuple(term.lower() for term in MAP_TERMS)
+          for path in active_files:
+              content = path.read_text(encoding='utf-8').lower()
+              found = [term for term in forbidden if term in content]
+              if found:
+                  raise RuntimeError(f"{path}: map-update text remains: {found}")
+
+          if booking.exists():
+              content = booking.read_text(encoding='utf-8').lower()
+              found = [term for term in forbidden if term in content]
+              if found:
+                  raise RuntimeError(f"booking.js: legacy map-update text remains: {found}")
+
+          print('Changed files:', ', '.join(changed) if changed else 'none')
+          PY
+
+      - name: Commit permanent removal
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index*.html booking.js
+          if git diff --cached --quiet; then
+            echo "No map-update service remained in active files"
+          else
+            git commit -m "Remove map update service completely"
+            git push
+          fi
