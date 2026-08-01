@@ -1,0 +1,89 @@
+name: Reorder service buttons
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/reorder-service-buttons.yml
+
+permissions:
+  contents: write
+
+jobs:
+  reorder:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Put repairs first and reset second
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          pages = {
+              "index.html": {
+                  "repair_start": "<!-- 🔧 Opravy vozidel -->",
+                  "repair_end": "<!-- 🔍 Kontrola vozidla -->",
+                  "reset": "<!-- Reset Funkce -->",
+                  "repair_title": "Opravy a údržba vozidel",
+                  "reset_title": "Resetování systémových funkcí",
+              },
+              "index.de.html": {
+                  "repair_start": "<!-- 🔧 Fahrzeugreparaturen -->",
+                  "repair_end": "<!-- Kontrola Ujetých Kilometrů -->",
+                  "reset": "<!-- Reset -->",
+                  "repair_title": "Reparatur und Wartung von Fahrzeugen",
+                  "reset_title": "Zurücksetzen der Systemfunktionen",
+              },
+              "index.en.html": {
+                  "repair_start": "<!-- 🔧 Vehicle Repairs -->",
+                  "repair_end": "<!-- 🔍 Vehicle Verification -->",
+                  "reset": "<!-- 🛠️ Resetting Services -->",
+                  "repair_title": "Vehicle Repair and Maintenance",
+                  "reset_title": "Resetting system functions",
+              },
+          }
+
+          for filename, cfg in pages.items():
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+
+              start = text.find(cfg["repair_start"])
+              end = text.find(cfg["repair_end"], start)
+              reset = text.find(cfg["reset"])
+
+              if min(start, end, reset) < 0:
+                  raise RuntimeError(f"{filename}: required service markers were not found")
+
+              # Move the complete repairs section directly before the reset section.
+              repair_block = text[start:end].strip() + "\n\n"
+              text_without_repair = text[:start] + text[end:]
+              reset = text_without_repair.find(cfg["reset"])
+              if reset < 0:
+                  raise RuntimeError(f"{filename}: reset marker disappeared")
+
+              text = text_without_repair[:reset] + repair_block + text_without_repair[reset:]
+
+              repair_pos = text.find(cfg["repair_title"])
+              reset_pos = text.find(cfg["reset_title"])
+              if repair_pos < 0 or reset_pos < 0 or repair_pos >= reset_pos:
+                  raise RuntimeError(f"{filename}: button order validation failed")
+
+              path.write_text(text, encoding="utf-8")
+              print(f"Reordered {filename}: repairs first, reset second")
+          PY
+
+      - name: Commit reordered pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html index.de.html index.en.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Reorder repair and reset service buttons"
+            git push
+          fi
