@@ -1,0 +1,93 @@
+name: Add client-side map service removal
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/client-remove-map-service.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-client:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Add permanent browser-side removal and cache busting
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          booking = Path('booking.js')
+          text = booking.read_text(encoding='utf-8')
+
+          anchor = '  const findServiceHeading = () =>'
+          removal = r'''  const removeLegacyMapService = () => {
+    const mapPattern = /Aktualizace map|Navigace a software|Kartenaktualisierung|Karten- und Systemaktualisierung|Navigation und Software|Map and system updates|Map updates|Navigation and Software/i;
+
+    Array.from(document.querySelectorAll(".service-container")).forEach((container) => {
+      if (!mapPattern.test(container.textContent || "")) return;
+
+      const previous = container.previousElementSibling;
+      const panel = container.nextElementSibling;
+
+      if (panel?.classList.contains("accordion-panel")) panel.remove();
+      container.remove();
+
+      if (previous && /^(H[1-6]|P)$/.test(previous.tagName) && mapPattern.test(previous.textContent || "")) {
+        previous.remove();
+      }
+    });
+
+    Array.from(document.querySelectorAll("h1, h2, h3, p")).forEach((element) => {
+      if (mapPattern.test(element.textContent || "") && !element.closest(".accordion-panel")) {
+        const next = element.nextElementSibling;
+        if (!next || !next.classList?.contains("service-container")) element.remove();
+      }
+    });
+  };
+
+  removeLegacyMapService();
+
+'''
+
+          if 'const removeLegacyMapService = () =>' not in text:
+              if anchor not in text:
+                  raise RuntimeError('booking.js insertion anchor not found')
+              text = text.replace(anchor, removal + anchor, 1)
+
+          booking.write_text(text, encoding='utf-8')
+
+          version = '20260801-3'
+          for path in sorted(Path('.').glob('index*.html')):
+              html = path.read_text(encoding='utf-8')
+              updated = re.sub(
+                  r'booking\.js(?:\?v=[^"\']*)?',
+                  f'booking.js?v={version}',
+                  html,
+              )
+              if updated != html:
+                  path.write_text(updated, encoding='utf-8')
+                  print(f'Updated booking.js cache version in {path}')
+
+          if 'const removeLegacyMapService = () =>' not in booking.read_text(encoding='utf-8'):
+              raise RuntimeError('Client-side removal was not added')
+          PY
+
+      - name: Commit client-side protection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add booking.js index*.html
+          if git diff --cached --quiet; then
+            echo "Client-side map removal already present"
+          else
+            git commit -m "Prevent legacy map service from appearing"
+            git push
+          fi
