@@ -1,0 +1,195 @@
+name: Unify first service buttons
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/unify-first-service-buttons.yml
+
+permissions:
+  contents: write
+
+jobs:
+  unify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Standardize repairs and reset cards
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          CARD_STYLE = "display: flex; flex-direction: column; align-items: flex-start; background: rgba(0, 0, 0, 0.6); padding: 16px; border-radius: 12px; margin: 0 auto 24px auto; max-width: 500px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);"
+          PANEL_STYLE = "max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 20px; background-color: rgba(0, 0, 0, 0.6); border-radius: 0 0 8px 8px; max-width: 500px; margin: 0 auto 18px auto;"
+          LIST_STYLE = "list-style-type: disc; margin: 10px 0; padding-left: 20px; color: #EBDBB1; font-size: 15px; line-height: 1.7; font-weight: 400;"
+          HEADING_STYLE = "text-align:center; color:#EBDBB1; font-size:20px; margin:50px 0 20px; font-weight:600;"
+
+          def card(title, subtitle, icon_html, items, notice=None):
+              bullets = "\n".join(f"    <li>{item}</li>" for item in items)
+              notice_html = ""
+              if notice:
+                  notice_html = f'''\n  <p style="color: #EBDBB1; font-size: 14px; font-weight: bold; margin-top: 15px;">\n    ⚠️ {notice}\n  </p>'''
+              return f'''<div class="service-container">
+  <button type="button" class="accordion-button" style="width: 100%; background: none; border: none; padding: 0;">
+    <div class="service-button" style="{CARD_STYLE}">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="display:flex; align-items:center; justify-content:center; width:60px; height:52px; flex:0 0 60px;">{icon_html}</span>
+        <span style="font-weight: bold; color: #EBDBB1; font-size: 20px; text-align:left;">
+          {title} <span style="font-size: 16px;">▼</span>
+        </span>
+      </div>
+      <span style="font-size: 14px; color: #EBDBB1; font-weight: 400; margin-left: 72px; margin-top: 8px; text-align:left;">
+        {subtitle}
+      </span>
+    </div>
+  </button>
+</div>
+<div class="accordion-panel" style="{PANEL_STYLE}">
+  <ul style="{LIST_STYLE}">
+{bullets}
+  </ul>{notice_html}
+</div>'''
+
+          repair_icon = '<span aria-hidden="true" style="font-size:46px; line-height:1;">🔧</span>'
+          reset_icon = '<img src="icons/reset.png" alt="Reset" style="width:48px; height:48px; object-fit:contain;" />'
+
+          DATA = {
+              "index.html": {
+                  "start_regex": r'<h3 style="text-align:center; color:#EBDBB1; font-size:20px; margin:50px 0 20px; font-weight:600;">\s*🔧 Diagnostické služby\s*</h3>',
+                  "end": "<!-- Diagnostika -->",
+                  "heading": "🔧 Diagnostika a opravy",
+                  "repair_title": "Opravy a údržba vozidel",
+                  "repair_subtitle": "Mechanické opravy a údržba po předchozí kontrole a dohodě",
+                  "repair_items": [
+                      "Kontrola a určení závady před zahájením opravy",
+                      "Mechanické opravy a údržba vozidel podle dohody",
+                      "Výměna opotřebených nebo poškozených dílů",
+                      "Rozsah práce a cena jsou vždy předem odsouhlaseny",
+                      "Náhradní díly se volí po dohodě se zákazníkem",
+                      "Termín závisí na rozsahu opravy a dostupnosti dílů",
+                  ],
+                  "repair_notice": "Každá oprava je posuzována individuálně podle technického stavu vozidla. Práce se provádějí pouze po předchozí dohodě.",
+                  "reset_title": "Resetování systémových funkcí",
+                  "reset_subtitle": "Obnova výchozích hodnot a vymazání uložených nastavení řídicí jednotky",
+                  "reset_items": [
+                      "Reset výměny oleje", "Reset elektronické parkovací brzdy (EPB)", "Regenerace filtru pevných částic (DPF)",
+                      "Kalibrace úhlu natočení volantu (SAS)", "Reset systému správy baterie (BMS)",
+                      "Reset systému kontroly tlaku v pneumatikách (TPMS)", "Adaptace škrticí klapky", "Naučení převodovky",
+                      "Reset imobilizéru (IMMO)", "Kódování vstřikovačů", "Reset ventilu EGR", "Reset adaptivních světlometů (AFS)",
+                      "Inicializace klimatizace", "Reset systému AdBlue", "Reset podvozku", "Reset střešního okna",
+                      "Reset automatických světel", "Reset řídicí jednotky převodovky", "Odvzdušnění chladicího systému",
+                      "Reset filtru GPF", "Reset vysokonapěťové baterie (HV)", "Reset systému ENGPBM", "Odvzdušnění systému ABS",
+                      "Reset posilovače řízení (EPS)", "Reset interiérového osvětlení", "Reset oken", "Reset zrcátek",
+                      "Reset centrálního zamykání", "Reset alarmu", "Reset tempomatu", "Reset kontroly trakce",
+                      "Reset systému ESP", "Reset systému ASR", "Reset systému ACC", "Reset emisního systému",
+                  ],
+              },
+              "index.de.html": {
+                  "start_marker": "<!-- 🔧 Fahrzeugreparaturen -->",
+                  "end": "<!-- Diagnose -->",
+                  "heading": "🔧 Diagnose und Reparaturen",
+                  "repair_title": "Reparatur und Wartung von Fahrzeugen",
+                  "repair_subtitle": "Mechanische Reparaturen und Wartung nach vorheriger Prüfung und Absprache",
+                  "repair_items": [
+                      "Prüfung und Feststellung des Fehlers vor Beginn der Reparatur",
+                      "Mechanische Reparaturen und Wartung nach Absprache",
+                      "Austausch verschlissener oder beschädigter Teile",
+                      "Arbeitsumfang und Preis werden vorab vereinbart",
+                      "Ersatzteile werden gemeinsam mit dem Kunden ausgewählt",
+                      "Der Termin richtet sich nach Arbeitsumfang und Teileverfügbarkeit",
+                  ],
+                  "repair_notice": "Jede Reparatur wird individuell nach dem technischen Zustand des Fahrzeugs beurteilt. Die Arbeiten erfolgen nur nach vorheriger Absprache.",
+                  "reset_title": "Zurücksetzen der Systemfunktionen",
+                  "reset_subtitle": "Wiederherstellung der Werkseinstellungen und Löschen gespeicherter Steuergerätewerte",
+                  "reset_items": [
+                      "Ölwechsel-Reset", "Reset der elektronischen Parkbremse (EPB)", "Partikelfilter-Regeneration (DPF)",
+                      "Lenkwinkelkalibrierung (SAS)", "Batteriemanagementsystem-Reset (BMS)", "Reifendruckkontrollsystem-Reset (TPMS)",
+                      "Drosselklappenadaption", "Getriebe-Anlernung", "Wegfahrsperren-Reset (IMMO)", "Injektor-Codierung",
+                      "AGR-Ventil-Reset", "Adaptives Scheinwerfersystem-Reset (AFS)", "Klimaanlagen-Initialisierung", "AdBlue-System-Reset",
+                      "Fahrwerks-Reset", "Schiebedach-Reset", "Automatischer Licht-Reset", "Getriebesteuergerät-Reset",
+                      "Entlüftung des Kühlsystems", "GPF-Filter-Reset", "Hochvoltbatterie-Reset (HV)", "ENGPBM-System-Reset",
+                      "ABS-System-Entlüftung", "Servolenkungs-Reset (EPS)", "Innenraumbeleuchtungs-Reset", "Fenster-Reset",
+                      "Spiegel-Reset", "Zentralverriegelungs-Reset", "Alarm-Reset", "Tempomaten-Reset", "Traktionskontroll-Reset",
+                      "ESP-System-Reset", "ASR-System-Reset", "ACC-System-Reset", "Abgasregelsystem-Reset",
+                  ],
+              },
+              "index.en.html": {
+                  "start_marker": "<!-- 🔧 Vehicle Repairs -->",
+                  "end": "<!-- Diagnose -->",
+                  "heading": "🔧 Diagnostics and Repairs",
+                  "repair_title": "Vehicle Repair and Maintenance",
+                  "repair_subtitle": "Mechanical repairs and maintenance after inspection and prior agreement",
+                  "repair_items": [
+                      "Inspection and fault assessment before work begins",
+                      "Mechanical repairs and vehicle maintenance as agreed",
+                      "Replacement of worn or damaged parts",
+                      "Work scope and price are agreed in advance",
+                      "Spare parts are selected in consultation with the customer",
+                      "Appointment timing depends on the work scope and parts availability",
+                  ],
+                  "repair_notice": "Each repair is assessed individually according to the vehicle’s technical condition. Work is carried out only after prior agreement.",
+                  "reset_title": "Resetting System Functions",
+                  "reset_subtitle": "Restoring factory settings and clearing stored control-unit values",
+                  "reset_items": [
+                      "Oil Change Reset", "Electronic Parking Brake Reset (EPB)", "Diesel Particulate Filter Regeneration (DPF)",
+                      "Steering Angle Calibration (SAS)", "Battery Management System Reset (BMS)", "Tire Pressure Monitoring System Reset (TPMS)",
+                      "Throttle Adaptation", "Transmission Learning", "Immobilizer Reset (IMMO)", "Injector Coding", "EGR Valve Reset",
+                      "Adaptive Front Lighting Reset (AFS)", "A/C Initialization", "AdBlue System Reset", "Suspension Reset", "Sunroof Reset",
+                      "Automatic Light Reset", "Transmission Control Module Reset", "Cooling System Bleeding", "Gasoline Particulate Filter Reset (GPF)",
+                      "High Voltage Battery Reset (HV)", "ENGPBM System Reset", "ABS System Bleeding", "Electric Power Steering Reset (EPS)",
+                      "Interior Light Reset", "Window Reset", "Mirror Reset", "Central Locking Reset", "Alarm Reset", "Cruise Control Reset",
+                      "Traction Control Reset", "ESP System Reset", "ASR System Reset", "ACC System Reset", "Exhaust Aftertreatment Reset",
+                  ],
+              },
+          }
+
+          for filename, cfg in DATA.items():
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+
+              if "start_regex" in cfg:
+                  match = re.search(cfg["start_regex"], text)
+                  if not match:
+                      raise RuntimeError(f"{filename}: services heading not found")
+                  start = match.start()
+              else:
+                  start = text.find(cfg["start_marker"])
+                  if start < 0:
+                      raise RuntimeError(f"{filename}: repair section marker not found")
+
+              end = text.find(cfg["end"], start)
+              if end < 0:
+                  raise RuntimeError(f"{filename}: diagnostics section marker not found")
+
+              block = f'''<h3 style="{HEADING_STYLE}">\n  {cfg["heading"]}\n</h3>\n\n<!-- Service 1: Repairs -->\n{card(cfg["repair_title"], cfg["repair_subtitle"], repair_icon, cfg["repair_items"], cfg["repair_notice"])}\n\n<!-- Service 2: Reset -->\n{card(cfg["reset_title"], cfg["reset_subtitle"], reset_icon, cfg["reset_items"])}\n\n'''
+
+              text = text[:start] + block + text[end:]
+
+              section = text[start:text.find(cfg["end"], start)]
+              if section.find(cfg["repair_title"]) < 0 or section.find(cfg["reset_title"]) < 0:
+                  raise RuntimeError(f"{filename}: one of the first two buttons is missing")
+              if section.find(cfg["repair_title"]) >= section.find(cfg["reset_title"]):
+                  raise RuntimeError(f"{filename}: repairs must be first and reset second")
+              if section.count('class="service-container"') != 2:
+                  raise RuntimeError(f"{filename}: first service section must contain exactly two cards")
+
+              path.write_text(text, encoding="utf-8")
+              print(f"Unified first two service cards in {filename}")
+          PY
+
+      - name: Commit standardized pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html index.de.html index.en.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Unify repair and reset buttons across languages"
+            git push
+          fi
