@@ -61,11 +61,9 @@
       const fullDays = Array.isArray(data && data.fullDays) ? data.fullDays.map(String) : [];
       const sourceSlots = data && data.timeSlots && typeof data.timeSlots === "object" ? data.timeSlots : {};
       const timeSlots = {};
-
       Object.keys(sourceSlots).forEach((dateKey) => {
         timeSlots[dateKey] = Array.isArray(sourceSlots[dateKey]) ? sourceSlots[dateKey].map(String) : [];
       });
-
       return { fullDays, timeSlots };
     };
 
@@ -89,7 +87,6 @@
         timeSelect.disabled = true;
         return;
       }
-
       const bookedTimes = bookedSlots.timeSlots[toDateKey(date)] || [];
       allTimes.forEach((time) => {
         const option = document.createElement("option");
@@ -120,7 +117,6 @@
     };
 
     if (config.locale && config.locale !== "default") calendarOptions.locale = config.locale;
-
     resetTimeSelect();
     timeSelect.disabled = true;
     calendar = window.flatpickr(dateInput, calendarOptions);
@@ -167,15 +163,13 @@
       const date = dateInput.value.trim();
       const time = timeSelect.value;
       const vin = vinInput.value.trim().toUpperCase();
-
       vinInput.value = vin;
       vinInput.style.borderColor = "#ccc";
       vinError.style.display = "none";
 
       if (!date || !time) {
         window.alert(config.dateTimeError || "Please select a date and time.");
-        if (!date) dateInput.focus();
-        else timeSelect.focus();
+        if (!date) dateInput.focus(); else timeSelect.focus();
         return;
       }
 
@@ -284,12 +278,10 @@
 
     const t = content[lang] || content.cs;
     document.title = t.title;
-
     const setMeta = (selector, value) => {
       const element = document.querySelector(selector);
       if (element) element.setAttribute("content", value);
     };
-
     setMeta('meta[name="description"]', t.meta);
     setMeta('meta[property="og:title"]', t.title);
     setMeta('meta[property="og:description"]', t.meta);
@@ -310,7 +302,6 @@
     const serviceContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
       /Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
     );
-
     const servicePanel = serviceContainer && serviceContainer.nextElementSibling;
     if (serviceContainer) {
       const icon = serviceContainer.querySelector("img");
@@ -325,15 +316,12 @@
       if (titleElement) titleElement.innerHTML = `${t.serviceTitle} <span style="font-size:16px;">▼</span>`;
       if (subtitleElement) subtitleElement.textContent = t.serviceSubtitle;
     }
-
     if (servicePanel && servicePanel.classList.contains("accordion-panel")) {
       servicePanel.innerHTML = `<div style="color:#EBDBB1;font-size:15px;line-height:1.7;padding:10px 0;"><p>${t.serviceP1}</p><p>${t.serviceP2}</p><p>${t.serviceP3}</p></div>`;
     }
 
     const warningBox = document.querySelector(".reservation-form div[style*='fffacd']");
-    if (warningBox) {
-      warningBox.innerHTML = `<strong style="color:#cc0000;">${t.bookingTitle}</strong><br>${t.bookingP1}<br>${t.bookingP2}`;
-    }
+    if (warningBox) warningBox.innerHTML = `<strong style="color:#cc0000;">${t.bookingTitle}</strong><br>${t.bookingP1}<br>${t.bookingP2}`;
 
     const aboutContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
       /O mně|Über mich|About me/i.test(container.textContent)
@@ -364,3 +352,4 @@
     applyServiceContent();
   }
 })();
+// service-order-fix-20260801
