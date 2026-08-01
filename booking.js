@@ -6,25 +6,22 @@
     const mainHeading = headings.find((heading) =>
       /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Servis a diagnostika|Fahrzeugservice und Diagnose|Vehicle servicing and diagnostics/i.test(heading.textContent)
     );
-
     const serviceHeading = headings.find((heading) =>
       /Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)
     );
-
     if (!mainHeading || !serviceHeading) return;
 
     const serviceContainer = serviceHeading.nextElementSibling;
     const servicePanel = serviceContainer && serviceContainer.nextElementSibling;
     if (!serviceContainer || !serviceContainer.classList.contains("service-container") || !servicePanel) return;
 
-    const firstService = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+    const resetContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
       /Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)
     );
+    if (!resetContainer || !resetContainer.parentNode) return;
 
-    if (!firstService || !firstService.parentNode) return;
-
-    firstService.parentNode.insertBefore(serviceContainer, firstService);
-    firstService.parentNode.insertBefore(servicePanel, firstService);
+    resetContainer.parentNode.insertBefore(serviceContainer, resetContainer);
+    resetContainer.parentNode.insertBefore(servicePanel, resetContainer);
     serviceHeading.remove();
   };
 
@@ -42,7 +39,6 @@
     const timeSelect = document.getElementById("timepicker");
     const vinInput = document.getElementById("vin");
     const vinError = document.getElementById("vin-error");
-
     if (!form || !dateInput || !timeSelect || !vinInput || !vinError) return;
     if (typeof window.flatpickr !== "function") return;
 
@@ -115,7 +111,6 @@
         populateTimes(selectedDates[0]);
       }
     };
-
     if (config.locale && config.locale !== "default") calendarOptions.locale = config.locale;
     resetTimeSelect();
     timeSelect.disabled = true;
@@ -172,7 +167,6 @@
         if (!date) dateInput.focus(); else timeSelect.focus();
         return;
       }
-
       if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)) {
         vinInput.style.borderColor = "red";
         vinError.textContent = config.vinError || "The VIN is invalid.";
@@ -186,7 +180,6 @@
         window.alert(config.submitError || "The reservation could not be sent. Please try again.");
         return;
       }
-
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = config.sendingLabel || "Sending...";
@@ -352,4 +345,4 @@
     applyServiceContent();
   }
 })();
-// service-order-fix-20260801
+// service-order-fix-20260801-v2
