@@ -1,0 +1,78 @@
+name: Replace phone number exactly
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/replace-phone-exact.yml
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Replace old number with new number
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              "420732133919": "420730443768",
+              "+420 732 133 919": "+420 730 443 768",
+              "+420 732 133 919": "+420 730 443 768",
+              "+420732133919": "+420730443768",
+          }
+
+          changed = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts or '.github' in path.parts:
+                  continue
+              if path.suffix.lower() not in {'.html', '.js', '.json', '.txt', '.md'}:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              updated = text
+              for old, new in replacements.items():
+                  updated = updated.replace(old, new)
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+
+          expected_files = {
+              'index.html', 'index.de.html', 'index.en.html',
+              'index_backup.html', 'index_backupde.html', 'index_backup.en.html'
+          }
+          missing = expected_files.difference(changed)
+          if missing:
+              raise RuntimeError(f'Expected phone replacements were not made in: {sorted(missing)}')
+
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts or '.github' in path.parts:
+                  continue
+              if path.suffix.lower() not in {'.html', '.js', '.json', '.txt', '.md'}:
+                  continue
+              try:
+                  content = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if '420732133919' in content or '+420 732 133 919' in content:
+                  raise RuntimeError(f'Old phone number remains in {path}')
+
+          print('Updated:', ', '.join(sorted(changed)))
+          PY
+
+      - name: Commit replacement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html index.de.html index.en.html index_backup.html index_backupde.html index_backup.en.html
+          git commit -m "Replace website phone number"
+          git push
