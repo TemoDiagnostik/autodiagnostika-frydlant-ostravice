@@ -1,0 +1,48 @@
+name: Apply language page updates
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-language-updates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-language-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Force German and English pages to load the current booking script
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          version = "20260801-1104"
+          files = [Path("index.de.html"), Path("index.en.html")]
+
+          for path in files:
+              text = path.read_text(encoding="utf-8")
+              updated = re.sub(
+                  r'<script\s+src="booking\.js(?:\?v=[^"]*)?"></script>',
+                  f'<script src="booking.js?v={version}"></script>',
+                  text,
+              )
+              if updated == text:
+                  raise RuntimeError(f"booking.js reference was not found in {path}")
+              path.write_text(updated, encoding="utf-8")
+
+      - name: Commit updated language pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.de.html index.en.html
+          if git diff --cached --quiet; then
+            echo "No changes required."
+          else
+            git commit -m "Apply service updates to German and English pages"
+            git push
+          fi
