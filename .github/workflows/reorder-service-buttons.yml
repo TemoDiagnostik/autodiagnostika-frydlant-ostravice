@@ -1,4 +1,4 @@
-name: Reorder and unify service buttons
+name: Fix multilingual service buttons
 
 on:
   push:
@@ -11,164 +11,131 @@ permissions:
   contents: write
 
 jobs:
-  update-buttons:
+  fix-buttons:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set repairs first, reset second, and unify styling
+      - name: Fix repair/reset detection and styling
         run: |
           python <<'PY'
           from pathlib import Path
-          import re
 
-          pages = {
-              "index.html": {
-                  "repair_marker": "<!-- 🔧 Opravy vozidel -->",
-                  "repair_end": "<!-- 🔍 Kontrola vozidla -->",
-                  "reset_marker": "<!-- Reset Funkce -->",
-                  "repair_title": "Opravy a údržba vozidel",
-                  "reset_title": "Resetování systémových funkcí",
-              },
-              "index.de.html": {
-                  "repair_marker": "<!-- 🔧 Fahrzeugreparaturen -->",
-                  "repair_end": "<!-- Kontrola Ujetých Kilometrů -->",
-                  "reset_marker": "<!-- Reset -->",
-                  "repair_title": "Reparatur und Wartung von Fahrzeugen",
-                  "reset_title": "Zurücksetzen der Systemfunktionen",
-              },
-              "index.en.html": {
-                  "repair_marker": "<!-- 🔧 Vehicle Repairs -->",
-                  "repair_end": "<!-- 🔍 Vehicle Verification -->",
-                  "reset_marker": "<!-- 🛠️ Resetting Services -->",
-                  "repair_title": "Vehicle Repair and Maintenance",
-                  "reset_title": "Resetting system functions",
-              },
+          path = Path("booking.js")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = {
+              '/Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)':
+              '/Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs|Diagnostika a opravy|Diagnose und Reparaturen|Diagnostics and Repairs/i.test(heading.textContent)',
+
+              '/Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)':
+              '/Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Reparatur und Wartung von Fahrzeugen|Vehicle Repair and Maintenance|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)',
+
+              '/Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)':
+              '/Resetování systémových funkcí|Zurücksetzen der Systemfunktionen|Systemfunktionen zurücksetzen|Resetting system functions|Reset system functions/i.test(container.textContent)',
           }
 
-          for filename, cfg in pages.items():
-              path = Path(filename)
-              text = path.read_text(encoding="utf-8")
+          for old, new in replacements.items():
+              if old not in text:
+                  raise RuntimeError(f"Required booking.js pattern is missing: {old}")
+              text = text.replace(old, new, 1)
 
-              start = text.find(cfg["repair_marker"])
-              end = text.find(cfg["repair_end"], start)
-              reset = text.find(cfg["reset_marker"])
-              if min(start, end, reset) < 0:
-                  raise RuntimeError(f"{filename}: service markers not found")
+          anchor = '''    if (subtitle) {
+      subtitle.textContent = t.serviceSubtitle;
+      subtitle.style.fontSize = "14px";
+      subtitle.style.color = "#EBDBB1";
+      subtitle.style.fontWeight = "400";
+      subtitle.style.marginLeft = "64px";
+      subtitle.style.marginTop = "8px";
+    }
 
-              # Keep repairs immediately before reset.
-              if start > reset:
-                  repair_block = text[start:end].strip() + "\n\n"
-                  text = text[:start] + text[end:]
-                  reset = text.find(cfg["reset_marker"])
-                  text = text[:reset] + repair_block + text[reset:]
+    if (servicePanel?.classList.contains("accordion-panel")) {'''
 
-              if filename == "index.html":
-                  text = re.sub(
-                      r'<!-- 🔧 Opravy vozidel -->\s*<h3[^>]*>\s*🔧 Opravy vozidel\s*</h3>',
-                      '<!-- Service 1: Repairs -->', text, count=1, flags=re.S
-                  )
-                  text = text.replace('<!-- Reset Funkce -->', '<!-- Service 2: Reset -->', 1)
+          replacement = '''    if (subtitle) {
+      subtitle.textContent = t.serviceSubtitle;
+      subtitle.style.fontSize = "14px";
+      subtitle.style.color = "#EBDBB1";
+      subtitle.style.fontWeight = "400";
+      subtitle.style.marginLeft = "64px";
+      subtitle.style.marginTop = "8px";
+    }
 
-              elif filename == "index.de.html":
-                  text = re.sub(
-                      r'<!-- 🔧 Fahrzeugreparaturen -->\s*<h3[^>]*>\s*🔧 Fahrzeugreparaturen\s*</h3>',
-                      '<h3 style="text-align:center; color:#EBDBB1; font-size:20px; margin:50px 0 20px; font-weight:600;">\n  🔧 Diagnose und Reparaturen\n</h3>\n<!-- Service 1: Repairs -->',
-                      text, count=1, flags=re.S
-                  )
-                  text = re.sub(
-                      r'<!-- Reset -->\s*<h3[^>]*>\s*🔧 Diagnose-Dienstleistungen\s*</h3>',
-                      '<!-- Service 2: Reset -->', text, count=1, flags=re.S
-                  )
+    // Keep button 1 (repairs) and button 2 (reset) visually identical
+    // in Czech, German and English.
+    const resetButton = resetContainer.querySelector(".accordion-button");
+    const resetCard = resetContainer.querySelector(".service-button");
+    const resetTitleRow = resetCard?.querySelector(":scope > div");
+    const resetTitle = resetTitleRow?.querySelector("span:last-child");
+    const resetIcon = resetTitleRow?.querySelector("img");
+    const resetSubtitle = resetCard?.querySelector(":scope > span");
 
-              else:
-                  text = re.sub(
-                      r'<!-- 🔧 Vehicle Repairs -->\s*<h3[^>]*>\s*🔧 Vehicle Repairs\s*</h3>',
-                      '<h3 style="text-align:center; color:#EBDBB1; font-size:20px; margin:50px 0 20px; font-weight:600;">\n  🔧 Diagnostics and Repairs\n</h3>\n<!-- Service 1: Repairs -->',
-                      text, count=1, flags=re.S
-                  )
-                  text = re.sub(
-                      r'<!-- 🛠️ Resetting Services -->\s*<p[^>]*>\s*🔧 Diagnostic Services\s*</p>',
-                      '<!-- Service 2: Reset -->', text, count=1, flags=re.S
-                  )
+    if (resetButton) {
+      resetButton.style.width = "100%";
+      resetButton.style.background = "none";
+      resetButton.style.border = "none";
+      resetButton.style.padding = "0";
+    }
 
-              repair_pos = text.find(cfg["repair_title"])
-              reset_pos = text.find(cfg["reset_title"])
-              if repair_pos < 0 or reset_pos < 0 or repair_pos >= reset_pos:
-                  raise RuntimeError(f"{filename}: expected repairs-first/reset-second order is missing")
+    if (resetCard) {
+      resetCard.style.display = "flex";
+      resetCard.style.flexDirection = "column";
+      resetCard.style.alignItems = "flex-start";
+      resetCard.style.background = "rgba(0, 0, 0, 0.6)";
+      resetCard.style.padding = "16px";
+      resetCard.style.borderRadius = "12px";
+      resetCard.style.margin = "0 auto 24px auto";
+      resetCard.style.maxWidth = "500px";
+      resetCard.style.minHeight = "130px";
+      resetCard.style.boxShadow = "0 2px 5px rgba(0,0,0,0.15)";
+    }
 
-              path.write_text(text, encoding="utf-8")
-              print(f"Updated {filename}")
+    if (resetTitleRow) {
+      resetTitleRow.style.display = "flex";
+      resetTitleRow.style.alignItems = "center";
+      resetTitleRow.style.gap = "12px";
+    }
 
-          css_path = Path("style.css")
-          css = css_path.read_text(encoding="utf-8")
-          marker = "/* Unified service-card layout 2026-08-01 */"
-          if marker not in css:
-              css += f'''\n\n{marker}
-.service-container > .accordion-button {{
-  width: 100% !important;
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-}}
-.service-container .service-button {{
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  background: rgba(0, 0, 0, 0.6) !important;
-  padding: 16px !important;
-  border-radius: 12px !important;
-  margin: 0 auto 24px auto !important;
-  max-width: 500px !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
-  box-sizing: border-box !important;
-}}
-.service-container .service-button > div {{
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  width: 100% !important;
-}}
-.service-container .service-button > div > img {{
-  width: 48px !important;
-  height: 48px !important;
-  object-fit: contain !important;
-  margin: 0 6px !important;
-  flex: 0 0 48px !important;
-}}
-.service-container .service-button > div > span:first-child:not(:last-child) {{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 60px !important;
-  min-width: 60px !important;
-}}
-.service-container .service-button > div > span:last-child {{
-  font-size: 20px !important;
-  line-height: 1.25 !important;
-  text-align: left !important;
-}}
-.service-container .service-button > span {{
-  font-size: 14px !important;
-  line-height: 1.45 !important;
-  margin-left: 72px !important;
-  margin-top: 8px !important;
-  text-align: left !important;
-}}
-'''
-              css_path.write_text(css, encoding="utf-8")
-              print("Added unified service-card CSS")
+    if (resetTitle) {
+      resetTitle.style.fontSize = "20px";
+      resetTitle.style.lineHeight = "1.25";
+    }
+
+    if (resetIcon) {
+      resetIcon.style.width = "44px";
+      resetIcon.style.height = "44px";
+      resetIcon.style.objectFit = "contain";
+      resetIcon.style.marginLeft = "4px";
+      resetIcon.style.marginRight = "4px";
+      resetIcon.style.flexShrink = "0";
+    }
+
+    if (resetSubtitle) {
+      resetSubtitle.style.fontSize = "14px";
+      resetSubtitle.style.color = "#EBDBB1";
+      resetSubtitle.style.fontWeight = "400";
+      resetSubtitle.style.marginLeft = "64px";
+      resetSubtitle.style.marginTop = "8px";
+    }
+
+    if (servicePanel?.classList.contains("accordion-panel")) {'''
+
+          if anchor not in text:
+              raise RuntimeError("Could not find the card styling insertion point in booking.js")
+          text = text.replace(anchor, replacement, 1)
+
+          path.write_text(text, encoding="utf-8")
+          print("booking.js updated successfully")
           PY
 
-      - name: Commit website changes
+      - name: Commit booking script fix
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html index.de.html index.en.html style.css
+          git add booking.js
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Unify repair and reset buttons across languages"
+            git commit -m "Fix repair and reset buttons in all languages"
             git push
           fi
