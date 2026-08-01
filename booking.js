@@ -158,7 +158,6 @@
       form.action = submitUrl;
       form.method = "POST";
       form.target = frameName;
-
       HTMLFormElement.prototype.submit.call(form);
     };
 
@@ -175,11 +174,8 @@
 
       if (!date || !time) {
         window.alert(config.dateTimeError || "Please select a date and time.");
-        if (!date) {
-          dateInput.focus();
-        } else {
-          timeSelect.focus();
-        }
+        if (!date) dateInput.focus();
+        else timeSelect.focus();
         return;
       }
 
@@ -226,16 +222,15 @@
     const lang = (document.documentElement.lang || "cs").toLowerCase().slice(0, 2);
     const content = {
       cs: {
-        title: "Soukromá diagnostika, servis a opravy vozidel | Malenovice",
-        meta: "Diagnostika, servis, údržba a opravy vozidel v Malenovicích u Frýdlantu nad Ostravicí. 35 let zkušeností, férové ceny a individuální přístup.",
-        hero: "🛠️ Soukromá diagnostika, servis a opravy vozidel",
+        title: "Soukromý servis, opravy a diagnostika vozidel | Malenovice",
+        meta: "Servis, údržba, opravy a diagnostika vozidel v Malenovicích u Frýdlantu nad Ostravicí. 35 let zkušeností, férové ceny a individuální přístup.",
+        hero: "🛠️ Soukromý servis, opravy a diagnostika vozidel",
         tagline: "Bez stresu – v přírodě",
-        intro: "Diagnostika, servis a opravy vozidel v klidném prostředí Malenovic (Frýdlant nad Ostravicí)",
+        intro: "Servis, opravy a diagnostika vozidel v klidném prostředí Malenovic (Frýdlant nad Ostravicí)",
         benefits: "Profesionální přístup • 35 let zkušeností • Férové ceny •",
-        coffee: "Zatímco se postarám o Váš vůz, můžete si vychutnat kávu nebo čaj.",
-        servicesHeading: "🔧 Diagnostika a servis",
-        sectionHeading: "🔧 Servis a údržba vozidel",
-        serviceTitle: "Servis a údržba vozidel",
+        dropoff: "Vozidlo u mě můžete po předchozí domluvě ponechat. Po dokončení práce Vás budu kontaktovat.",
+        servicesHeading: "🔧 Servis a diagnostika vozidel",
+        serviceTitle: "Servis a opravy vozidel",
         serviceSubtitle: "Servis, údržba a opravy po předchozí domluvě",
         serviceP1: "Provádím servis, údržbu a opravy vozidel po předchozí domluvě.",
         serviceP2: "Rozsah práce a cena jsou vždy stanoveny individuálně podle technického stavu vozidla a po dohodě se zákazníkem.",
@@ -243,20 +238,19 @@
         bookingTitle: "Důležité upozornění – Servisní práce:",
         bookingP1: "Pokud se Vaše rezervace týká servisu nebo opravy, uveďte prosím co nejpřesnější popis problému a VIN vozidla.",
         bookingP2: "Termín bude potvrzen po ověření rozsahu práce a dostupnosti.",
-        about: "Dnes působím v klidném prostředí přírody v oblasti Frýdlant nad Ostravicí – Malenovice, kde může zákazník využít profesionálních služeb v oblasti diagnostiky, servisu a oprav vozidel a zároveň si vychutnat šálek kávy nebo čaje na zahradě, případně se projít po okolí.",
+        about: "Dnes působím v klidném prostředí přírody v oblasti Frýdlant nad Ostravicí – Malenovice, kde nabízím profesionální servis, opravy a diagnostiku vozidel. Vozidlo lze po předchozí domluvě ponechat a po dokončení práce zákazníka kontaktuji.",
         price: "Servis, údržba a opravy vozidel: cena podle rozsahu práce a technického stavu vozidla"
       },
       de: {
-        title: "Private Fahrzeugdiagnose, Wartung und Reparaturen | Malenovice",
-        meta: "Fahrzeugdiagnose, Wartung und Reparaturen in Malenovice bei Frýdlant nad Ostravicí. 35 Jahre Erfahrung, faire Preise und individuelle Betreuung.",
-        hero: "🛠️ Private Fahrzeugdiagnose, Wartung und Reparaturen",
+        title: "Privater Fahrzeugservice, Reparaturen und Diagnose | Malenovice",
+        meta: "Fahrzeugservice, Wartung, Reparaturen und Diagnose in Malenovice bei Frýdlant nad Ostravicí. 35 Jahre Erfahrung und faire Preise.",
+        hero: "🛠️ Privater Fahrzeugservice, Reparaturen und Diagnose",
         tagline: "Ganz ohne Stress – in der Natur",
-        intro: "Fahrzeugdiagnose, Wartung und Reparaturen in der ruhigen Umgebung von Malenovice (Frýdlant nad Ostravicí)",
-        benefits: "Professionelles Auftreten • 35 Jahre Erfahrung • Faire Preise •",
-        coffee: "Während ich mich um Ihr Fahrzeug kümmere, können Sie eine Tasse Kaffee oder Tee genießen.",
-        servicesHeading: "🔧 Diagnose und Fahrzeugservice",
-        sectionHeading: "🔧 Fahrzeugservice und Wartung",
-        serviceTitle: "Fahrzeugservice und Wartung",
+        intro: "Fahrzeugservice, Reparaturen und Diagnose in der ruhigen Umgebung von Malenovice (Frýdlant nad Ostravicí)",
+        benefits: "Professioneller Service • 35 Jahre Erfahrung • Faire Preise •",
+        dropoff: "Sie können Ihr Fahrzeug nach vorheriger Absprache bei mir abstellen. Nach Abschluss der Arbeiten werde ich Sie kontaktieren.",
+        servicesHeading: "🔧 Fahrzeugservice und Diagnose",
+        serviceTitle: "Fahrzeugservice und Reparaturen",
         serviceSubtitle: "Service, Wartung und Reparaturen nach vorheriger Absprache",
         serviceP1: "Ich führe Service-, Wartungs- und Reparaturarbeiten nach vorheriger Absprache durch.",
         serviceP2: "Arbeitsumfang und Preis werden individuell nach dem technischen Zustand des Fahrzeugs und in Abstimmung mit dem Kunden festgelegt.",
@@ -264,28 +258,27 @@
         bookingTitle: "Wichtiger Hinweis – Servicearbeiten:",
         bookingP1: "Wenn Ihre Anfrage Service- oder Reparaturarbeiten betrifft, geben Sie bitte eine möglichst genaue Problembeschreibung und die VIN des Fahrzeugs an.",
         bookingP2: "Der Termin wird nach Prüfung des Arbeitsumfangs und der Verfügbarkeit bestätigt.",
-        about: "Heute arbeite ich in der ruhigen Naturumgebung von Frýdlant nad Ostravicí – Malenovice, wo Kunden professionelle Diagnose-, Wartungs- und Reparaturleistungen in Anspruch nehmen und gleichzeitig eine Tasse Kaffee oder Tee im Garten genießen oder einen Spaziergang in der Umgebung machen können.",
+        about: "Heute arbeite ich in der ruhigen Naturumgebung von Frýdlant nad Ostravicí – Malenovice und biete professionellen Fahrzeugservice, Reparaturen und Diagnose an. Das Fahrzeug kann nach vorheriger Absprache abgestellt werden; nach Abschluss der Arbeiten kontaktiere ich den Kunden.",
         price: "Fahrzeugservice, Wartung und Reparaturen: Preis nach Arbeitsumfang und technischem Zustand des Fahrzeugs"
       },
       en: {
-        title: "Private Vehicle Diagnostics, Servicing and Repairs | Malenovice",
-        meta: "Vehicle diagnostics, servicing, maintenance and repairs in Malenovice near Frýdlant nad Ostravicí. 35 years of experience, fair prices and personal service.",
-        hero: "🛠️ Private vehicle diagnostics, servicing and repairs",
+        title: "Private Vehicle Servicing, Repairs and Diagnostics | Malenovice",
+        meta: "Vehicle servicing, maintenance, repairs and diagnostics in Malenovice near Frýdlant nad Ostravicí. 35 years of experience and fair prices.",
+        hero: "🛠️ Private vehicle servicing, repairs and diagnostics",
         tagline: "Without stress – in nature",
-        intro: "Vehicle diagnostics, servicing and repairs in the calm surroundings of Malenovice (Frýdlant nad Ostravicí)",
+        intro: "Vehicle servicing, repairs and diagnostics in the calm surroundings of Malenovice (Frýdlant nad Ostravicí)",
         benefits: "Professional service • 35 years of experience • Fair prices •",
-        coffee: "While I take care of your vehicle, you can enjoy a cup of coffee or tea.",
-        servicesHeading: "🔧 Diagnostics and vehicle service",
-        sectionHeading: "🔧 Vehicle service and maintenance",
-        serviceTitle: "Vehicle service and maintenance",
+        dropoff: "You may leave your vehicle with me by prior arrangement. I will contact you when the work is completed.",
+        servicesHeading: "🔧 Vehicle servicing and diagnostics",
+        serviceTitle: "Vehicle servicing and repairs",
         serviceSubtitle: "Servicing, maintenance and repairs by prior arrangement",
         serviceP1: "I provide vehicle servicing, maintenance and repairs by prior arrangement.",
-        serviceP2: "The scope of work and price are always determined individually according to the vehicle’s technical condition and in agreement with the customer.",
+        serviceP2: "The scope of work and price are determined individually according to the vehicle’s technical condition and in agreement with the customer.",
         serviceP3: "When booking, please provide the vehicle type, year, VIN and a brief description of the problem.",
         bookingTitle: "Important notice – Service work:",
         bookingP1: "If your booking concerns servicing or repairs, please provide the most accurate possible description of the problem and the vehicle VIN.",
         bookingP2: "The appointment will be confirmed after reviewing the scope of work and availability.",
-        about: "Today, I operate in the peaceful natural surroundings of Frýdlant nad Ostravicí – Malenovice, where customers can benefit from professional diagnostics, servicing and vehicle repairs while enjoying a cup of coffee or tea in the garden, or taking a walk nearby.",
+        about: "I operate in the peaceful surroundings of Frýdlant nad Ostravicí – Malenovice and provide professional vehicle servicing, repairs and diagnostics. The vehicle may be left by prior arrangement, and I will contact the customer when the work is completed.",
         price: "Vehicle servicing, maintenance and repairs: price according to the scope of work and the vehicle’s technical condition"
       }
     };
@@ -306,23 +299,20 @@
     if (hero) {
       hero.innerHTML = `${t.hero}<br>${t.tagline}`;
       const intro = hero.parentElement && hero.parentElement.querySelector("p");
-      if (intro) {
-        intro.innerHTML = `${t.intro}<br>${t.benefits}<br>${t.coffee}`;
-      }
+      if (intro) intro.innerHTML = `${t.intro}<br>${t.benefits}<br>${t.dropoff}`;
     }
 
     const headings = Array.from(document.querySelectorAll("h3"));
     const diagnosticHeading = headings.find((heading) =>
-      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services/i.test(heading.textContent)
+      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Diagnostika a servis|Diagnose und Fahrzeugservice|Diagnostics and vehicle service/i.test(heading.textContent)
     );
     if (diagnosticHeading) diagnosticHeading.textContent = t.servicesHeading;
 
     const navigationHeading = headings.find((heading) =>
-      /Navigace|Navigation/i.test(heading.textContent)
+      /Navigace|Navigation|Servis a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance/i.test(heading.textContent)
     );
 
     if (navigationHeading) {
-      navigationHeading.textContent = t.sectionHeading;
       const serviceContainer = navigationHeading.nextElementSibling;
       const servicePanel = serviceContainer && serviceContainer.nextElementSibling;
 
@@ -337,9 +327,7 @@
 
         const titleElement = serviceContainer.querySelector(".service-button > div span");
         const subtitleElement = serviceContainer.querySelector(".service-button > span");
-        if (titleElement) {
-          titleElement.innerHTML = `${t.serviceTitle} <span style="font-size: 16px;">▼</span>`;
-        }
+        if (titleElement) titleElement.innerHTML = `${t.serviceTitle} <span style="font-size:16px;">▼</span>`;
         if (subtitleElement) subtitleElement.textContent = t.serviceSubtitle;
       }
 
@@ -350,6 +338,14 @@
             <p>${t.serviceP2}</p>
             <p>${t.serviceP3}</p>
           </div>`;
+      }
+
+      if (diagnosticHeading && serviceContainer && servicePanel && diagnosticHeading.parentNode) {
+        const parent = diagnosticHeading.parentNode;
+        const firstExistingService = diagnosticHeading.nextSibling;
+        parent.insertBefore(serviceContainer, firstExistingService);
+        parent.insertBefore(servicePanel, firstExistingService);
+        navigationHeading.remove();
       }
     }
 
@@ -366,7 +362,7 @@
 
     const aboutParagraph = Array.from(document.querySelectorAll("p")).find((paragraph) =>
       /Malenovice/i.test(paragraph.textContent) &&
-      /Dnes|Heute|Today/i.test(paragraph.textContent) &&
+      /Dnes|Heute|Today|operate/i.test(paragraph.textContent) &&
       /diagnost|Diagnose/i.test(paragraph.textContent)
     );
     if (aboutParagraph) aboutParagraph.textContent = t.about;
