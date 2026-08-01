@@ -25,6 +25,110 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Fix multilingual repair and reset buttons
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path("booking.js")
+          text = path.read_text(encoding="utf-8")
+
+          text = text.replace(
+              '/Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)',
+              '/Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs|Diagnostika a opravy|Diagnose und Reparaturen|Diagnostics and Repairs/i.test(heading.textContent)'
+          )
+          text = text.replace(
+              '/Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)',
+              '/Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Reparatur und Wartung von Fahrzeugen|Vehicle Repair and Maintenance|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)'
+          )
+          text = text.replace(
+              '/Resetování systémových funkcí|Systemfunktionen zurücksetzen|Reset system functions/i.test(container.textContent)',
+              '/Resetování systémových funkcí|Zurücksetzen der Systemfunktionen|Systemfunktionen zurücksetzen|Resetting system functions|Reset system functions/i.test(container.textContent)'
+          )
+
+          anchor = '''    if (subtitle) {
+      subtitle.textContent = t.serviceSubtitle;
+      subtitle.style.fontSize = "14px";
+      subtitle.style.color = "#EBDBB1";
+      subtitle.style.fontWeight = "400";
+      subtitle.style.marginLeft = "64px";
+      subtitle.style.marginTop = "8px";
+    }
+
+    if (servicePanel?.classList.contains("accordion-panel")) {'''
+
+          replacement = '''    if (subtitle) {
+      subtitle.textContent = t.serviceSubtitle;
+      subtitle.style.fontSize = "14px";
+      subtitle.style.color = "#EBDBB1";
+      subtitle.style.fontWeight = "400";
+      subtitle.style.marginLeft = "64px";
+      subtitle.style.marginTop = "8px";
+    }
+
+    const resetButton = resetContainer.querySelector(".accordion-button");
+    const resetCard = resetContainer.querySelector(".service-button");
+    const resetTitleRow = resetCard?.querySelector(":scope > div");
+    const resetTitle = resetTitleRow?.querySelector("span:last-child");
+    const resetIcon = resetTitleRow?.querySelector("img");
+    const resetSubtitle = resetCard?.querySelector(":scope > span");
+
+    if (resetButton) {
+      resetButton.style.width = "100%";
+      resetButton.style.background = "none";
+      resetButton.style.border = "none";
+      resetButton.style.padding = "0";
+    }
+
+    if (resetCard) {
+      resetCard.style.display = "flex";
+      resetCard.style.flexDirection = "column";
+      resetCard.style.alignItems = "flex-start";
+      resetCard.style.background = "rgba(0, 0, 0, 0.6)";
+      resetCard.style.padding = "16px";
+      resetCard.style.borderRadius = "12px";
+      resetCard.style.margin = "0 auto 24px auto";
+      resetCard.style.maxWidth = "500px";
+      resetCard.style.minHeight = "130px";
+      resetCard.style.boxShadow = "0 2px 5px rgba(0,0,0,0.15)";
+    }
+
+    if (resetTitleRow) {
+      resetTitleRow.style.display = "flex";
+      resetTitleRow.style.alignItems = "center";
+      resetTitleRow.style.gap = "12px";
+    }
+
+    if (resetTitle) {
+      resetTitle.style.fontSize = "20px";
+      resetTitle.style.lineHeight = "1.25";
+    }
+
+    if (resetIcon) {
+      resetIcon.style.width = "44px";
+      resetIcon.style.height = "44px";
+      resetIcon.style.objectFit = "contain";
+      resetIcon.style.marginLeft = "4px";
+      resetIcon.style.marginRight = "4px";
+      resetIcon.style.flexShrink = "0";
+    }
+
+    if (resetSubtitle) {
+      resetSubtitle.style.fontSize = "14px";
+      resetSubtitle.style.color = "#EBDBB1";
+      resetSubtitle.style.fontWeight = "400";
+      resetSubtitle.style.marginLeft = "64px";
+      resetSubtitle.style.marginTop = "8px";
+    }
+
+    if (servicePanel?.classList.contains("accordion-panel")) {'''
+
+          if anchor in text and 'const resetButton = resetContainer.querySelector(".accordion-button");' not in text:
+              text = text.replace(anchor, replacement, 1)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
