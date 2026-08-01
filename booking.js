@@ -72,7 +72,7 @@
   const t = translations[language] || translations.cs;
 
   const findServiceHeading = () => Array.from(document.querySelectorAll("h3")).find((heading) =>
-    /Navigace a software|Navigation und Software|Navigation and software|Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)
+    /Opravy vozidel|Fahrzeugreparaturen|Vehicle repairs/i.test(heading.textContent)
   );
 
   const findServiceContainer = () => {
@@ -81,7 +81,7 @@
       return heading.nextElementSibling;
     }
     return Array.from(document.querySelectorAll(".service-container")).find((container) =>
-      /Aktualizace map a systémů|Karten- und Systemaktualisierung|Map and system updates|Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
+      /Opravy a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
     );
   };
 
