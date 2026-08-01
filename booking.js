@@ -220,6 +220,7 @@
 
   const applyServiceContent = () => {
     const lang = (document.documentElement.lang || "cs").toLowerCase().slice(0, 2);
+
     const content = {
       cs: {
         title: "Soukromý servis, opravy a diagnostika vozidel | Malenovice",
@@ -238,6 +239,7 @@
         bookingTitle: "Důležité upozornění – Servisní práce:",
         bookingP1: "Pokud se Vaše rezervace týká servisu nebo opravy, uveďte prosím co nejpřesnější popis problému a VIN vozidla.",
         bookingP2: "Termín bude potvrzen po ověření rozsahu práce a dostupnosti.",
+        experience: "Jsem profesionální automechanik s více než 35 lety zkušeností v oblasti oprav a diagnostiky vozidel, z toho 14 let praxe v Německu (Stuttgart). Během své kariéry jsem se specializoval na propojení klasických mechanických znalostí s moderními elektronickými systémy, což mi umožňuje přesně identifikovat závady a navrhnout účinná řešení.",
         about: "Dnes působím v klidném prostředí přírody v oblasti Frýdlant nad Ostravicí – Malenovice, kde nabízím profesionální servis, opravy a diagnostiku vozidel. Vozidlo lze po předchozí domluvě ponechat a po dokončení práce zákazníka kontaktuji.",
         price: "Servis, údržba a opravy vozidel: cena podle rozsahu práce a technického stavu vozidla"
       },
@@ -258,6 +260,7 @@
         bookingTitle: "Wichtiger Hinweis – Servicearbeiten:",
         bookingP1: "Wenn Ihre Anfrage Service- oder Reparaturarbeiten betrifft, geben Sie bitte eine möglichst genaue Problembeschreibung und die VIN des Fahrzeugs an.",
         bookingP2: "Der Termin wird nach Prüfung des Arbeitsumfangs und der Verfügbarkeit bestätigt.",
+        experience: "Ich bin professioneller Kfz-Mechaniker mit mehr als 35 Jahren Erfahrung in der Fahrzeugreparatur und -diagnose, davon 14 Jahre Berufserfahrung in Deutschland (Stuttgart). Im Laufe meiner Karriere habe ich mich auf die Verbindung klassischer mechanischer Kenntnisse mit modernen elektronischen Systemen spezialisiert, um Fehler präzise zu erkennen und wirksame Lösungen vorzuschlagen.",
         about: "Heute arbeite ich in der ruhigen Naturumgebung von Frýdlant nad Ostravicí – Malenovice und biete professionellen Fahrzeugservice, Reparaturen und Diagnose an. Das Fahrzeug kann nach vorheriger Absprache abgestellt werden; nach Abschluss der Arbeiten kontaktiere ich den Kunden.",
         price: "Fahrzeugservice, Wartung und Reparaturen: Preis nach Arbeitsumfang und technischem Zustand des Fahrzeugs"
       },
@@ -278,6 +281,7 @@
         bookingTitle: "Important notice – Service work:",
         bookingP1: "If your booking concerns servicing or repairs, please provide the most accurate possible description of the problem and the vehicle VIN.",
         bookingP2: "The appointment will be confirmed after reviewing the scope of work and availability.",
+        experience: "I am a professional vehicle mechanic with more than 35 years of experience in vehicle repairs and diagnostics, including 14 years of professional experience in Germany (Stuttgart). Throughout my career, I have specialised in combining traditional mechanical expertise with modern electronic systems, allowing me to identify faults accurately and propose effective solutions.",
         about: "I operate in the peaceful surroundings of Frýdlant nad Ostravicí – Malenovice and provide professional vehicle servicing, repairs and diagnostics. The vehicle may be left by prior arrangement, and I will contact the customer when the work is completed.",
         price: "Vehicle servicing, maintenance and repairs: price according to the scope of work and the vehicle’s technical condition"
       }
@@ -304,32 +308,40 @@
 
     const headings = Array.from(document.querySelectorAll("h3"));
     const diagnosticHeading = headings.find((heading) =>
-      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Diagnostika a servis|Diagnose und Fahrzeugservice|Diagnostics and vehicle service/i.test(heading.textContent)
-    );
-    if (diagnosticHeading) diagnosticHeading.textContent = t.servicesHeading;
-
-    const navigationHeading = headings.find((heading) =>
-      /Navigace|Navigation|Servis a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance/i.test(heading.textContent)
+      /Diagnostické služby|Diagnose-Dienstleistungen|Diagnostic Services|Diagnostika a servis|Diagnose und Fahrzeugservice|Diagnostics and vehicle service|Servis a diagnostika vozidel|Fahrzeugservice und Diagnose|Vehicle servicing and diagnostics/i.test(heading.textContent)
     );
 
-    if (navigationHeading) {
-      const serviceContainer = navigationHeading.nextElementSibling;
-      const servicePanel = serviceContainer && serviceContainer.nextElementSibling;
+    if (diagnosticHeading) {
+      diagnosticHeading.textContent = t.servicesHeading;
+    }
 
-      if (serviceContainer) {
-        const icon = serviceContainer.querySelector("img");
-        if (icon) {
-          icon.src = "icons/reset.png";
-          icon.alt = t.serviceTitle;
-          icon.style.width = "52px";
-          icon.style.height = "52px";
-        }
+    const serviceContainers = Array.from(document.querySelectorAll(".service-container"));
+    const serviceContainer = serviceContainers.find((container) =>
+      /Aktualizace map|Kartenaktualisierung|Map update|Servis a údržba vozidel|Fahrzeugservice und Wartung|Vehicle service and maintenance|Servis a opravy vozidel|Fahrzeugservice und Reparaturen|Vehicle servicing and repairs/i.test(container.textContent)
+    );
 
-        const titleElement = serviceContainer.querySelector(".service-button > div span");
-        const subtitleElement = serviceContainer.querySelector(".service-button > span");
-        if (titleElement) titleElement.innerHTML = `${t.serviceTitle} <span style="font-size:16px;">▼</span>`;
-        if (subtitleElement) subtitleElement.textContent = t.serviceSubtitle;
+    if (serviceContainer) {
+      const servicePanel = serviceContainer.nextElementSibling && serviceContainer.nextElementSibling.classList.contains("accordion-panel")
+        ? serviceContainer.nextElementSibling
+        : null;
+      const oldHeading = serviceContainer.previousElementSibling && serviceContainer.previousElementSibling.tagName === "H3"
+        ? serviceContainer.previousElementSibling
+        : null;
+
+      const icon = serviceContainer.querySelector("img");
+      if (icon) {
+        icon.src = "icons/reset.png";
+        icon.alt = t.serviceTitle;
+        icon.style.width = "52px";
+        icon.style.height = "52px";
       }
+
+      const titleElement = serviceContainer.querySelector(".service-button > div span");
+      const subtitleElement = serviceContainer.querySelector(".service-button > span");
+      if (titleElement) {
+        titleElement.innerHTML = `${t.serviceTitle} <span style="font-size:16px;">▼</span>`;
+      }
+      if (subtitleElement) subtitleElement.textContent = t.serviceSubtitle;
 
       if (servicePanel) {
         servicePanel.innerHTML = `
@@ -340,17 +352,18 @@
           </div>`;
       }
 
-      if (diagnosticHeading && serviceContainer && servicePanel && diagnosticHeading.parentNode) {
+      if (diagnosticHeading && diagnosticHeading.parentNode) {
+        const referenceNode = diagnosticHeading.nextElementSibling;
         const parent = diagnosticHeading.parentNode;
-        const firstExistingService = diagnosticHeading.nextSibling;
-        parent.insertBefore(serviceContainer, firstExistingService);
-        parent.insertBefore(servicePanel, firstExistingService);
-        navigationHeading.remove();
+        parent.insertBefore(serviceContainer, referenceNode);
+        if (servicePanel) parent.insertBefore(servicePanel, referenceNode);
       }
+
+      if (oldHeading && oldHeading !== diagnosticHeading) oldHeading.remove();
     }
 
     const warningStrong = Array.from(document.querySelectorAll(".reservation-form strong")).find((element) =>
-      /map|kart|naviga/i.test(element.textContent)
+      /map|kart|naviga|Servisní práce|Servicearbeiten|Service work/i.test(element.textContent)
     );
     const warningBox = warningStrong && warningStrong.parentElement;
     if (warningBox) {
@@ -360,15 +373,21 @@
         ${t.bookingP2}`;
     }
 
-    const aboutParagraph = Array.from(document.querySelectorAll("p")).find((paragraph) =>
+    const aboutParagraphs = Array.from(document.querySelectorAll("p"));
+    const experienceParagraph = aboutParagraphs.find((paragraph) =>
+      /35/i.test(paragraph.textContent) &&
+      /Německu|Deutschland|Germany|Stuttgart/i.test(paragraph.textContent)
+    );
+    if (experienceParagraph) experienceParagraph.textContent = t.experience;
+
+    const locationParagraph = aboutParagraphs.find((paragraph) =>
       /Malenovice/i.test(paragraph.textContent) &&
-      /Dnes|Heute|Today|operate/i.test(paragraph.textContent) &&
+      /Dnes|Heute|Today|operate|arbeite/i.test(paragraph.textContent) &&
       /diagnost|Diagnose/i.test(paragraph.textContent)
     );
-    if (aboutParagraph) aboutParagraph.textContent = t.about;
+    if (locationParagraph) locationParagraph.textContent = t.about;
 
-    const priceContainers = Array.from(document.querySelectorAll(".service-container"));
-    const priceContainer = priceContainers.find((container) =>
+    const priceContainer = serviceContainers.find((container) =>
       /Ceník|Preisliste|Price list/i.test(container.textContent)
     );
     const pricePanel = priceContainer && priceContainer.nextElementSibling;
