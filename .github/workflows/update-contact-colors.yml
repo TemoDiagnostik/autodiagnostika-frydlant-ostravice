@@ -1,0 +1,70 @@
+name: Match WhatsApp contact colors to site
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-contact-colors.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-colors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Replace bright green with site gold palette
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          policy = Path('contact-policy.js')
+          text = policy.read_text(encoding='utf-8')
+
+          old_box = 'background:rgba(0,0,0,.72);border:1px solid rgba(37,211,102,.8);border-radius:12px;padding:18px;margin:0 auto 22px;color:#EBDBB1;text-align:center;line-height:1.6;box-shadow:0 2px 8px rgba(0,0,0,.25);'
+          new_box = 'background:rgba(0,0,0,.72);border:1px solid rgba(235,219,177,.88);border-radius:12px;padding:18px;margin:0 auto 22px;color:#EBDBB1;text-align:center;line-height:1.6;box-shadow:0 2px 8px rgba(0,0,0,.25);'
+
+          old_button = 'display:inline-block;background:#25D366;color:#102414;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:9px;'
+          new_button = 'display:inline-block;background:#EBDBB1;color:#2b2b2b;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:9px;border:1px solid rgba(255,255,255,.28);box-shadow:0 2px 5px rgba(0,0,0,.22);'
+
+          old_link = 'color:#25D366;text-decoration:none;font-weight:700;'
+          new_link = 'color:#EBDBB1;text-decoration:none;font-weight:700;'
+
+          for old, new, label in (
+              (old_box, new_box, 'contact box'),
+              (old_button, new_button, 'WhatsApp button'),
+              (old_link, new_link, 'contact link'),
+          ):
+              if old not in text:
+                  raise RuntimeError(f'Expected {label} style not found')
+              text = text.replace(old, new, 1)
+
+          policy.write_text(text, encoding='utf-8')
+
+          version = '20260802-2328'
+          pattern = re.compile(r'contact-policy\.js\?v=[0-9-]+')
+          for path in (Path('index.html'), Path('index.de.html'), Path('index.en.html')):
+              page = path.read_text(encoding='utf-8')
+              updated, count = pattern.subn(f'contact-policy.js?v={version}', page, count=1)
+              if count != 1:
+                  raise RuntimeError(f'{path}: contact-policy script tag not found')
+              path.write_text(updated, encoding='utf-8')
+              print(f'{path}: cache version updated')
+          PY
+
+      - name: Verify JavaScript
+        run: node --check contact-policy.js
+
+      - name: Commit color update
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add contact-policy.js index.html index.de.html index.en.html
+          git commit -m 'Match WhatsApp contact colors to site palette'
+          git push
