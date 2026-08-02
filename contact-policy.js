@@ -11,8 +11,17 @@
       button: "Napsat na WhatsApp",
       phoneLabel: "WhatsApp číslo",
       phonePlaceholder: "Zadejte číslo používané na WhatsApp",
-      aboutLanguage: "Česky se domluvím, ale čeština není můj mateřský jazyk. U technických detailů proto preferuji písemnou komunikaci přes WhatsApp, aby byly požadavky, rozsah práce a dohoda vždy přesné. Německy a anglicky mluvím dobře.",
-      message: "Dobrý den, mám zájem o diagnostiku nebo opravu vozidla. Značka a model: … Rok výroby: … VIN: … Popis problému: …"
+      aboutSubtitle: "35 let zkušeností s automechanikou a diagnostikou vozidel",
+      aboutParagraphs: [
+        "Jsem automechanik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 14 let v Německu, převážně v oblasti Stuttgartu. Propojuji zkušenosti z klasické automobilové mechaniky se znalostmi moderní elektroniky a diagnostické techniky. Díky tomu dokážu závadu přesněji lokalizovat a navrhnout vhodný postup opravy.",
+        "V Malenovicích u Frýdlantu nad Ostravicí nabízím diagnostiku vozidel, údržbu a opravy po předchozí domluvě. Rozsah práce a předběžná cena jsou vždy písemně dohodnuty před zahájením práce. Vozidlo u mě může po dohodě během opravy zůstat a po dokončení zákazníka informuji.",
+        "Česky se domluvím, ale čeština není můj mateřský jazyk. U technických detailů proto preferuji písemnou komunikaci přes WhatsApp, aby byly požadavky zákazníka, rozsah práce a dohoda vždy jasné a přesné. Německy a anglicky mluvím dobře."
+      ],
+      message: "Dobrý den, mám zájem o diagnostiku nebo opravu vozidla. Značka a model: … Rok výroby: … VIN: … Popis problému: …",
+      contactTitle: "Kontaktujte mě",
+      contactNote: "Pro dotazy a domluvu termínu mě prosím kontaktujte písemně.",
+      contactWhatsapp: "WhatsApp",
+      contactEmail: "E-mail"
     },
     de: {
       title: "Kontakt ausschließlich schriftlich über WhatsApp",
@@ -21,8 +30,17 @@
       button: "Über WhatsApp schreiben",
       phoneLabel: "WhatsApp-Nummer",
       phonePlaceholder: "Ihre bei WhatsApp verwendete Nummer",
-      aboutLanguage: "Tschechisch ist nicht meine Muttersprache; im Alltag kann ich mich verständigen. Bei technischen Details bevorzuge ich deshalb die schriftliche Kommunikation über WhatsApp, damit Anforderungen, Arbeitsumfang und Vereinbarungen eindeutig bleiben. Deutsch und Englisch spreche ich gut.",
-      message: "Guten Tag, ich interessiere mich für eine Fahrzeugdiagnose oder Reparatur. Marke und Modell: … Baujahr: … VIN: … Problembeschreibung: …"
+      aboutSubtitle: "35 Jahre Erfahrung in Fahrzeugmechanik und Fahrzeugdiagnose",
+      aboutParagraphs: [
+        "Ich bin Kfz-Mechaniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, davon 14 Jahre in Deutschland, überwiegend im Raum Stuttgart. Ich verbinde meine Erfahrung in der klassischen Fahrzeugmechanik mit Kenntnissen moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler genauer eingrenzen und einen geeigneten Reparaturweg empfehlen.",
+        "In Malenovice bei Frýdlant nad Ostravicí biete ich Fahrzeugdiagnose, Wartung und Reparaturen nach vorheriger Absprache an. Arbeitsumfang und voraussichtlicher Preis werden vor Beginn der Arbeiten stets schriftlich vereinbart. Nach Absprache kann das Fahrzeug während der Reparatur bei mir bleiben; nach Abschluss informiere ich den Kunden.",
+        "Ich kann mich auf Tschechisch verständigen, aber Tschechisch ist nicht meine Muttersprache. Bei technischen Details bevorzuge ich deshalb die schriftliche Kommunikation über WhatsApp, damit Kundenwünsche, Arbeitsumfang und Vereinbarungen stets klar und präzise bleiben. Deutsch und Englisch spreche ich gut."
+      ],
+      message: "Guten Tag, ich interessiere mich für eine Fahrzeugdiagnose oder Reparatur. Marke und Modell: … Baujahr: … VIN: … Problembeschreibung: …",
+      contactTitle: "Kontaktieren Sie mich",
+      contactNote: "Bitte kontaktieren Sie mich für Anfragen und Terminabsprachen schriftlich.",
+      contactWhatsapp: "WhatsApp",
+      contactEmail: "E-Mail"
     },
     en: {
       title: "Written contact only via WhatsApp",
@@ -31,8 +49,17 @@
       button: "Write on WhatsApp",
       phoneLabel: "WhatsApp number",
       phonePlaceholder: "Enter the number you use on WhatsApp",
-      aboutLanguage: "Czech is not my native language, although I can communicate in everyday situations. For technical details, I therefore prefer written communication via WhatsApp so that requirements, the scope of work and all agreements remain precise. I speak German and English well.",
-      message: "Hello, I am interested in vehicle diagnostics or repair. Make and model: … Year: … VIN: … Problem description: …"
+      aboutSubtitle: "35 years of experience in vehicle mechanics and diagnostics",
+      aboutParagraphs: [
+        "I am an automotive mechanic and vehicle diagnostics specialist with more than 35 years of professional experience, including 14 years in Germany, mainly in the Stuttgart area. I combine experience in traditional vehicle mechanics with knowledge of modern electronics and diagnostic technology. This enables me to locate faults more precisely and recommend an appropriate repair procedure.",
+        "In Malenovice near Frýdlant nad Ostravicí, I provide vehicle diagnostics, maintenance and repairs by prior arrangement. The scope of work and estimated price are always agreed in writing before work begins. By arrangement, the vehicle may remain with me during the repair, and I inform the customer when the work is complete.",
+        "I can communicate in Czech, but Czech is not my native language. For technical details, I therefore prefer written communication via WhatsApp so that the customer's requirements, the scope of work and all agreements remain clear and precise. I speak German and English well."
+      ],
+      message: "Hello, I am interested in vehicle diagnostics or repair. Make and model: … Year: … VIN: … Problem description: …",
+      contactTitle: "Contact me",
+      contactNote: "Please contact me in writing for enquiries and appointment arrangements.",
+      contactWhatsapp: "WhatsApp",
+      contactEmail: "Email"
     }
   };
 
@@ -50,25 +77,24 @@
     });
   };
 
-  const updateAboutLanguage = () => {
+  const updateAboutSection = () => {
     const aboutContainer = Array.from(document.querySelectorAll(".service-container")).find((item) =>
       /O mně|Über mich|About me/i.test(item.textContent || "")
     );
-    const panel = aboutContainer?.nextElementSibling;
+    if (!aboutContainer) return;
+
+    const subtitle = aboutContainer.querySelector(".service-button > span");
+    if (subtitle) subtitle.textContent = t.aboutSubtitle;
+
+    const panel = aboutContainer.nextElementSibling;
     if (!panel?.classList.contains("accordion-panel")) return;
 
-    const paragraphs = panel.querySelectorAll("p");
-    if (paragraphs.length) {
-      paragraphs[paragraphs.length - 1].textContent = t.aboutLanguage;
-      paragraphs[0].style.marginTop = "18px";
-    } else {
-      const paragraph = document.createElement("p");
-      paragraph.textContent = t.aboutLanguage;
-      paragraph.style.cssText = "margin:18px 0;color:#EBDBB1;font-size:16px;line-height:1.7;";
-      panel.appendChild(paragraph);
-    }
-
+    panel.innerHTML = t.aboutParagraphs
+      .map((paragraph) => `<p style="margin:18px 0;color:#EBDBB1;font-size:16px;line-height:1.7;">${paragraph}</p>`)
+      .join("");
     panel.style.padding = "0 20px";
+    panel.style.maxWidth = "500px";
+    panel.style.margin = "0 auto 18px auto";
   };
 
   const addWhatsAppContact = () => {
@@ -108,42 +134,20 @@
   const addBottomContactCard = () => {
     if (document.getElementById("temo-bottom-contact")) return;
 
-    const labels = {
-      cs: {
-        title: "Kontaktujte mě",
-        note: "Pro dotazy a domluvu termínu mě prosím kontaktujte písemně.",
-        whatsapp: "WhatsApp",
-        email: "E-mail"
-      },
-      de: {
-        title: "Kontakt",
-        note: "Bitte kontaktieren Sie mich für Anfragen und Terminabsprachen schriftlich.",
-        whatsapp: "WhatsApp",
-        email: "E-Mail"
-      },
-      en: {
-        title: "Contact me",
-        note: "Please contact me in writing for enquiries and appointment arrangements.",
-        whatsapp: "WhatsApp",
-        email: "Email"
-      }
-    };
-
-    const label = labels[language] || labels.cs;
     const email = "diagnostika@temosliving.de";
     const section = document.createElement("section");
     section.id = "temo-bottom-contact";
-    section.setAttribute("aria-label", label.title);
+    section.setAttribute("aria-label", t.contactTitle);
     section.style.cssText = "max-width:500px;margin:26px auto 100px;padding:18px;background:rgba(0,0,0,.72);border:1px solid rgba(235,219,177,.88);border-radius:12px;color:#EBDBB1;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.28);";
     section.innerHTML = `
-      <div style="font-size:22px;font-weight:700;margin-bottom:8px;">💬 ${label.title}</div>
-      <div style="font-size:14px;line-height:1.55;margin-bottom:16px;opacity:.95;">${label.note}</div>
+      <div style="font-size:22px;font-weight:700;margin-bottom:8px;">💬 ${t.contactTitle}</div>
+      <div style="font-size:14px;line-height:1.55;margin-bottom:16px;opacity:.95;">${t.contactNote}</div>
       <a href="${whatsappUrl}" target="_blank" rel="noopener" style="display:block;margin:0 0 10px;padding:12px 14px;border:1px solid rgba(235,219,177,.72);border-radius:9px;background:rgba(43,43,43,.92);color:#EBDBB1;text-decoration:none;font-weight:700;line-height:1.35;">
-        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${label.whatsapp}</span>
+        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${t.contactWhatsapp}</span>
         <span style="font-size:17px;">+420 730 443 768</span>
       </a>
       <a href="mailto:${email}" style="display:block;padding:12px 14px;border:1px solid rgba(235,219,177,.72);border-radius:9px;background:rgba(43,43,43,.92);color:#EBDBB1;text-decoration:none;font-weight:700;line-height:1.35;">
-        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${label.email}</span>
+        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${t.contactEmail}</span>
         <span style="font-size:16px;overflow-wrap:anywhere;">${email}</span>
       </a>`;
 
@@ -173,7 +177,7 @@
 
   const applyPolicy = () => {
     removePriceSection();
-    updateAboutLanguage();
+    updateAboutSection();
     addWhatsAppContact();
     addBottomContactCard();
     disableTelephoneContact();
