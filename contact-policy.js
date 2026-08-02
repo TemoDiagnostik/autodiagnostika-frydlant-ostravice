@@ -68,7 +68,6 @@
       panel.appendChild(paragraph);
     }
 
-    /* Keep the closed accordion at zero visual height. Vertical spacing is placed on the content. */
     panel.style.padding = "0 20px";
   };
 
@@ -106,6 +105,51 @@
     }
   };
 
+  const addBottomContactCard = () => {
+    if (document.getElementById("temo-bottom-contact")) return;
+
+    const labels = {
+      cs: {
+        title: "Kontaktujte mě",
+        note: "Pro dotazy a domluvu termínu mě prosím kontaktujte písemně.",
+        whatsapp: "WhatsApp",
+        email: "E-mail"
+      },
+      de: {
+        title: "Kontakt",
+        note: "Bitte kontaktieren Sie mich für Anfragen und Terminabsprachen schriftlich.",
+        whatsapp: "WhatsApp",
+        email: "E-Mail"
+      },
+      en: {
+        title: "Contact me",
+        note: "Please contact me in writing for enquiries and appointment arrangements.",
+        whatsapp: "WhatsApp",
+        email: "Email"
+      }
+    };
+
+    const label = labels[language] || labels.cs;
+    const email = "diagnostika@temosliving.de";
+    const section = document.createElement("section");
+    section.id = "temo-bottom-contact";
+    section.setAttribute("aria-label", label.title);
+    section.style.cssText = "max-width:500px;margin:26px auto 100px;padding:18px;background:rgba(0,0,0,.72);border:1px solid rgba(235,219,177,.88);border-radius:12px;color:#EBDBB1;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.28);";
+    section.innerHTML = `
+      <div style="font-size:22px;font-weight:700;margin-bottom:8px;">💬 ${label.title}</div>
+      <div style="font-size:14px;line-height:1.55;margin-bottom:16px;opacity:.95;">${label.note}</div>
+      <a href="${whatsappUrl}" target="_blank" rel="noopener" style="display:block;margin:0 0 10px;padding:12px 14px;border:1px solid rgba(235,219,177,.72);border-radius:9px;background:rgba(43,43,43,.92);color:#EBDBB1;text-decoration:none;font-weight:700;line-height:1.35;">
+        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${label.whatsapp}</span>
+        <span style="font-size:17px;">+420 730 443 768</span>
+      </a>
+      <a href="mailto:${email}" style="display:block;padding:12px 14px;border:1px solid rgba(235,219,177,.72);border-radius:9px;background:rgba(43,43,43,.92);color:#EBDBB1;text-decoration:none;font-weight:700;line-height:1.35;">
+        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${label.email}</span>
+        <span style="font-size:16px;overflow-wrap:anywhere;">${email}</span>
+      </a>`;
+
+    document.body.appendChild(section);
+  };
+
   const disableTelephoneContact = () => {
     document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
       link.href = whatsappUrl;
@@ -131,6 +175,7 @@
     removePriceSection();
     updateAboutLanguage();
     addWhatsAppContact();
+    addBottomContactCard();
     disableTelephoneContact();
   };
 
