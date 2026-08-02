@@ -79,12 +79,12 @@
     if (!document.getElementById("whatsapp-written-contact")) {
       const box = document.createElement("div");
       box.id = "whatsapp-written-contact";
-      box.style.cssText = "background:rgba(0,0,0,.72);border:1px solid rgba(37,211,102,.8);border-radius:12px;padding:18px;margin:0 auto 22px;color:#EBDBB1;text-align:center;line-height:1.6;box-shadow:0 2px 8px rgba(0,0,0,.25);";
+      box.style.cssText = "background:rgba(0,0,0,.72);border:1px solid rgba(235,219,177,.88);border-radius:12px;padding:18px;margin:0 auto 22px;color:#EBDBB1;text-align:center;line-height:1.6;box-shadow:0 2px 8px rgba(0,0,0,.25);";
       box.innerHTML = `
         <div style="font-size:20px;font-weight:700;margin-bottom:8px;">💬 ${t.title}</div>
         <div style="font-size:15px;margin-bottom:10px;">${t.body}</div>
         <div style="font-size:13px;margin-bottom:14px;opacity:.94;">${t.note}</div>
-        <a href="${whatsappUrl}" target="_blank" rel="noopener" aria-label="${t.button}" style="display:inline-block;background:#25D366;color:#102414;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:9px;">${t.button}</a>`;
+        <a href="${whatsappUrl}" target="_blank" rel="noopener" aria-label="${t.button}" style="display:inline-block;background:#EBDBB1;color:#2b2b2b;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:9px;border:1px solid rgba(255,255,255,.28);box-shadow:0 2px 5px rgba(0,0,0,.22);">${t.button}</a>`;
 
       const heading = reservation.querySelector("h2");
       if (heading) heading.insertAdjacentElement("afterend", box);
@@ -102,7 +102,7 @@
     const emailLink = reservation.querySelector('a[href^="mailto:"]');
     const contactLine = emailLink?.parentElement;
     if (contactLine) {
-      contactLine.innerHTML = `💬 <a href="${whatsappUrl}" target="_blank" rel="noopener" style="color:#25D366;text-decoration:none;font-weight:700;">${t.button}</a>`;
+      contactLine.innerHTML = `💬 <a href="${whatsappUrl}" target="_blank" rel="noopener" style="color:#EBDBB1;text-decoration:none;font-weight:700;">${t.button}</a>`;
     }
   };
 
