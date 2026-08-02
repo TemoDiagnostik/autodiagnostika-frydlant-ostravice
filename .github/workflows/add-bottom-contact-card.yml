@@ -1,0 +1,122 @@
+name: Add bottom contact card
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-bottom-contact-card.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add multilingual bottom contact card
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('contact-policy.js')
+          text = path.read_text(encoding='utf-8')
+          marker = 'TEMO bottom contact card'
+
+          if marker not in text:
+              anchor = '  const disableTelephoneContact = () => {'
+              if anchor not in text:
+                  raise RuntimeError('disableTelephoneContact anchor not found')
+
+              block = r'''  // TEMO bottom contact card
+  const addBottomContactCard = () => {
+    if (document.getElementById("temo-bottom-contact")) return;
+
+    const labels = {
+      cs: {
+        title: "Kontaktujte mě",
+        note: "Pro dotazy a domluvu termínu mě prosím kontaktujte písemně.",
+        whatsapp: "WhatsApp",
+        email: "E-mail"
+      },
+      de: {
+        title: "Kontakt",
+        note: "Bitte kontaktieren Sie mich für Anfragen und Terminabsprachen schriftlich.",
+        whatsapp: "WhatsApp",
+        email: "E-Mail"
+      },
+      en: {
+        title: "Contact me",
+        note: "Please contact me in writing for enquiries and appointment arrangements.",
+        whatsapp: "WhatsApp",
+        email: "Email"
+      }
+    };
+
+    const label = labels[language] || labels.cs;
+    const email = "diagnostika@temosliving.de";
+    const section = document.createElement("section");
+    section.id = "temo-bottom-contact";
+    section.setAttribute("aria-label", label.title);
+    section.style.cssText = "max-width:500px;margin:26px auto 100px;padding:18px;background:rgba(0,0,0,.72);border:1px solid rgba(235,219,177,.88);border-radius:12px;color:#EBDBB1;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.28);";
+    section.innerHTML = `
+      <div style="font-size:22px;font-weight:700;margin-bottom:8px;">💬 ${label.title}</div>
+      <div style="font-size:14px;line-height:1.55;margin-bottom:16px;opacity:.95;">${label.note}</div>
+      <a href="${whatsappUrl}" target="_blank" rel="noopener" style="display:block;margin:0 0 10px;padding:12px 14px;border:1px solid rgba(235,219,177,.72);border-radius:9px;background:rgba(43,43,43,.92);color:#EBDBB1;text-decoration:none;font-weight:700;line-height:1.35;">
+        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${label.whatsapp}</span>
+        <span style="font-size:17px;">+420 730 443 768</span>
+      </a>
+      <a href="mailto:${email}" style="display:block;padding:12px 14px;border:1px solid rgba(235,219,177,.72);border-radius:9px;background:rgba(43,43,43,.92);color:#EBDBB1;text-decoration:none;font-weight:700;line-height:1.35;">
+        <span style="display:block;font-size:13px;font-weight:400;opacity:.88;">${label.email}</span>
+        <span style="font-size:16px;overflow-wrap:anywhere;">${email}</span>
+      </a>`;
+
+    document.body.appendChild(section);
+  };
+
+'''
+              text = text.replace(anchor, block + anchor, 1)
+
+              old_calls = '''    addWhatsAppContact();
+    disableTelephoneContact();'''
+              new_calls = '''    addWhatsAppContact();
+    addBottomContactCard();
+    disableTelephoneContact();'''
+              if old_calls not in text:
+                  raise RuntimeError('applyPolicy calls anchor not found')
+              text = text.replace(old_calls, new_calls, 1)
+              path.write_text(text, encoding='utf-8')
+              print('Bottom contact card added to contact-policy.js')
+          else:
+              print('Bottom contact card already present')
+
+          version = '20260802-2340'
+          pattern = re.compile(r'contact-policy\.js\?v=[0-9-]+')
+          for page_path in (Path('index.html'), Path('index.de.html'), Path('index.en.html')):
+              page = page_path.read_text(encoding='utf-8')
+              updated, count = pattern.subn(f'contact-policy.js?v={version}', page, count=1)
+              if count != 1:
+                  raise RuntimeError(f'{page_path}: contact-policy script tag not found')
+              page_path.write_text(updated, encoding='utf-8')
+              print(f'{page_path}: cache version updated')
+          PY
+
+      - name: Verify JavaScript
+        run: node --check contact-policy.js
+
+      - name: Commit website update
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add contact-policy.js index.html index.de.html index.en.html
+          git commit -m 'Add bottom contact card with WhatsApp and email'
+          git push
