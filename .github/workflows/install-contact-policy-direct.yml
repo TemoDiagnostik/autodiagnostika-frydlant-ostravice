@@ -1,0 +1,54 @@
+name: Install contact policy in live pages
+
+on:
+  push:
+    paths:
+      - '.github/workflows/install-contact-policy-direct.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Link contact policy to all live language pages
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          live_pages = [Path('index.html'), Path('index.de.html'), Path('index.en.html')]
+          script_tag = '  <script src="contact-policy.js?v=20260802-2302"></script>\n'
+          pattern = re.compile(r'\s*<script\s+src=["\']contact-policy\.js(?:\?[^"\']*)?["\']\s*></script>\s*', re.I)
+
+          for path in live_pages:
+              text = path.read_text(encoding='utf-8')
+              text = pattern.sub('\n', text)
+              if '</body>' not in text:
+                  raise RuntimeError(f'{path}: closing body tag not found')
+              text = text.replace('</body>', script_tag + '</body>', 1)
+              path.write_text(text, encoding='utf-8')
+              print(f'{path}: contact policy linked')
+          PY
+
+      - name: Verify JavaScript
+        run: node --check contact-policy.js
+
+      - name: Commit live page links
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No page changes required.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html index.de.html index.en.html
+          git commit -m 'Link WhatsApp contact policy to live pages'
+          git push
