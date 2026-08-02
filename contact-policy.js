@@ -2,6 +2,7 @@
   "use strict";
 
   const language = (document.documentElement.lang || "cs").toLowerCase().slice(0, 2);
+
   const copy = {
     cs: {
       title: "Kontakt pouze písemně přes WhatsApp",
@@ -40,13 +41,13 @@
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(t.message)}`;
 
   const removePriceSection = () => {
-    const container = Array.from(document.querySelectorAll(".service-container")).find((item) =>
-      /Ceník|Preisliste|Price list/i.test(item.textContent || "")
-    );
-    if (!container) return;
-    const panel = container.nextElementSibling;
-    if (panel?.classList.contains("accordion-panel")) panel.remove();
-    container.remove();
+    const containers = Array.from(document.querySelectorAll(".service-container"));
+    containers.forEach((container) => {
+      if (!/Ceník|Preisliste|Price list/i.test(container.textContent || "")) return;
+      const panel = container.nextElementSibling;
+      if (panel?.classList.contains("accordion-panel")) panel.remove();
+      container.remove();
+    });
   };
 
   const updateAboutLanguage = () => {
@@ -59,12 +60,16 @@
     const paragraphs = panel.querySelectorAll("p");
     if (paragraphs.length) {
       paragraphs[paragraphs.length - 1].textContent = t.aboutLanguage;
+      paragraphs[0].style.marginTop = "18px";
     } else {
       const paragraph = document.createElement("p");
       paragraph.textContent = t.aboutLanguage;
-      paragraph.style.cssText = "margin:0 0 18px 0;color:#EBDBB1;font-size:16px;line-height:1.7;";
+      paragraph.style.cssText = "margin:18px 0;color:#EBDBB1;font-size:16px;line-height:1.7;";
       panel.appendChild(paragraph);
     }
+
+    /* Keep the closed accordion at zero visual height. Vertical spacing is placed on the content. */
+    panel.style.padding = "0 20px";
   };
 
   const addWhatsAppContact = () => {
@@ -130,9 +135,7 @@
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      window.setTimeout(applyPolicy, 0);
-    });
+    document.addEventListener("DOMContentLoaded", () => window.setTimeout(applyPolicy, 0));
   } else {
     window.setTimeout(applyPolicy, 0);
   }
