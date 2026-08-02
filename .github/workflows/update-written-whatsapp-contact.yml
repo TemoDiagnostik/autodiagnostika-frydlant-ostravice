@@ -1,0 +1,190 @@
+name: Update written WhatsApp contact
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-written-whatsapp-contact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update contact policy and About text
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('booking.js')
+          text = path.read_text(encoding='utf-8')
+
+          marker = 'TEMO written WhatsApp contact policy'
+          if marker in text:
+              print('The WhatsApp contact policy is already installed.')
+              raise SystemExit(0)
+
+          replacements = {
+              '        "Mluvím německy, anglicky a česky."':
+              '        "Česky se domluvím, ale čeština není můj mateřský jazyk. U technických detailů proto preferuji písemnou komunikaci přes WhatsApp, aby byly požadavky, rozsah práce a dohoda vždy přesné. Německy a anglicky mluvím dobře."',
+              '        "Ich spreche Deutsch, Englisch und Tschechisch."':
+              '        "Tschechisch ist nicht meine Muttersprache; im Alltag kann ich mich verständigen. Bei technischen Details bevorzuge ich deshalb die schriftliche Kommunikation über WhatsApp, damit Anforderungen, Arbeitsumfang und Vereinbarungen eindeutig bleiben. Deutsch und Englisch spreche ich gut."',
+              '        "I speak German, English and Czech."':
+              '        "Czech is not my native language, although I can communicate in everyday situations. For technical details, I therefore prefer written communication via WhatsApp so that requirements, the scope of work and all agreements remain precise. I speak German and English well."'
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Required About text not found: {old}')
+              text = text.replace(old, new, 1)
+
+          translation_insertions = {
+              '      bookingP2: "Termín bude potvrzen po ověření rozsahu práce a dostupnosti.",': '''      bookingP2: "Termín bude potvrzen po ověření rozsahu práce a dostupnosti.",
+              whatsappTitle: "Písemný kontakt přes WhatsApp",
+              whatsappBody: "Nové požadavky, technické dotazy a domluvu termínu přijímám pouze písemně přes WhatsApp. Uveďte prosím značku a model vozidla, rok výroby, VIN a stručný popis problému.",
+              whatsappNote: "Telefonické objednávky nepřijímám. Rozsah práce, cena a termín budou potvrzeny písemně před zahájením práce.",
+              whatsappButton: "Napsat na WhatsApp",
+              whatsappPhoneLabel: "WhatsApp číslo",
+              whatsappPhonePlaceholder: "Zadejte číslo používané na WhatsApp",
+              whatsappMessage: "Dobrý den, mám zájem o diagnostiku nebo opravu vozidla. Značka a model: … Rok výroby: … VIN: … Popis problému: …",''',
+              '      bookingP2: "Der Termin wird nach Prüfung des Arbeitsumfangs und der Verfügbarkeit bestätigt.",': '''      bookingP2: "Der Termin wird nach Prüfung des Arbeitsumfangs und der Verfügbarkeit bestätigt.",
+              whatsappTitle: "Schriftlicher Kontakt über WhatsApp",
+              whatsappBody: "Neue Anfragen, technische Fragen und Terminabsprachen nehme ich ausschließlich schriftlich über WhatsApp entgegen. Bitte nennen Sie Marke und Modell, Baujahr, VIN und eine kurze Problembeschreibung.",
+              whatsappNote: "Telefonische Aufträge nehme ich nicht an. Arbeitsumfang, Preis und Termin werden vor Arbeitsbeginn schriftlich bestätigt.",
+              whatsappButton: "Über WhatsApp schreiben",
+              whatsappPhoneLabel: "WhatsApp-Nummer",
+              whatsappPhonePlaceholder: "Ihre bei WhatsApp verwendete Nummer",
+              whatsappMessage: "Guten Tag, ich interessiere mich für eine Fahrzeugdiagnose oder Reparatur. Marke und Modell: … Baujahr: … VIN: … Problembeschreibung: …",''',
+              '      bookingP2: "The appointment will be confirmed after reviewing the scope of work and availability.",': '''      bookingP2: "The appointment will be confirmed after reviewing the scope of work and availability.",
+              whatsappTitle: "Written contact via WhatsApp",
+              whatsappBody: "I accept new requests, technical questions and appointment arrangements only in writing via WhatsApp. Please include the vehicle make and model, year, VIN and a brief description of the problem.",
+              whatsappNote: "I do not accept bookings by telephone. The scope of work, price and appointment will be confirmed in writing before work begins.",
+              whatsappButton: "Write on WhatsApp",
+              whatsappPhoneLabel: "WhatsApp number",
+              whatsappPhonePlaceholder: "Enter the number you use on WhatsApp",
+              whatsappMessage: "Hello, I am interested in vehicle diagnostics or repair. Make and model: … Year: … VIN: … Problem description: …",'''
+          }
+
+          for old, new in translation_insertions.items():
+              if old not in text:
+                  raise SystemExit(f'Required translation anchor not found: {old}')
+              text = text.replace(old, new, 1)
+
+          anchor = '  const applyPageContent = () => {'
+          if anchor not in text:
+              raise SystemExit('applyPageContent anchor not found')
+
+          functions = r'''  // TEMO written WhatsApp contact policy
+          const removePriceSection = () => {
+            const priceContainer = Array.from(document.querySelectorAll(".service-container")).find((container) =>
+              /Ceník|Preisliste|Price list/i.test(container.textContent || "")
+            );
+            if (!priceContainer) return;
+            const panel = priceContainer.nextElementSibling;
+            if (panel?.classList.contains("accordion-panel")) panel.remove();
+            priceContainer.remove();
+          };
+
+          const applyWrittenContactPolicy = () => {
+            const whatsappNumber = "420730443768";
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(t.whatsappMessage)}`;
+            const reservation = document.querySelector(".reservation-form");
+
+            if (reservation && !document.getElementById("whatsapp-written-contact")) {
+              const box = document.createElement("div");
+              box.id = "whatsapp-written-contact";
+              box.style.cssText = "background:rgba(0,0,0,.72);border:1px solid rgba(37,211,102,.75);border-radius:12px;padding:18px;margin:0 auto 22px;color:#EBDBB1;text-align:center;line-height:1.6;";
+              box.innerHTML = `
+                <div style="font-size:20px;font-weight:700;margin-bottom:8px;">💬 ${t.whatsappTitle}</div>
+                <div style="font-size:15px;margin-bottom:10px;">${t.whatsappBody}</div>
+                <div style="font-size:13px;margin-bottom:14px;opacity:.92;">${t.whatsappNote}</div>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#25D366;color:#102414;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:9px;">${t.whatsappButton}</a>`;
+              reservation.insertBefore(box, reservation.firstChild);
+            }
+
+            const phoneInput = document.getElementById("clientPhone");
+            if (phoneInput) {
+              const phoneLabel = document.querySelector('label[for="clientPhone"]');
+              if (phoneLabel) phoneLabel.textContent = t.whatsappPhoneLabel;
+              phoneInput.placeholder = t.whatsappPhonePlaceholder;
+              phoneInput.setAttribute("autocomplete", "tel");
+            }
+
+            document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+              link.href = whatsappUrl;
+              link.target = "_blank";
+              link.rel = "noopener";
+              link.textContent = t.whatsappButton;
+            });
+
+            document.querySelectorAll("a, button").forEach((element) => {
+              const label = (element.textContent || "").trim();
+              if (/^(Zavolat|Volat|Anrufen|Call|Call now)$/i.test(label)) {
+                if (element.tagName === "A") {
+                  element.href = whatsappUrl;
+                  element.target = "_blank";
+                  element.rel = "noopener";
+                }
+                element.textContent = t.whatsappButton;
+              }
+            });
+
+            const emailLink = reservation?.querySelector('a[href^="mailto:"]');
+            const contactLine = emailLink?.parentElement;
+            if (contactLine) {
+              contactLine.innerHTML = `💬 <a href="${whatsappUrl}" target="_blank" rel="noopener" style="color:#25D366;text-decoration:none;font-weight:700;">${t.whatsappButton}</a>`;
+            }
+          };
+
+          '''
+          text = text.replace(anchor, functions + anchor, 1)
+
+          initial_calls = '''  removeLegacyMapService();
+          prepareServiceSection();
+          applyPageContent();
+          applyAboutSection();'''
+          updated_calls = '''  removeLegacyMapService();
+          prepareServiceSection();
+          applyPageContent();
+          applyAboutSection();
+          removePriceSection();
+          applyWrittenContactPolicy();'''
+          if initial_calls not in text:
+              raise SystemExit('Initial function calls block not found')
+          text = text.replace(initial_calls, updated_calls, 1)
+
+          dom_anchor = '''  document.addEventListener("DOMContentLoaded", () => {
+            applyAboutSection();'''
+          dom_updated = '''  document.addEventListener("DOMContentLoaded", () => {
+            applyAboutSection();
+            removePriceSection();
+            applyWrittenContactPolicy();'''
+          if dom_anchor not in text:
+              raise SystemExit('DOMContentLoaded anchor not found')
+          text = text.replace(dom_anchor, dom_updated, 1)
+
+          path.write_text(text, encoding='utf-8')
+          print('booking.js updated successfully.')
+          PY
+
+      - name: Verify JavaScript syntax
+        run: node --check booking.js
+
+      - name: Commit website update
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add booking.js
+          git commit -m "Use written WhatsApp contact and remove price list"
+          git push
