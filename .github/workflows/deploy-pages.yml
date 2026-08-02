@@ -146,6 +146,27 @@ jobs:
                   raise RuntimeError(f"{path}: discontinued content remains: {remaining}")
           PY
 
+      - name: Install written WhatsApp contact policy
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          script_tag = '<script src="contact-policy.js?v=20260802"></script>'
+          for path in sorted(Path('.').glob('index*.html')):
+              text = path.read_text(encoding='utf-8')
+              if script_tag in text:
+                  print(f"{path}: contact policy already installed")
+                  continue
+              if '</body>' not in text:
+                  raise RuntimeError(f"{path}: closing body tag not found")
+              text = text.replace('</body>', f'  {script_tag}\n</body>', 1)
+              path.write_text(text, encoding='utf-8')
+              print(f"{path}: installed written WhatsApp contact policy")
+          PY
+
+      - name: Verify contact policy JavaScript
+        run: node --check contact-policy.js
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
