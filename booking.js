@@ -23,7 +23,7 @@
       bookingP2: "Termín bude potvrzen po ověření rozsahu práce a dostupnosti.",
       aboutSubtitle: "35 let zkušeností s automechanikou a diagnostikou vozidel",
       aboutParagraphs: [
-        "Jsem automechatronik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 14 let v Německu (Stuttgart). Zaměřuji se na propojení klasické automobilové mechaniky s moderní elektronikou a diagnostickou technikou. Díky tomu mohu závady přesně lokalizovat a navrhovat odborná řešení.",
+        "Jsem automechatronik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 18 let v Německu (Stuttgart). Zaměřuji se na propojení klasické automobilové mechaniky s moderní elektronikou a diagnostickou technikou. Díky tomu mohu závady přesně lokalizovat a navrhovat odborná řešení.",
         "Dnes v Malenovicích u Frýdlantu nad Ostravicí nabízím profesionální diagnostiku vozidel, údržbu a opravy po předchozí domluvě. Rozsah práce a cena jsou vždy dohodnuty před zahájením prací. Vozidlo u mě může během opravy zůstat; po dokončení zákazníka informuji.",
         "Mluvím německy, anglicky a česky."
       ],
@@ -48,7 +48,7 @@
       bookingP2: "Der Termin wird nach Prüfung des Arbeitsumfangs und der Verfügbarkeit bestätigt.",
       aboutSubtitle: "35 Jahre Erfahrung in Fahrzeugmechanik und Diagnosetechnik",
       aboutParagraphs: [
-        "Ich bin Kfz-Mechatroniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, darunter 14 Jahre in Deutschland (Stuttgart). Mein Schwerpunkt liegt in der Verbindung klassischer Fahrzeugmechanik mit moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler präzise eingrenzen und fachgerechte Lösungen entwickeln.",
+        "Ich bin Kfz-Mechatroniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, darunter 18 Jahre in Deutschland (Stuttgart). Mein Schwerpunkt liegt in der Verbindung klassischer Fahrzeugmechanik mit moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler präzise eingrenzen und fachgerechte Lösungen entwickeln.",
         "Heute biete ich in Malenovice bei Frýdlant nad Ostravicí professionelle Fahrzeugdiagnose, Wartung und Reparaturen nach vorheriger Absprache an. Arbeitsumfang und Preis werden vor Beginn der Arbeiten gemeinsam vereinbart. Das Fahrzeug kann während der Reparatur bei mir bleiben; nach Abschluss der Arbeiten informiere ich den Kunden.",
         "Ich spreche Deutsch, Englisch und Tschechisch."
       ],
@@ -73,7 +73,7 @@
       bookingP2: "The appointment will be confirmed after reviewing the scope of work and availability.",
       aboutSubtitle: "35 years of experience in vehicle mechanics and diagnostics",
       aboutParagraphs: [
-        "I am an automotive mechatronics technician and vehicle diagnostics specialist with more than 35 years of professional experience, including 14 years in Germany (Stuttgart). My work combines traditional vehicle mechanics with modern electronics and diagnostic technology, allowing me to pinpoint faults accurately and develop professional solutions.",
+        "I am an automotive mechatronics technician and vehicle diagnostics specialist with more than 35 years of professional experience, including 18 years in Germany (Stuttgart). My work combines traditional vehicle mechanics with modern electronics and diagnostic technology, allowing me to pinpoint faults accurately and develop professional solutions.",
         "Today, I provide professional vehicle diagnostics, maintenance and repairs in Malenovice near Frýdlant nad Ostravicí by prior arrangement. The scope of work and price are agreed before work begins. The vehicle may remain with me during the repair; I contact the customer when the work is completed.",
         "I speak German, English and Czech."
       ],
