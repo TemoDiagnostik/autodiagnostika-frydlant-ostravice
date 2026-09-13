@@ -13,7 +13,7 @@
       phonePlaceholder: "Zadejte číslo používané na WhatsApp",
       aboutSubtitle: "35 let zkušeností s automechanikou a diagnostikou vozidel",
       aboutParagraphs: [
-        "Jsem automechanik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 14 let v Německu, převážně v oblasti Stuttgartu. Propojuji zkušenosti z klasické automobilové mechaniky se znalostmi moderní elektroniky a diagnostické techniky. Díky tomu dokážu závadu přesněji lokalizovat a navrhnout vhodný postup opravy.",
+        "Jsem automechanik a diagnostik vozidel s více než 35 lety odborné praxe, z toho 18 let v Německu, převážně v oblasti Stuttgartu. Propojuji zkušenosti z klasické automobilové mechaniky se znalostmi moderní elektroniky a diagnostické techniky. Díky tomu dokážu závadu přesněji lokalizovat a navrhnout vhodný postup opravy.",
         "V Malenovicích u Frýdlantu nad Ostravicí nabízím diagnostiku vozidel, údržbu a opravy po předchozí domluvě. Rozsah práce a předběžná cena jsou vždy písemně dohodnuty před zahájením práce. Vozidlo u mě může po dohodě během opravy zůstat a po dokončení zákazníka informuji.",
         "Česky se domluvím, ale čeština není můj mateřský jazyk. U technických detailů proto preferuji písemnou komunikaci přes WhatsApp, aby byly požadavky zákazníka, rozsah práce a dohoda vždy jasné a přesné. Německy a anglicky mluvím dobře."
       ],
@@ -32,7 +32,7 @@
       phonePlaceholder: "Ihre bei WhatsApp verwendete Nummer",
       aboutSubtitle: "35 Jahre Erfahrung in Fahrzeugmechanik und Fahrzeugdiagnose",
       aboutParagraphs: [
-        "Ich bin Kfz-Mechaniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, davon 14 Jahre in Deutschland, überwiegend im Raum Stuttgart. Ich verbinde meine Erfahrung in der klassischen Fahrzeugmechanik mit Kenntnissen moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler genauer eingrenzen und einen geeigneten Reparaturweg empfehlen.",
+        "Ich bin Kfz-Mechaniker und Fahrzeugdiagnostiker mit mehr als 35 Jahren Berufserfahrung, davon 18 Jahre in Deutschland, überwiegend im Raum Stuttgart. Ich verbinde meine Erfahrung in der klassischen Fahrzeugmechanik mit Kenntnissen moderner Elektronik und Diagnosetechnik. Dadurch kann ich Fehler genauer eingrenzen und einen geeigneten Reparaturweg empfehlen.",
         "In Malenovice bei Frýdlant nad Ostravicí biete ich Fahrzeugdiagnose, Wartung und Reparaturen nach vorheriger Absprache an. Arbeitsumfang und voraussichtlicher Preis werden vor Beginn der Arbeiten stets schriftlich vereinbart. Nach Absprache kann das Fahrzeug während der Reparatur bei mir bleiben; nach Abschluss informiere ich den Kunden.",
         "Ich kann mich auf Tschechisch verständigen, aber Tschechisch ist nicht meine Muttersprache. Bei technischen Details bevorzuge ich deshalb die schriftliche Kommunikation über WhatsApp, damit Kundenwünsche, Arbeitsumfang und Vereinbarungen stets klar und präzise bleiben. Deutsch und Englisch spreche ich gut."
       ],
@@ -51,7 +51,7 @@
       phonePlaceholder: "Enter the number you use on WhatsApp",
       aboutSubtitle: "35 years of experience in vehicle mechanics and diagnostics",
       aboutParagraphs: [
-        "I am an automotive mechanic and vehicle diagnostics specialist with more than 35 years of professional experience, including 14 years in Germany, mainly in the Stuttgart area. I combine experience in traditional vehicle mechanics with knowledge of modern electronics and diagnostic technology. This enables me to locate faults more precisely and recommend an appropriate repair procedure.",
+        "I am an automotive mechanic and vehicle diagnostics specialist with more than 35 years of professional experience, including 18 years in Germany, mainly in the Stuttgart area. I combine experience in traditional vehicle mechanics with knowledge of modern electronics and diagnostic technology. This enables me to locate faults more precisely and recommend an appropriate repair procedure.",
         "In Malenovice near Frýdlant nad Ostravicí, I provide vehicle diagnostics, maintenance and repairs by prior arrangement. The scope of work and estimated price are always agreed in writing before work begins. By arrangement, the vehicle may remain with me during the repair, and I inform the customer when the work is complete.",
         "I can communicate in Czech, but Czech is not my native language. For technical details, I therefore prefer written communication via WhatsApp so that the customer's requirements, the scope of work and all agreements remain clear and precise. I speak German and English well."
       ],
